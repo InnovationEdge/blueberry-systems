@@ -132,12 +132,12 @@ const PROCESS = [
 ];
 
 const PORTFOLIO = [
-  { title: 'NovaPay', category: 'Fintech Platform', year: '2025', color: 'from-[#0a1628] to-[#0d2044]' },
-  { title: 'Vendora', category: 'E-commerce SaaS', year: '2024', color: 'from-[#0a1a14] to-[#0d2a1e]' },
-  { title: 'HealthBridge', category: 'Healthcare Portal', year: '2025', color: 'from-[#0a1520] to-[#0d2035]' },
-  { title: 'LogiTrack', category: 'Logistics Dashboard', year: '2024', color: 'from-[#120a20] to-[#1a0d30]' },
-  { title: 'EduVerse', category: 'EdTech Platform', year: '2025', color: 'from-[#1a1008] to-[#251810]' },
-  { title: 'CryptoNest', category: 'DeFi Analytics', year: '2024', color: 'from-[#180a14] to-[#250d1e]' },
+  { title: 'NovaPay', initials: 'NP', category: 'Fintech Platform', year: '2025', desc: 'Payment processing platform handling 50K+ daily transactions with real-time fraud detection and multi-currency support.', color: 'from-[#0a1628] to-[#0d2044]', accent: '#3b82f6' },
+  { title: 'Vendora', initials: 'Vn', category: 'E-commerce SaaS', year: '2024', desc: 'Multi-vendor marketplace with inventory management, automated fulfillment, and seller analytics dashboard.', color: 'from-[#0a1a14] to-[#0d2a1e]', accent: '#10b981' },
+  { title: 'HealthBridge', initials: 'HB', category: 'Healthcare Portal', year: '2025', desc: 'Patient management system with appointment scheduling, telemedicine integration, and HIPAA-compliant records.', color: 'from-[#0a1520] to-[#0d2035]', accent: '#06b6d4' },
+  { title: 'LogiTrack', initials: 'LT', category: 'Logistics Dashboard', year: '2024', desc: 'Fleet management and route optimization platform serving 200+ delivery vehicles across 3 countries.', color: 'from-[#120a20] to-[#1a0d30]', accent: '#8b5cf6' },
+  { title: 'EduVerse', initials: 'EV', category: 'EdTech Platform', year: '2025', desc: 'Interactive learning platform with live sessions, progress tracking, and AI-powered content recommendations.', color: 'from-[#1a1008] to-[#251810]', accent: '#f59e0b' },
+  { title: 'CryptoNest', initials: 'CN', category: 'DeFi Analytics', year: '2024', desc: 'Real-time cryptocurrency portfolio tracker with DeFi protocol analytics and automated yield optimization.', color: 'from-[#180a14] to-[#250d1e]', accent: '#ec4899' },
 ];
 
 const PRICING = [
@@ -530,24 +530,32 @@ export default function App() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">Recent Projects</h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PORTFOLIO.map((p, i) => (
               <div key={i}>
-                <Reveal delay={i * 0.12}>
-                  <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.3 }} className="group cursor-pointer">
-                    <div className={`bg-gradient-to-br ${p.color} rounded-3xl h-[340px] mb-5 flex flex-col justify-between p-8 relative overflow-hidden`}>
+                <Reveal delay={i * 0.1}>
+                  <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }} className="group">
+                    <div className={`bg-gradient-to-br ${p.color} border border-white/[0.04] rounded-3xl p-8 h-full relative overflow-hidden`}>
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
-                      <div className="relative flex justify-between items-start">
-                        <span className="px-3 py-1.5 bg-black/30 rounded-full text-xs font-medium backdrop-blur-sm">{p.category}</span>
-                        <span className="text-xs text-white/50">{p.year}</span>
-                      </div>
                       <div className="relative">
-                        <motion.div initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} className="mb-2">
-                          <ArrowUpRight className="w-6 h-6 text-white/80" />
-                        </motion.div>
+                        {/* Logo + year */}
+                        <div className="flex items-start justify-between mb-8">
+                          <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-base font-bold border border-white/10" style={{ color: p.accent, backgroundColor: `${p.accent}15` }}>
+                            {p.initials}
+                          </div>
+                          <span className="text-xs text-white/30 font-medium">{p.year}</span>
+                        </div>
+
+                        {/* Category */}
+                        <span className="text-xs font-medium uppercase tracking-[0.2em] mb-3 block" style={{ color: p.accent }}>{p.category}</span>
+
+                        {/* Title */}
+                        <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors">{p.title}</h3>
+
+                        {/* Description */}
+                        <p className="text-sm text-zinc-500 leading-relaxed">{p.desc}</p>
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold group-hover:text-blue-400 transition-colors tracking-tight">{p.title}</h3>
                   </motion.div>
                 </Reveal>
               </div>
