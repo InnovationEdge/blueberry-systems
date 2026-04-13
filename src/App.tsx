@@ -6,7 +6,7 @@ import {
   ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
   ArrowUpRight, CheckCircle
 } from 'lucide-react';
-import { supabase } from './lib/supabase';
+// Contact form uses Web3Forms API (free, no backend needed)
 
 /* ─── Animated Components ─── */
 
@@ -183,17 +183,30 @@ function ContactForm() {
     setSending(true);
     setError('');
     try {
-      const { error: dbError } = await supabase.from('contact_requests').insert({
-        name: form.name.trim(),
-        email: form.email.trim(),
-        company: form.company.trim() || null,
-        budget: form.budget || null,
-        message: form.message.trim(),
+      const res = await fetch('https://formsubmit.co/ajax/ikerdikoshv@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: `Blueberry Systems - New Inquiry from ${form.name}`,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim() || 'N/A',
+          budget: form.budget || 'Not specified',
+          message: form.message.trim(),
+          _template: 'table',
+        }),
       });
-      if (dbError) throw dbError;
-      setSent(true);
+      const data = await res.json();
+      if (data.success) {
+        setSent(true);
+      } else {
+        throw new Error('Failed');
+      }
     } catch {
-      setError('Something went wrong. Please try again or email us directly.');
+      const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
+      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
+      window.location.href = `mailto:ikerdikoshv@gmail.com?subject=${subject}&body=${body}`;
+      setSent(true);
     } finally {
       setSending(false);
     }
