@@ -304,7 +304,7 @@ export default function App() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-[80px] flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight group">
-            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-12 md:h-14 w-auto" />
+            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-24 md:h-28 w-auto -my-8" />
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map(item => (
