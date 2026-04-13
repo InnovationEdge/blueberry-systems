@@ -181,7 +181,7 @@ function ContactForm() {
     // Send email via mailto fallback
     const subject = encodeURIComponent(`Project Inquiry from ${form.name} - ${form.company}`);
     const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
-    window.open(`mailto:info@blueberrysystems.io?subject=${subject}&body=${body}`, '_self');
+    window.open(`mailto:info@blueberry.codes?subject=${subject}&body=${body}`, '_self');
     setTimeout(() => { setSending(false); setSent(true); }, 1000);
   };
 
@@ -678,9 +678,9 @@ export default function App() {
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Ready to Build<br />Something Great?</h2>
               <p className="text-zinc-500 text-base mb-10 leading-relaxed">Every project starts with a conversation. Fill out the form and we will get back to you within 24 hours.</p>
               <div className="space-y-4 text-sm text-zinc-500">
-                <div className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-500" /> info@blueberrysystems.io</div>
+                <div className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-500" /> info@blueberry.codes</div>
                 <div className="flex items-center gap-3"><MapPin className="w-4 h-4 text-blue-500" /> Tbilisi, Georgia</div>
-                <div className="flex items-center gap-3"><Phone className="w-4 h-4 text-blue-500" /> +995 557 139 997</div>
+                <div className="flex items-center gap-3"><Phone className="w-4 h-4 text-blue-500" /> +995 598 44 96 44</div>
               </div>
             </Reveal>
 
