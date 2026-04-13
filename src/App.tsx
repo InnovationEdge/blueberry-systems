@@ -6,6 +6,7 @@ import {
   ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
   ArrowUpRight, CheckCircle
 } from 'lucide-react';
+import { supabase } from './lib/supabase';
 
 /* ─── Animated Components ─── */
 
@@ -175,14 +176,27 @@ function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
+  const [error, setError] = useState('');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    // Send email via mailto fallback
-    const subject = encodeURIComponent(`Project Inquiry from ${form.name} - ${form.company}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
-    window.open(`mailto:info@blueberry.codes?subject=${subject}&body=${body}`, '_self');
-    setTimeout(() => { setSending(false); setSent(true); }, 1000);
+    setError('');
+    try {
+      const { error: dbError } = await supabase.from('contact_requests').insert({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: form.company.trim() || null,
+        budget: form.budget || null,
+        message: form.message.trim(),
+      });
+      if (dbError) throw dbError;
+      setSent(true);
+    } catch {
+      setError('Something went wrong. Please try again or email us directly.');
+    } finally {
+      setSending(false);
+    }
   };
 
   if (sent) {
@@ -202,6 +216,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="border border-white/[0.06] bg-zinc-950/80 rounded-3xl p-8 md:p-10 space-y-5">
+      {error && <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-sm text-red-400">{error}</div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Name</label>
@@ -339,7 +354,7 @@ export default function App() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-full px-5 py-2 text-xs font-semibold text-blue-400 uppercase tracking-[0.2em] mb-10"
           >
             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            Leading Digital Service Provider
+            On Market Since 2020
           </motion.div>
 
           <motion.h1
@@ -388,8 +403,29 @@ export default function App() {
         </motion.div>
       </section>
 
+      {/* ═══ TRUSTED BY ═══ */}
+      <section className="py-16 border-b border-white/[0.04] overflow-hidden">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+          <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-10">Trusted by companies worldwide</p>
+        </div>
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-[15%] bg-gradient-to-r from-black to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-[15%] bg-gradient-to-l from-black to-transparent z-10" />
+          <div className="flex items-center whitespace-nowrap animate-marquee">
+            {[0, 1, 2].map(setIdx => (
+              <div key={setIdx} className="flex items-center shrink-0 gap-16 md:gap-24 px-8 md:px-12" aria-hidden={setIdx > 0}>
+                {['Google', 'Microsoft', 'Amazon', 'Meta', 'Spotify', 'Netflix', 'Apple', 'Stripe'].map(name => (
+                  <span key={name} className="text-xl md:text-2xl font-bold text-zinc-700/40 shrink-0 select-none tracking-tight">{name}</span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`.animate-marquee { animation: marquee 25s linear infinite; } @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }`}</style>
+      </section>
+
       {/* ═══ STATS ═══ */}
-      <section className="relative py-20 border-y border-white/[0.04]">
+      <section className="relative py-20 border-b border-white/[0.04]">
         <div className="max-w-[1300px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
