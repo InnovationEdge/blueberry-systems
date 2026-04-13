@@ -230,12 +230,36 @@ const PROCESS = [
 ];
 
 const PORTFOLIO = [
-  { title: 'NovaPay', initials: 'NP', category: 'Fintech Platform', year: '2025', desc: 'Payment processing platform handling 50K+ daily transactions with real-time fraud detection and multi-currency support.', color: 'from-[#0a1628] to-[#0d2044]', accent: '#3b82f6' },
-  { title: 'Vendora', initials: 'Vn', category: 'E-commerce SaaS', year: '2024', desc: 'Multi-vendor marketplace with inventory management, automated fulfillment, and seller analytics dashboard.', color: 'from-[#0a1a14] to-[#0d2a1e]', accent: '#10b981' },
-  { title: 'HealthBridge', initials: 'HB', category: 'Healthcare Portal', year: '2025', desc: 'Patient management system with appointment scheduling, telemedicine integration, and HIPAA-compliant records.', color: 'from-[#0a1520] to-[#0d2035]', accent: '#06b6d4' },
-  { title: 'LogiTrack', initials: 'LT', category: 'Logistics Dashboard', year: '2024', desc: 'Fleet management and route optimization platform serving 200+ delivery vehicles across 3 countries.', color: 'from-[#120a20] to-[#1a0d30]', accent: '#8b5cf6' },
-  { title: 'EduVerse', initials: 'EV', category: 'EdTech Platform', year: '2025', desc: 'Interactive learning platform with live sessions, progress tracking, and AI-powered content recommendations.', color: 'from-[#1a1008] to-[#251810]', accent: '#f59e0b' },
-  { title: 'CryptoNest', initials: 'CN', category: 'DeFi Analytics', year: '2024', desc: 'Real-time cryptocurrency portfolio tracker with DeFi protocol analytics and automated yield optimization.', color: 'from-[#180a14] to-[#250d1e]', accent: '#ec4899' },
+  { title: 'NovaPay', initials: 'NP', category: 'Fintech Platform', year: '2025', desc: 'Payment processing platform handling 50K+ daily transactions with real-time fraud detection and multi-currency support.', accent: '#3b82f6',
+    challenge: 'Build a payment platform that handles high transaction volumes with zero downtime and real-time fraud prevention.',
+    solution: 'Microservices architecture on AWS with event-driven processing, ML-based fraud detection, and multi-region failover.',
+    stack: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Redis', 'Stripe API'],
+    results: ['50K+ daily transactions', '99.99% uptime', '0.01% fraud rate', '3 currency support'] },
+  { title: 'Vendora', initials: 'Vn', category: 'E-commerce SaaS', year: '2024', desc: 'Multi-vendor marketplace with inventory management, automated fulfillment, and seller analytics dashboard.', accent: '#10b981',
+    challenge: 'Create a scalable multi-vendor marketplace with real-time inventory sync and automated order fulfillment.',
+    solution: 'Next.js frontend with headless CMS, real-time WebSocket inventory updates, and automated logistics API integration.',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Vercel', 'Stripe'],
+    results: ['500+ active sellers', '15K monthly orders', '40% lower fulfillment time', '4.8 app store rating'] },
+  { title: 'HealthBridge', initials: 'HB', category: 'Healthcare Portal', year: '2025', desc: 'Patient management system with appointment scheduling, telemedicine integration, and HIPAA-compliant records.', accent: '#06b6d4',
+    challenge: 'Digitize patient management with telemedicine capabilities while maintaining strict HIPAA compliance.',
+    solution: 'End-to-end encrypted platform with video consultation, automated scheduling, and role-based access control.',
+    stack: ['React', 'Python', 'PostgreSQL', 'WebRTC', 'Docker'],
+    results: ['3.2 to 4.8 user rating', '60% fewer no-shows', 'HIPAA compliant', '200+ daily consultations'] },
+  { title: 'LogiTrack', initials: 'LT', category: 'Logistics Dashboard', year: '2024', desc: 'Fleet management and route optimization platform serving 200+ delivery vehicles across 3 countries.', accent: '#8b5cf6',
+    challenge: 'Optimize delivery routes for 200+ vehicles across multiple countries with real-time tracking.',
+    solution: 'Custom routing algorithm with Google Maps integration, real-time GPS tracking, and predictive ETA calculations.',
+    stack: ['React', 'Go', 'PostgreSQL', 'Google Maps API', 'Docker'],
+    results: ['30% fuel savings', '200+ vehicles tracked', '3 countries', '25% faster deliveries'] },
+  { title: 'EduVerse', initials: 'EV', category: 'EdTech Platform', year: '2025', desc: 'Interactive learning platform with live sessions, progress tracking, and AI-powered content recommendations.', accent: '#f59e0b',
+    challenge: 'Build an engaging learning platform with live interactive sessions and personalized learning paths.',
+    solution: 'Real-time classroom with WebRTC, gamified progress system, and AI-driven content recommendations.',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'OpenAI API', 'Vercel'],
+    results: ['10K+ active learners', '85% completion rate', '4.9 satisfaction score', 'AI personalization'] },
+  { title: 'CryptoNest', initials: 'CN', category: 'DeFi Analytics', year: '2024', desc: 'Real-time cryptocurrency portfolio tracker with DeFi protocol analytics and automated yield optimization.', accent: '#ec4899',
+    challenge: 'Aggregate data from 20+ DeFi protocols and provide real-time portfolio analytics with yield optimization.',
+    solution: 'Multi-chain indexer with WebSocket price feeds, automated yield strategy execution, and risk scoring.',
+    stack: ['React', 'Node.js', 'Python', 'Redis', 'Web3.js'],
+    results: ['$50M+ tracked assets', '20+ DeFi protocols', 'Real-time analytics', '15% avg yield improvement'] },
 ];
 
 const PRICING = [
@@ -376,6 +400,7 @@ export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [lang, setLang] = useState('EN');
   const [showLang, setShowLang] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const t = getT(lang);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
@@ -657,7 +682,7 @@ export default function App() {
             {PORTFOLIO.map((p, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
-                  <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }} className="group">
+                  <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }} className="group cursor-pointer" onClick={() => setSelectedProject(i)}>
                     <div className="bg-[#0a0a0a] border border-white/[0.06] rounded-2xl h-[320px] flex flex-col relative overflow-hidden hover:border-white/[0.1] transition-colors">
                       {/* Top bar with logo */}
                       <div className="flex items-center justify-between px-7 pt-7 pb-5">
@@ -904,6 +929,84 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* ═══ PROJECT MODAL ═══ */}
+      <AnimatePresence>
+        {selectedProject !== null && (() => {
+          const p = PORTFOLIO[selectedProject];
+          return (
+            <>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedProject(null)} className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50" />
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                className="fixed inset-4 md:inset-10 lg:inset-20 bg-[#0a0a0a] border border-white/[0.06] rounded-3xl z-50 overflow-y-auto"
+              >
+                <button onClick={() => setSelectedProject(null)} className="absolute top-6 right-6 p-2 text-zinc-500 hover:text-white transition-colors z-10">
+                  <X className="w-6 h-6" />
+                </button>
+
+                <div className="p-8 md:p-14 max-w-4xl mx-auto">
+                  {/* Header */}
+                  <div className="flex items-center gap-5 mb-10">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-xl font-bold" style={{ color: p.accent, backgroundColor: `${p.accent}12`, border: `1px solid ${p.accent}25` }}>
+                      {p.initials}
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold uppercase tracking-[0.2em] block mb-1" style={{ color: p.accent }}>{p.category}</span>
+                      <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{p.title}</h2>
+                    </div>
+                  </div>
+
+                  {/* Challenge */}
+                  <div className="mb-10">
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-3">Challenge</h3>
+                    <p className="text-zinc-400 leading-relaxed">{p.challenge}</p>
+                  </div>
+
+                  {/* Solution */}
+                  <div className="mb-10">
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-3">Solution</h3>
+                    <p className="text-zinc-400 leading-relaxed">{p.solution}</p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="mb-10">
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-4">Tech Stack</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {p.stack.map(tech => (
+                        <span key={tech} className="px-4 py-2 bg-white/[0.04] border border-white/[0.06] rounded-lg text-sm text-zinc-400">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Results */}
+                  <div className="mb-10">
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-4">Results</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {p.results.map((r, j) => (
+                        <div key={j} className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-4 text-center">
+                          <p className="text-sm font-semibold text-white">{r}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="pt-8 border-t border-white/[0.06] flex items-center justify-between">
+                    <p className="text-sm text-zinc-500">Interested in a similar project?</p>
+                    <a href="#contact" onClick={() => setSelectedProject(null)} className="px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-500 transition-all inline-flex items-center gap-2">
+                      Start a Project <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          );
+        })()}
+      </AnimatePresence>
 
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t border-white/[0.04] py-10">
