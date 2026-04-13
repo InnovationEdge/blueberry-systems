@@ -4,7 +4,8 @@ import {
   ArrowRight, ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
   ArrowUpRight, CheckCircle
 } from 'lucide-react';
-// Contact form uses Web3Forms API (free, no backend needed)
+import { getT } from './i18n';
+// Contact form uses Formsubmit.co
 
 /* ─── Animated Components ─── */
 
@@ -375,6 +376,7 @@ export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [lang, setLang] = useState('EN');
   const [showLang, setShowLang] = useState(false);
+  const t = getT(lang);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
@@ -423,7 +425,7 @@ export default function App() {
               )}
             </div>
             <MagneticButton href="#contact" className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-500 transition-all active:scale-[0.95]">
-              Get In Touch <ArrowUpRight className="w-4 h-4" />
+              {t.getInTouch} <ArrowUpRight className="w-4 h-4" />
             </MagneticButton>
             <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors">
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -474,7 +476,7 @@ export default function App() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-full px-5 py-2 text-xs font-semibold text-blue-400 uppercase tracking-[0.2em] mb-10"
           >
             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            On Market Since 2020
+            {t.onMarket}
           </motion.div>
 
           <motion.h1
@@ -493,7 +495,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-zinc-500 text-lg md:text-xl max-w-xl mb-12 leading-relaxed"
           >
-            We build software that scales, design products people love, and grow businesses through data-driven strategy.
+            {t.heroSubtitle}
           </motion.p>
 
           <motion.div
@@ -503,10 +505,10 @@ export default function App() {
             className="flex flex-col sm:flex-row items-start gap-4"
           >
             <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95]">
-              Book a Free Call <ArrowRight className="w-4 h-4" />
+              {t.heroCta} <ArrowRight className="w-4 h-4" />
             </MagneticButton>
             <a href="#portfolio" className="px-8 py-4 border border-white/10 text-white/70 rounded-full text-sm font-medium hover:text-white hover:border-white/20 transition-all inline-flex items-center gap-2">
-              See Our Work
+              {t.heroExplore}
             </a>
           </motion.div>
 
@@ -540,7 +542,7 @@ export default function App() {
       {/* ═══ TRUSTED BY ═══ */}
       <section className="py-16 border-b border-white/[0.04] overflow-hidden">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-          <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-10">Trusted by companies worldwide</p>
+          <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-10">{t.trustedBy}</p>
         </div>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-[15%] bg-gradient-to-r from-black to-transparent z-10" />
@@ -564,8 +566,8 @@ export default function App() {
       <section id="services" className="py-20 md:py-28">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">What We Do</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Engineering What's Next</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.whatWeDo}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.servicesTitle}`}</h2>
             <p className="text-zinc-500 text-lg max-w-xl mb-16">We design and build high-performance software, from mobile apps to enterprise platforms.</p>
           </Reveal>
 
@@ -601,7 +603,7 @@ export default function App() {
       <section className="py-16 border-y border-white/[0.04]">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
-            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-8">Technologies We Use</p>
+            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-8">{`${t.techTitle}`}</p>
           </Reveal>
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
             {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'AWS', 'Docker', 'Figma', 'Flutter', 'Swift', 'Kotlin'].map((tech, i) => (
@@ -618,8 +620,8 @@ export default function App() {
         <div className="absolute inset-0 bg-black" />
         <div className="relative max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">How We Work</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">From Idea To Launch</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.howWeWork}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">{`${t.processTitle}`}</h2>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -647,8 +649,8 @@ export default function App() {
       <section id="portfolio" className="py-20 md:py-28 bg-black">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Selected Work</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">Recent Projects</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.selectedWork}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.portfolioTitle}`}</h2>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -754,7 +756,7 @@ export default function App() {
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Testimonials</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">What Clients Say</h2>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.testimonialsTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {TESTIMONIALS.map((t, i) => (
@@ -781,8 +783,8 @@ export default function App() {
       <section className="py-20 md:py-28">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Technology Partners</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">We Work With The Best</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.partners}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.partnersTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
             {[
@@ -812,8 +814,8 @@ export default function App() {
       <section id="careers" className="py-20 md:py-28">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Join Us</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Open Positions</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.joinUs}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.careersTitle}`}</h2>
             <p className="text-zinc-500 mb-12">Join our team and build the future of software.</p>
           </Reveal>
           <div className="space-y-3">
@@ -846,7 +848,7 @@ export default function App() {
       {/* ═══ FAQ ═══ */}
       <section id="faq" className="py-20 md:py-28">
         <div className="max-w-[900px] mx-auto px-6 md:px-12">
-          <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">Frequently Asked</h2></Reveal>
+          <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.faqTitle}`}</h2></Reveal>
           <div className="space-y-3">
             {FAQS.map((faq, i) => (
               <div key={i}>
