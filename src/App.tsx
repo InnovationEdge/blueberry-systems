@@ -121,25 +121,25 @@ function MagneticButton({ children, className = '', href }: { children: ReactNod
 const NAV = ['Services', 'Portfolio', 'Process', 'Pricing', 'FAQ', 'Contact'];
 
 const SERVICES = [
-  { icon: Code2, title: 'Custom Software Development', desc: 'Mobile apps, web platforms, CRM, ERP, and internal tools engineered for scale and performance.', stat1: '2x Faster Time-to-Market', stat2: '99.99% Uptime', color: 'from-blue-500/20 to-cyan-500/20' },
-  { icon: BarChart3, title: 'Product Marketing', desc: 'Data-driven acquisition strategies that lower costs and accelerate user growth.', stat1: '48% Lower CAC', stat2: '62% User Acquisition Boost', color: 'from-violet-500/20 to-purple-500/20' },
-  { icon: Palette, title: 'Product Design', desc: 'Human-centered interfaces that convert visitors into loyal customers.', stat1: '80% Net Promoter Score', stat2: '2x Faster Time-to-Launch', color: 'from-pink-500/20 to-rose-500/20' },
-  { icon: Lightbulb, title: 'Business Consulting', desc: 'Strategic guidance to optimize operations and unlock new revenue streams.', stat1: '25% Efficiency Gains', stat2: '40% Revenue Growth', color: 'from-amber-500/20 to-orange-500/20' },
+  { num: '01', title: 'Custom Software Development', desc: 'Mobile apps, web platforms, CRM, ERP, and internal tools engineered for scale and performance.', stat1: '2x Faster Time-to-Market', stat2: '99.99% Uptime' },
+  { num: '02', title: 'Product Marketing', desc: 'Data-driven acquisition strategies that lower costs and accelerate user growth.', stat1: '48% Lower CAC', stat2: '62% User Acquisition Boost' },
+  { num: '03', title: 'Product Design', desc: 'Human-centered interfaces that convert visitors into loyal customers.', stat1: '80% Net Promoter Score', stat2: '2x Faster Time-to-Launch' },
+  { num: '04', title: 'Business Consulting', desc: 'Strategic guidance to optimize operations and unlock new revenue streams.', stat1: '25% Efficiency Gains', stat2: '40% Revenue Growth' },
 ];
 
 const PROCESS = [
-  { step: '01', title: 'Kickoff', desc: 'Deep-dive consultation, requirements analysis, and a clear project roadmap.', icon: '🎯' },
-  { step: '02', title: 'Execution', desc: 'Agile sprints with real-time collaboration and iterative development.', icon: '⚡' },
-  { step: '03', title: 'Handoff', desc: 'Production deployment, documentation, training, and ongoing support.', icon: '🚀' },
+  { step: '01', title: 'Kickoff', desc: 'Deep-dive consultation, requirements analysis, and a clear project roadmap.' },
+  { step: '02', title: 'Execution', desc: 'Agile sprints with real-time collaboration and iterative development.' },
+  { step: '03', title: 'Handoff', desc: 'Production deployment, documentation, training, and ongoing support.' },
 ];
 
 const FEATURES = [
-  { icon: BarChart3, title: 'Revenue Growth', desc: 'Data-driven strategies for measurable business impact' },
-  { icon: Zap, title: 'Lightning Delivery', desc: 'Rapid turnaround without quality compromise' },
-  { icon: Shield, title: 'Bulletproof Code', desc: 'Clean, tested, production-grade engineering' },
-  { icon: Award, title: 'Design Excellence', desc: 'Award-winning creative and UX standards' },
-  { icon: Smartphone, title: 'Cross-Platform', desc: 'Seamless experiences on every device' },
-  { icon: Users, title: 'Growth Marketing', desc: 'Targeted campaigns that convert at scale' },
+  { title: 'Revenue Growth', desc: 'Data-driven strategies for measurable business impact' },
+  { title: 'Lightning Delivery', desc: 'Rapid turnaround without quality compromise' },
+  { title: 'Bulletproof Code', desc: 'Clean, tested, production-grade engineering' },
+  { title: 'Design Excellence', desc: 'Award-winning creative and UX standards' },
+  { title: 'Cross-Platform', desc: 'Seamless experiences on every device' },
+  { title: 'Growth Marketing', desc: 'Targeted campaigns that convert at scale' },
 ];
 
 const PORTFOLIO = [
@@ -291,9 +291,9 @@ export default function App() {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-white/[0.04]"
       >
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12 h-[80px] flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-[80px] flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight group">
-            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-8 w-auto" />
+            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-12 md:h-14 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map(item => (
@@ -346,7 +346,7 @@ export default function App() {
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         </div>
 
-        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[1300px] mx-auto px-6 md:px-12 py-20 md:py-0">
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[1440px] mx-auto px-6 md:px-12 py-20 md:py-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -405,7 +405,7 @@ export default function App() {
 
       {/* ═══ TRUSTED BY ═══ */}
       <section className="py-16 border-b border-white/[0.04] overflow-hidden">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-10">Trusted by companies worldwide</p>
         </div>
         <div className="relative">
@@ -426,7 +426,7 @@ export default function App() {
 
       {/* ═══ STATS ═══ */}
       <section className="relative py-20 border-b border-white/[0.04]">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { value: '2', suffix: 'mo', label: 'Avg. MVP Delivery' },
@@ -451,39 +451,37 @@ export default function App() {
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-28 md:py-36">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">What We Do</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Engineering What's Next</h2>
             <p className="text-zinc-500 text-lg max-w-xl mb-16">We design and build high-performance software, from mobile apps to enterprise platforms.</p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {SERVICES.map((s, i) => {
-              const Icon = s.icon;
-              const dir = i % 2 === 0 ? 'left' : 'right';
-              return (
-                <div key={i}>
-                  <SlideIn delay={i * 0.1} direction={dir as 'left' | 'right'}>
-                    <motion.div
-                      whileHover={{ y: -4, borderColor: 'rgba(59,130,246,0.2)' }}
-                      transition={{ duration: 0.3 }}
-                      className={`bg-gradient-to-br ${s.color} border border-white/[0.04] rounded-3xl p-8 md:p-10 h-full backdrop-blur-sm`}
-                    >
-                      <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/[0.06] flex items-center justify-center mb-6">
-                        <Icon className="w-6 h-6 text-blue-400" />
+          <div className="space-y-0 border-t border-white/[0.06]">
+            {SERVICES.map((s, i) => (
+              <div key={i}>
+                <Reveal delay={i * 0.08}>
+                  <motion.div
+                    whileHover={{ x: 12 }}
+                    transition={{ duration: 0.3 }}
+                    className="border-b border-white/[0.06] py-10 md:py-14 group cursor-default"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-16">
+                      <span className="text-blue-500/30 text-5xl md:text-6xl font-bold tracking-tight shrink-0 w-20">{s.num}</span>
+                      <div className="flex-1">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors">{s.title}</h3>
+                        <p className="text-zinc-500 leading-relaxed max-w-xl mb-6">{s.desc}</p>
+                        <div className="flex flex-wrap gap-3">
+                          <span className="px-4 py-2 border border-blue-500/20 rounded-full text-xs font-semibold text-blue-400">{s.stat1}</span>
+                          <span className="px-4 py-2 border border-white/[0.06] rounded-full text-xs font-medium text-zinc-500">{s.stat2}</span>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold mb-3 tracking-tight">{s.title}</h3>
-                      <p className="text-sm text-zinc-400 mb-6 leading-relaxed">{s.desc}</p>
-                      <div className="flex flex-wrap gap-3">
-                        <span className="px-4 py-2 bg-white/[0.06] rounded-full text-xs font-semibold text-blue-300 border border-blue-500/10">{s.stat1}</span>
-                        <span className="px-4 py-2 bg-white/[0.04] rounded-full text-xs font-medium text-zinc-400">{s.stat2}</span>
-                      </div>
-                    </motion.div>
-                  </SlideIn>
-                </div>
-              );
-            })}
+                    </div>
+                  </motion.div>
+                </Reveal>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -491,7 +489,7 @@ export default function App() {
       {/* ═══ PROCESS ═══ */}
       <section id="process" className="py-28 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
-        <div className="relative max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="relative max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">How We Work</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">From Idea To Launch</h2>
@@ -505,10 +503,7 @@ export default function App() {
               <div key={i}>
                 <ScaleIn delay={i * 0.15}>
                   <div className="text-center relative">
-                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/10 flex items-center justify-center mx-auto mb-8 text-3xl">
-                      {p.icon}
-                    </div>
-                    <div className="text-blue-500/30 text-6xl font-bold absolute top-[-10px] right-[20%] select-none">{p.step}</div>
+                    <div className="text-blue-500/20 text-7xl font-bold mb-6 select-none">{p.step}</div>
                     <h3 className="text-2xl font-bold mb-3 tracking-tight">{p.title}</h3>
                     <p className="text-sm text-zinc-500 leading-relaxed max-w-xs mx-auto">{p.desc}</p>
                   </div>
@@ -521,7 +516,7 @@ export default function App() {
 
       {/* ═══ FEATURES ═══ */}
       <section className="py-28 md:py-36">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <div className="text-center mb-20">
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Capabilities</p>
@@ -529,33 +524,28 @@ export default function App() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FEATURES.map((f, i) => {
-              const Icon = f.icon;
-              return (
-                <div key={i}>
-                  <Reveal delay={i * 0.08}>
-                    <motion.div
-                      whileHover={{ scale: 1.02, borderColor: 'rgba(59,130,246,0.15)' }}
-                      className="border border-white/[0.04] rounded-2xl p-7 hover:bg-blue-600/[0.03] transition-colors h-full"
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center mb-5">
-                        <Icon className="w-5 h-5 text-blue-400" />
-                      </div>
-                      <h3 className="font-bold mb-2 tracking-tight">{f.title}</h3>
-                      <p className="text-sm text-zinc-500 leading-relaxed">{f.desc}</p>
-                    </motion.div>
-                  </Reveal>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04]">
+            {FEATURES.map((f, i) => (
+              <div key={i}>
+                <Reveal delay={i * 0.08}>
+                  <motion.div
+                    whileHover={{ backgroundColor: 'rgba(59,130,246,0.03)' }}
+                    className="bg-black p-8 md:p-10 h-full"
+                  >
+                    <span className="text-blue-500/40 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">0{i + 1}</span>
+                    <h3 className="text-lg font-bold mb-2 tracking-tight">{f.title}</h3>
+                    <p className="text-sm text-zinc-500 leading-relaxed">{f.desc}</p>
+                  </motion.div>
+                </Reveal>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ═══ PORTFOLIO ═══ */}
       <section id="portfolio" className="py-28 md:py-36 bg-zinc-950/50">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Selected Work</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">Recent Projects</h2>
@@ -645,7 +635,7 @@ export default function App() {
 
       {/* ═══ TESTIMONIALS ═══ */}
       <section className="py-28 md:py-36 bg-zinc-950/50">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">Client Testimonials</h2></Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
@@ -730,7 +720,7 @@ export default function App() {
 
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t border-white/[0.04] py-10">
-        <div className="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <img src="/logo-white.svg" alt="Blueberry Systems" className="h-6 w-auto opacity-60" />
             <span className="text-zinc-800">|</span>
