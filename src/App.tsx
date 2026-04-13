@@ -151,14 +151,15 @@ const FAQS = [
   { q: 'How does your process work?', a: 'Three stages: Kickoff (deep-dive consultation and roadmap), Execution (agile development with real-time collaboration), and Handoff (deployment, documentation, and support).' },
   { q: 'What industries do you work with?', a: 'Fintech, e-commerce, healthcare, education, SaaS, and more. Our sister company Blueberry Academy focuses on edtech products.' },
   { q: 'How do you ensure quality?', a: 'Code reviews, automated testing, CI/CD pipelines, and 99.99% uptime monitoring. Every deliverable goes through rigorous QA before handoff.' },
-  { q: 'What does pricing look like?', a: 'Website sprints from $2,500, full design packages from $4,500, and full-stack products from $7,500. Custom enterprise quotes available.' },
+  { q: 'What does pricing look like?', a: 'Every project is priced individually based on scope, complexity, and timeline. We provide a detailed cost estimate after an initial consultation. No hidden fees.' },
   { q: 'How do we get started?', a: 'Book a free consultation. We discuss your vision, timeline, and budget, then deliver a detailed proposal within 48 hours.' },
 ];
 
 const TESTIMONIALS = [
-  { quote: 'Blueberry Systems delivered an exceptional platform that transformed our digital presence. Their technical expertise is world-class.', name: 'John Smith', role: 'CEO, Innovate Solutions', avatar: 'JS' },
-  { quote: 'They understood our complex requirements from day one and delivered a high-performing product ahead of schedule.', name: 'Emily Davis', role: 'Product Manager, Nexus Digital', avatar: 'ED' },
-  { quote: 'The combination of design and engineering excellence is rare. Blueberry Systems has both in abundance.', name: 'David Lee', role: 'Founder, GreenLeaf', avatar: 'DL' },
+  { quote: 'Blueberry delivered exactly what we needed. Our fintech platform handles 10x the traffic we expected, zero downtime since launch.', name: 'Marcus Chen', role: 'CTO, NovaPay', avatar: 'MC' },
+  { quote: 'Working with their team felt like having senior engineers in-house. They shipped our MVP in 6 weeks and it just worked.', name: 'Sarah Bergman', role: 'Founder, Vendora', avatar: 'SB' },
+  { quote: 'They redesigned our entire patient portal. User satisfaction went from 3.2 to 4.8 stars. The ROI speaks for itself.', name: 'Dr. James Park', role: 'Director, HealthBridge', avatar: 'JP' },
+  { quote: 'Professional, fast, no BS. They understand startup constraints and deliver enterprise quality within tight budgets.', name: 'Anna Kowalski', role: 'CEO, LogiTrack', avatar: 'AK' },
 ];
 
 /* ─── Contact Form ─── */
@@ -379,7 +380,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-zinc-500 text-lg md:text-xl max-w-xl mb-12 leading-relaxed"
           >
-            Custom software, performance marketing, and design built to transform businesses, products, and platforms.
+            We build software that scales, design products people love, and grow businesses through data-driven strategy.
           </motion.p>
 
           <motion.div
@@ -419,7 +420,7 @@ export default function App() {
           <div className="flex items-center whitespace-nowrap animate-marquee">
             {[0, 1, 2].map(setIdx => (
               <div key={setIdx} className="flex items-center shrink-0 gap-16 md:gap-24 px-8 md:px-12" aria-hidden={setIdx > 0}>
-                {['Google', 'Microsoft', 'Amazon', 'Meta', 'Spotify', 'Netflix', 'Apple', 'Stripe'].map(name => (
+                {['Stripe', 'Vercel', 'Supabase', 'Figma', 'Notion', 'Linear', 'Webflow', 'Framer'].map(name => (
                   <span key={name} className="text-xl md:text-2xl font-bold text-zinc-700/40 shrink-0 select-none tracking-tight">{name}</span>
                 ))}
               </div>
@@ -434,10 +435,10 @@ export default function App() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: '2', suffix: 'mo', label: 'Avg. MVP Delivery' },
+              { value: '5', suffix: '+', label: 'Years on Market' },
               { value: '99.9', suffix: '%', label: 'System Uptime' },
-              { value: '200', suffix: '+', label: 'Happy Clients' },
-              { value: '50', suffix: '+', label: 'Projects Shipped' },
+              { value: '200', suffix: '+', label: 'Projects Delivered' },
+              { value: '40', suffix: '+', label: 'Active Clients' },
             ].map((s, i) => (
               <div key={i}>
                 <ScaleIn delay={i * 0.1}>
@@ -611,8 +612,11 @@ export default function App() {
       {/* ═══ TESTIMONIALS ═══ */}
       <section className="py-28 md:py-36 bg-zinc-950/50">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">Client Testimonials</h2></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Testimonials</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">What Clients Say</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {TESTIMONIALS.map((t, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
