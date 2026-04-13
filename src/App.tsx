@@ -543,25 +543,23 @@ export default function App() {
               <div key={i}>
                 <Reveal delay={i * 0.1}>
                   <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }} className="group">
-                    <div className={`bg-gradient-to-br ${p.color} border border-white/[0.04] rounded-3xl p-8 h-full relative overflow-hidden`}>
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
-                      <div className="relative">
-                        {/* Logo + year */}
-                        <div className="flex items-start justify-between mb-8">
-                          <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-base font-bold border border-white/10" style={{ color: p.accent, backgroundColor: `${p.accent}15` }}>
-                            {p.initials}
-                          </div>
-                          <span className="text-xs text-white/30 font-medium">{p.year}</span>
+                    <div className="bg-[#0a0a0a] border border-white/[0.06] rounded-2xl h-[320px] flex flex-col relative overflow-hidden hover:border-white/[0.1] transition-colors">
+                      {/* Top bar with logo */}
+                      <div className="flex items-center justify-between px-7 pt-7 pb-5">
+                        <div className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-bold" style={{ color: p.accent, backgroundColor: `${p.accent}12`, border: `1px solid ${p.accent}25` }}>
+                          {p.initials}
                         </div>
+                        <span className="text-[11px] text-zinc-600">{p.year}</span>
+                      </div>
 
-                        {/* Category */}
-                        <span className="text-xs font-medium uppercase tracking-[0.2em] mb-3 block" style={{ color: p.accent }}>{p.category}</span>
-
-                        {/* Title */}
-                        <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors">{p.title}</h3>
-
-                        {/* Description */}
-                        <p className="text-sm text-zinc-500 leading-relaxed">{p.desc}</p>
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col px-7 pb-7">
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] mb-2" style={{ color: p.accent }}>{p.category}</span>
+                        <h3 className="text-lg font-bold mb-2 tracking-tight">{p.title}</h3>
+                        <p className="text-xs text-zinc-600 leading-relaxed flex-1">{p.desc}</p>
+                        <div className="mt-4 flex items-center gap-1 text-xs text-zinc-600 group-hover:text-blue-400 transition-colors">
+                          View project <ArrowUpRight className="w-3 h-3" />
+                        </div>
                       </div>
                     </div>
                   </motion.div>
