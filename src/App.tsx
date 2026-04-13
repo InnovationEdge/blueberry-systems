@@ -390,11 +390,26 @@ export default function App() {
             className="flex flex-col sm:flex-row items-start gap-4"
           >
             <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95]">
-              Start a Project <ArrowRight className="w-4 h-4" />
+              Book a Free Call <ArrowRight className="w-4 h-4" />
             </MagneticButton>
-            <a href="#services" className="px-8 py-4 border border-white/10 text-white/70 rounded-full text-sm font-medium hover:text-white hover:border-white/20 transition-all inline-flex items-center gap-2">
-              Explore Services
+            <a href="#portfolio" className="px-8 py-4 border border-white/10 text-white/70 rounded-full text-sm font-medium hover:text-white hover:border-white/20 transition-all inline-flex items-center gap-2">
+              See Our Work
             </a>
+          </motion.div>
+
+          {/* Hero stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex items-center gap-10 mt-16 pt-10 border-t border-white/[0.06]"
+          >
+            {[{ v: '5+', l: 'Years' }, { v: '200+', l: 'Projects' }, { v: '99.9%', l: 'Uptime' }, { v: '40+', l: 'Clients' }].map((s, i) => (
+              <div key={i} className="flex items-baseline gap-2">
+                <span className="text-xl md:text-2xl font-bold text-white">{s.v}</span>
+                <span className="text-xs text-zinc-600 uppercase tracking-wider">{s.l}</span>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
 
@@ -430,33 +445,10 @@ export default function App() {
         <style>{`.animate-marquee { animation: marquee 25s linear infinite; } @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }`}</style>
       </section>
 
-      {/* ═══ STATS ═══ */}
-      <section className="relative py-20 border-b border-white/[0.04]">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: '5', suffix: '+', label: 'Years on Market' },
-              { value: '99.9', suffix: '%', label: 'System Uptime' },
-              { value: '200', suffix: '+', label: 'Projects Delivered' },
-              { value: '40', suffix: '+', label: 'Active Clients' },
-            ].map((s, i) => (
-              <div key={i}>
-                <ScaleIn delay={i * 0.1}>
-                  <div className="text-center">
-                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-                      <AnimatedCounter value={s.value} /><span className="text-blue-500">{s.suffix}</span>
-                    </p>
-                    <p className="text-xs text-zinc-600 uppercase tracking-[0.2em] mt-3 font-medium">{s.label}</p>
-                  </div>
-                </ScaleIn>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Stats moved to hero */}
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-28 md:py-36">
+      <section id="services" className="py-20 md:py-28">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">What We Do</p>
@@ -476,7 +468,7 @@ export default function App() {
                     <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-16">
                       <span className="text-blue-500/30 text-5xl md:text-6xl font-bold tracking-tight shrink-0 w-20">{s.num}</span>
                       <div className="flex-1">
-                        <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors">{s.title}</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors flex items-center gap-3">{s.title} <ArrowRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0 transition-all" /></h3>
                         <p className="text-zinc-500 leading-relaxed max-w-xl mb-6">{s.desc}</p>
                         <div className="flex flex-wrap gap-3">
                           <span className="px-4 py-2 border border-blue-500/20 rounded-full text-xs font-semibold text-blue-400">{s.stat1}</span>
@@ -492,8 +484,24 @@ export default function App() {
         </div>
       </section>
 
+      {/* ═══ TECH STACK ═══ */}
+      <section className="py-16 border-y border-white/[0.04]">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-8">Technologies We Use</p>
+          </Reveal>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'AWS', 'Docker', 'Figma', 'Flutter', 'Swift', 'Kotlin'].map((tech, i) => (
+              <Reveal key={tech} delay={i * 0.03}>
+                <span className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors cursor-default font-medium">{tech}</span>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ PROCESS ═══ */}
-      <section id="process" className="py-28 md:py-36 relative">
+      <section id="process" className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-black" />
         <div className="relative max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
@@ -523,7 +531,7 @@ export default function App() {
       {/* Features section removed */}
 
       {/* ═══ PORTFOLIO ═══ */}
-      <section id="portfolio" className="py-28 md:py-36 bg-black">
+      <section id="portfolio" className="py-20 md:py-28 bg-black">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Selected Work</p>
@@ -564,8 +572,21 @@ export default function App() {
         </div>
       </section>
 
+      {/* Mini CTA */}
+      <section className="py-16 border-y border-white/[0.04]">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="text-2xl font-bold tracking-tight">Have a project in mind?</h3>
+            <p className="text-zinc-500 text-sm mt-1">Book a free 30-minute consultation. No commitment.</p>
+          </div>
+          <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95] shrink-0">
+            Book a Free Call <ArrowRight className="w-4 h-4" />
+          </MagneticButton>
+        </div>
+      </section>
+
       {/* ═══ PRICING ═══ */}
-      <section id="pricing" className="py-28 md:py-36">
+      <section id="pricing" className="py-20 md:py-28">
         <div className="max-w-[1100px] mx-auto px-6 md:px-12">
           <Reveal>
             <div className="text-center mb-16">
@@ -618,7 +639,7 @@ export default function App() {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="py-28 md:py-36 bg-black">
+      <section className="py-20 md:py-28 bg-black">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Testimonials</p>
@@ -646,7 +667,7 @@ export default function App() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section id="faq" className="py-28 md:py-36">
+      <section id="faq" className="py-20 md:py-28">
         <div className="max-w-[800px] mx-auto px-6 md:px-12">
           <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">Frequently Asked</h2></Reveal>
           <div className="space-y-3">
@@ -678,7 +699,7 @@ export default function App() {
       </section>
 
       {/* ═══ CONTACT ═══ */}
-      <section id="contact" className="py-28 md:py-36 relative overflow-hidden">
+      <section id="contact" className="py-20 md:py-28 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5" />
           <FloatingOrb className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-blue-600/[0.06] rounded-full blur-[100px]" />
@@ -714,7 +735,7 @@ export default function App() {
             <span className="text-xs text-zinc-600">&copy; 2026 All rights reserved</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
-            <span>Sister company: <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400 transition-colors">Blueberry Academy</a></span>
+            <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400 transition-colors">Blueberry Academy</a>
             <a href="#" className="hover:text-zinc-400 transition-colors">Terms</a>
             <a href="#" className="hover:text-zinc-400 transition-colors">Privacy</a>
           </div>
