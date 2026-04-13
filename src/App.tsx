@@ -132,12 +132,12 @@ const PROCESS = [
 ];
 
 const PORTFOLIO = [
-  { title: 'NovaPay', category: 'Fintech Platform', year: '2025', color: 'from-blue-600 via-blue-700 to-indigo-800' },
-  { title: 'Vendora', category: 'E-commerce SaaS', year: '2024', color: 'from-emerald-500 via-emerald-600 to-teal-700' },
-  { title: 'HealthBridge', category: 'Healthcare Portal', year: '2025', color: 'from-cyan-500 via-cyan-600 to-blue-700' },
-  { title: 'LogiTrack', category: 'Logistics Dashboard', year: '2024', color: 'from-violet-500 via-purple-600 to-indigo-700' },
-  { title: 'EduVerse', category: 'EdTech Platform', year: '2025', color: 'from-amber-500 via-orange-500 to-red-500' },
-  { title: 'CryptoNest', category: 'DeFi Analytics', year: '2024', color: 'from-pink-500 via-rose-500 to-red-600' },
+  { title: 'NovaPay', category: 'Fintech Platform', year: '2025', color: 'from-[#0a1628] to-[#0d2044]' },
+  { title: 'Vendora', category: 'E-commerce SaaS', year: '2024', color: 'from-[#0a1a14] to-[#0d2a1e]' },
+  { title: 'HealthBridge', category: 'Healthcare Portal', year: '2025', color: 'from-[#0a1520] to-[#0d2035]' },
+  { title: 'LogiTrack', category: 'Logistics Dashboard', year: '2024', color: 'from-[#120a20] to-[#1a0d30]' },
+  { title: 'EduVerse', category: 'EdTech Platform', year: '2025', color: 'from-[#1a1008] to-[#251810]' },
+  { title: 'CryptoNest', category: 'DeFi Analytics', year: '2024', color: 'from-[#180a14] to-[#250d1e]' },
 ];
 
 const PRICING = [
@@ -263,7 +263,7 @@ function ContactForm() {
         disabled={sending}
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full py-4 bg-white text-black rounded-xl font-semibold text-sm hover:bg-zinc-100 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+        className="w-full py-4 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-500 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {sending ? <><div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> Sending...</> : <>Send Message <ArrowRight className="w-4 h-4" /></>}
       </motion.button>
@@ -307,7 +307,7 @@ export default function App() {
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <MagneticButton href="#contact" className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-zinc-100 transition-all active:scale-[0.95]">
+            <MagneticButton href="#contact" className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-500 transition-all active:scale-[0.95]">
               Get In Touch <ArrowUpRight className="w-4 h-4" />
             </MagneticButton>
             <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors">
@@ -389,7 +389,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-start gap-4"
           >
-            <MagneticButton href="#contact" className="px-8 py-4 bg-white text-black rounded-full font-semibold text-sm inline-flex items-center gap-2 shadow-[0_0_40px_rgba(59,130,246,0.15)] hover:shadow-[0_0_60px_rgba(59,130,246,0.25)] transition-all active:scale-[0.95]">
+            <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95]">
               Start a Project <ArrowRight className="w-4 h-4" />
             </MagneticButton>
             <a href="#services" className="px-8 py-4 border border-white/10 text-white/70 rounded-full text-sm font-medium hover:text-white hover:border-white/20 transition-all inline-flex items-center gap-2">
@@ -494,7 +494,7 @@ export default function App() {
 
       {/* ═══ PROCESS ═══ */}
       <section id="process" className="py-28 md:py-36 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
+        <div className="absolute inset-0 bg-black" />
         <div className="relative max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">How We Work</p>
@@ -523,7 +523,7 @@ export default function App() {
       {/* Features section removed */}
 
       {/* ═══ PORTFOLIO ═══ */}
-      <section id="portfolio" className="py-28 md:py-36 bg-zinc-950/50">
+      <section id="portfolio" className="py-28 md:py-36 bg-black">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Selected Work</p>
@@ -576,7 +576,7 @@ export default function App() {
                     className={`rounded-3xl p-8 border relative h-full flex flex-col ${
                       p.popular
                         ? 'border-blue-500/30 bg-gradient-to-b from-blue-600/10 to-transparent shadow-[0_0_40px_rgba(59,130,246,0.08)]'
-                        : 'border-white/[0.04] bg-zinc-950/50'
+                        : 'border-white/[0.04] bg-black'
                     }`}
                   >
                     {p.popular && (
@@ -596,7 +596,7 @@ export default function App() {
                     <MagneticButton
                       href="#contact"
                       className={`block text-center py-3.5 rounded-full text-sm font-semibold transition-all ${
-                        p.popular ? 'bg-white text-black hover:bg-zinc-100' : 'border border-white/10 text-white hover:bg-white/5'
+                        p.popular ? 'bg-blue-600 text-white hover:bg-blue-500' : 'border border-white/10 text-white hover:bg-white/5'
                       }`}
                     >
                       Get Started
@@ -610,7 +610,7 @@ export default function App() {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="py-28 md:py-36 bg-zinc-950/50">
+      <section className="py-28 md:py-36 bg-black">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Testimonials</p>
