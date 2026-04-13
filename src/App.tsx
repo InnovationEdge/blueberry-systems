@@ -91,6 +91,102 @@ function AnimatedCounter({ value, suffix = '' }: { value: string }) {
   return <span ref={ref}>{display}{suffix}</span>;
 }
 
+function TypeWriter({ words, className = '' }: { words: string[]; className?: string }) {
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = words[index];
+    const speed = deleting ? 40 : 80;
+
+    if (!deleting && text === word) {
+      setTimeout(() => setDeleting(true), 2000);
+      return;
+    }
+    if (deleting && text === '') {
+      setDeleting(false);
+      setIndex((index + 1) % words.length);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setText(deleting ? word.substring(0, text.length - 1) : word.substring(0, text.length + 1));
+    }, speed);
+    return () => clearTimeout(timer);
+  }, [text, deleting, index, words]);
+
+  return <span className={className}>{text}<span className="animate-pulse">|</span></span>;
+}
+
+function HeroParticles() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+    const count = 80;
+
+    const resize = () => { canvas.width = canvas.offsetWidth * 2; canvas.height = canvas.offsetHeight * 2; };
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 0.5,
+        opacity: Math.random() * 0.4 + 0.1,
+      });
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59, 130, 246, ${p.opacity})`;
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${0.06 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
+}
+
 function MagneticButton({ children, className = '', href }: { children: ReactNode; className?: string; href: string }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -364,11 +460,10 @@ export default function App() {
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#000a1a] via-[#001040] to-[#0020aa]" />
-          <img src="/code-icon.png" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-500/[0.08] rounded-full blur-[120px]" />
-          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-indigo-600/[0.06] rounded-full blur-[100px]" />
+          <div className="absolute inset-0 bg-black" />
+          <HeroParticles />
+          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-500/[0.06] rounded-full blur-[120px]" />
+          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-indigo-600/[0.04] rounded-full blur-[100px]" />
         </div>
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[1800px] mx-auto px-6 md:px-12 py-20 md:py-0">
@@ -386,11 +481,10 @@ export default function App() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-4xl"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-5xl"
           >
-            Your way to<br />
-            <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">Build. Launch.</span><br />
-            <span className="text-zinc-500">Grow.</span>
+            We <TypeWriter words={['Build', 'Design', 'Scale', 'Ship', 'Grow']} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
+            <span className="text-zinc-500">Digital Products.</span>
           </motion.h1>
 
           <motion.p
