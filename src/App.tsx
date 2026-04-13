@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'motion/react';
 import {
-  ArrowRight, Code2, Palette, BarChart3, Lightbulb,
-  Zap, Shield, Smartphone, Award, Users,
-  ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
+  ArrowRight, ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
   ArrowUpRight, CheckCircle
 } from 'lucide-react';
 // Contact form uses Web3Forms API (free, no backend needed)
@@ -350,13 +348,13 @@ export default function App() {
 
       {/* ═══ HERO ═══ */}
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Animated background */}
+        {/* Background */}
         <div className="absolute inset-0">
-          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-600/[0.07] rounded-full blur-[120px]" />
-          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-purple-600/[0.05] rounded-full blur-[100px]" />
-          <FloatingOrb className="absolute top-[50%] left-[50%] w-[300px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[80px]" />
-          {/* Grid pattern */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#000a1a] via-[#001040] to-[#0020aa]" />
+          <img src="/code-icon.png" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-500/[0.08] rounded-full blur-[120px]" />
+          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-indigo-600/[0.06] rounded-full blur-[100px]" />
         </div>
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[1440px] mx-auto px-6 md:px-12 py-20 md:py-0">
