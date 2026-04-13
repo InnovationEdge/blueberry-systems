@@ -1,281 +1,605 @@
-import { useState, useRef, type ReactNode } from 'react';
-import { motion, useInView } from 'motion/react';
+import { useState, useRef, useEffect, type ReactNode } from 'react';
+import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'motion/react';
 import {
   ArrowRight, Code2, Palette, BarChart3, Lightbulb,
   Zap, Shield, Smartphone, Award, Users,
-  ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone
+  ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
+  ArrowUpRight, CheckCircle
 } from 'lucide-react';
 
-function Reveal({ children, className = '' , delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+/* ─── Animated Components ─── */
+
+function Reveal({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
   return (
-    <motion.div ref={ref} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }} transition={{ duration: 0.5, delay }} className={className}>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+      animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 40, filter: 'blur(10px)' }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      className={className}
+    >
       {children}
     </motion.div>
   );
 }
 
+function SlideIn({ children, className = '', delay = 0, direction = 'left' }: { children: ReactNode; className?: string; delay?: number; direction?: 'left' | 'right' }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const x = direction === 'left' ? -60 : 60;
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x }}
+      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ScaleIn({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function FloatingOrb({ className }: { className: string }) {
+  return (
+    <motion.div
+      className={className}
+      animate={{ y: [0, -20, 0], x: [0, 10, 0], scale: [1, 1.05, 1] }}
+      transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+    />
+  );
+}
+
+function AnimatedCounter({ value, suffix = '' }: { value: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [display, setDisplay] = useState('0');
+
+  useEffect(() => {
+    if (!isInView) return;
+    const num = parseInt(value.replace(/[^0-9]/g, ''));
+    if (isNaN(num)) { setDisplay(value); return; }
+    const duration = 2000;
+    const steps = 60;
+    const inc = num / steps;
+    let cur = 0;
+    const timer = setInterval(() => {
+      cur += inc;
+      if (cur >= num) { setDisplay(value); clearInterval(timer); }
+      else setDisplay(String(Math.floor(cur)));
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [isInView, value]);
+
+  return <span ref={ref}>{display}{suffix}</span>;
+}
+
+function MagneticButton({ children, className = '', href }: { children: ReactNode; className?: string; href: string }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 300, damping: 20 });
+  const springY = useSpring(y, { stiffness: 300, damping: 20 });
+
+  return (
+    <motion.a
+      href={href}
+      style={{ x: springX, y: springY }}
+      onMouseMove={(e) => {
+        const rect = (e.target as HTMLElement).getBoundingClientRect();
+        x.set((e.clientX - rect.left - rect.width / 2) * 0.15);
+        y.set((e.clientY - rect.top - rect.height / 2) * 0.15);
+      }}
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      className={className}
+    >
+      {children}
+    </motion.a>
+  );
+}
+
+/* ─── Data ─── */
+
 const NAV = ['Services', 'Portfolio', 'Process', 'Pricing', 'FAQ', 'Contact'];
 
 const SERVICES = [
-  { icon: Code2, title: 'Custom Software Development', desc: 'Mobile apps, web platforms, CRM, ERP, and internal tools built for scale.', stat1: '2x Faster Time-to-Market', stat2: '99.99% Uptime' },
-  { icon: BarChart3, title: 'Product Marketing', desc: 'Data-driven strategies to acquire users and grow your business.', stat1: '48% Lower CAC', stat2: '62% User Acquisition Boost' },
-  { icon: Palette, title: 'Product Design', desc: 'User-centered design that converts visitors into customers.', stat1: '80% Net Promoter Score', stat2: '2x Faster Time-to-Launch' },
-  { icon: Lightbulb, title: 'Business Consulting', desc: 'Strategic guidance to optimize operations and accelerate growth.', stat1: '25% Efficiency Gains', stat2: '40% Revenue Growth' },
+  { icon: Code2, title: 'Custom Software Development', desc: 'Mobile apps, web platforms, CRM, ERP, and internal tools engineered for scale and performance.', stat1: '2x Faster Time-to-Market', stat2: '99.99% Uptime', color: 'from-blue-500/20 to-cyan-500/20' },
+  { icon: BarChart3, title: 'Product Marketing', desc: 'Data-driven acquisition strategies that lower costs and accelerate user growth.', stat1: '48% Lower CAC', stat2: '62% User Acquisition Boost', color: 'from-violet-500/20 to-purple-500/20' },
+  { icon: Palette, title: 'Product Design', desc: 'Human-centered interfaces that convert visitors into loyal customers.', stat1: '80% Net Promoter Score', stat2: '2x Faster Time-to-Launch', color: 'from-pink-500/20 to-rose-500/20' },
+  { icon: Lightbulb, title: 'Business Consulting', desc: 'Strategic guidance to optimize operations and unlock new revenue streams.', stat1: '25% Efficiency Gains', stat2: '40% Revenue Growth', color: 'from-amber-500/20 to-orange-500/20' },
 ];
 
 const PROCESS = [
-  { step: '01', title: 'Kickoff', items: ['Comprehensive Consultation', 'Project Roadmap', 'Requirements Analysis'] },
-  { step: '02', title: 'Execution', items: ['Seamless Integration', 'Real Time Collaboration', 'Iterative Development'] },
-  { step: '03', title: 'Handoff', items: ['Ongoing Support', 'Documentation', 'Team Training'] },
+  { step: '01', title: 'Kickoff', desc: 'Deep-dive consultation, requirements analysis, and a clear project roadmap.', icon: '🎯' },
+  { step: '02', title: 'Execution', desc: 'Agile sprints with real-time collaboration and iterative development.', icon: '⚡' },
+  { step: '03', title: 'Handoff', desc: 'Production deployment, documentation, training, and ongoing support.', icon: '🚀' },
 ];
 
 const FEATURES = [
-  { icon: BarChart3, title: 'Boost Your Revenue', desc: 'Data-driven strategies for measurable growth' },
-  { icon: Zap, title: 'Lightning Fast Delivery', desc: 'Quick turnaround without compromising quality' },
-  { icon: Shield, title: 'Bug-Less Development', desc: 'Clean, optimized, production-ready code' },
-  { icon: Award, title: 'Award-Winning Design', desc: 'Industry-recognized creative excellence' },
-  { icon: Smartphone, title: 'Mobile Friendly', desc: 'Cross-device responsive experiences' },
-  { icon: Users, title: 'Powerful Marketing', desc: 'Reach your target audience effectively' },
+  { icon: BarChart3, title: 'Revenue Growth', desc: 'Data-driven strategies for measurable business impact' },
+  { icon: Zap, title: 'Lightning Delivery', desc: 'Rapid turnaround without quality compromise' },
+  { icon: Shield, title: 'Bulletproof Code', desc: 'Clean, tested, production-grade engineering' },
+  { icon: Award, title: 'Design Excellence', desc: 'Award-winning creative and UX standards' },
+  { icon: Smartphone, title: 'Cross-Platform', desc: 'Seamless experiences on every device' },
+  { icon: Users, title: 'Growth Marketing', desc: 'Targeted campaigns that convert at scale' },
 ];
 
 const PORTFOLIO = [
-  { title: 'Mega Motors 2025', category: 'Retail', color: 'from-blue-600 to-purple-600' },
-  { title: 'Minna', category: 'E-commerce', color: 'from-emerald-600 to-teal-600' },
-  { title: 'MonksTrip', category: 'Travel Booking', color: 'from-orange-500 to-red-500' },
+  { title: 'Mega Motors 2025', category: 'Automotive Retail', year: '2025', color: 'from-blue-600 via-blue-700 to-indigo-800' },
+  { title: 'Minna', category: 'E-commerce Fashion', year: '2025', color: 'from-emerald-500 via-emerald-600 to-teal-700' },
+  { title: 'MonksTrip', category: 'Travel Platform', year: '2025', color: 'from-orange-500 via-red-500 to-rose-600' },
 ];
 
 const PRICING = [
-  { name: 'Full Website Sprint', price: '$2,500', unit: '/Project', timeline: '2-3 weeks', features: ['Design + Development', 'Interactive Elements', 'Responsive Design', 'SEO Basics'], popular: false },
-  { name: 'Full Design Package', price: '$4,500', unit: '/Project', timeline: '3-4 weeks', features: ['Logo + Brand Guidelines', 'Web Design', 'Marketing Materials', 'Source Files + Assets'], popular: true },
-  { name: 'Full Stack Development', price: '$7,500', unit: '/Project', timeline: '4-6 weeks', features: ['React + TypeScript', 'Database + Backend', 'API Integration', 'Deployment + CI/CD'], popular: false },
+  { name: 'Website Sprint', price: '$2,500', timeline: '2-3 weeks', features: ['Custom Design + Development', 'Interactive Animations', 'Responsive & SEO Ready', 'CMS Integration'], popular: false },
+  { name: 'Full Design Package', price: '$4,500', timeline: '3-4 weeks', features: ['Logo + Brand Identity', 'Web & Mobile Design', 'Marketing Collateral', 'Source Files & Guidelines'], popular: true },
+  { name: 'Full Stack Product', price: '$7,500', timeline: '4-6 weeks', features: ['React + TypeScript Frontend', 'Backend + Database', 'API & 3rd-Party Integration', 'CI/CD + Deployment'], popular: false },
 ];
 
 const FAQS = [
-  { q: 'What services do you offer?', a: 'We offer custom software development, product design, performance marketing, and business consulting. From MVPs to enterprise systems.' },
-  { q: 'How does the project process work?', a: 'We follow a 3-stage process: Kickoff (consultation + roadmap), Execution (development + collaboration), and Handoff (deployment + support).' },
-  { q: 'What industries do you specialize in?', a: 'We work across fintech, e-commerce, healthcare, education, and SaaS. Our sister company Blueberry Academy specializes in edtech.' },
-  { q: 'How do you ensure quality?', a: 'We use code reviews, automated testing, CI/CD pipelines, and 99.99% uptime monitoring. Every project includes a QA phase.' },
-  { q: 'How much do your services cost?', a: 'Projects start from $2,500 for website sprints. Full stack development starts at $7,500. We also offer monthly retainer plans.' },
-  { q: 'How do I get started?', a: 'Book a free consultation through our contact form. We will discuss your needs, timeline, and budget, then provide a detailed proposal.' },
+  { q: 'What services do you offer?', a: 'Custom software development, product design, performance marketing, and business consulting. We handle everything from MVPs to enterprise-grade systems.' },
+  { q: 'How does your process work?', a: 'Three stages: Kickoff (deep-dive consultation and roadmap), Execution (agile development with real-time collaboration), and Handoff (deployment, documentation, and support).' },
+  { q: 'What industries do you work with?', a: 'Fintech, e-commerce, healthcare, education, SaaS, and more. Our sister company Blueberry Academy focuses on edtech products.' },
+  { q: 'How do you ensure quality?', a: 'Code reviews, automated testing, CI/CD pipelines, and 99.99% uptime monitoring. Every deliverable goes through rigorous QA before handoff.' },
+  { q: 'What does pricing look like?', a: 'Website sprints from $2,500, full design packages from $4,500, and full-stack products from $7,500. Custom enterprise quotes available.' },
+  { q: 'How do we get started?', a: 'Book a free consultation. We discuss your vision, timeline, and budget, then deliver a detailed proposal within 48 hours.' },
 ];
 
 const TESTIMONIALS = [
-  { quote: 'They delivered exceptional website and strategic insights that improved our digital presence significantly.', name: 'John Smith', role: 'CEO, Innovate Solutions' },
-  { quote: 'The team understood our complex requirements and delivered a user-friendly, high-performing platform.', name: 'Emily Davis', role: 'Product Manager, Nexus Digital' },
-  { quote: 'Innovative solutions that streamlined our operations. The design is functional and visually stunning.', name: 'David Lee', role: 'Founder, GreenLeaf Enterprises' },
+  { quote: 'Blueberry Systems delivered an exceptional platform that transformed our digital presence. Their technical expertise is world-class.', name: 'John Smith', role: 'CEO, Innovate Solutions', avatar: 'JS' },
+  { quote: 'They understood our complex requirements from day one and delivered a high-performing product ahead of schedule.', name: 'Emily Davis', role: 'Product Manager, Nexus Digital', avatar: 'ED' },
+  { quote: 'The combination of design and engineering excellence is rare. Blueberry Systems has both in abundance.', name: 'David Lee', role: 'Founder, GreenLeaf', avatar: 'DL' },
 ];
+
+/* ─── App ─── */
 
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  useEffect(() => {
+    if (mobileOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
 
-      {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12 h-[72px] flex items-center justify-between">
-          <a href="/" className="text-xl font-bold tracking-tight"><span className="text-blue-500">Blueberry</span> Systems</a>
+      {/* ═══ HEADER ═══ */}
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-white/[0.04]"
+      >
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12 h-[80px] flex items-center justify-between">
+          <a href="/" className="text-xl font-bold tracking-tight group">
+            <span className="text-blue-500 group-hover:text-blue-400 transition-colors">Blueberry</span>
+            <span className="text-white/90"> Systems</span>
+          </a>
           <nav className="hidden lg:flex items-center gap-8">
-            {NAV.map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-sm text-zinc-400 hover:text-white transition-colors">{item}</a>)}
+            {NAV.map(item => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-[13px] text-zinc-500 hover:text-white transition-colors uppercase tracking-widest font-medium">{item}</a>
+            ))}
           </nav>
-          <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-700 transition-all active:scale-[0.97]">Get In Touch</a>
-            <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden p-2 text-zinc-400 hover:text-white">{mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}</button>
+          <div className="flex items-center gap-4">
+            <MagneticButton href="#contact" className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-zinc-100 transition-all active:scale-[0.95]">
+              Get In Touch <ArrowUpRight className="w-4 h-4" />
+            </MagneticButton>
+            <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors">
+              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
-        {mobileOpen && (
-          <motion.nav initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="lg:hidden bg-black/95 border-t border-white/5 px-5 py-4">
-            {NAV.map(item => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileOpen(false)} className="block py-3 text-sm text-zinc-400 hover:text-white border-b border-white/5">{item}</a>)}
-          </motion.nav>
-        )}
-      </header>
 
-      <div className="h-[72px]" />
+        <AnimatePresence>
+          {mobileOpen && (
+            <>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobileOpen(false)} className="fixed inset-0 bg-black/60 z-40 lg:hidden" />
+              <motion.nav
+                initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
+                transition={{ type: 'tween', duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                className="fixed top-[80px] right-0 bottom-0 w-[80%] max-w-sm bg-zinc-950 z-50 lg:hidden px-6 py-8"
+              >
+                {NAV.map((item, i) => (
+                  <motion.a
+                    key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileOpen(false)}
+                    initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, duration: 0.3 }}
+                    className="block py-4 text-lg text-zinc-400 hover:text-white border-b border-white/5 transition-colors"
+                  >{item}</motion.a>
+                ))}
+              </motion.nav>
+            </>
+          )}
+        </AnimatePresence>
+      </motion.header>
 
-      {/* HERO */}
-      <section className="relative py-24 md:py-40 overflow-hidden">
+      <div className="h-[80px]" />
+
+      {/* ═══ HERO ═══ */}
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Animated background */}
         <div className="absolute inset-0">
-          <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px]" />
-          <div className="absolute bottom-[-20%] left-[-15%] w-[500px] h-[500px] bg-purple-600/8 rounded-full blur-[120px]" />
+          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-600/[0.07] rounded-full blur-[120px]" />
+          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-purple-600/[0.05] rounded-full blur-[100px]" />
+          <FloatingOrb className="absolute top-[50%] left-[50%] w-[300px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[80px]" />
+          {/* Grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         </div>
-        <div className="relative max-w-[1200px] mx-auto px-5 md:px-12 text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 bg-blue-600/10 border border-blue-600/20 rounded-full px-4 py-1.5 text-xs font-semibold text-blue-400 uppercase tracking-wider mb-8">
-              <Zap className="w-3.5 h-3.5" /> No. 1 Leading Digital Service Provider
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-              Your way to<br /><span className="bg-gradient-to-r from-blue-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Build. Launch. Grow.</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="text-zinc-400 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">Custom software, performance marketing, and design built to transform businesses, products, and platforms.</p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm hover:bg-blue-700 transition-all active:scale-[0.97] inline-flex items-center gap-2 shadow-lg shadow-blue-600/25">Connect With Us <ArrowRight className="w-4 h-4" /></a>
-              <a href="#services" className="px-8 py-4 border border-white/10 text-white rounded-full font-semibold text-sm hover:bg-white/5 transition-all inline-flex items-center gap-2">Explore Our Services</a>
-            </div>
-          </Reveal>
-        </div>
+
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[1300px] mx-auto px-6 md:px-12 py-20 md:py-0">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-full px-5 py-2 text-xs font-semibold text-blue-400 uppercase tracking-[0.2em] mb-10"
+          >
+            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            Leading Digital Service Provider
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-4xl"
+          >
+            Your way to<br />
+            <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">Build. Launch.</span><br />
+            <span className="text-zinc-500">Grow.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-zinc-500 text-lg md:text-xl max-w-xl mb-12 leading-relaxed"
+          >
+            Custom software, performance marketing, and design built to transform businesses, products, and platforms.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-start gap-4"
+          >
+            <MagneticButton href="#contact" className="px-8 py-4 bg-white text-black rounded-full font-semibold text-sm inline-flex items-center gap-2 shadow-[0_0_40px_rgba(59,130,246,0.15)] hover:shadow-[0_0_60px_rgba(59,130,246,0.25)] transition-all active:scale-[0.95]">
+              Start a Project <ArrowRight className="w-4 h-4" />
+            </MagneticButton>
+            <a href="#services" className="px-8 py-4 border border-white/10 text-white/70 rounded-full text-sm font-medium hover:text-white hover:border-white/20 transition-all inline-flex items-center gap-2">
+              Explore Services
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-[1px] h-12 bg-gradient-to-b from-transparent via-zinc-600 to-transparent" />
+        </motion.div>
       </section>
 
-      {/* STATS */}
-      <section className="border-y border-white/5 py-12">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[{ v: '2-Month', l: 'Average MVP Delivery' }, { v: '99.9%', l: 'System Uptime' }, { v: '200+', l: 'Happy Clients' }, { v: '50+', l: 'Projects Delivered' }].map((s, i) => (
-            <div key={i}><Reveal delay={i * 0.1}><p className="text-2xl md:text-3xl font-bold text-white mb-1">{s.v}</p><p className="text-xs text-zinc-500 uppercase tracking-wider">{s.l}</p></Reveal></div>
-          ))}
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section id="services" className="py-20 md:py-28">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12">
-          <Reveal><p className="text-sm text-blue-500 font-semibold uppercase tracking-wider mb-3 text-center">What We Do</p><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">Building Powerful Systems</h2></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {SERVICES.map((s, i) => { const Icon = s.icon; return (
-              <div key={i}><Reveal delay={i * 0.08}>
-                <div className="bg-zinc-950 border border-white/5 rounded-2xl p-7 hover:border-white/10 transition-all group">
-                  <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center mb-5 group-hover:bg-blue-600/20 transition-colors"><Icon className="w-6 h-6 text-blue-500" /></div>
-                  <h3 className="text-lg font-bold mb-2">{s.title}</h3>
-                  <p className="text-sm text-zinc-500 mb-5 leading-relaxed">{s.desc}</p>
-                  <div className="flex flex-wrap gap-3">
-                    <span className="px-3 py-1.5 bg-blue-600/10 text-blue-400 rounded-full text-xs font-medium">{s.stat1}</span>
-                    <span className="px-3 py-1.5 bg-white/5 text-zinc-400 rounded-full text-xs font-medium">{s.stat2}</span>
+      {/* ═══ STATS ═══ */}
+      <section className="relative py-20 border-y border-white/[0.04]">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { value: '2', suffix: 'mo', label: 'Avg. MVP Delivery' },
+              { value: '99.9', suffix: '%', label: 'System Uptime' },
+              { value: '200', suffix: '+', label: 'Happy Clients' },
+              { value: '50', suffix: '+', label: 'Projects Shipped' },
+            ].map((s, i) => (
+              <div key={i}>
+                <ScaleIn delay={i * 0.1}>
+                  <div className="text-center">
+                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                      <AnimatedCounter value={s.value} /><span className="text-blue-500">{s.suffix}</span>
+                    </p>
+                    <p className="text-xs text-zinc-600 uppercase tracking-[0.2em] mt-3 font-medium">{s.label}</p>
                   </div>
-                </div>
-              </Reveal></div>
-            ); })}
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESS */}
-      <section id="process" className="py-20 md:py-28 bg-zinc-950">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12">
-          <Reveal><p className="text-sm text-blue-500 font-semibold uppercase tracking-wider mb-3 text-center">How We Work</p><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">From Design To Launch</h2></Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {PROCESS.map((p, i) => (
-              <div key={i}><Reveal delay={i * 0.1}>
-                <div className="text-center">
-                  <div className="text-5xl font-bold text-blue-600/20 mb-4">{p.step}</div>
-                  <h3 className="text-xl font-bold mb-4">{p.title}</h3>
-                  <ul className="space-y-3">{p.items.map((item, j) => <li key={j} className="text-sm text-zinc-500 flex items-center gap-2 justify-center"><div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> {item}</li>)}</ul>
-                </div>
-              </Reveal></div>
+                </ScaleIn>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="py-20 md:py-28">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12">
-          <Reveal><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">Unlimited Features</h2></Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FEATURES.map((f, i) => { const Icon = f.icon; return (
-              <div key={i}><Reveal delay={i * 0.06}>
-                <div className="border border-white/5 rounded-2xl p-6 hover:border-blue-600/30 hover:bg-blue-600/5 transition-all">
-                  <Icon className="w-8 h-8 text-blue-500 mb-4" /><h3 className="font-bold mb-2">{f.title}</h3><p className="text-sm text-zinc-500">{f.desc}</p>
+      {/* ═══ SERVICES ═══ */}
+      <section id="services" className="py-28 md:py-36">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">What We Do</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Engineering What's Next</h2>
+            <p className="text-zinc-500 text-lg max-w-xl mb-16">We design and build high-performance software, from mobile apps to enterprise platforms.</p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {SERVICES.map((s, i) => {
+              const Icon = s.icon;
+              const dir = i % 2 === 0 ? 'left' : 'right';
+              return (
+                <div key={i}>
+                  <SlideIn delay={i * 0.1} direction={dir as 'left' | 'right'}>
+                    <motion.div
+                      whileHover={{ y: -4, borderColor: 'rgba(59,130,246,0.2)' }}
+                      transition={{ duration: 0.3 }}
+                      className={`bg-gradient-to-br ${s.color} border border-white/[0.04] rounded-3xl p-8 md:p-10 h-full backdrop-blur-sm`}
+                    >
+                      <div className="w-14 h-14 rounded-2xl bg-white/[0.06] border border-white/[0.06] flex items-center justify-center mb-6">
+                        <Icon className="w-6 h-6 text-blue-400" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 tracking-tight">{s.title}</h3>
+                      <p className="text-sm text-zinc-400 mb-6 leading-relaxed">{s.desc}</p>
+                      <div className="flex flex-wrap gap-3">
+                        <span className="px-4 py-2 bg-white/[0.06] rounded-full text-xs font-semibold text-blue-300 border border-blue-500/10">{s.stat1}</span>
+                        <span className="px-4 py-2 bg-white/[0.04] rounded-full text-xs font-medium text-zinc-400">{s.stat2}</span>
+                      </div>
+                    </motion.div>
+                  </SlideIn>
                 </div>
-              </Reveal></div>
-            ); })}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* PORTFOLIO */}
-      <section id="portfolio" className="py-20 md:py-28 bg-zinc-950">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12">
-          <Reveal><p className="text-sm text-blue-500 font-semibold uppercase tracking-wider mb-3 text-center">Our Work</p><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">Selected Projects</h2></Reveal>
+      {/* ═══ PROCESS ═══ */}
+      <section id="process" className="py-28 md:py-36 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
+        <div className="relative max-w-[1300px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">How We Work</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">From Idea To Launch</h2>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {/* Connection line */}
+            <div className="hidden md:block absolute top-[80px] left-[16%] right-[16%] h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+
+            {PROCESS.map((p, i) => (
+              <div key={i}>
+                <ScaleIn delay={i * 0.15}>
+                  <div className="text-center relative">
+                    <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/10 flex items-center justify-center mx-auto mb-8 text-3xl">
+                      {p.icon}
+                    </div>
+                    <div className="text-blue-500/30 text-6xl font-bold absolute top-[-10px] right-[20%] select-none">{p.step}</div>
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight">{p.title}</h3>
+                    <p className="text-sm text-zinc-500 leading-relaxed max-w-xs mx-auto">{p.desc}</p>
+                  </div>
+                </ScaleIn>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ FEATURES ═══ */}
+      <section className="py-28 md:py-36">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <div className="text-center mb-20">
+              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Capabilities</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Built Different</h2>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {FEATURES.map((f, i) => {
+              const Icon = f.icon;
+              return (
+                <div key={i}>
+                  <Reveal delay={i * 0.08}>
+                    <motion.div
+                      whileHover={{ scale: 1.02, borderColor: 'rgba(59,130,246,0.15)' }}
+                      className="border border-white/[0.04] rounded-2xl p-7 hover:bg-blue-600/[0.03] transition-colors h-full"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center mb-5">
+                        <Icon className="w-5 h-5 text-blue-400" />
+                      </div>
+                      <h3 className="font-bold mb-2 tracking-tight">{f.title}</h3>
+                      <p className="text-sm text-zinc-500 leading-relaxed">{f.desc}</p>
+                    </motion.div>
+                  </Reveal>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ PORTFOLIO ═══ */}
+      <section id="portfolio" className="py-28 md:py-36 bg-zinc-950/50">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Selected Work</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">Recent Projects</h2>
+          </Reveal>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PORTFOLIO.map((p, i) => (
-              <div key={i}><Reveal delay={i * 0.1}>
-                <div className="group cursor-pointer">
-                  <div className={`bg-gradient-to-br ${p.color} rounded-2xl h-[280px] mb-4 flex items-end p-6 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                    <span className="relative px-3 py-1 bg-black/40 rounded-full text-xs font-medium backdrop-blur-sm">{p.category}</span>
-                  </div>
-                  <h3 className="font-bold group-hover:text-blue-400 transition-colors">{p.title}</h3>
-                </div>
-              </Reveal></div>
+              <div key={i}>
+                <Reveal delay={i * 0.12}>
+                  <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.3 }} className="group cursor-pointer">
+                    <div className={`bg-gradient-to-br ${p.color} rounded-3xl h-[340px] mb-5 flex flex-col justify-between p-8 relative overflow-hidden`}>
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
+                      <div className="relative flex justify-between items-start">
+                        <span className="px-3 py-1.5 bg-black/30 rounded-full text-xs font-medium backdrop-blur-sm">{p.category}</span>
+                        <span className="text-xs text-white/50">{p.year}</span>
+                      </div>
+                      <div className="relative">
+                        <motion.div initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} className="mb-2">
+                          <ArrowUpRight className="w-6 h-6 text-white/80" />
+                        </motion.div>
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-bold group-hover:text-blue-400 transition-colors tracking-tight">{p.title}</h3>
+                  </motion.div>
+                </Reveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="py-20 md:py-28">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12">
-          <Reveal><p className="text-sm text-blue-500 font-semibold uppercase tracking-wider mb-3 text-center">Pricing</p><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">Clear Services, Fair Pricing</h2></Reveal>
+      {/* ═══ PRICING ═══ */}
+      <section id="pricing" className="py-28 md:py-36">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <div className="text-center mb-16">
+              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Pricing</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Transparent Pricing</h2>
+            </div>
+          </Reveal>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PRICING.map((p, i) => (
-              <div key={i}><Reveal delay={i * 0.1}>
-                <div className={`rounded-2xl p-7 border relative ${p.popular ? 'border-blue-600 bg-blue-600/5' : 'border-white/5 bg-zinc-950'}`}>
-                  {p.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-bold">Recommended</div>}
-                  <h3 className="text-lg font-bold mb-1">{p.name}</h3>
-                  <p className="text-xs text-zinc-500 mb-4">{p.timeline}</p>
-                  <div className="mb-6"><span className="text-3xl font-bold">{p.price}</span><span className="text-sm text-zinc-500">{p.unit}</span></div>
-                  <ul className="space-y-3 mb-8">{p.features.map((f, j) => <li key={j} className="text-sm text-zinc-400 flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> {f}</li>)}</ul>
-                  <a href="#contact" className={`block text-center py-3 rounded-full text-sm font-semibold transition-all ${p.popular ? 'bg-blue-600 text-white hover:bg-blue-700' : 'border border-white/10 text-white hover:bg-white/5'}`}>Get Started</a>
-                </div>
-              </Reveal></div>
+              <div key={i}>
+                <Reveal delay={i * 0.1}>
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    className={`rounded-3xl p-8 border relative h-full flex flex-col ${
+                      p.popular
+                        ? 'border-blue-500/30 bg-gradient-to-b from-blue-600/10 to-transparent shadow-[0_0_40px_rgba(59,130,246,0.08)]'
+                        : 'border-white/[0.04] bg-zinc-950/50'
+                    }`}
+                  >
+                    {p.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
+                        Most Popular
+                      </div>
+                    )}
+                    <h3 className="text-lg font-bold mb-1 tracking-tight">{p.name}</h3>
+                    <p className="text-xs text-zinc-600 mb-6">{p.timeline}</p>
+                    <div className="mb-8">
+                      <span className="text-4xl font-bold tracking-tight">{p.price}</span>
+                      <span className="text-sm text-zinc-600 ml-1">/project</span>
+                    </div>
+                    <ul className="space-y-4 mb-10 flex-1">
+                      {p.features.map((f, j) => (
+                        <li key={j} className="text-sm text-zinc-400 flex items-start gap-3">
+                          <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" /> {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <MagneticButton
+                      href="#contact"
+                      className={`block text-center py-3.5 rounded-full text-sm font-semibold transition-all ${
+                        p.popular ? 'bg-white text-black hover:bg-zinc-100' : 'border border-white/10 text-white hover:bg-white/5'
+                      }`}
+                    >
+                      Get Started
+                    </MagneticButton>
+                  </motion.div>
+                </Reveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-20 md:py-28 bg-zinc-950">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12">
-          <Reveal><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">What Our Clients Say</h2></Reveal>
+      {/* ═══ TESTIMONIALS ═══ */}
+      <section className="py-28 md:py-36 bg-zinc-950/50">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12">
+          <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">Client Testimonials</h2></Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
-              <div key={i}><Reveal delay={i * 0.1}>
-                <div className="border border-white/5 rounded-2xl p-7">
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">"{t.quote}"</p>
-                  <p className="font-semibold text-sm">{t.name}</p>
-                  <p className="text-xs text-zinc-500">{t.role}</p>
-                </div>
-              </Reveal></div>
+              <div key={i}>
+                <Reveal delay={i * 0.1}>
+                  <div className="border border-white/[0.04] rounded-3xl p-8 h-full flex flex-col">
+                    <p className="text-sm text-zinc-400 leading-relaxed flex-1 mb-8">"{t.quote}"</p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/20 flex items-center justify-center text-xs font-bold text-blue-400">{t.avatar}</div>
+                      <div>
+                        <p className="font-semibold text-sm">{t.name}</p>
+                        <p className="text-xs text-zinc-600">{t.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="py-20 md:py-28">
-        <div className="max-w-[800px] mx-auto px-5 md:px-12">
-          <Reveal><h2 className="text-3xl md:text-4xl font-bold text-center mb-14">Frequently Asked Questions</h2></Reveal>
+      {/* ═══ FAQ ═══ */}
+      <section id="faq" className="py-28 md:py-36">
+        <div className="max-w-[800px] mx-auto px-6 md:px-12">
+          <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">Frequently Asked</h2></Reveal>
           <div className="space-y-3">
             {FAQS.map((faq, i) => (
-              <div key={i}><Reveal delay={i * 0.05}>
-                <div className="border border-white/5 rounded-xl overflow-hidden">
-                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between p-5 text-left">
-                    <span className="text-sm font-medium pr-4">{faq.q}</span>
-                    <ChevronDown className={`w-5 h-5 text-zinc-500 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
-                  </button>
-                  {openFaq === i && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} transition={{ duration: 0.2 }}><p className="text-sm text-zinc-500 leading-relaxed px-5 pb-5">{faq.a}</p></motion.div>}
-                </div>
-              </Reveal></div>
+              <div key={i}>
+                <Reveal delay={i * 0.05}>
+                  <motion.div
+                    className={`border rounded-2xl overflow-hidden transition-colors ${openFaq === i ? 'border-blue-500/20 bg-blue-600/[0.03]' : 'border-white/[0.04]'}`}
+                  >
+                    <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left">
+                      <span className="text-sm font-semibold pr-4">{faq.q}</span>
+                      <motion.div animate={{ rotate: openFaq === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                        <ChevronDown className="w-5 h-5 text-zinc-500 shrink-0" />
+                      </motion.div>
+                    </button>
+                    <AnimatePresence>
+                      {openFaq === i && (
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}>
+                          <p className="text-sm text-zinc-500 leading-relaxed px-6 pb-6">{faq.a}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </Reveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="py-20 md:py-28 bg-zinc-950">
-        <div className="max-w-[800px] mx-auto px-5 md:px-12 text-center">
+      {/* ═══ CONTACT CTA ═══ */}
+      <section id="contact" className="py-28 md:py-36 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5" />
+          <FloatingOrb className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-blue-600/[0.06] rounded-full blur-[100px]" />
+        </div>
+        <div className="relative max-w-[800px] mx-auto px-6 md:px-12 text-center">
           <Reveal>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Each Project is a Unique Opportunity</h2>
-            <p className="text-zinc-500 text-base mb-10 max-w-md mx-auto">Ready to take the next step? Let's discuss your vision.</p>
-            <a href="mailto:info@blueberrysystems.io" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm hover:bg-blue-700 transition-all inline-flex items-center gap-2 shadow-lg shadow-blue-600/25 mb-12"><Mail className="w-4 h-4" /> info@blueberrysystems.io</a>
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-zinc-500">
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">Let's Talk</p>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Ready to Build<br />Something Great?</h2>
+            <p className="text-zinc-500 text-lg mb-12 max-w-md mx-auto">Every project starts with a conversation. Let's discuss your vision.</p>
+            <MagneticButton href="mailto:info@blueberrysystems.io" className="px-10 py-5 bg-white text-black rounded-full font-bold text-base inline-flex items-center gap-3 shadow-[0_0_60px_rgba(59,130,246,0.15)] hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] transition-all active:scale-[0.95]">
+              <Mail className="w-5 h-5" /> Start a Conversation
+            </MagneticButton>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-zinc-600 mt-14">
               <span className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Tbilisi, Georgia</span>
               <span className="flex items-center gap-2"><Phone className="w-4 h-4" /> +995 XXX XXX XXX</span>
               <span className="flex items-center gap-2"><ExternalLink className="w-4 h-4" /> blueberrysystems.io</span>
@@ -284,14 +608,18 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/5 py-8">
-        <div className="max-w-[1200px] mx-auto px-5 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-zinc-600">&copy; 2026 Blueberry Systems. All rights reserved.</p>
+      {/* ═══ FOOTER ═══ */}
+      <footer className="border-t border-white/[0.04] py-10">
+        <div className="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-bold"><span className="text-blue-500">Blueberry</span> Systems</span>
+            <span className="text-zinc-800">|</span>
+            <span className="text-xs text-zinc-600">&copy; 2026 All rights reserved</span>
+          </div>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
-            <span>Sister company: <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400">Blueberry Academy</a></span>
-            <a href="#" className="hover:text-zinc-400">Terms</a>
-            <a href="#" className="hover:text-zinc-400">Privacy</a>
+            <span>Sister company: <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400 transition-colors">Blueberry Academy</a></span>
+            <a href="#" className="hover:text-zinc-400 transition-colors">Terms</a>
+            <a href="#" className="hover:text-zinc-400 transition-colors">Privacy</a>
           </div>
         </div>
       </footer>
