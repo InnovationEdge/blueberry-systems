@@ -168,6 +168,88 @@ const TESTIMONIALS = [
   { quote: 'The combination of design and engineering excellence is rare. Blueberry Systems has both in abundance.', name: 'David Lee', role: 'Founder, GreenLeaf', avatar: 'DL' },
 ];
 
+/* ─── Contact Form ─── */
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', budget: '' });
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    // Send email via mailto fallback
+    const subject = encodeURIComponent(`Project Inquiry from ${form.name} - ${form.company}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
+    window.open(`mailto:info@blueberrysystems.io?subject=${subject}&body=${body}`, '_self');
+    setTimeout(() => { setSending(false); setSent(true); }, 1000);
+  };
+
+  if (sent) {
+    return (
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="border border-blue-500/20 bg-blue-600/[0.03] rounded-3xl p-10 text-center">
+        <div className="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="w-8 h-8 text-blue-400" />
+        </div>
+        <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+        <p className="text-sm text-zinc-500">We will get back to you within 24 hours.</p>
+        <button onClick={() => { setSent(false); setForm({ name: '', email: '', company: '', message: '', budget: '' }); }} className="mt-6 text-sm text-blue-400 hover:text-blue-300 transition-colors">
+          Send another message
+        </button>
+      </motion.div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="border border-white/[0.06] bg-zinc-950/80 rounded-3xl p-8 md:p-10 space-y-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Name</label>
+          <input type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Smith"
+            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Email</label>
+          <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="john@company.com"
+            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Company</label>
+          <input type="text" value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder="Your Company"
+            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Budget</label>
+          <select value={form.budget} onChange={e => setForm({ ...form, budget: e.target.value })}
+            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white appearance-none focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all">
+            <option value="" className="bg-zinc-900">Select budget</option>
+            <option value="$2,500 - $5,000" className="bg-zinc-900">$2,500 - $5,000</option>
+            <option value="$5,000 - $10,000" className="bg-zinc-900">$5,000 - $10,000</option>
+            <option value="$10,000 - $25,000" className="bg-zinc-900">$10,000 - $25,000</option>
+            <option value="$25,000+" className="bg-zinc-900">$25,000+</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Message</label>
+        <textarea required rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your project..."
+          className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
+      </div>
+      <motion.button
+        type="submit"
+        disabled={sending}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full py-4 bg-white text-black rounded-xl font-semibold text-sm hover:bg-zinc-100 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+      >
+        {sending ? <><div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> Sending...</> : <>Send Message <ArrowRight className="w-4 h-4" /></>}
+      </motion.button>
+    </form>
+  );
+}
+
 /* ─── App ─── */
 
 export default function App() {
@@ -196,8 +278,7 @@ export default function App() {
       >
         <div className="max-w-[1300px] mx-auto px-6 md:px-12 h-[80px] flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight group">
-            <span className="text-blue-500 group-hover:text-blue-400 transition-colors">Blueberry</span>
-            <span className="text-white/90"> Systems</span>
+            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-8 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map(item => (
@@ -583,28 +664,31 @@ export default function App() {
         </div>
       </section>
 
-      {/* ═══ CONTACT CTA ═══ */}
+      {/* ═══ CONTACT ═══ */}
       <section id="contact" className="py-28 md:py-36 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5" />
           <FloatingOrb className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-blue-600/[0.06] rounded-full blur-[100px]" />
         </div>
-        <div className="relative max-w-[800px] mx-auto px-6 md:px-12 text-center">
-          <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">Let's Talk</p>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Ready to Build<br />Something Great?</h2>
-            <p className="text-zinc-500 text-lg mb-12 max-w-md mx-auto">Every project starts with a conversation. Let's discuss your vision.</p>
-            <MagneticButton href="mailto:info@blueberrysystems.io" className="px-10 py-5 bg-white text-black rounded-full font-bold text-base inline-flex items-center gap-3 shadow-[0_0_60px_rgba(59,130,246,0.15)] hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] transition-all active:scale-[0.95]">
-              <Mail className="w-5 h-5" /> Start a Conversation
-            </MagneticButton>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-zinc-600 mt-14">
-              <span className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Tbilisi, Georgia</span>
-              <span className="flex items-center gap-2"><Phone className="w-4 h-4" /> +995 XXX XXX XXX</span>
-              <span className="flex items-center gap-2"><ExternalLink className="w-4 h-4" /> blueberrysystems.io</span>
-            </div>
-          </Reveal>
+        <div className="relative max-w-[1100px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left — text */}
+            <Reveal>
+              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">Get In Touch</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Ready to Build<br />Something Great?</h2>
+              <p className="text-zinc-500 text-base mb-10 leading-relaxed">Every project starts with a conversation. Fill out the form and we will get back to you within 24 hours.</p>
+              <div className="space-y-4 text-sm text-zinc-500">
+                <div className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-500" /> info@blueberrysystems.io</div>
+                <div className="flex items-center gap-3"><MapPin className="w-4 h-4 text-blue-500" /> Tbilisi, Georgia</div>
+                <div className="flex items-center gap-3"><Phone className="w-4 h-4 text-blue-500" /> +995 557 139 997</div>
+              </div>
+            </Reveal>
+
+            {/* Right — form */}
+            <SlideIn direction="right" delay={0.2}>
+              <ContactForm />
+            </SlideIn>
+          </div>
         </div>
       </section>
 
@@ -612,7 +696,7 @@ export default function App() {
       <footer className="border-t border-white/[0.04] py-10">
         <div className="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-bold"><span className="text-blue-500">Blueberry</span> Systems</span>
+            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-6 w-auto opacity-60" />
             <span className="text-zinc-800">|</span>
             <span className="text-xs text-zinc-600">&copy; 2026 All rights reserved</span>
           </div>
