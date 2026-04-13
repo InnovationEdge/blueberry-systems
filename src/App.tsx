@@ -804,6 +804,66 @@ export default function App() {
         </div>
       </section>
 
+      {/* ═══ BLOG ═══ */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Insights</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">From Our Blog</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Why We Chose Supabase Over Firebase for Our Clients', tag: 'Engineering', read: '5 min', date: 'Mar 2026' },
+              { title: 'The True Cost of Building an MVP in 2026', tag: 'Business', read: '7 min', date: 'Feb 2026' },
+              { title: 'React vs Next.js: When to Use What', tag: 'Frontend', read: '4 min', date: 'Jan 2026' },
+            ].map((post, i) => (
+              <div key={i}>
+                <Reveal delay={i * 0.1}>
+                  <div className="border border-white/[0.06] rounded-2xl p-7 hover:border-white/[0.1] transition-colors group h-full flex flex-col">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-400 mb-4">{post.tag}</span>
+                    <h3 className="text-lg font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors flex-1">{post.title}</h3>
+                    <div className="flex items-center justify-between text-xs text-zinc-600 pt-4 border-t border-white/[0.04]">
+                      <span>{post.date}</span>
+                      <span>{post.read} read</span>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TEAM ═══ */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Our Team</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">The People Behind Blueberry</h2>
+          </Reveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { name: 'Tiko Shakeladze', role: 'Founder & CEO', initials: 'TS', color: '#3b82f6' },
+              { name: 'Alex Kirtadze', role: 'CTO', initials: 'AK', color: '#8b5cf6' },
+              { name: 'Nino Kvara', role: 'Head of Design', initials: 'NK', color: '#ec4899' },
+              { name: 'Giorgi Beridze', role: 'Lead Engineer', initials: 'GB', color: '#10b981' },
+            ].map((member, i) => (
+              <div key={i}>
+                <Reveal delay={i * 0.1}>
+                  <div className="text-center group">
+                    <div className="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-lg font-bold border border-white/[0.06]" style={{ color: member.color, backgroundColor: `${member.color}10` }}>
+                      {member.initials}
+                    </div>
+                    <h3 className="font-semibold mb-1">{member.name}</h3>
+                    <p className="text-xs text-zinc-500">{member.role}</p>
+                  </div>
+                </Reveal>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ PARTNERS ═══ */}
       <section className="py-20 md:py-28">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
