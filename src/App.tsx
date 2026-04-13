@@ -131,25 +131,19 @@ const PROCESS = [
   { step: '03', title: 'Handoff', desc: 'Production deployment, documentation, training, and ongoing support.' },
 ];
 
-const FEATURES = [
-  { title: 'Revenue Growth', desc: 'Data-driven strategies for measurable business impact' },
-  { title: 'Lightning Delivery', desc: 'Rapid turnaround without quality compromise' },
-  { title: 'Bulletproof Code', desc: 'Clean, tested, production-grade engineering' },
-  { title: 'Design Excellence', desc: 'Award-winning creative and UX standards' },
-  { title: 'Cross-Platform', desc: 'Seamless experiences on every device' },
-  { title: 'Growth Marketing', desc: 'Targeted campaigns that convert at scale' },
-];
-
 const PORTFOLIO = [
-  { title: 'Mega Motors 2025', category: 'Automotive Retail', year: '2025', color: 'from-blue-600 via-blue-700 to-indigo-800' },
-  { title: 'Minna', category: 'E-commerce Fashion', year: '2025', color: 'from-emerald-500 via-emerald-600 to-teal-700' },
-  { title: 'MonksTrip', category: 'Travel Platform', year: '2025', color: 'from-orange-500 via-red-500 to-rose-600' },
+  { title: 'NovaPay', category: 'Fintech Platform', year: '2025', color: 'from-blue-600 via-blue-700 to-indigo-800' },
+  { title: 'Vendora', category: 'E-commerce SaaS', year: '2024', color: 'from-emerald-500 via-emerald-600 to-teal-700' },
+  { title: 'HealthBridge', category: 'Healthcare Portal', year: '2025', color: 'from-cyan-500 via-cyan-600 to-blue-700' },
+  { title: 'LogiTrack', category: 'Logistics Dashboard', year: '2024', color: 'from-violet-500 via-purple-600 to-indigo-700' },
+  { title: 'EduVerse', category: 'EdTech Platform', year: '2025', color: 'from-amber-500 via-orange-500 to-red-500' },
+  { title: 'CryptoNest', category: 'DeFi Analytics', year: '2024', color: 'from-pink-500 via-rose-500 to-red-600' },
 ];
 
 const PRICING = [
-  { name: 'Website Sprint', price: '$2,500', timeline: '2-3 weeks', features: ['Custom Design + Development', 'Interactive Animations', 'Responsive & SEO Ready', 'CMS Integration'], popular: false },
-  { name: 'Full Design Package', price: '$4,500', timeline: '3-4 weeks', features: ['Logo + Brand Identity', 'Web & Mobile Design', 'Marketing Collateral', 'Source Files & Guidelines'], popular: true },
-  { name: 'Full Stack Product', price: '$7,500', timeline: '4-6 weeks', features: ['React + TypeScript Frontend', 'Backend + Database', 'API & 3rd-Party Integration', 'CI/CD + Deployment'], popular: false },
+  { name: 'Web & Mobile', desc: 'Websites, web apps, mobile applications', features: ['Custom Design + Development', 'Responsive & Cross-Platform', 'SEO & Performance Optimized', 'CMS & Admin Panel'], popular: false },
+  { name: 'Full Product', desc: 'End-to-end product development', features: ['UI/UX Design + Branding', 'Frontend + Backend Development', 'API & 3rd-Party Integration', 'CI/CD + Cloud Deployment'], popular: true },
+  { name: 'Enterprise', desc: 'Large-scale systems and consulting', features: ['Architecture & System Design', 'Team Augmentation', 'Legacy System Modernization', 'Ongoing Support & Maintenance'], popular: false },
 ];
 
 const FAQS = [
@@ -525,34 +519,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ═══ FEATURES ═══ */}
-      <section className="py-28 md:py-36">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <Reveal>
-            <div className="text-center mb-20">
-              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Capabilities</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Built Different</h2>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04]">
-            {FEATURES.map((f, i) => (
-              <div key={i}>
-                <Reveal delay={i * 0.08}>
-                  <motion.div
-                    whileHover={{ backgroundColor: 'rgba(59,130,246,0.03)' }}
-                    className="bg-black p-8 md:p-10 h-full"
-                  >
-                    <span className="text-blue-500/40 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">0{i + 1}</span>
-                    <h3 className="text-lg font-bold mb-2 tracking-tight">{f.title}</h3>
-                    <p className="text-sm text-zinc-500 leading-relaxed">{f.desc}</p>
-                  </motion.div>
-                </Reveal>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Features section removed */}
 
       {/* ═══ PORTFOLIO ═══ */}
       <section id="portfolio" className="py-28 md:py-36 bg-zinc-950/50">
@@ -594,7 +561,8 @@ export default function App() {
           <Reveal>
             <div className="text-center mb-16">
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Pricing</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Transparent Pricing</h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Tailored Solutions</h2>
+              <p className="text-zinc-500 mt-4 max-w-lg mx-auto">Every project is unique. We provide a detailed cost estimate after understanding your requirements.</p>
             </div>
           </Reveal>
 
@@ -615,12 +583,8 @@ export default function App() {
                         Most Popular
                       </div>
                     )}
-                    <h3 className="text-lg font-bold mb-1 tracking-tight">{p.name}</h3>
-                    <p className="text-xs text-zinc-600 mb-6">{p.timeline}</p>
-                    <div className="mb-8">
-                      <span className="text-4xl font-bold tracking-tight">{p.price}</span>
-                      <span className="text-sm text-zinc-600 ml-1">/project</span>
-                    </div>
+                    <h3 className="text-xl font-bold mb-2 tracking-tight">{p.name}</h3>
+                    <p className="text-sm text-zinc-500 mb-8">{p.desc}</p>
                     <ul className="space-y-4 mb-10 flex-1">
                       {p.features.map((f, j) => (
                         <li key={j} className="text-sm text-zinc-400 flex items-start gap-3">
