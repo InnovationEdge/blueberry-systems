@@ -563,14 +563,12 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex items-center gap-10 mt-16 pt-10 border-t border-white/[0.06]"
+            className="flex flex-wrap items-center gap-8 md:gap-12 mt-16 pt-10 border-t border-white/[0.06]"
           >
-            {[{ v: '5+', l: t.years }, { v: '200+', l: t.projects }, { v: '99.9%', l: t.uptime }, { v: '40+', l: t.clients }].map((s, i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="text-xl md:text-2xl font-bold text-white">{s.v}</span>
-                <span className="text-xs text-zinc-600 uppercase tracking-wider">{s.l}</span>
-              </div>
-            ))}
+            <div><span className="text-2xl md:text-3xl font-bold text-white">2020</span><span className="text-xs text-zinc-600 ml-2">{t.onMarket.split(' ').slice(-1)[0]}</span></div>
+            <div><span className="text-2xl md:text-3xl font-bold text-white">50+</span><span className="text-xs text-zinc-600 ml-2">{t.projects}</span></div>
+            <div><span className="text-2xl md:text-3xl font-bold text-white">99.9%</span><span className="text-xs text-zinc-600 ml-2">{t.uptime}</span></div>
+            <div><span className="text-2xl md:text-3xl font-bold text-white">15+</span><span className="text-xs text-zinc-600 ml-2">{t.clients}</span></div>
           </motion.div>
         </motion.div>
 
@@ -585,28 +583,7 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* ═══ TRUSTED BY ═══ */}
-      <section className="py-16 border-b border-white/[0.04] overflow-hidden">
-        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-          <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-10">{t.trustedBy}</p>
-        </div>
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-[15%] bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-[15%] bg-gradient-to-l from-black to-transparent z-10" />
-          <div className="flex items-center whitespace-nowrap animate-marquee">
-            {[0, 1, 2].map(setIdx => (
-              <div key={setIdx} className="flex items-center shrink-0 gap-16 md:gap-24 px-8 md:px-12" aria-hidden={setIdx > 0}>
-                {['Stripe', 'Vercel', 'Supabase', 'Figma', 'Notion', 'Linear', 'Webflow', 'Framer'].map(name => (
-                  <span key={name} className="text-xl md:text-2xl font-bold text-zinc-700/40 shrink-0 select-none tracking-tight">{name}</span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-        <style>{`.animate-marquee { animation: marquee 25s linear infinite; } @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.333%); } }`}</style>
-      </section>
-
-      {/* Stats moved to hero */}
+      {/* Trusted By removed */}
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-20 md:py-28">
@@ -646,15 +623,31 @@ export default function App() {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-16 border-y border-white/[0.04]">
+      <section className="py-20 border-y border-white/[0.04]">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-8">{`${t.techTitle}`}</p>
+            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-12">{`${t.techTitle}`}</p>
           </Reveal>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'AWS', 'Docker', 'Figma', 'Flutter', 'Swift', 'Kotlin'].map((tech, i) => (
-              <Reveal key={tech} delay={i * 0.03}>
-                <span className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors cursor-default font-medium">{tech}</span>
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {[
+              { name: 'React', color: '#61DAFB' },
+              { name: 'Next.js', color: '#ffffff' },
+              { name: 'TypeScript', color: '#3178C6' },
+              { name: 'Node.js', color: '#339933' },
+              { name: 'Python', color: '#3776AB' },
+              { name: 'PostgreSQL', color: '#4169E1' },
+              { name: 'AWS', color: '#FF9900' },
+              { name: 'Docker', color: '#2496ED' },
+              { name: 'Figma', color: '#F24E1E' },
+              { name: 'Flutter', color: '#02569B' },
+              { name: 'Swift', color: '#F05138' },
+              { name: 'Kotlin', color: '#7F52FF' },
+            ].map((tech, i) => (
+              <Reveal key={tech.name} delay={i * 0.03}>
+                <div className="flex items-center gap-3 px-5 py-3.5 border border-white/[0.06] rounded-xl hover:border-white/[0.12] transition-colors">
+                  <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: tech.color }} />
+                  <span className="text-sm text-zinc-400 font-medium">{tech.name}</span>
+                </div>
               </Reveal>
             ))}
           </div>
