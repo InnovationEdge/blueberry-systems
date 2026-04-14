@@ -72,6 +72,16 @@ interface T {
   placeholderEmail: string;
   placeholderCompany: string;
   placeholderMessage: string;
+  // Pricing features
+  pf1: string; pf2: string; pf3: string; pf4: string;
+  pf5: string; pf6: string; pf7: string; pf8: string;
+  pf9: string; pf10: string; pf11: string; pf12: string;
+  // Blog
+  blog1: string; blog2: string; blog3: string;
+  // Team roles
+  role1: string; role2: string; role3: string; role4: string;
+  // Jobs
+  job1: string; job2: string; job3: string; job4: string; job5: string;
   // Services
   svc1Title: string; svc1Desc: string;
   svc2Title: string; svc2Desc: string;
@@ -182,6 +192,12 @@ const en: T = {
   price1Name: 'Web & Mobile', price1Desc: 'Websites, web apps, mobile applications',
   price2Name: 'Full Product', price2Desc: 'End-to-end product development',
   price3Name: 'Enterprise', price3Desc: 'Large-scale systems and consulting',
+  pf1: 'Custom Design + Development', pf2: 'Responsive & Cross-Platform', pf3: 'SEO & Performance Optimized', pf4: 'CMS & Admin Panel',
+  pf5: 'UI/UX Design + Branding', pf6: 'Frontend + Backend Development', pf7: 'API & 3rd-Party Integration', pf8: 'CI/CD + Cloud Deployment',
+  pf9: 'Architecture & System Design', pf10: 'Team Augmentation', pf11: 'Legacy System Modernization', pf12: 'Ongoing Support & Maintenance',
+  blog1: 'Why We Chose Supabase Over Firebase for Our Clients', blog2: 'The True Cost of Building an MVP in 2026', blog3: 'React vs Next.js: When to Use What',
+  role1: 'Founder & CEO', role2: 'CTO', role3: 'Head of Design', role4: 'Lead Engineer',
+  job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
 };
 
 const ka: T = {
@@ -272,6 +288,12 @@ const ka: T = {
   price1Name: 'ვებ და მობაილი', price1Desc: 'ვებსაიტები, ვებ აპები, მობილური აპლიკაციები',
   price2Name: 'სრული პროდუქტი', price2Desc: 'პროდუქტის სრული დეველოპმენტი',
   price3Name: 'Enterprise', price3Desc: 'მასშტაბური სისტემები და კონსალტინგი',
+  pf1: 'დიზაინი + დეველოპმენტი', pf2: 'რესპონსივი და კროს-პლატფორმა', pf3: 'SEO და პერფორმანსი', pf4: 'CMS და ადმინ პანელი',
+  pf5: 'UI/UX დიზაინი + ბრენდინგი', pf6: 'Frontend + Backend', pf7: 'API ინტეგრაცია', pf8: 'CI/CD + Cloud Deploy',
+  pf9: 'არქიტექტურა და დიზაინი', pf10: 'გუნდის გაძლიერება', pf11: 'Legacy სისტემების მოდერნიზაცია', pf12: 'მუდმივი მხარდაჭერა',
+  blog1: 'რატომ ავირჩიეთ Supabase Firebase-ის ნაცვლად', blog2: 'MVP-ის რეალური ღირებულება 2026-ში', blog3: 'React vs Next.js: როდის რომელი',
+  role1: 'დამფუძნებელი და CEO', role2: 'CTO', role3: 'დიზაინის ხელმძღვანელი', role4: 'წამყვანი ინჟინერი',
+  job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
 };
 
 const ru: T = {
@@ -362,6 +384,12 @@ const ru: T = {
   price1Name: 'Веб и мобайл', price1Desc: 'Сайты, веб-приложения, мобильные приложения',
   price2Name: 'Полный продукт', price2Desc: 'Полный цикл разработки продукта',
   price3Name: 'Enterprise', price3Desc: 'Масштабные системы и консалтинг',
+  pf1: 'Дизайн + Разработка', pf2: 'Адаптивный и кроссплатформенный', pf3: 'SEO и производительность', pf4: 'CMS и админ-панель',
+  pf5: 'UI/UX дизайн + брендинг', pf6: 'Frontend + Backend', pf7: 'API интеграция', pf8: 'CI/CD + облачный деплой',
+  pf9: 'Архитектура и проектирование', pf10: 'Усиление команды', pf11: 'Модернизация legacy', pf12: 'Постоянная поддержка',
+  blog1: 'Почему мы выбрали Supabase вместо Firebase', blog2: 'Реальная стоимость MVP в 2026', blog3: 'React vs Next.js: когда что использовать',
+  role1: 'Основатель и CEO', role2: 'CTO', role3: 'Руководитель дизайна', role4: 'Ведущий инженер',
+  job1: 'Senior Full Stack разработчик', job2: 'UI/UX дизайнер', job3: 'DevOps инженер', job4: 'Продакт-менеджер', job5: 'Руководитель маркетинга',
 };
 
 const zh: T = {
@@ -452,6 +480,12 @@ const zh: T = {
   price1Name: '网站和移动端', price1Desc: '网站、网络应用、移动应用',
   price2Name: '完整产品', price2Desc: '端到端产品开发',
   price3Name: '企业级', price3Desc: '大规模系统和咨询',
+  pf1: '定制设计+开发', pf2: '响应式和跨平台', pf3: 'SEO和性能优化', pf4: 'CMS和管理面板',
+  pf5: 'UI/UX设计+品牌', pf6: '前端+后端开发', pf7: 'API集成', pf8: 'CI/CD+云部署',
+  pf9: '架构和系统设计', pf10: '团队增强', pf11: '遗留系统现代化', pf12: '持续支持',
+  blog1: '为什么我们为客户选择Supabase而非Firebase', blog2: '2026年构建MVP的真实成本', blog3: 'React vs Next.js: 何时用什么',
+  role1: '创始人兼CEO', role2: 'CTO', role3: '设计主管', role4: '首席工程师',
+  job1: '高级全栈开发', job2: 'UI/UX设计师', job3: 'DevOps工程师', job4: '产品经理', job5: '市场负责人',
 };
 
 const ar: T = {
@@ -542,6 +576,12 @@ const ar: T = {
   price1Name: 'ويب وموبايل', price1Desc: 'مواقع وتطبيقات ويب وموبايل',
   price2Name: 'منتج كامل', price2Desc: 'تطوير منتج شامل',
   price3Name: 'مؤسسات', price3Desc: 'أنظمة كبيرة واستشارات',
+  pf1: 'تصميم + تطوير', pf2: 'متجاوب ومتعدد المنصات', pf3: 'SEO وأداء محسن', pf4: 'CMS ولوحة تحكم',
+  pf5: 'تصميم UI/UX + علامة تجارية', pf6: 'Frontend + Backend', pf7: 'تكامل API', pf8: 'CI/CD + نشر سحابي',
+  pf9: 'تصميم معماري', pf10: 'تعزيز الفريق', pf11: 'تحديث الأنظمة القديمة', pf12: 'دعم مستمر',
+  blog1: 'لماذا اخترنا Supabase بدلاً من Firebase', blog2: 'التكلفة الحقيقية لبناء MVP في 2026', blog3: 'React مقابل Next.js: متى تستخدم أيهما',
+  role1: 'المؤسس والرئيس التنفيذي', role2: 'المدير التقني', role3: 'رئيس التصميم', role4: 'المهندس الرئيسي',
+  job1: 'مطور Full Stack أول', job2: 'مصمم UI/UX', job3: 'مهندس DevOps', job4: 'مدير منتج', job5: 'قائد التسويق',
 };
 
 const translations: Record<string, T> = { EN: en, 'ქარ': ka, RU: ru, '中文': zh, 'عربي': ar };

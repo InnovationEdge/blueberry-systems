@@ -405,9 +405,9 @@ export default function App() {
   ];
 
   const PRICING = [
-    { name: t.price1Name, desc: t.price1Desc, features: ['Custom Design + Development', 'Responsive & Cross-Platform', 'SEO & Performance Optimized', 'CMS & Admin Panel'], popular: false },
-    { name: t.price2Name, desc: t.price2Desc, features: ['UI/UX Design + Branding', 'Frontend + Backend Development', 'API & 3rd-Party Integration', 'CI/CD + Cloud Deployment'], popular: true },
-    { name: t.price3Name, desc: t.price3Desc, features: ['Architecture & System Design', 'Team Augmentation', 'Legacy System Modernization', 'Ongoing Support & Maintenance'], popular: false },
+    { name: t.price1Name, desc: t.price1Desc, features: [t.pf1, t.pf2, t.pf3, t.pf4], popular: false },
+    { name: t.price2Name, desc: t.price2Desc, features: [t.pf5, t.pf6, t.pf7, t.pf8], popular: true },
+    { name: t.price3Name, desc: t.price3Desc, features: [t.pf9, t.pf10, t.pf11, t.pf12], popular: false },
   ];
 
   const FAQS = [
@@ -834,9 +834,9 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Why We Chose Supabase Over Firebase for Our Clients', tag: 'Engineering', read: '5 min', date: 'Mar 2026' },
-              { title: 'The True Cost of Building an MVP in 2026', tag: 'Business', read: '7 min', date: 'Feb 2026' },
-              { title: 'React vs Next.js: When to Use What', tag: 'Frontend', read: '4 min', date: 'Jan 2026' },
+              { title: t.blog1, tag: 'Engineering', read: '5 min', date: 'Mar 2026' },
+              { title: t.blog2, tag: 'Business', read: '7 min', date: 'Feb 2026' },
+              { title: t.blog3, tag: 'Frontend', read: '4 min', date: 'Jan 2026' },
             ].map((post, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
@@ -864,10 +864,10 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: 'Tiko Shakeladze', role: 'Founder & CEO', initials: 'TS', color: '#3b82f6' },
-              { name: 'Alex Kirtadze', role: 'CTO', initials: 'AK', color: '#8b5cf6' },
-              { name: 'Nino Kvara', role: 'Head of Design', initials: 'NK', color: '#ec4899' },
-              { name: 'Giorgi Beridze', role: 'Lead Engineer', initials: 'GB', color: '#10b981' },
+              { name: 'Tiko Shakeladze', role: t.role1, initials: 'TS', color: '#3b82f6' },
+              { name: 'Alex Kirtadze', role: t.role2, initials: 'AK', color: '#8b5cf6' },
+              { name: 'Nino Kvara', role: t.role3, initials: 'NK', color: '#ec4899' },
+              { name: 'Giorgi Beridze', role: t.role4, initials: 'GB', color: '#10b981' },
             ].map((member, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
@@ -921,11 +921,11 @@ export default function App() {
           </Reveal>
           <div className="space-y-3">
             {[
-              { title: 'Senior Full Stack Developer', type: 'Remote', dept: 'Engineering' },
-              { title: 'UI/UX Designer', type: 'Remote', dept: 'Design' },
-              { title: 'DevOps Engineer', type: 'Hybrid', dept: 'Engineering' },
-              { title: 'Product Manager', type: 'Tbilisi', dept: 'Product' },
-              { title: 'Marketing Lead', type: 'Remote', dept: 'Marketing' },
+              { title: t.job1, type: 'Remote', dept: 'Engineering' },
+              { title: t.job2, type: 'Remote', dept: 'Design' },
+              { title: t.job3, type: 'Hybrid', dept: 'Engineering' },
+              { title: t.job4, type: 'Tbilisi', dept: 'Product' },
+              { title: t.job5, type: 'Remote', dept: 'Marketing' },
             ].map((job, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.06}>
