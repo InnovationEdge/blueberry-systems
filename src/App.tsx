@@ -869,29 +869,28 @@ export default function App() {
       {/* ═══ TEAM ═══ */}
       <section className="py-20 md:py-28">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-          <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.teamTitle}`}</h2>
-          </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: 'Tiko Shakeladze', role: t.role1, initials: 'TS', color: '#3b82f6' },
-              { name: 'Alex Kirtadze', role: t.role2, initials: 'AK', color: '#8b5cf6' },
-              { name: 'Nino Kvara', role: t.role3, initials: 'NK', color: '#ec4899' },
-              { name: 'Giorgi Beridze', role: t.role4, initials: 'GB', color: '#10b981' },
-            ].map((member, i) => (
-              <div key={i}>
-                <Reveal delay={i * 0.1}>
-                  <div className="text-center group">
-                    <div className="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-lg font-bold border border-white/[0.06]" style={{ color: member.color, backgroundColor: `${member.color}10` }}>
-                      {member.initials}
-                    </div>
-                    <h3 className="font-semibold mb-1">{member.name}</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <Reveal>
+              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{`${t.teamTitle}`}</h2>
+              <p className="text-zinc-500 leading-relaxed mb-8">Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.</p>
+              <a href="#careers" className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors inline-flex items-center gap-2">{t.navCareers} <ArrowRight className="w-4 h-4" /></a>
+            </Reveal>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { name: 'Tiko Shakeladze', role: t.role1 },
+                { name: 'Alex Kirtadze', role: t.role2 },
+                { name: 'Nino Kvara', role: t.role3 },
+                { name: 'Giorgi Beridze', role: t.role4 },
+              ].map((member, i) => (
+                <Reveal key={i} delay={i * 0.1}>
+                  <div className="border border-white/[0.06] rounded-xl p-5 hover:border-white/[0.1] transition-colors">
+                    <h3 className="font-semibold text-sm mb-1">{member.name}</h3>
                     <p className="text-xs text-zinc-500">{member.role}</p>
                   </div>
                 </Reveal>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
