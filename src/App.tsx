@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'motion/react';
 import {
   ArrowRight, ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
-  ArrowUpRight, CheckCircle
+  ArrowUpRight, CheckCircle, Upload, Check
 } from 'lucide-react';
 import { getT } from './i18n';
 // Contact form uses Formsubmit.co
@@ -380,6 +380,10 @@ export default function App() {
   const [lang, setLang] = useState('EN');
   const [showLang, setShowLang] = useState(false);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [applyJob, setApplyJob] = useState<string | null>(null);
+  const [applyForm, setApplyForm] = useState({ name: '', email: '', resume: null as File | null });
+  const [applySending, setApplySending] = useState(false);
+  const [applySent, setApplySent] = useState(false);
   const t = getT(lang);
   const NAV = [
     { label: t.navServices, id: 'services' },
@@ -486,7 +490,7 @@ export default function App() {
               <motion.nav
                 initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
                 transition={{ type: 'tween', duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                className="fixed top-[72px] right-0 bottom-0 w-[80%] max-w-sm bg-zinc-950 z-50 lg:hidden px-6 py-8"
+                className="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-black border-l border-white/[0.08] z-50 lg:hidden px-6 pt-24 pb-8 overflow-y-auto"
               >
                 {NAV.map((item, i) => (
                   <motion.a
@@ -945,22 +949,95 @@ export default function App() {
             ].map((job, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.06}>
-                  <a href="#contact" className="flex items-center justify-between p-6 border border-white/[0.06] rounded-xl hover:border-blue-500/20 hover:bg-blue-600/[0.02] transition-all group">
+                  <button onClick={() => { setApplyJob(job.title); setApplySent(false); setApplyForm({ name: '', email: '', resume: null }); }} className="w-full flex items-center justify-between p-6 border border-white/[0.06] rounded-xl hover:border-blue-500/20 hover:bg-blue-600/[0.02] transition-all group text-left">
                     <div className="flex items-center gap-6">
                       <h3 className="font-semibold group-hover:text-blue-400 transition-colors">{job.title}</h3>
                       <span className="text-xs text-zinc-600 bg-white/[0.04] px-3 py-1 rounded-full">{job.dept}</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-xs text-zinc-500">{job.type}</span>
+                      <span className="text-xs text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">{t.applyNow}</span>
                       <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-blue-400 transition-colors" />
                     </div>
-                  </a>
+                  </button>
                 </Reveal>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* ═══ APPLY MODAL ═══ */}
+      <AnimatePresence>
+        {applyJob && (
+          <>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setApplyJob(null)} className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-zinc-950 border border-white/[0.08] rounded-2xl z-50 p-8 overflow-y-auto max-h-[90vh]"
+            >
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="text-xl font-bold">{t.applyNow}</h3>
+                  <p className="text-sm text-blue-400 mt-1">{applyJob}</p>
+                </div>
+                <button onClick={() => setApplyJob(null)} className="p-2 text-zinc-500 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
+              </div>
+
+              {applySent ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mx-auto mb-4">
+                    <Check className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{t.applySent}</h3>
+                  <p className="text-sm text-zinc-500">{t.applySentDesc}</p>
+                </div>
+              ) : (
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  setApplySending(true);
+                  const formData = new FormData();
+                  formData.append('name', applyForm.name);
+                  formData.append('email', applyForm.email);
+                  formData.append('_subject', `Job Application: ${applyJob}`);
+                  formData.append('position', applyJob || '');
+                  if (applyForm.resume) formData.append('attachment', applyForm.resume);
+                  try {
+                    await fetch('https://formsubmit.co/ajax/info@blueberry.codes', { method: 'POST', body: formData });
+                    setApplySent(true);
+                  } catch { /* silent */ }
+                  setApplySending(false);
+                }} className="space-y-5">
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">{t.applyName}</label>
+                    <input type="text" required value={applyForm.name} onChange={e => setApplyForm({...applyForm, name: e.target.value})} className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">{t.applyEmail}</label>
+                    <input type="email" required value={applyForm.email} onChange={e => setApplyForm({...applyForm, email: e.target.value})} className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">{t.applyPosition}</label>
+                    <input type="text" readOnly value={applyJob || ''} className="w-full bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-3 text-sm text-zinc-400 cursor-default" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">{t.applyResume}</label>
+                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/[0.08] rounded-xl cursor-pointer hover:border-blue-500/30 transition-colors bg-white/[0.02]">
+                      <Upload className="w-6 h-6 text-zinc-600 mb-2" />
+                      <span className="text-xs text-zinc-500">{applyForm.resume ? applyForm.resume.name : t.applyDragDrop}</span>
+                      <span className="text-[10px] text-zinc-700 mt-1">PDF, DOC, DOCX (max 5MB)</span>
+                      <input type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={e => { if (e.target.files?.[0]) setApplyForm({...applyForm, resume: e.target.files[0]}); }} />
+                    </label>
+                  </div>
+                  <button type="submit" disabled={applySending} className="w-full py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-500 disabled:opacity-50 transition-all">
+                    {applySending ? t.applySending : t.applySend}
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* ═══ FAQ ═══ */}
       <section id="faq" className="py-20 md:py-28">

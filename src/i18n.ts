@@ -83,6 +83,7 @@ interface T {
   teamDesc: string;
   // Jobs
   job1: string; job2: string; job3: string; job4: string; job5: string;
+  applyNow: string; applyName: string; applyEmail: string; applyPosition: string; applyResume: string; applySend: string; applySending: string; applySent: string; applySentDesc: string; applyDragDrop: string;
   // Services
   svc1Title: string; svc1Desc: string;
   svc2Title: string; svc2Desc: string;
@@ -200,6 +201,7 @@ const en: T = {
   role1: 'Founder & CEO', role2: 'CTO', role3: 'Head of Design', role4: 'Lead Engineer', role5: 'Backend Engineer', role6: 'Frontend Developer',
   teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
+  applyNow: 'Apply Now', applyName: 'Full Name', applyEmail: 'Email', applyPosition: 'Position', applyResume: 'Resume (PDF)', applySend: 'Send Application', applySending: 'Sending...', applySent: 'Application Sent!', applySentDesc: 'We will review your resume and get back to you within 48 hours.', applyDragDrop: 'Drag & drop or click to upload',
 };
 
 const ka: T = {
@@ -297,6 +299,7 @@ const ka: T = {
   role1: 'დამფუძნებელი და CEO', role2: 'CTO', role3: 'დიზაინის ხელმძღვანელი', role4: 'წამყვანი ინჟინერი', role5: 'Backend ინჟინერი', role6: 'Frontend დეველოპერი',
   teamDesc: 'თბილისში დაფუძნებული ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი, რომელიც 2020 წლიდან ციფრულ პროდუქტებს ქმნის.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
+  applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'ჩვენ განვიხილავთ თქვენს რეზიუმეს და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდეთ ან დააჭირეთ ასატვირთად',
 };
 
 const ru: T = {
@@ -394,6 +397,7 @@ const ru: T = {
   role1: 'Основатель и CEO', role2: 'CTO', role3: 'Руководитель дизайна', role4: 'Ведущий инженер', role5: 'Backend-инженер', role6: 'Frontend-разработчик',
   teamDesc: 'Команда инженеров, дизайнеров и стратегов из Тбилиси, создающая цифровые продукты с 2020 года.',
   job1: 'Senior Full Stack разработчик', job2: 'UI/UX дизайнер', job3: 'DevOps инженер', job4: 'Продакт-менеджер', job5: 'Руководитель маркетинга',
+  applyNow: 'Откликнуться', applyName: 'ФИО', applyEmail: 'Эл. почта', applyPosition: 'Позиция', applyResume: 'Резюме (PDF)', applySend: 'Отправить заявку', applySending: 'Отправка...', applySent: 'Заявка отправлена!', applySentDesc: 'Мы рассмотрим ваше резюме и свяжемся с вами в течение 48 часов.', applyDragDrop: 'Перетащите или нажмите для загрузки',
 };
 
 const zh: T = {
@@ -491,6 +495,7 @@ const zh: T = {
   role1: '创始人兼CEO', role2: 'CTO', role3: '设计主管', role4: '首席工程师', role5: '后端工程师', role6: '前端开发者',
   teamDesc: '总部位于第比利斯的工程师、设计师和策略师团队，自2020年以来一直在打造数字产品。',
   job1: '高级全栈开发', job2: 'UI/UX设计师', job3: 'DevOps工程师', job4: '产品经理', job5: '市场负责人',
+  applyNow: '立即申请', applyName: '姓名', applyEmail: '邮箱', applyPosition: '职位', applyResume: '简历 (PDF)', applySend: '提交申请', applySending: '发送中...', applySent: '申请已发送！', applySentDesc: '我们将审核您的简历，并在48小时内与您联系。', applyDragDrop: '拖放或点击上传',
 };
 
 const ar: T = {
@@ -588,6 +593,7 @@ const ar: T = {
   role1: 'المؤسس والرئيس التنفيذي', role2: 'المدير التقني', role3: 'رئيس التصميم', role4: 'المهندس الرئيسي', role5: 'مهندس الواجهة الخلفية', role6: 'مطور الواجهة الأمامية',
   teamDesc: 'فريق من المهندسين والمصممين والاستراتيجيين مقره في تبليسي، يبني المنتجات الرقمية منذ 2020.',
   job1: 'مطور Full Stack أول', job2: 'مصمم UI/UX', job3: 'مهندس DevOps', job4: 'مدير منتج', job5: 'قائد التسويق',
+  applyNow: 'تقدم الآن', applyName: 'الاسم الكامل', applyEmail: 'البريد الإلكتروني', applyPosition: 'الوظيفة', applyResume: 'السيرة الذاتية (PDF)', applySend: 'إرسال الطلب', applySending: 'جارٍ الإرسال...', applySent: 'تم إرسال الطلب!', applySentDesc: 'سنراجع سيرتك الذاتية ونتواصل معك خلال 48 ساعة.', applyDragDrop: 'اسحب وأفلت أو انقر للتحميل',
 };
 
 const translations: Record<string, T> = { EN: en, 'ქარ': ka, RU: ru, '中文': zh, 'عربي': ar };
