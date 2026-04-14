@@ -547,7 +547,7 @@ export default function App() {
             transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-5xl"
           >
-            We <TypeWriter words={['Build', 'Design', 'Scale', 'Ship', 'Grow']} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
+            We <TypeWriter words={t.heroWords} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
             <span className="text-zinc-500">{t.digitalProducts}</span>
           </motion.h1>
 
@@ -849,9 +849,9 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: t.blog1, tag: 'Engineering', read: '5 min', date: 'Mar 2026' },
-              { title: t.blog2, tag: 'Business', read: '7 min', date: 'Feb 2026' },
-              { title: t.blog3, tag: 'Frontend', read: '4 min', date: 'Jan 2026' },
+              { title: t.blog1, tag: t.blogTagEng, read: '5', date: 'Mar 2026' },
+              { title: t.blog2, tag: t.blogTagBiz, read: '7', date: 'Feb 2026' },
+              { title: t.blog3, tag: t.blogTagFront, read: '4', date: 'Jan 2026' },
             ].map((post, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
@@ -860,7 +860,7 @@ export default function App() {
                     <h3 className="text-lg font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors flex-1">{post.title}</h3>
                     <div className="flex items-center justify-between text-xs text-zinc-600 pt-4 border-t border-white/[0.04]">
                       <span>{post.date}</span>
-                      <span>{post.read} read</span>
+                      <span>{post.read} {t.minRead}</span>
                     </div>
                   </div>
                 </Reveal>
@@ -941,11 +941,11 @@ export default function App() {
           </Reveal>
           <div className="space-y-3">
             {[
-              { title: t.job1, type: 'Remote', dept: 'Engineering' },
-              { title: t.job2, type: 'Remote', dept: 'Design' },
-              { title: t.job3, type: 'Hybrid', dept: 'Engineering' },
-              { title: t.job4, type: 'Tbilisi', dept: 'Product' },
-              { title: t.job5, type: 'Remote', dept: 'Marketing' },
+              { title: t.job1, type: t.typeRemote, dept: t.deptEng },
+              { title: t.job2, type: t.typeRemote, dept: t.deptDesign },
+              { title: t.job3, type: t.typeHybrid, dept: t.deptEng },
+              { title: t.job4, type: t.typeTbilisi, dept: t.deptProduct },
+              { title: t.job5, type: t.typeRemote, dept: t.deptMarketing },
             ].map((job, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.06}>
@@ -1025,7 +1025,7 @@ export default function App() {
                     <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/[0.08] rounded-xl cursor-pointer hover:border-blue-500/30 transition-colors bg-white/[0.02]">
                       <Upload className="w-6 h-6 text-zinc-600 mb-2" />
                       <span className="text-xs text-zinc-500">{applyForm.resume ? applyForm.resume.name : t.applyDragDrop}</span>
-                      <span className="text-[10px] text-zinc-700 mt-1">PDF, DOC, DOCX (max 5MB)</span>
+                      <span className="text-[10px] text-zinc-700 mt-1">{t.fileHint}</span>
                       <input type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={e => { if (e.target.files?.[0]) setApplyForm({...applyForm, resume: e.target.files[0]}); }} />
                     </label>
                   </div>
@@ -1183,12 +1183,14 @@ export default function App() {
           <div className="flex items-center gap-3">
             <img src="/logo-white.svg" alt="Blueberry Systems" className="h-6 w-auto opacity-60" />
             <span className="text-zinc-800">|</span>
-            <span className="text-xs text-zinc-600">&copy; 2026 All rights reserved</span>
+            <span className="text-xs text-zinc-600">&copy; {t.footerRights}</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400 transition-colors">Blueberry Academy</a>
-            <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-zinc-400 transition-colors">Terms</a>
-            <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-zinc-400 transition-colors">Privacy</a>
+            <a href="https://github.com/InnovationEdge" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/company/blueberry-systems" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">LinkedIn</a>
+            <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-zinc-400 transition-colors">{t.footerTerms}</a>
+            <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-zinc-400 transition-colors">{t.footerPrivacy}</a>
           </div>
         </div>
       </footer>
