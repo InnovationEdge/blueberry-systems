@@ -216,7 +216,7 @@ function MagneticButton({ children, className = '', href }: { children: ReactNod
 
 /* ─── Data ─── */
 
-const NAV = ['Services', 'Portfolio', 'Process', 'Pricing', 'Careers', 'FAQ', 'Contact'];
+// NAV is built dynamically inside App using t.navXxx
 const LANGUAGES = ['EN', 'ქარ', 'RU', '中文', 'عربي'];
 
 const SERVICES = [
@@ -337,9 +337,9 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           <CheckCircle className="w-8 h-8 text-blue-400" />
         </div>
         <h3 className="text-xl font-bold mb-2">{`${t.contactSent}`}</h3>
-        <p className="text-sm text-zinc-500">We will get back to you within 24 hours.</p>
+        <p className="text-sm text-zinc-500">{t.contactSentDesc}</p>
         <button onClick={() => { setSent(false); setForm({ name: '', email: '', company: '', message: '', budget: '' }); }} className="mt-6 text-sm text-blue-400 hover:text-blue-300 transition-colors">
-          Send another message
+          {t.sendAnother}
         </button>
       </motion.div>
     );
@@ -351,19 +351,19 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactName}</label>
-          <input type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Smith"
+          <input type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder={t.placeholderName}
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
         </div>
         <div>
           <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactEmail}</label>
-          <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="john@company.com"
+          <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder={t.placeholderEmail}
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactCompany}</label>
-          <input type="text" value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder="Your Company"
+          <input type="text" value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder={t.placeholderCompany}
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
         </div>
         <div>
@@ -380,7 +380,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
       </div>
       <div>
         <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactMessage}</label>
-        <textarea required rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your project..."
+        <textarea required rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder={t.placeholderMessage}
           className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
       </div>
       <motion.button
@@ -390,7 +390,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         whileTap={{ scale: 0.98 }}
         className="w-full py-4 bg-blue-600 text-white rounded-xl font-semibold text-sm hover:bg-blue-500 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
       >
-        {sending ? <><div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" /> Sending...</> : <>Send Message <ArrowRight className="w-4 h-4" /></>}
+        {sending ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> {t.contactSending}</> : <>{t.contactSend} <ArrowRight className="w-4 h-4" /></>}
       </motion.button>
     </form>
   );
@@ -405,6 +405,15 @@ export default function App() {
   const [showLang, setShowLang] = useState(false);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const t = getT(lang);
+  const NAV = [
+    { label: t.navServices, id: 'services' },
+    { label: t.navPortfolio, id: 'portfolio' },
+    { label: t.navProcess, id: 'process' },
+    { label: t.navPricing, id: 'pricing' },
+    { label: t.navCareers, id: 'careers' },
+    { label: t.navFaq, id: 'faq' },
+    { label: t.navContact, id: 'contact' },
+  ];
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
@@ -435,7 +444,7 @@ export default function App() {
           {/* Nav — center, pushed right */}
           <nav className="hidden lg:flex items-center gap-6 flex-1">
             {NAV.map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">{item}</a>
+              <a key={item.id} href={`#${item.id}`} className="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">{item.label}</a>
             ))}
           </nav>
 
@@ -476,7 +485,7 @@ export default function App() {
               >
                 {NAV.map((item, i) => (
                   <motion.a
-                    key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileOpen(false)}
+                    key={item.id} href={`#${item.id}`} onClick={() => setMobileOpen(false)}
                     initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05, duration: 0.3 }}
                     className="block py-4 text-lg text-zinc-400 hover:text-white border-b border-white/5 transition-colors"
@@ -518,7 +527,7 @@ export default function App() {
             className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-5xl"
           >
             We <TypeWriter words={['Build', 'Design', 'Scale', 'Ship', 'Grow']} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
-            <span className="text-zinc-500">Digital Products.</span>
+            <span className="text-zinc-500">{t.digitalProducts}</span>
           </motion.h1>
 
           <motion.p
@@ -551,7 +560,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 1.2 }}
             className="flex items-center gap-10 mt-16 pt-10 border-t border-white/[0.06]"
           >
-            {[{ v: '5+', l: 'Years' }, { v: '200+', l: 'Projects' }, { v: '99.9%', l: 'Uptime' }, { v: '40+', l: 'Clients' }].map((s, i) => (
+            {[{ v: '5+', l: t.years }, { v: '200+', l: t.projects }, { v: '99.9%', l: t.uptime }, { v: '40+', l: t.clients }].map((s, i) => (
               <div key={i} className="flex items-baseline gap-2">
                 <span className="text-xl md:text-2xl font-bold text-white">{s.v}</span>
                 <span className="text-xs text-zinc-600 uppercase tracking-wider">{s.l}</span>
@@ -600,7 +609,7 @@ export default function App() {
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.whatWeDo}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.servicesTitle}`}</h2>
-            <p className="text-zinc-500 text-lg max-w-xl mb-16">We design and build high-performance software, from mobile apps to enterprise platforms.</p>
+            <p className="text-zinc-500 text-lg max-w-xl mb-16">{t.servicesDesc}</p>
           </Reveal>
 
           <div className="space-y-0 border-t border-white/[0.06]">

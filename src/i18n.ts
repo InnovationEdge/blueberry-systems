@@ -56,6 +56,22 @@ interface T {
   interestedProject: string;
   startProject: string;
   sendAnother: string;
+  digitalProducts: string;
+  years: string;
+  projects: string;
+  uptime: string;
+  clients: string;
+  navServices: string;
+  navPortfolio: string;
+  navProcess: string;
+  navPricing: string;
+  navCareers: string;
+  navFaq: string;
+  navContact: string;
+  placeholderName: string;
+  placeholderEmail: string;
+  placeholderCompany: string;
+  placeholderMessage: string;
 }
 
 const en: T = {
@@ -114,6 +130,22 @@ const en: T = {
   interestedProject: 'Interested in a similar project?',
   startProject: 'Start a Project',
   sendAnother: 'Send another message',
+  digitalProducts: 'Digital Products.',
+  years: 'Years',
+  projects: 'Projects',
+  uptime: 'Uptime',
+  clients: 'Clients',
+  navServices: 'Services',
+  navPortfolio: 'Portfolio',
+  navProcess: 'Process',
+  navPricing: 'Pricing',
+  navCareers: 'Careers',
+  navFaq: 'FAQ',
+  navContact: 'Contact',
+  placeholderName: 'John Smith',
+  placeholderEmail: 'john@company.com',
+  placeholderCompany: 'Your Company',
+  placeholderMessage: 'Tell us about your project...',
 };
 
 const ka: T = {
@@ -172,6 +204,22 @@ const ka: T = {
   interestedProject: 'გაინტერესებს მსგავსი პროექტი?',
   startProject: 'დაიწყე პროექტი',
   sendAnother: 'კიდევ გაგზავნა',
+  digitalProducts: 'ციფრულ პროდუქტებს.',
+  years: 'წელი',
+  projects: 'პროექტი',
+  uptime: 'აპტაიმი',
+  clients: 'კლიენტი',
+  navServices: 'სერვისები',
+  navPortfolio: 'პორტფოლიო',
+  navProcess: 'პროცესი',
+  navPricing: 'ფასი',
+  navCareers: 'კარიერა',
+  navFaq: 'FAQ',
+  navContact: 'კონტაქტი',
+  placeholderName: 'გიორგი ბერიძე',
+  placeholderEmail: 'giorgi@company.com',
+  placeholderCompany: 'შენი კომპანია',
+  placeholderMessage: 'მოგვიყევი პროექტის შესახებ...',
 };
 
 const ru: T = {
@@ -230,6 +278,22 @@ const ru: T = {
   interestedProject: 'Интересен похожий проект?',
   startProject: 'Начать проект',
   sendAnother: 'Отправить ещё',
+  digitalProducts: 'Цифровые продукты.',
+  years: 'Лет',
+  projects: 'Проектов',
+  uptime: 'Аптайм',
+  clients: 'Клиентов',
+  navServices: 'Услуги',
+  navPortfolio: 'Портфолио',
+  navProcess: 'Процесс',
+  navPricing: 'Цены',
+  navCareers: 'Карьера',
+  navFaq: 'FAQ',
+  navContact: 'Контакт',
+  placeholderName: 'Иван Иванов',
+  placeholderEmail: 'ivan@company.com',
+  placeholderCompany: 'Ваша компания',
+  placeholderMessage: 'Расскажите о вашем проекте...',
 };
 
 const zh: T = {
@@ -288,6 +352,22 @@ const zh: T = {
   interestedProject: '对类似项目感兴趣？',
   startProject: '开始项目',
   sendAnother: '再发一条',
+  digitalProducts: '数字产品。',
+  years: '年',
+  projects: '项目',
+  uptime: '正常运行',
+  clients: '客户',
+  navServices: '服务',
+  navPortfolio: '作品集',
+  navProcess: '流程',
+  navPricing: '价格',
+  navCareers: '招聘',
+  navFaq: '常见问题',
+  navContact: '联系',
+  placeholderName: '张三',
+  placeholderEmail: 'zhang@company.com',
+  placeholderCompany: '您的公司',
+  placeholderMessage: '请告诉我们关于您的项目...',
 };
 
 const ar: T = {
@@ -346,6 +426,22 @@ const ar: T = {
   interestedProject: 'مهتم بمشروع مشابه؟',
   startProject: 'ابدأ مشروع',
   sendAnother: 'إرسال رسالة أخرى',
+  digitalProducts: 'المنتجات الرقمية.',
+  years: 'سنوات',
+  projects: 'مشاريع',
+  uptime: 'وقت التشغيل',
+  clients: 'عملاء',
+  navServices: 'الخدمات',
+  navPortfolio: 'الأعمال',
+  navProcess: 'العملية',
+  navPricing: 'الأسعار',
+  navCareers: 'الوظائف',
+  navFaq: 'الأسئلة',
+  navContact: 'اتصل',
+  placeholderName: 'محمد أحمد',
+  placeholderEmail: 'mohammed@company.com',
+  placeholderCompany: 'شركتك',
+  placeholderMessage: 'أخبرنا عن مشروعك...',
 };
 
 const translations: Record<string, T> = { EN: en, 'ქარ': ka, RU: ru, '中文': zh, 'عربي': ar };
