@@ -493,9 +493,21 @@ export default function App() {
                     key={item.id} href={`#${item.id}`} onClick={() => setMobileOpen(false)}
                     initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05, duration: 0.3 }}
-                    className="block py-4 text-lg text-zinc-400 hover:text-white border-b border-white/5 transition-colors"
-                  >{item}</motion.a>
+                    className="block py-4 text-base text-zinc-400 hover:text-white border-b border-white/[0.06] transition-colors"
+                  >{item.label}</motion.a>
                 ))}
+
+                {/* Mobile CTA */}
+                <a href="#contact" onClick={() => setMobileOpen(false)} className="block mt-6 py-3.5 bg-blue-600 text-white rounded-xl text-sm font-semibold text-center hover:bg-blue-500 transition-all">
+                  {t.getInTouch}
+                </a>
+
+                {/* Mobile language */}
+                <div className="flex items-center gap-2 mt-6 flex-wrap">
+                  {LANGUAGES.map(l => (
+                    <button key={l} onClick={() => setLang(l)} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${lang === l ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30' : 'text-zinc-500 border border-white/[0.06] hover:text-white'}`}>{l}</button>
+                  ))}
+                </div>
               </motion.nav>
             </>
           )}
