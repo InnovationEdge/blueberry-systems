@@ -44,6 +44,18 @@ interface T {
   footer: string;
   onMarket: string;
   getInTouch: string;
+  mostPopular: string;
+  insights: string;
+  blogTitle: string;
+  ourTeam: string;
+  teamTitle: string;
+  challenge: string;
+  solution: string;
+  techStack: string;
+  results: string;
+  interestedProject: string;
+  startProject: string;
+  sendAnother: string;
 }
 
 const en: T = {
@@ -90,6 +102,18 @@ const en: T = {
   footer: 'All rights reserved',
   onMarket: 'On Market Since 2020',
   getInTouch: 'Get In Touch',
+  mostPopular: 'Most Popular',
+  insights: 'Insights',
+  blogTitle: 'From Our Blog',
+  ourTeam: 'Our Team',
+  teamTitle: 'The People Behind Blueberry',
+  challenge: 'Challenge',
+  solution: 'Solution',
+  techStack: 'Tech Stack',
+  results: 'Results',
+  interestedProject: 'Interested in a similar project?',
+  startProject: 'Start a Project',
+  sendAnother: 'Send another message',
 };
 
 const ka: T = {
@@ -136,6 +160,18 @@ const ka: T = {
   footer: 'ყველა უფლება დაცულია',
   onMarket: 'ბაზარზე 2020 წლიდან',
   getInTouch: 'დაგვიკავშირდი',
+  mostPopular: 'პოპულარული',
+  insights: 'ბლოგი',
+  blogTitle: 'ჩვენი ბლოგიდან',
+  ourTeam: 'ჩვენი გუნდი',
+  teamTitle: 'ადამიანები Blueberry-ს უკან',
+  challenge: 'გამოწვევა',
+  solution: 'გადაწყვეტა',
+  techStack: 'ტექნოლოგიები',
+  results: 'შედეგები',
+  interestedProject: 'გაინტერესებს მსგავსი პროექტი?',
+  startProject: 'დაიწყე პროექტი',
+  sendAnother: 'კიდევ გაგზავნა',
 };
 
 const ru: T = {
@@ -182,6 +218,18 @@ const ru: T = {
   footer: 'Все права защищены',
   onMarket: 'На рынке с 2020',
   getInTouch: 'Связаться',
+  mostPopular: 'Популярный',
+  insights: 'Блог',
+  blogTitle: 'Из нашего блога',
+  ourTeam: 'Наша команда',
+  teamTitle: 'Люди за Blueberry',
+  challenge: 'Задача',
+  solution: 'Решение',
+  techStack: 'Технологии',
+  results: 'Результаты',
+  interestedProject: 'Интересен похожий проект?',
+  startProject: 'Начать проект',
+  sendAnother: 'Отправить ещё',
 };
 
 const zh: T = {
@@ -228,6 +276,18 @@ const zh: T = {
   footer: '版权所有',
   onMarket: '自2020年起',
   getInTouch: '联系我们',
+  mostPopular: '最受欢迎',
+  insights: '博客',
+  blogTitle: '来自我们的博客',
+  ourTeam: '我们的团队',
+  teamTitle: 'Blueberry背后的人',
+  challenge: '挑战',
+  solution: '解决方案',
+  techStack: '技术栈',
+  results: '成果',
+  interestedProject: '对类似项目感兴趣？',
+  startProject: '开始项目',
+  sendAnother: '再发一条',
 };
 
 const ar: T = {
@@ -274,6 +334,18 @@ const ar: T = {
   footer: 'جميع الحقوق محفوظة',
   onMarket: 'في السوق منذ 2020',
   getInTouch: 'تواصل معنا',
+  mostPopular: 'الأكثر شعبية',
+  insights: 'المدونة',
+  blogTitle: 'من مدونتنا',
+  ourTeam: 'فريقنا',
+  teamTitle: 'الأشخاص وراء Blueberry',
+  challenge: 'التحدي',
+  solution: 'الحل',
+  techStack: 'التقنيات',
+  results: 'النتائج',
+  interestedProject: 'مهتم بمشروع مشابه؟',
+  startProject: 'ابدأ مشروع',
+  sendAnother: 'إرسال رسالة أخرى',
 };
 
 const translations: Record<string, T> = { EN: en, 'ქარ': ka, RU: ru, '中文': zh, 'عربي': ar };

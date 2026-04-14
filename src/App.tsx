@@ -736,8 +736,8 @@ export default function App() {
           <Reveal>
             <div className="text-center mb-16">
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Pricing</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Tailored Solutions</h2>
-              <p className="text-zinc-500 mt-4 max-w-lg mx-auto">Every project is unique. We provide a detailed cost estimate after understanding your requirements.</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{t.pricingTitle}</h2>
+              <p className="text-zinc-500 mt-4 max-w-lg mx-auto">{t.pricingDesc}</p>
             </div>
           </Reveal>
 
@@ -815,8 +815,8 @@ export default function App() {
       <section className="py-20 md:py-28">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Insights</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">From Our Blog</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.insights}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.blogTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -845,8 +845,8 @@ export default function App() {
       <section className="py-20 md:py-28">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Our Team</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">The People Behind Blueberry</h2>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.teamTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -974,9 +974,9 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left — text */}
             <Reveal>
-              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">Get In Touch</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Ready to Build<br />Something Great?</h2>
-              <p className="text-zinc-500 text-base mb-10 leading-relaxed">Every project starts with a conversation. Fill out the form and we will get back to you within 24 hours.</p>
+              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">{t.getInTouch}</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 whitespace-pre-line">{t.contactTitle}</h2>
+              <p className="text-zinc-500 text-base mb-10 leading-relaxed">{t.contactDesc}</p>
               <div className="space-y-4 text-sm text-zinc-500">
                 <div className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-500" /> info@blueberry.codes</div>
                 <div className="flex items-center gap-3"><MapPin className="w-4 h-4 text-blue-500" /> Tbilisi, Georgia</div>
@@ -1024,19 +1024,19 @@ export default function App() {
 
                   {/* Challenge */}
                   <div className="mb-10">
-                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-3">Challenge</h3>
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-3">{`${t.challenge}`}</h3>
                     <p className="text-zinc-400 leading-relaxed">{p.challenge}</p>
                   </div>
 
                   {/* Solution */}
                   <div className="mb-10">
-                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-3">Solution</h3>
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-3">{`${t.solution}`}</h3>
                     <p className="text-zinc-400 leading-relaxed">{p.solution}</p>
                   </div>
 
                   {/* Tech Stack */}
                   <div className="mb-10">
-                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-4">Tech Stack</h3>
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-4">{`${t.techStack}`}</h3>
                     <div className="flex flex-wrap gap-2">
                       {p.stack.map(tech => (
                         <span key={tech} className="px-4 py-2 bg-white/[0.04] border border-white/[0.06] rounded-lg text-sm text-zinc-400">{tech}</span>
@@ -1046,7 +1046,7 @@ export default function App() {
 
                   {/* Results */}
                   <div className="mb-10">
-                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-4">Results</h3>
+                    <h3 className="text-xs text-blue-500 font-semibold uppercase tracking-[0.25em] mb-4">{`${t.results}`}</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {p.results.map((r, j) => (
                         <div key={j} className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-4 text-center">
@@ -1058,9 +1058,9 @@ export default function App() {
 
                   {/* CTA */}
                   <div className="pt-8 border-t border-white/[0.06] flex items-center justify-between">
-                    <p className="text-sm text-zinc-500">Interested in a similar project?</p>
+                    <p className="text-sm text-zinc-500">{t.interestedProject}</p>
                     <a href="#contact" onClick={() => setSelectedProject(null)} className="px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-500 transition-all inline-flex items-center gap-2">
-                      Start a Project <ArrowRight className="w-4 h-4" />
+                      {t.startProject} <ArrowRight className="w-4 h-4" />
                     </a>
                   </div>
                 </div>
