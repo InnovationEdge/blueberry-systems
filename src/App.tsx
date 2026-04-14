@@ -570,18 +570,7 @@ export default function App() {
             </a>
           </motion.div>
 
-          {/* Hero stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-wrap items-center gap-8 md:gap-12 mt-16 pt-10 border-t border-white/[0.06]"
-          >
-            <div><span className="text-2xl md:text-3xl font-bold text-white">2020</span><span className="text-xs text-zinc-600 ml-2">{t.onMarket.split(' ').slice(-1)[0]}</span></div>
-            <div><span className="text-2xl md:text-3xl font-bold text-white">50+</span><span className="text-xs text-zinc-600 ml-2">{t.projects}</span></div>
-            <div><span className="text-2xl md:text-3xl font-bold text-white">99.9%</span><span className="text-xs text-zinc-600 ml-2">{t.uptime}</span></div>
-            <div><span className="text-2xl md:text-3xl font-bold text-white">15+</span><span className="text-xs text-zinc-600 ml-2">{t.clients}</span></div>
-          </motion.div>
+          {/* Stats removed from hero — separate section below */}
         </motion.div>
 
         {/* Scroll indicator */}
@@ -595,7 +584,24 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* Trusted By removed */}
+      {/* ═══ STATS ═══ */}
+      <section className="py-16 border-y border-white/[0.06]">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { v: '2020', l: t.onMarket },
+              { v: '50+', l: t.projects },
+              { v: '99.9%', l: t.uptime },
+              { v: '15+', l: t.clients },
+            ].map((s, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <p className="text-3xl md:text-4xl font-bold text-white tracking-tight">{s.v}</p>
+                <p className="text-xs text-zinc-600 mt-2 uppercase tracking-wider">{s.l}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-20 md:py-28">
