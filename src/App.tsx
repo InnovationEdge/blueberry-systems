@@ -117,7 +117,7 @@ function TypeWriter({ words, className = '' }: { words: string[]; className?: st
     return () => clearTimeout(timer);
   }, [text, deleting, index, words]);
 
-  return <span className={className}>{text}<span className="animate-pulse">|</span></span>;
+  return <span className={className}>{text}<span className="inline-block w-[3px] h-[0.9em] bg-blue-500 ml-1 align-middle" style={{ animation: 'blink 1s step-end infinite' }} /></span>;
 }
 
 function HeroParticles() {
@@ -130,33 +130,39 @@ function HeroParticles() {
     if (!ctx) return;
 
     let animId: number;
+    const dpr = window.devicePixelRatio || 1;
     const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
-    const count = 80;
+    const count = 60;
+    let w = 0, h = 0;
 
-    const resize = () => { canvas.width = canvas.offsetWidth * 2; canvas.height = canvas.offsetHeight * 2; };
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
+      // Reinit particles on resize
+      if (particles.length === 0) {
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w, y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+            size: Math.random() * 1.5 + 0.5, opacity: Math.random() * 0.3 + 0.05,
+          });
+        }
+      }
+    };
     resize();
     window.addEventListener('resize', resize);
 
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.4 + 0.1,
-      });
-    }
-
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+      ctx.clearRect(0, 0, w, h);
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -165,14 +171,12 @@ function HeroParticles() {
 
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
+          const dx = p.x - q.x, dy = p.y - q.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
+          if (dist < 120) {
             ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.06 * (1 - dist / 150)})`;
+            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${0.04 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -181,11 +185,10 @@ function HeroParticles() {
       animId = requestAnimationFrame(draw);
     };
     draw();
-
     return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ width: '100%', height: '100%' }} />;
 }
 
 function MagneticButton({ children, className = '', href }: { children: ReactNode; className?: string; href: string }) {
@@ -423,7 +426,7 @@ export default function App() {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-white/[0.04]"
       >
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-[80px] flex items-center justify-between">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 h-[80px] flex items-center justify-between">
           <a href="/" className="text-xl font-bold tracking-tight group">
             <img src="/logo-white.svg" alt="Blueberry Systems" className="h-24 md:h-28 w-auto -my-8" />
           </a>
@@ -493,7 +496,7 @@ export default function App() {
           <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-indigo-600/[0.04] rounded-full blur-[100px]" />
         </div>
 
-        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[1800px] mx-auto px-6 md:px-12 py-20 md:py-0">
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 py-20 md:py-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -566,7 +569,7 @@ export default function App() {
 
       {/* ═══ TRUSTED BY ═══ */}
       <section className="py-16 border-b border-white/[0.04] overflow-hidden">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-10">{t.trustedBy}</p>
         </div>
         <div className="relative">
@@ -589,7 +592,7 @@ export default function App() {
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-20 md:py-28">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.whatWeDo}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.servicesTitle}`}</h2>
@@ -626,7 +629,7 @@ export default function App() {
 
       {/* ═══ TECH STACK ═══ */}
       <section className="py-16 border-y border-white/[0.04]">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-8">{`${t.techTitle}`}</p>
           </Reveal>
@@ -643,7 +646,7 @@ export default function App() {
       {/* ═══ PROCESS ═══ */}
       <section id="process" className="py-20 md:py-28 relative">
         <div className="absolute inset-0 bg-black" />
-        <div className="relative max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.howWeWork}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">{`${t.processTitle}`}</h2>
@@ -672,7 +675,7 @@ export default function App() {
 
       {/* ═══ PORTFOLIO ═══ */}
       <section id="portfolio" className="py-20 md:py-28 bg-black">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.selectedWork}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.portfolioTitle}`}</h2>
@@ -712,7 +715,7 @@ export default function App() {
 
       {/* Mini CTA */}
       <section className="py-16 border-y border-white/[0.04]">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-2xl font-bold tracking-tight">Have a project in mind?</h3>
             <p className="text-zinc-500 text-sm mt-1">Book a free 30-minute consultation. No commitment.</p>
@@ -725,7 +728,7 @@ export default function App() {
 
       {/* ═══ PRICING ═══ */}
       <section id="pricing" className="py-20 md:py-28">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <div className="text-center mb-16">
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Pricing</p>
@@ -778,7 +781,7 @@ export default function App() {
 
       {/* ═══ TESTIMONIALS ═══ */}
       <section className="py-20 md:py-28 bg-black">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Testimonials</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.testimonialsTitle}`}</h2>
@@ -806,7 +809,7 @@ export default function App() {
 
       {/* ═══ BLOG ═══ */}
       <section className="py-20 md:py-28">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Insights</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">From Our Blog</h2>
@@ -836,7 +839,7 @@ export default function App() {
 
       {/* ═══ TEAM ═══ */}
       <section className="py-20 md:py-28">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Our Team</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">The People Behind Blueberry</h2>
@@ -866,30 +869,25 @@ export default function App() {
 
       {/* ═══ PARTNERS ═══ */}
       <section className="py-20 md:py-28">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.partners}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.partnersTitle}`}</h2>
           </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center">
             {[
-              { name: 'Google Cloud', initials: 'GC', color: '#4285F4' },
-              { name: 'AWS', initials: 'AWS', color: '#FF9900' },
-              { name: 'Vercel', initials: 'V', color: '#ffffff' },
-              { name: 'Supabase', initials: 'SB', color: '#3ECF8E' },
-              { name: 'Stripe', initials: 'S', color: '#635BFF' },
-              { name: 'Figma', initials: 'F', color: '#A259FF' },
+              { name: 'Google Cloud', text: 'Google Cloud', color: '#4285F4' },
+              { name: 'AWS', text: 'aws', color: '#FF9900' },
+              { name: 'Vercel', text: 'Vercel', color: '#ffffff' },
+              { name: 'Supabase', text: 'supabase', color: '#3ECF8E' },
+              { name: 'Stripe', text: 'stripe', color: '#635BFF' },
+              { name: 'Figma', text: 'Figma', color: '#A259FF' },
             ].map((partner, i) => (
-              <div key={i}>
-                <Reveal delay={i * 0.08}>
-                  <div className="bg-[#0a0a0a] border border-white/[0.06] rounded-2xl p-6 text-center hover:border-white/[0.1] transition-colors">
-                    <div className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center text-sm font-bold" style={{ color: partner.color, backgroundColor: `${partner.color}12`, border: `1px solid ${partner.color}20` }}>
-                      {partner.initials}
-                    </div>
-                    <p className="text-sm font-medium text-zinc-400">{partner.name}</p>
-                  </div>
-                </Reveal>
-              </div>
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="opacity-40 hover:opacity-80 transition-opacity cursor-default">
+                  <span className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: partner.color }}>{partner.text}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -897,7 +895,7 @@ export default function App() {
 
       {/* ═══ CAREERS ═══ */}
       <section id="careers" className="py-20 md:py-28">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.joinUs}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.careersTitle}`}</h2>
@@ -932,7 +930,7 @@ export default function App() {
 
       {/* ═══ FAQ ═══ */}
       <section id="faq" className="py-20 md:py-28">
-        <div className="max-w-[900px] mx-auto px-6 md:px-12">
+        <div className="max-w-[900px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.faqTitle}`}</h2></Reveal>
           <div className="space-y-3">
             {FAQS.map((faq, i) => (
@@ -968,7 +966,7 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5" />
           <FloatingOrb className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-blue-600/[0.06] rounded-full blur-[100px]" />
         </div>
-        <div className="relative max-w-[1400px] mx-auto px-6 md:px-12">
+        <div className="relative max-w-[1400px] mx-auto px-6 md:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left — text */}
             <Reveal>
@@ -1070,7 +1068,7 @@ export default function App() {
 
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t border-white/[0.04] py-10">
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <img src="/logo-white.svg" alt="Blueberry Systems" className="h-6 w-auto opacity-60" />
             <span className="text-zinc-800">|</span>
