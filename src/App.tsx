@@ -289,7 +289,7 @@ const TESTIMONIALS = [
 
 /* ─── Contact Form ─── */
 
-function ContactForm() {
+function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '', budget: '' });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -336,7 +336,7 @@ function ContactForm() {
         <div className="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-8 h-8 text-blue-400" />
         </div>
-        <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+        <h3 className="text-xl font-bold mb-2">{`${t.contactSent}`}</h3>
         <p className="text-sm text-zinc-500">We will get back to you within 24 hours.</p>
         <button onClick={() => { setSent(false); setForm({ name: '', email: '', company: '', message: '', budget: '' }); }} className="mt-6 text-sm text-blue-400 hover:text-blue-300 transition-colors">
           Send another message
@@ -350,27 +350,27 @@ function ContactForm() {
       {error && <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-sm text-red-400">{error}</div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Name</label>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactName}</label>
           <input type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="John Smith"
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
         </div>
         <div>
-          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Email</label>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactEmail}</label>
           <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="john@company.com"
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Company</label>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactCompany}</label>
           <input type="text" value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} placeholder="Your Company"
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
         </div>
         <div>
-          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Budget</label>
+          <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactBudget}</label>
           <select value={form.budget} onChange={e => setForm({ ...form, budget: e.target.value })}
             className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white appearance-none focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all">
-            <option value="" className="bg-zinc-900">Select budget</option>
+            <option value="" className="bg-zinc-900">{`${t.contactSelectBudget}`}</option>
             <option value="$2,500 - $5,000" className="bg-zinc-900">$2,500 - $5,000</option>
             <option value="$5,000 - $10,000" className="bg-zinc-900">$5,000 - $10,000</option>
             <option value="$10,000 - $25,000" className="bg-zinc-900">$10,000 - $25,000</option>
@@ -379,7 +379,7 @@ function ContactForm() {
         </div>
       </div>
       <div>
-        <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">Message</label>
+        <label className="block text-xs font-medium text-zinc-500 mb-2 uppercase tracking-wider">{t.contactMessage}</label>
         <textarea required rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your project..."
           className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.06] rounded-xl text-sm text-white placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/10 transition-all" />
       </div>
@@ -426,35 +426,39 @@ export default function App() {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-white/[0.04]"
       >
-        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 h-[80px] flex items-center justify-between">
-          <a href="/" className="text-xl font-bold tracking-tight group">
-            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-24 md:h-28 w-auto -my-8" />
+        <div className="w-full px-6 md:px-10 h-[72px] flex items-center">
+          {/* Logo — left */}
+          <a href="/" className="shrink-0 mr-8">
+            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-16 md:h-20 w-auto -my-4" />
           </a>
-          <nav className="hidden lg:flex items-center gap-8">
+
+          {/* Nav — center, pushed right */}
+          <nav className="hidden lg:flex items-center gap-6 flex-1">
             {NAV.map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-[13px] text-zinc-500 hover:text-white transition-colors uppercase tracking-widest font-medium">{item}</a>
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">{item}</a>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
-            {/* Language selector */}
+
+          {/* Right — lang + CTA */}
+          <div className="flex items-center gap-3 ml-auto">
             <div className="relative hidden md:block">
-              <button onClick={() => setShowLang(v => !v)} className="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider font-medium px-3 py-2 border border-white/[0.06] rounded-lg">
-                {lang}
+              <button onClick={() => setShowLang(v => !v)} className="text-xs text-zinc-500 hover:text-white transition-colors font-medium px-3 py-1.5 border border-white/[0.08] rounded-md flex items-center gap-1">
+                {lang} <ChevronDown className="w-3 h-3" />
               </button>
               {showLang && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setShowLang(false)} />
-                  <div className="absolute right-0 mt-2 bg-zinc-900 border border-white/10 rounded-xl overflow-hidden z-50 shadow-xl">
+                  <div className="absolute right-0 mt-2 bg-zinc-900 border border-white/10 rounded-xl overflow-hidden z-50 shadow-xl min-w-[80px]">
                     {LANGUAGES.map(l => (
-                      <button key={l} onClick={() => { setLang(l); setShowLang(false); }} className={`block w-full px-5 py-2.5 text-xs text-left transition-colors ${lang === l ? 'bg-blue-600/20 text-blue-400' : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}>{l}</button>
+                      <button key={l} onClick={() => { setLang(l); setShowLang(false); }} className={`block w-full px-4 py-2.5 text-xs text-left transition-colors ${lang === l ? 'bg-blue-600/20 text-blue-400' : 'text-zinc-400 hover:bg-white/5 hover:text-white'}`}>{l}</button>
                     ))}
                   </div>
                 </>
               )}
             </div>
-            <MagneticButton href="#contact" className="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full text-sm font-semibold hover:bg-blue-500 transition-all active:scale-[0.95]">
-              {t.getInTouch} <ArrowUpRight className="w-4 h-4" />
-            </MagneticButton>
+            <a href="#contact" className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-500 transition-all">
+              {t.getInTouch}
+            </a>
             <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden p-2 text-zinc-400 hover:text-white transition-colors">
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -468,7 +472,7 @@ export default function App() {
               <motion.nav
                 initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
                 transition={{ type: 'tween', duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                className="fixed top-[80px] right-0 bottom-0 w-[80%] max-w-sm bg-zinc-950 z-50 lg:hidden px-6 py-8"
+                className="fixed top-[72px] right-0 bottom-0 w-[80%] max-w-sm bg-zinc-950 z-50 lg:hidden px-6 py-8"
               >
                 {NAV.map((item, i) => (
                   <motion.a
@@ -484,7 +488,7 @@ export default function App() {
         </AnimatePresence>
       </motion.header>
 
-      <div className="h-[80px]" />
+      <div className="h-[72px]" />
 
       {/* ═══ HERO ═══ */}
       <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
@@ -717,11 +721,11 @@ export default function App() {
       <section className="py-16 border-y border-white/[0.04]">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-bold tracking-tight">Have a project in mind?</h3>
-            <p className="text-zinc-500 text-sm mt-1">Book a free 30-minute consultation. No commitment.</p>
+            <h3 className="text-2xl font-bold tracking-tight">{t.projectInMind}</h3>
+            <p className="text-zinc-500 text-sm mt-1">{t.projectInMindDesc}</p>
           </div>
           <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95] shrink-0">
-            Book a Free Call <ArrowRight className="w-4 h-4" />
+            {t.bookCall} <ArrowRight className="w-4 h-4" />
           </MagneticButton>
         </div>
       </section>
@@ -899,7 +903,7 @@ export default function App() {
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.joinUs}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.careersTitle}`}</h2>
-            <p className="text-zinc-500 mb-12">Join our team and build the future of software.</p>
+            <p className="text-zinc-500 mb-12">{t.careersDesc}</p>
           </Reveal>
           <div className="space-y-3">
             {[
@@ -982,7 +986,7 @@ export default function App() {
 
             {/* Right — form */}
             <SlideIn direction="right" delay={0.2}>
-              <ContactForm />
+              <ContactForm t={t} />
             </SlideIn>
           </div>
         </div>
@@ -1076,8 +1080,8 @@ export default function App() {
           </div>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400 transition-colors">Blueberry Academy</a>
-            <a href="#" className="hover:text-zinc-400 transition-colors">Terms</a>
-            <a href="#" className="hover:text-zinc-400 transition-colors">Privacy</a>
+            <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-zinc-400 transition-colors">Terms</a>
+            <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-zinc-400 transition-colors">Privacy</a>
           </div>
         </div>
       </footer>
