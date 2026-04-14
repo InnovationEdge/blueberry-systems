@@ -79,7 +79,8 @@ interface T {
   // Blog
   blog1: string; blog2: string; blog3: string;
   // Team roles
-  role1: string; role2: string; role3: string; role4: string;
+  role1: string; role2: string; role3: string; role4: string; role5: string; role6: string;
+  teamDesc: string;
   // Jobs
   job1: string; job2: string; job3: string; job4: string; job5: string;
   // Services
@@ -196,7 +197,8 @@ const en: T = {
   pf5: 'UI/UX Design + Branding', pf6: 'Frontend + Backend Development', pf7: 'API & 3rd-Party Integration', pf8: 'CI/CD + Cloud Deployment',
   pf9: 'Architecture & System Design', pf10: 'Team Augmentation', pf11: 'Legacy System Modernization', pf12: 'Ongoing Support & Maintenance',
   blog1: 'Why We Chose Supabase Over Firebase for Our Clients', blog2: 'The True Cost of Building an MVP in 2026', blog3: 'React vs Next.js: When to Use What',
-  role1: 'Founder & CEO', role2: 'CTO', role3: 'Head of Design', role4: 'Lead Engineer',
+  role1: 'Founder & CEO', role2: 'CTO', role3: 'Head of Design', role4: 'Lead Engineer', role5: 'Backend Engineer', role6: 'Frontend Developer',
+  teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
 };
 
@@ -292,7 +294,8 @@ const ka: T = {
   pf5: 'UI/UX დიზაინი + ბრენდინგი', pf6: 'Frontend + Backend', pf7: 'API ინტეგრაცია', pf8: 'CI/CD + Cloud Deploy',
   pf9: 'არქიტექტურა და დიზაინი', pf10: 'გუნდის გაძლიერება', pf11: 'Legacy სისტემების მოდერნიზაცია', pf12: 'მუდმივი მხარდაჭერა',
   blog1: 'რატომ ავირჩიეთ Supabase Firebase-ის ნაცვლად', blog2: 'MVP-ის რეალური ღირებულება 2026-ში', blog3: 'React vs Next.js: როდის რომელი',
-  role1: 'დამფუძნებელი და CEO', role2: 'CTO', role3: 'დიზაინის ხელმძღვანელი', role4: 'წამყვანი ინჟინერი',
+  role1: 'დამფუძნებელი და CEO', role2: 'CTO', role3: 'დიზაინის ხელმძღვანელი', role4: 'წამყვანი ინჟინერი', role5: 'Backend ინჟინერი', role6: 'Frontend დეველოპერი',
+  teamDesc: 'თბილისში დაფუძნებული ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი, რომელიც 2020 წლიდან ციფრულ პროდუქტებს ქმნის.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
 };
 
@@ -388,7 +391,8 @@ const ru: T = {
   pf5: 'UI/UX дизайн + брендинг', pf6: 'Frontend + Backend', pf7: 'API интеграция', pf8: 'CI/CD + облачный деплой',
   pf9: 'Архитектура и проектирование', pf10: 'Усиление команды', pf11: 'Модернизация legacy', pf12: 'Постоянная поддержка',
   blog1: 'Почему мы выбрали Supabase вместо Firebase', blog2: 'Реальная стоимость MVP в 2026', blog3: 'React vs Next.js: когда что использовать',
-  role1: 'Основатель и CEO', role2: 'CTO', role3: 'Руководитель дизайна', role4: 'Ведущий инженер',
+  role1: 'Основатель и CEO', role2: 'CTO', role3: 'Руководитель дизайна', role4: 'Ведущий инженер', role5: 'Backend-инженер', role6: 'Frontend-разработчик',
+  teamDesc: 'Команда инженеров, дизайнеров и стратегов из Тбилиси, создающая цифровые продукты с 2020 года.',
   job1: 'Senior Full Stack разработчик', job2: 'UI/UX дизайнер', job3: 'DevOps инженер', job4: 'Продакт-менеджер', job5: 'Руководитель маркетинга',
 };
 
@@ -484,7 +488,8 @@ const zh: T = {
   pf5: 'UI/UX设计+品牌', pf6: '前端+后端开发', pf7: 'API集成', pf8: 'CI/CD+云部署',
   pf9: '架构和系统设计', pf10: '团队增强', pf11: '遗留系统现代化', pf12: '持续支持',
   blog1: '为什么我们为客户选择Supabase而非Firebase', blog2: '2026年构建MVP的真实成本', blog3: 'React vs Next.js: 何时用什么',
-  role1: '创始人兼CEO', role2: 'CTO', role3: '设计主管', role4: '首席工程师',
+  role1: '创始人兼CEO', role2: 'CTO', role3: '设计主管', role4: '首席工程师', role5: '后端工程师', role6: '前端开发者',
+  teamDesc: '总部位于第比利斯的工程师、设计师和策略师团队，自2020年以来一直在打造数字产品。',
   job1: '高级全栈开发', job2: 'UI/UX设计师', job3: 'DevOps工程师', job4: '产品经理', job5: '市场负责人',
 };
 
@@ -580,7 +585,8 @@ const ar: T = {
   pf5: 'تصميم UI/UX + علامة تجارية', pf6: 'Frontend + Backend', pf7: 'تكامل API', pf8: 'CI/CD + نشر سحابي',
   pf9: 'تصميم معماري', pf10: 'تعزيز الفريق', pf11: 'تحديث الأنظمة القديمة', pf12: 'دعم مستمر',
   blog1: 'لماذا اخترنا Supabase بدلاً من Firebase', blog2: 'التكلفة الحقيقية لبناء MVP في 2026', blog3: 'React مقابل Next.js: متى تستخدم أيهما',
-  role1: 'المؤسس والرئيس التنفيذي', role2: 'المدير التقني', role3: 'رئيس التصميم', role4: 'المهندس الرئيسي',
+  role1: 'المؤسس والرئيس التنفيذي', role2: 'المدير التقني', role3: 'رئيس التصميم', role4: 'المهندس الرئيسي', role5: 'مهندس الواجهة الخلفية', role6: 'مطور الواجهة الأمامية',
+  teamDesc: 'فريق من المهندسين والمصممين والاستراتيجيين مقره في تبليسي، يبني المنتجات الرقمية منذ 2020.',
   job1: 'مطور Full Stack أول', job2: 'مصمم UI/UX', job3: 'مهندس DevOps', job4: 'مدير منتج', job5: 'قائد التسويق',
 };
 

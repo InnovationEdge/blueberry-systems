@@ -869,28 +869,30 @@ export default function App() {
       {/* ═══ TEAM ═══ */}
       <section className="py-20 md:py-28">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <Reveal>
-              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{`${t.teamTitle}`}</h2>
-              <p className="text-zinc-500 leading-relaxed mb-8">Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.</p>
-              <a href="#careers" className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors inline-flex items-center gap-2">{t.navCareers} <ArrowRight className="w-4 h-4" /></a>
-            </Reveal>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { name: 'Tiko Shakeladze', role: t.role1 },
-                { name: 'Alex Kirtadze', role: t.role2 },
-                { name: 'Nino Kvara', role: t.role3 },
-                { name: 'Giorgi Beridze', role: t.role4 },
-              ].map((member, i) => (
-                <Reveal key={i} delay={i * 0.1}>
-                  <div className="border border-white/[0.06] rounded-xl p-5 hover:border-white/[0.1] transition-colors">
-                    <h3 className="font-semibold text-sm mb-1">{member.name}</h3>
-                    <p className="text-xs text-zinc-500">{member.role}</p>
+          <Reveal>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{`${t.teamTitle}`}</h2>
+            <p className="text-zinc-500 leading-relaxed mb-10 max-w-2xl">{`${t.teamDesc}`}</p>
+          </Reveal>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {[
+              { name: 'Tiko Shakeladze', role: t.role1, img: '/team/person-8.png' },
+              { name: 'Alex Kirtadze', role: t.role2, img: '/team/person-9.png' },
+              { name: 'Nino Kvara', role: t.role3, img: '/team/person-10.png' },
+              { name: 'Giorgi Beridze', role: t.role4, img: '/team/person-11.png' },
+              { name: 'Mariam Tsiklauri', role: t.role5, img: '/team/person-12.png' },
+              { name: 'David Lomidze', role: t.role6, img: '/team/person-13.png' },
+            ].map((member, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="group text-center">
+                  <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-white/[0.06] group-hover:border-blue-500/30 transition-all duration-300">
+                    <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                </Reveal>
-              ))}
-            </div>
+                  <h3 className="font-semibold text-sm mb-1">{member.name}</h3>
+                  <p className="text-xs text-zinc-500">{member.role}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -902,18 +904,22 @@ export default function App() {
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.partners}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.partnersTitle}`}</h2>
           </Reveal>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-10 items-center justify-items-center">
             {[
-              { name: 'Google Cloud', text: 'Google Cloud', color: '#4285F4' },
-              { name: 'AWS', text: 'aws', color: '#FF9900' },
-              { name: 'Vercel', text: 'Vercel', color: '#ffffff' },
-              { name: 'Supabase', text: 'supabase', color: '#3ECF8E' },
-              { name: 'Stripe', text: 'stripe', color: '#635BFF' },
-              { name: 'Figma', text: 'Figma', color: '#A259FF' },
+              { name: 'Partner 1', src: '/logos/partner-1.svg' },
+              { name: 'Partner 2', src: '/logos/partner-2.svg' },
+              { name: 'Partner 3', src: '/logos/partner-3.svg' },
+              { name: 'Partner 4', src: '/logos/partner-4.svg' },
+              { name: 'Showcase 2', src: '/logos/showcase-2.svg' },
+              { name: 'Showcase 3', src: '/logos/showcase-3.svg' },
+              { name: 'Showcase 4', src: '/logos/showcase-4.svg' },
+              { name: 'Showcase 5', src: '/logos/showcase-5.svg' },
+              { name: 'Showcase 6', src: '/logos/showcase-6.svg' },
+              { name: 'Showcase 7', src: '/logos/showcase-7.svg' },
             ].map((partner, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div className="opacity-40 hover:opacity-80 transition-opacity cursor-default">
-                  <span className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: partner.color }}>{partner.text}</span>
+              <Reveal key={i} delay={i * 0.06}>
+                <div className="opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default grayscale hover:grayscale-0">
+                  <img src={partner.src} alt={partner.name} className="h-10 md:h-12 w-auto max-w-[140px] object-contain invert brightness-200" />
                 </div>
               </Reveal>
             ))}
