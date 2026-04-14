@@ -219,18 +219,7 @@ function MagneticButton({ children, className = '', href }: { children: ReactNod
 // NAV is built dynamically inside App using t.navXxx
 const LANGUAGES = ['EN', 'ქარ', 'RU', '中文', 'عربي'];
 
-const SERVICES = [
-  { num: '01', title: 'Custom Software Development', desc: 'Mobile apps, web platforms, CRM, ERP, and internal tools engineered for scale and performance.', stat1: '2x Faster Time-to-Market', stat2: '99.99% Uptime' },
-  { num: '02', title: 'Product Marketing', desc: 'Data-driven acquisition strategies that lower costs and accelerate user growth.', stat1: '48% Lower CAC', stat2: '62% User Acquisition Boost' },
-  { num: '03', title: 'Product Design', desc: 'Human-centered interfaces that convert visitors into loyal customers.', stat1: '80% Net Promoter Score', stat2: '2x Faster Time-to-Launch' },
-  { num: '04', title: 'Business Consulting', desc: 'Strategic guidance to optimize operations and unlock new revenue streams.', stat1: '25% Efficiency Gains', stat2: '40% Revenue Growth' },
-];
-
-const PROCESS = [
-  { step: '01', title: 'Kickoff', desc: 'Deep-dive consultation, requirements analysis, and a clear project roadmap.' },
-  { step: '02', title: 'Execution', desc: 'Agile sprints with real-time collaboration and iterative development.' },
-  { step: '03', title: 'Handoff', desc: 'Production deployment, documentation, training, and ongoing support.' },
-];
+// SERVICES and PROCESS are built dynamically inside App using t.svcXxx / t.procXxx
 
 const PORTFOLIO = [
   { title: 'NovaPay', initials: 'NP', category: 'Fintech Platform', year: '2025', desc: 'Payment processing platform handling 50K+ daily transactions with real-time fraud detection and multi-currency support.', accent: '#3b82f6',
@@ -265,20 +254,7 @@ const PORTFOLIO = [
     results: ['$50M+ tracked assets', '20+ DeFi protocols', 'Real-time analytics', '15% avg yield improvement'] },
 ];
 
-const PRICING = [
-  { name: 'Web & Mobile', desc: 'Websites, web apps, mobile applications', features: ['Custom Design + Development', 'Responsive & Cross-Platform', 'SEO & Performance Optimized', 'CMS & Admin Panel'], popular: false },
-  { name: 'Full Product', desc: 'End-to-end product development', features: ['UI/UX Design + Branding', 'Frontend + Backend Development', 'API & 3rd-Party Integration', 'CI/CD + Cloud Deployment'], popular: true },
-  { name: 'Enterprise', desc: 'Large-scale systems and consulting', features: ['Architecture & System Design', 'Team Augmentation', 'Legacy System Modernization', 'Ongoing Support & Maintenance'], popular: false },
-];
-
-const FAQS = [
-  { q: 'What services do you offer?', a: 'Custom software development, product design, performance marketing, and business consulting. We handle everything from MVPs to enterprise-grade systems.' },
-  { q: 'How does your process work?', a: 'Three stages: Kickoff (deep-dive consultation and roadmap), Execution (agile development with real-time collaboration), and Handoff (deployment, documentation, and support).' },
-  { q: 'What industries do you work with?', a: 'Fintech, e-commerce, healthcare, education, SaaS, and more. Our sister company Blueberry Academy focuses on edtech products.' },
-  { q: 'How do you ensure quality?', a: 'Code reviews, automated testing, CI/CD pipelines, and 99.99% uptime monitoring. Every deliverable goes through rigorous QA before handoff.' },
-  { q: 'What does pricing look like?', a: 'Every project is priced individually based on scope, complexity, and timeline. We provide a detailed cost estimate after an initial consultation. No hidden fees.' },
-  { q: 'How do we get started?', a: 'Book a free consultation. We discuss your vision, timeline, and budget, then deliver a detailed proposal within 48 hours.' },
-];
+// PRICING and FAQS are built dynamically inside App using t.priceXxx / t.faqXxx
 
 const TESTIMONIALS = [
   { quote: 'Blueberry delivered exactly what we needed. Our fintech platform handles 10x the traffic we expected, zero downtime since launch.', name: 'Marcus Chen', role: 'CTO, NovaPay', avatar: 'MC' },
@@ -414,6 +390,35 @@ export default function App() {
     { label: t.navFaq, id: 'faq' },
     { label: t.navContact, id: 'contact' },
   ];
+
+  const SERVICES = [
+    { num: '01', title: t.svc1Title, desc: t.svc1Desc, stat1: '2x Faster Time-to-Market', stat2: '99.99% Uptime' },
+    { num: '02', title: t.svc2Title, desc: t.svc2Desc, stat1: '48% Lower CAC', stat2: '62% User Acquisition Boost' },
+    { num: '03', title: t.svc3Title, desc: t.svc3Desc, stat1: '80% Net Promoter Score', stat2: '2x Faster Time-to-Launch' },
+    { num: '04', title: t.svc4Title, desc: t.svc4Desc, stat1: '25% Efficiency Gains', stat2: '40% Revenue Growth' },
+  ];
+
+  const PROCESS = [
+    { step: '01', title: t.proc1, desc: t.proc1Desc },
+    { step: '02', title: t.proc2, desc: t.proc2Desc },
+    { step: '03', title: t.proc3, desc: t.proc3Desc },
+  ];
+
+  const PRICING = [
+    { name: t.price1Name, desc: t.price1Desc, features: ['Custom Design + Development', 'Responsive & Cross-Platform', 'SEO & Performance Optimized', 'CMS & Admin Panel'], popular: false },
+    { name: t.price2Name, desc: t.price2Desc, features: ['UI/UX Design + Branding', 'Frontend + Backend Development', 'API & 3rd-Party Integration', 'CI/CD + Cloud Deployment'], popular: true },
+    { name: t.price3Name, desc: t.price3Desc, features: ['Architecture & System Design', 'Team Augmentation', 'Legacy System Modernization', 'Ongoing Support & Maintenance'], popular: false },
+  ];
+
+  const FAQS = [
+    { q: t.faq1Q, a: t.faq1A },
+    { q: t.faq2Q, a: t.faq2A },
+    { q: t.faq3Q, a: t.faq3A },
+    { q: t.faq4Q, a: t.faq4A },
+    { q: t.faq5Q, a: t.faq5A },
+    { q: t.faq6Q, a: t.faq6A },
+  ];
+
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);

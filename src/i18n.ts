@@ -72,6 +72,26 @@ interface T {
   placeholderEmail: string;
   placeholderCompany: string;
   placeholderMessage: string;
+  // Services
+  svc1Title: string; svc1Desc: string;
+  svc2Title: string; svc2Desc: string;
+  svc3Title: string; svc3Desc: string;
+  svc4Title: string; svc4Desc: string;
+  // Process
+  proc1: string; proc1Desc: string;
+  proc2: string; proc2Desc: string;
+  proc3: string; proc3Desc: string;
+  // FAQ
+  faq1Q: string; faq1A: string;
+  faq2Q: string; faq2A: string;
+  faq3Q: string; faq3A: string;
+  faq4Q: string; faq4A: string;
+  faq5Q: string; faq5A: string;
+  faq6Q: string; faq6A: string;
+  // Pricing
+  price1Name: string; price1Desc: string;
+  price2Name: string; price2Desc: string;
+  price3Name: string; price3Desc: string;
 }
 
 const en: T = {
@@ -146,6 +166,22 @@ const en: T = {
   placeholderEmail: 'john@company.com',
   placeholderCompany: 'Your Company',
   placeholderMessage: 'Tell us about your project...',
+  svc1Title: 'Custom Software Development', svc1Desc: 'Mobile apps, web platforms, CRM, ERP, and internal tools engineered for scale and performance.',
+  svc2Title: 'Product Marketing', svc2Desc: 'Data-driven acquisition strategies that lower costs and accelerate user growth.',
+  svc3Title: 'Product Design', svc3Desc: 'Human-centered interfaces that convert visitors into loyal customers.',
+  svc4Title: 'Business Consulting', svc4Desc: 'Strategic guidance to optimize operations and unlock new revenue streams.',
+  proc1: 'Kickoff', proc1Desc: 'Deep-dive consultation, requirements analysis, and a clear project roadmap.',
+  proc2: 'Execution', proc2Desc: 'Agile sprints with real-time collaboration and iterative development.',
+  proc3: 'Handoff', proc3Desc: 'Production deployment, documentation, training, and ongoing support.',
+  faq1Q: 'What services do you offer?', faq1A: 'Custom software development, product design, performance marketing, and business consulting. We handle everything from MVPs to enterprise-grade systems.',
+  faq2Q: 'How does your process work?', faq2A: 'Three stages: Kickoff (deep-dive consultation and roadmap), Execution (agile development with real-time collaboration), and Handoff (deployment, documentation, and support).',
+  faq3Q: 'What industries do you work with?', faq3A: 'Fintech, e-commerce, healthcare, education, SaaS, and more. Our sister company Blueberry Academy focuses on edtech products.',
+  faq4Q: 'How do you ensure quality?', faq4A: 'Code reviews, automated testing, CI/CD pipelines, and 99.99% uptime monitoring. Every deliverable goes through rigorous QA before handoff.',
+  faq5Q: 'What does pricing look like?', faq5A: 'Every project is priced individually based on scope, complexity, and timeline. We provide a detailed cost estimate after an initial consultation. No hidden fees.',
+  faq6Q: 'How do we get started?', faq6A: 'Book a free consultation. We discuss your vision, timeline, and budget, then deliver a detailed proposal within 48 hours.',
+  price1Name: 'Web & Mobile', price1Desc: 'Websites, web apps, mobile applications',
+  price2Name: 'Full Product', price2Desc: 'End-to-end product development',
+  price3Name: 'Enterprise', price3Desc: 'Large-scale systems and consulting',
 };
 
 const ka: T = {
@@ -220,6 +256,22 @@ const ka: T = {
   placeholderEmail: 'giorgi@company.com',
   placeholderCompany: 'შენი კომპანია',
   placeholderMessage: 'მოგვიყევი პროექტის შესახებ...',
+  svc1Title: 'პროგრამული უზრუნველყოფა', svc1Desc: 'მობილური აპები, ვებ პლატფორმები, CRM, ERP და შიდა ინსტრუმენტები.',
+  svc2Title: 'პროდუქტის მარკეტინგი', svc2Desc: 'მონაცემებზე დაფუძნებული სტრატეგიები მომხმარებლების მოზიდვისთვის.',
+  svc3Title: 'პროდუქტის დიზაინი', svc3Desc: 'ადამიანზე ორიენტირებული ინტერფეისები რომლებიც აქცევენ ვიზიტორებს კლიენტებად.',
+  svc4Title: 'ბიზნეს კონსალტინგი', svc4Desc: 'სტრატეგიული ხელმძღვანელობა ოპერაციების ოპტიმიზაციისთვის.',
+  proc1: 'დაწყება', proc1Desc: 'სიღრმისეული კონსულტაცია, მოთხოვნების ანალიზი და პროექტის გეგმა.',
+  proc2: 'შესრულება', proc2Desc: 'Agile სპრინტები რეალურ დროში თანამშრომლობით.',
+  proc3: 'გადაცემა', proc3Desc: 'პროდაქშენზე განთავსება, დოკუმენტაცია და მხარდაჭერა.',
+  faq1Q: 'რა სერვისებს გვთავაზობთ?', faq1A: 'პროგრამული უზრუნველყოფის შექმნა, დიზაინი, მარკეტინგი და ბიზნეს კონსალტინგი. MVP-დან enterprise სისტემებამდე.',
+  faq2Q: 'როგორ მიმდინარეობს პროცესი?', faq2A: 'სამ ეტაპად: დაწყება (კონსულტაცია და გეგმა), შესრულება (agile დეველოპმენტი) და გადაცემა (deploy და მხარდაჭერა).',
+  faq3Q: 'რა ინდუსტრიებში მუშაობთ?', faq3A: 'ფინტექი, ე-კომერცია, ჯანდაცვა, განათლება, SaaS. ჩვენი პარტნიორი Blueberry Academy edtech პროდუქტებზე მუშაობს.',
+  faq4Q: 'როგორ უზრუნველყოფთ ხარისხს?', faq4A: 'კოდის რევიუ, ავტომატური ტესტები, CI/CD და 99.99% აპტაიმის მონიტორინგი.',
+  faq5Q: 'რა ღირს სერვისები?', faq5A: 'ყოველი პროექტი ინდივიდუალურად ფასდება. დეტალური ხარჯთაღრიცხვა კონსულტაციის შემდეგ.',
+  faq6Q: 'როგორ დავიწყოთ?', faq6A: 'დაჯავშნე უფასო კონსულტაცია. განვიხილავთ შენს ხედვას და 48 საათში მოგაწვდით წინადადებას.',
+  price1Name: 'ვებ და მობაილი', price1Desc: 'ვებსაიტები, ვებ აპები, მობილური აპლიკაციები',
+  price2Name: 'სრული პროდუქტი', price2Desc: 'პროდუქტის სრული დეველოპმენტი',
+  price3Name: 'Enterprise', price3Desc: 'მასშტაბური სისტემები და კონსალტინგი',
 };
 
 const ru: T = {
@@ -294,6 +346,22 @@ const ru: T = {
   placeholderEmail: 'ivan@company.com',
   placeholderCompany: 'Ваша компания',
   placeholderMessage: 'Расскажите о вашем проекте...',
+  svc1Title: 'Разработка ПО', svc1Desc: 'Мобильные приложения, веб-платформы, CRM, ERP и внутренние инструменты.',
+  svc2Title: 'Продуктовый маркетинг', svc2Desc: 'Стратегии привлечения пользователей на основе данных.',
+  svc3Title: 'Продуктовый дизайн', svc3Desc: 'Ориентированные на пользователя интерфейсы, которые конвертируют.',
+  svc4Title: 'Бизнес-консалтинг', svc4Desc: 'Стратегическое руководство для оптимизации операций.',
+  proc1: 'Старт', proc1Desc: 'Глубокая консультация, анализ требований и дорожная карта.',
+  proc2: 'Исполнение', proc2Desc: 'Agile спринты с коллаборацией в реальном времени.',
+  proc3: 'Передача', proc3Desc: 'Развертывание, документация, обучение и поддержка.',
+  faq1Q: 'Какие услуги вы предлагаете?', faq1A: 'Разработка ПО, дизайн, маркетинг и бизнес-консалтинг. От MVP до enterprise систем.',
+  faq2Q: 'Как работает процесс?', faq2A: 'Три этапа: Старт (консультация и план), Исполнение (agile разработка) и Передача (деплой и поддержка).',
+  faq3Q: 'С какими отраслями вы работаете?', faq3A: 'Финтех, е-коммерция, здравоохранение, образование, SaaS. Наш партнер Blueberry Academy работает с edtech.',
+  faq4Q: 'Как вы обеспечиваете качество?', faq4A: 'Код-ревью, автоматическое тестирование, CI/CD и мониторинг аптайма 99.99%.',
+  faq5Q: 'Сколько стоят услуги?', faq5A: 'Каждый проект оценивается индивидуально. Детальная смета после консультации.',
+  faq6Q: 'Как начать?', faq6A: 'Запишитесь на бесплатную консультацию. Обсудим ваше видение и предоставим предложение за 48 часов.',
+  price1Name: 'Веб и мобайл', price1Desc: 'Сайты, веб-приложения, мобильные приложения',
+  price2Name: 'Полный продукт', price2Desc: 'Полный цикл разработки продукта',
+  price3Name: 'Enterprise', price3Desc: 'Масштабные системы и консалтинг',
 };
 
 const zh: T = {
@@ -368,6 +436,22 @@ const zh: T = {
   placeholderEmail: 'zhang@company.com',
   placeholderCompany: '您的公司',
   placeholderMessage: '请告诉我们关于您的项目...',
+  svc1Title: '定制软件开发', svc1Desc: '移动应用、网络平台、CRM、ERP和内部工具。',
+  svc2Title: '产品营销', svc2Desc: '基于数据的获客策略，降低成本，加速增长。',
+  svc3Title: '产品设计', svc3Desc: '以人为本的界面设计，将访客转化为客户。',
+  svc4Title: '商业咨询', svc4Desc: '优化运营和开拓收入来源的战略指导。',
+  proc1: '启动', proc1Desc: '深入咨询、需求分析和项目路线图。',
+  proc2: '执行', proc2Desc: '敏捷开发，实时协作和迭代。',
+  proc3: '交付', proc3Desc: '生产部署、文档和持续支持。',
+  faq1Q: '你们提供什么服务？', faq1A: '定制软件开发、产品设计、营销和商业咨询。从MVP到企业级系统。',
+  faq2Q: '流程是怎样的？', faq2A: '三个阶段：启动（咨询和规划）、执行（敏捷开发）和交付（部署和支持）。',
+  faq3Q: '你们服务哪些行业？', faq3A: '金融科技、电商、医疗、教育、SaaS等。姐妹公司Blueberry Academy专注教育科技。',
+  faq4Q: '如何保证质量？', faq4A: '代码审查、自动化测试、CI/CD和99.99%正常运行时间监控。',
+  faq5Q: '服务费用如何？', faq5A: '每个项目根据范围、复杂度和时间线单独定价。初次咨询后提供详细报价。',
+  faq6Q: '如何开始？', faq6A: '预约免费咨询。讨论您的愿景，48小时内提供详细方案。',
+  price1Name: '网站和移动端', price1Desc: '网站、网络应用、移动应用',
+  price2Name: '完整产品', price2Desc: '端到端产品开发',
+  price3Name: '企业级', price3Desc: '大规模系统和咨询',
 };
 
 const ar: T = {
@@ -442,6 +526,22 @@ const ar: T = {
   placeholderEmail: 'mohammed@company.com',
   placeholderCompany: 'شركتك',
   placeholderMessage: 'أخبرنا عن مشروعك...',
+  svc1Title: 'تطوير البرمجيات', svc1Desc: 'تطبيقات الجوال والمنصات والأنظمة الداخلية.',
+  svc2Title: 'تسويق المنتجات', svc2Desc: 'استراتيجيات اكتساب المستخدمين القائمة على البيانات.',
+  svc3Title: 'تصميم المنتجات', svc3Desc: 'واجهات تركز على المستخدم وتحول الزوار إلى عملاء.',
+  svc4Title: 'استشارات الأعمال', svc4Desc: 'توجيه استراتيجي لتحسين العمليات وفتح مصادر إيرادات جديدة.',
+  proc1: 'الانطلاق', proc1Desc: 'استشارة عميقة وتحليل المتطلبات وخارطة طريق المشروع.',
+  proc2: 'التنفيذ', proc2Desc: 'سباقات Agile مع التعاون في الوقت الفعلي.',
+  proc3: 'التسليم', proc3Desc: 'النشر والتوثيق والتدريب والدعم المستمر.',
+  faq1Q: 'ما الخدمات التي تقدمونها؟', faq1A: 'تطوير البرمجيات والتصميم والتسويق والاستشارات. من MVP إلى أنظمة المؤسسات.',
+  faq2Q: 'كيف تعمل العملية؟', faq2A: 'ثلاث مراحل: الانطلاق (استشارة وخطة)، التنفيذ (تطوير رشيق) والتسليم (نشر ودعم).',
+  faq3Q: 'ما القطاعات التي تخدمونها؟', faq3A: 'التكنولوجيا المالية والتجارة الإلكترونية والرعاية الصحية والتعليم. شريكنا Blueberry Academy متخصص في تكنولوجيا التعليم.',
+  faq4Q: 'كيف تضمنون الجودة؟', faq4A: 'مراجعة الكود والاختبار الآلي وخطوط CI/CD ومراقبة وقت التشغيل 99.99%.',
+  faq5Q: 'كم تكلف الخدمات؟', faq5A: 'يتم تسعير كل مشروع بشكل فردي. تقدير تفصيلي بعد الاستشارة الأولية.',
+  faq6Q: 'كيف نبدأ؟', faq6A: 'احجز استشارة مجانية. سنقدم اقتراحاً مفصلاً خلال 48 ساعة.',
+  price1Name: 'ويب وموبايل', price1Desc: 'مواقع وتطبيقات ويب وموبايل',
+  price2Name: 'منتج كامل', price2Desc: 'تطوير منتج شامل',
+  price3Name: 'مؤسسات', price3Desc: 'أنظمة كبيرة واستشارات',
 };
 
 const translations: Record<string, T> = { EN: en, 'ქარ': ka, RU: ru, '中文': zh, 'عربي': ar };
