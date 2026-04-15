@@ -256,6 +256,7 @@ const PORTFOLIO = [
 
 // PRICING and FAQS are built dynamically inside App using t.priceXxx / t.faqXxx
 
+const AVATAR_COLORS = ['from-blue-500 to-cyan-400', 'from-violet-500 to-pink-400', 'from-emerald-500 to-teal-400', 'from-amber-500 to-orange-400'];
 const TESTIMONIALS = [
   { quote: 'Blueberry delivered exactly what we needed. Our fintech platform handles 10x the traffic we expected, zero downtime since launch.', name: 'Marcus Chen', role: 'CTO, NovaPay', avatar: 'MC' },
   { quote: 'Working with their team felt like having senior engineers in-house. They shipped our MVP in 6 weeks and it just worked.', name: 'Sarah Bergman', role: 'Founder, Vendora', avatar: 'SB' },
@@ -775,7 +776,7 @@ export default function App() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <div className="text-center mb-16">
-              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">Pricing</p>
+              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.pricing}`}</p>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{t.pricingTitle}</h2>
               <p className="text-zinc-500 mt-4 max-w-lg mx-auto">{t.pricingDesc}</p>
             </div>
@@ -827,7 +828,7 @@ export default function App() {
       <section className="py-20 md:py-28 bg-black">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">Testimonials</p>
+            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.testimonials}`}</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.testimonialsTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -837,7 +838,7 @@ export default function App() {
                   <div className="border border-white/[0.04] rounded-3xl p-8 h-full flex flex-col">
                     <p className="text-sm text-zinc-400 leading-relaxed flex-1 mb-8">"{t.quote}"</p>
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/20 flex items-center justify-center text-xs font-bold text-blue-400">{t.avatar}</div>
+                      <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center text-xs font-bold text-white`}>{t.avatar}</div>
                       <div>
                         <p className="font-semibold text-sm">{t.name}</p>
                         <p className="text-xs text-zinc-600">{t.role}</p>
