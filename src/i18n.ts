@@ -57,6 +57,7 @@ interface T {
   startProject: string;
   sendAnother: string;
   digitalProducts: string;
+  heroPrefix: string;
   years: string;
   projects: string;
   uptime: string;
@@ -168,7 +169,7 @@ const en: T = {
   interestedProject: 'Interested in a similar project?',
   startProject: 'Start a Project',
   sendAnother: 'Send another message',
-  digitalProducts: 'Digital Products.',
+  digitalProducts: 'Digital Products.', heroPrefix: 'We',
   years: 'Years',
   projects: 'Projects',
   uptime: 'Uptime',
@@ -272,7 +273,7 @@ const ka: T = {
   interestedProject: 'გაინტერესებს მსგავსი პროექტი?',
   startProject: 'დაიწყე პროექტი',
   sendAnother: 'კიდევ გაგზავნა',
-  digitalProducts: 'ციფრულ პროდუქტებს.',
+  digitalProducts: 'ციფრულ პროდუქტებს.', heroPrefix: 'ჩვენ',
   years: 'წელი',
   projects: 'პროექტი',
   uptime: 'აპტაიმი',
@@ -376,7 +377,7 @@ const ru: T = {
   interestedProject: 'Интересен похожий проект?',
   startProject: 'Начать проект',
   sendAnother: 'Отправить ещё',
-  digitalProducts: 'Цифровые продукты.',
+  digitalProducts: 'Цифровые продукты.', heroPrefix: 'Мы',
   years: 'Лет',
   projects: 'Проектов',
   uptime: 'Аптайм',
@@ -480,7 +481,7 @@ const zh: T = {
   interestedProject: '对类似项目感兴趣？',
   startProject: '开始项目',
   sendAnother: '再发一条',
-  digitalProducts: '数字产品。',
+  digitalProducts: '数字产品。', heroPrefix: '我们',
   years: '年',
   projects: '项目',
   uptime: '正常运行',
@@ -584,7 +585,7 @@ const ar: T = {
   interestedProject: 'مهتم بمشروع مشابه؟',
   startProject: 'ابدأ مشروع',
   sendAnother: 'إرسال رسالة أخرى',
-  digitalProducts: 'المنتجات الرقمية.',
+  digitalProducts: 'المنتجات الرقمية.', heroPrefix: 'نحن',
   years: 'سنوات',
   projects: 'مشاريع',
   uptime: 'وقت التشغيل',

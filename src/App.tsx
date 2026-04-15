@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { motion, useInView, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'motion/react';
 import {
   ArrowRight, ChevronDown, ExternalLink, Menu, X, Mail, MapPin, Phone,
-  ArrowUpRight, CheckCircle, Upload, Check
+  ArrowUpRight, CheckCircle, Upload, Check, ArrowUp
 } from 'lucide-react';
 import { getT } from './i18n';
 // Contact form uses Formsubmit.co
@@ -297,10 +297,14 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         throw new Error('Failed');
       }
     } catch {
-      const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
-      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
-      window.location.href = `mailto:ikerdikoshv@gmail.com?subject=${subject}&body=${body}`;
-      setSent(true);
+      setError('Connection issue — opening email client...');
+      setTimeout(() => {
+        const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
+        const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
+        window.location.href = `mailto:ikerdikoshv@gmail.com?subject=${subject}&body=${body}`;
+        setSent(true);
+        setError('');
+      }, 1500);
     } finally {
       setSending(false);
     }
@@ -368,6 +372,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
       >
         {sending ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> {t.contactSending}</> : <>{t.contactSend} <ArrowRight className="w-4 h-4" /></>}
       </motion.button>
+      {error && <p className="text-amber-400 text-xs text-center mt-3">{error}</p>}
     </form>
   );
 }
@@ -384,6 +389,12 @@ export default function App() {
   const [applyForm, setApplyForm] = useState({ name: '', email: '', resume: null as File | null });
   const [applySending, setApplySending] = useState(false);
   const [applySent, setApplySent] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 600);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const t = getT(lang);
   const NAV = [
     { label: t.navServices, id: 'services' },
@@ -547,7 +558,7 @@ export default function App() {
             transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-5xl"
           >
-            We <TypeWriter words={t.heroWords} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
+            {t.heroPrefix} <TypeWriter words={t.heroWords} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
             <span className="text-zinc-500">{t.digitalProducts}</span>
           </motion.h1>
 
@@ -1175,6 +1186,19 @@ export default function App() {
             </>
           );
         })()}
+      </AnimatePresence>
+
+      {/* ═══ SCROLL TO TOP ═══ */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-8 right-8 z-40 w-12 h-12 bg-blue-600 hover:bg-blue-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-600/20 transition-colors"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
+        )}
       </AnimatePresence>
 
       {/* ═══ FOOTER ═══ */}
