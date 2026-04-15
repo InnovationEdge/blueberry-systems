@@ -447,14 +447,14 @@ export default function App() {
   }, [mobileOpen]);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden noise-overlay">
 
       {/* ═══ HEADER ═══ */}
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-white/[0.04]"
+        className="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-3xl border-b border-white/[0.06]"
       >
         <div className="w-full px-6 md:px-10 h-[72px] flex items-center">
           {/* Logo — left */}
@@ -533,13 +533,16 @@ export default function App() {
       <div className="h-[72px]" />
 
       {/* ═══ HERO ═══ */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-black" />
           <HeroParticles />
-          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-500/[0.06] rounded-full blur-[120px]" />
-          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-indigo-600/[0.04] rounded-full blur-[100px]" />
+          <FloatingOrb className="absolute top-[5%] right-[10%] w-[600px] h-[600px] bg-blue-500/[0.07] rounded-full blur-[150px]" />
+          <FloatingOrb className="absolute bottom-[15%] left-[5%] w-[500px] h-[500px] bg-violet-600/[0.05] rounded-full blur-[130px]" />
+          <FloatingOrb className="absolute top-[40%] left-[40%] w-[300px] h-[300px] bg-cyan-500/[0.03] rounded-full blur-[100px]" />
+          {/* Bottom gradient fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent" />
         </div>
 
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 py-20 md:py-0">
@@ -547,7 +550,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 rounded-full px-5 py-2 text-xs font-semibold text-blue-400 uppercase tracking-[0.2em] mb-10"
+            className="inline-flex items-center gap-2.5 bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] rounded-full px-5 py-2.5 text-xs font-semibold text-blue-400 uppercase tracking-[0.25em] mb-12"
           >
             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
             {t.onMarket}
@@ -557,9 +560,9 @@ export default function App() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 max-w-5xl"
+            className="text-5xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-extrabold leading-[0.92] tracking-[-0.04em] mb-10 max-w-5xl"
           >
-            {t.heroPrefix} <TypeWriter words={t.heroWords} className="bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent" /><br />
+            {t.heroPrefix} <TypeWriter words={t.heroWords} className="bg-gradient-to-r from-blue-400 via-cyan-400 to-violet-500 bg-clip-text text-transparent" /><br />
             <span className="text-zinc-500">{t.digitalProducts}</span>
           </motion.h1>
 
@@ -601,9 +604,9 @@ export default function App() {
       </section>
 
       {/* ═══ STATS ═══ */}
-      <section className="py-16 border-y border-white/[0.06]">
+      <section className="py-20 md:py-24">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[
               { v: '2020', l: t.onMarket },
               { v: '50+', l: t.projects },
@@ -611,8 +614,10 @@ export default function App() {
               { v: '15+', l: t.clients },
             ].map((s, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <p className="text-3xl md:text-4xl font-bold text-white tracking-tight">{s.v}</p>
-                <p className="text-xs text-zinc-600 mt-2 uppercase tracking-wider">{s.l}</p>
+                <div className="text-center p-8 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:border-white/[0.08] transition-colors">
+                  <p className="text-4xl md:text-5xl font-extrabold bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent tracking-tight">{s.v}</p>
+                  <p className="text-[11px] text-zinc-600 mt-3 uppercase tracking-[0.2em]">{s.l}</p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -620,11 +625,11 @@ export default function App() {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-20 md:py-28">
+      <section id="services" className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.whatWeDo}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.servicesTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-4">{`${t.servicesTitle}`}</h2>
             <p className="text-zinc-500 text-lg max-w-xl mb-16">{t.servicesDesc}</p>
           </Reveal>
 
@@ -689,12 +694,12 @@ export default function App() {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section id="process" className="py-20 md:py-28 relative">
+      <section id="process" className="py-24 md:py-36 relative">
         <div className="absolute inset-0 bg-black" />
         <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.howWeWork}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-20">{`${t.processTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-20">{`${t.processTitle}`}</h2>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -719,11 +724,11 @@ export default function App() {
       {/* Features section removed */}
 
       {/* ═══ PORTFOLIO ═══ */}
-      <section id="portfolio" className="py-20 md:py-28 bg-black">
+      <section id="portfolio" className="py-24 md:py-36 bg-black">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.selectedWork}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.portfolioTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-16">{`${t.portfolioTitle}`}</h2>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -731,7 +736,7 @@ export default function App() {
               <div key={i}>
                 <Reveal delay={i * 0.1}>
                   <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }} className="group cursor-pointer" onClick={() => setSelectedProject(i)}>
-                    <div className="bg-[#0a0a0a] border border-white/[0.06] rounded-2xl h-[320px] flex flex-col relative overflow-hidden hover:border-white/[0.1] transition-colors">
+                    <div className="bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-2xl h-[340px] flex flex-col relative overflow-hidden hover:border-white/[0.12] transition-all duration-300 glow-border">
                       {/* Top bar with logo */}
                       <div className="flex items-center justify-between px-7 pt-7 pb-5">
                         <div className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-bold" style={{ color: p.accent, backgroundColor: `${p.accent}12`, border: `1px solid ${p.accent}25` }}>
@@ -772,12 +777,12 @@ export default function App() {
       </section>
 
       {/* ═══ PRICING ═══ */}
-      <section id="pricing" className="py-20 md:py-28">
+      <section id="pricing" className="py-24 md:py-36">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <div className="text-center mb-16">
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.pricing}`}</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{t.pricingTitle}</h2>
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em]">{t.pricingTitle}</h2>
               <p className="text-zinc-500 mt-4 max-w-lg mx-auto">{t.pricingDesc}</p>
             </div>
           </Reveal>
@@ -790,7 +795,7 @@ export default function App() {
                     whileHover={{ y: -4 }}
                     className={`rounded-3xl p-8 border relative h-full flex flex-col ${
                       p.popular
-                        ? 'border-blue-500/30 bg-gradient-to-b from-blue-600/10 to-transparent shadow-[0_0_40px_rgba(59,130,246,0.08)]'
+                        ? 'border-blue-500/30 bg-gradient-to-b from-blue-600/10 to-transparent shadow-[0_0_60px_rgba(59,130,246,0.12)] scale-[1.02]'
                         : 'border-white/[0.04] bg-black'
                     }`}
                   >
@@ -825,18 +830,19 @@ export default function App() {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="py-20 md:py-28 bg-black">
+      <section className="py-24 md:py-36 bg-black">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.testimonials}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.testimonialsTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-16">{`${t.testimonialsTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {TESTIMONIALS.map((t, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
-                  <div className="border border-white/[0.04] rounded-3xl p-8 h-full flex flex-col">
-                    <p className="text-sm text-zinc-400 leading-relaxed flex-1 mb-8">"{t.quote}"</p>
+                  <div className="border border-white/[0.04] rounded-3xl p-10 h-full flex flex-col hover:border-white/[0.08] transition-colors glow-border">
+                    <svg className="w-8 h-8 text-blue-500/20 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    <p className="text-sm text-zinc-400 leading-relaxed flex-1 mb-8">{t.quote}</p>
                     <div className="flex items-center gap-4">
                       <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center text-xs font-bold text-white`}>{t.avatar}</div>
                       <div>
@@ -853,11 +859,11 @@ export default function App() {
       </section>
 
       {/* ═══ BLOG ═══ */}
-      <section className="py-20 md:py-28">
+      <section className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.insights}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16">{`${t.blogTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-16">{`${t.blogTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -883,21 +889,21 @@ export default function App() {
       </section>
 
       {/* ═══ TEAM ═══ */}
-      <section className="py-20 md:py-28">
+      <section className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{`${t.teamTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-6">{`${t.teamTitle}`}</h2>
             <p className="text-zinc-500 leading-relaxed mb-10 max-w-2xl">{`${t.teamDesc}`}</p>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { name: 'Tiko Shakeladze', role: t.role1, img: '/team/person-8.png' },
-              { name: 'Alex Kirtadze', role: t.role2, img: '/team/person-9.png' },
-              { name: 'Nino Kvara', role: t.role3, img: '/team/person-10.png' },
-              { name: 'Giorgi Beridze', role: t.role4, img: '/team/person-11.png' },
-              { name: 'Mariam Tsiklauri', role: t.role5, img: '/team/person-12.png' },
-              { name: 'David Lomidze', role: t.role6, img: '/team/person-13.png' },
+              { name: 'Daniel Reed', role: t.role1, img: '/team/person-8.png' },
+              { name: 'Luka Kapanadze', role: t.role2, img: '/team/person-9.png' },
+              { name: 'Nika Gelashvili', role: t.role3, img: '/team/person-10.png' },
+              { name: 'Ana Javakhishvili', role: t.role4, img: '/team/person-11.png' },
+              { name: 'Irakli Mtchedlishvili', role: t.role5, img: '/team/person-12.png' },
+              { name: 'James Chen', role: t.role6, img: '/team/person-13.png' },
             ].map((member, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div className="group text-center">
@@ -914,11 +920,11 @@ export default function App() {
       </section>
 
       {/* ═══ PARTNERS ═══ */}
-      <section className="py-20 md:py-28">
+      <section className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.partners}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.partnersTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-16">{`${t.partnersTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-10 items-center justify-items-center">
             {[
@@ -944,11 +950,11 @@ export default function App() {
       </section>
 
       {/* ═══ CAREERS ═══ */}
-      <section id="careers" className="py-20 md:py-28">
+      <section id="careers" className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.joinUs}`}</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{`${t.careersTitle}`}</h2>
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-4">{`${t.careersTitle}`}</h2>
             <p className="text-zinc-500 mb-12">{t.careersDesc}</p>
           </Reveal>
           <div className="space-y-3">
@@ -1052,9 +1058,9 @@ export default function App() {
       </AnimatePresence>
 
       {/* ═══ FAQ ═══ */}
-      <section id="faq" className="py-20 md:py-28">
+      <section id="faq" className="py-24 md:py-36">
         <div className="max-w-[900px] mx-auto px-6 md:px-16 xl:px-24">
-          <Reveal><h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{`${t.faqTitle}`}</h2></Reveal>
+          <Reveal><h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-16">{`${t.faqTitle}`}</h2></Reveal>
           <div className="space-y-3">
             {FAQS.map((faq, i) => (
               <div key={i}>
@@ -1084,7 +1090,7 @@ export default function App() {
       </section>
 
       {/* ═══ CONTACT ═══ */}
-      <section id="contact" className="py-20 md:py-28 relative overflow-hidden">
+      <section id="contact" className="py-24 md:py-36 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5" />
           <FloatingOrb className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-blue-600/[0.06] rounded-full blur-[100px]" />
@@ -1094,7 +1100,7 @@ export default function App() {
             {/* Left — text */}
             <Reveal>
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">{t.getInTouch}</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 whitespace-pre-line">{t.contactTitle}</h2>
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-6 whitespace-pre-line">{t.contactTitle}</h2>
               <p className="text-zinc-500 text-base mb-10 leading-relaxed">{t.contactDesc}</p>
               <div className="space-y-4 text-sm text-zinc-500">
                 <div className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-500" /> info@blueberry.codes</div>
@@ -1203,12 +1209,12 @@ export default function App() {
       </AnimatePresence>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="border-t border-white/[0.04] py-10">
-        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-6 w-auto opacity-60" />
-            <span className="text-zinc-800">|</span>
-            <span className="text-xs text-zinc-600">&copy; {t.footerRights}</span>
+      <footer className="border-t border-white/[0.04] py-16">
+        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-4">
+            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-7 w-auto opacity-50 hover:opacity-80 transition-opacity" />
+            <div className="w-px h-5 bg-white/[0.08]" />
+            <span className="text-[11px] text-zinc-600 tracking-wide">&copy; {t.footerRights}</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <a href="https://blueberryedu.ge" className="text-blue-500 hover:text-blue-400 transition-colors">Blueberry Academy</a>
