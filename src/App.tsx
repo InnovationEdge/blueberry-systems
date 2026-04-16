@@ -640,7 +640,7 @@ export default function App() {
                   <motion.div
                     whileHover={{ x: 12 }}
                     transition={{ duration: 0.3 }}
-                    className="border-b border-white/[0.06] py-10 md:py-14 group cursor-default"
+                    className="border-b border-white/[0.06] py-10 md:py-14 group cursor-default hover:bg-white/[0.01] transition-colors duration-300"
                   >
                     <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-16">
                       <span className="text-blue-500/30 text-5xl md:text-6xl font-bold tracking-tight shrink-0 w-20">{s.num}</span>
@@ -908,7 +908,7 @@ export default function App() {
             ].map((member, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div className="group text-center">
-                  <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-white/[0.06] group-hover:border-blue-500/30 transition-all duration-300">
+                  <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-white/[0.06] group-hover:border-blue-500/30 group-hover:shadow-lg group-hover:shadow-blue-500/10 transition-all duration-300">
                     <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <h3 className="font-semibold text-sm mb-1">{member.name}</h3>
@@ -1067,7 +1067,7 @@ export default function App() {
               <div key={i}>
                 <Reveal delay={i * 0.05}>
                   <motion.div
-                    className={`border rounded-2xl overflow-hidden transition-colors ${openFaq === i ? 'border-blue-500/20 bg-blue-600/[0.03]' : 'border-white/[0.04]'}`}
+                    className={`border rounded-2xl overflow-hidden transition-all duration-300 ${openFaq === i ? 'border-blue-500/20 bg-blue-600/[0.03] shadow-[0_0_30px_rgba(59,130,246,0.06)]' : 'border-white/[0.04] hover:border-white/[0.08]'}`}
                   >
                     <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left">
                       <span className="text-sm font-semibold pr-4">{faq.q}</span>
@@ -1104,10 +1104,10 @@ export default function App() {
               <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">{t.getInTouch}</p>
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-6 whitespace-pre-line">{t.contactTitle}</h2>
               <p className="text-zinc-500 text-base mb-10 leading-relaxed">{t.contactDesc}</p>
-              <div className="space-y-4 text-sm text-zinc-500">
-                <div className="flex items-center gap-3"><Mail className="w-4 h-4 text-blue-500" /> info@blueberry.codes</div>
+              <div className="space-y-5 text-sm text-zinc-500">
+                <a href="mailto:info@blueberry.codes" className="flex items-center gap-3 hover:text-white transition-colors"><Mail className="w-4 h-4 text-blue-500" /> info@blueberry.codes</a>
                 <div className="flex items-center gap-3"><MapPin className="w-4 h-4 text-blue-500" /> Tbilisi, Georgia</div>
-                <div className="flex items-center gap-3"><Phone className="w-4 h-4 text-blue-500" /> +995 598 44 96 44</div>
+                <a href="tel:+995598449644" className="flex items-center gap-3 hover:text-white transition-colors"><Phone className="w-4 h-4 text-blue-500" /> +995 598 44 96 44</a>
               </div>
             </Reveal>
 
@@ -1131,7 +1131,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 50, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                className="fixed inset-4 md:inset-10 lg:inset-20 bg-[#0a0a0a] border border-white/[0.06] rounded-3xl z-50 overflow-y-auto"
+                className="fixed inset-4 md:inset-10 lg:inset-20 bg-[#080808] border border-white/[0.08] rounded-3xl z-50 overflow-y-auto shadow-2xl"
               >
                 <button onClick={() => setSelectedProject(null)} className="absolute top-6 right-6 p-2 text-zinc-500 hover:text-white transition-colors z-10">
                   <X className="w-6 h-6" />
