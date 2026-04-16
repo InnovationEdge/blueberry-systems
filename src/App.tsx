@@ -662,12 +662,12 @@ export default function App() {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-20 border-y border-white/[0.04]">
+      <section className="py-20 md:py-24">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.25em] font-medium mb-12">{`${t.techTitle}`}</p>
+            <p className="text-center text-zinc-600 text-xs uppercase tracking-[0.3em] font-medium mb-14">{`${t.techTitle}`}</p>
           </Reveal>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
             {[
               { name: 'React', color: '#61DAFB' },
               { name: 'Next.js', color: '#ffffff' },
@@ -683,9 +683,9 @@ export default function App() {
               { name: 'Kotlin', color: '#7F52FF' },
             ].map((tech, i) => (
               <Reveal key={tech.name} delay={i * 0.03}>
-                <div className="flex items-center gap-3 px-5 py-3.5 border border-white/[0.06] rounded-xl hover:border-white/[0.12] transition-colors">
-                  <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: tech.color }} />
-                  <span className="text-sm text-zinc-400 font-medium">{tech.name}</span>
+                <div className="group flex items-center gap-3 px-5 py-4 border border-white/[0.05] rounded-xl bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/[0.1] transition-all duration-300">
+                  <div className="w-2.5 h-2.5 rounded-full shrink-0 group-hover:shadow-[0_0_8px] transition-shadow duration-300" style={{ backgroundColor: tech.color, ['--tw-shadow-color' as string]: tech.color }} />
+                  <span className="text-sm text-zinc-500 font-medium group-hover:text-zinc-300 transition-colors">{tech.name}</span>
                 </div>
               </Reveal>
             ))}
@@ -709,10 +709,10 @@ export default function App() {
             {PROCESS.map((p, i) => (
               <div key={i}>
                 <ScaleIn delay={i * 0.15}>
-                  <div className="text-center relative">
-                    <div className="text-blue-500/20 text-7xl font-bold mb-6 select-none">{p.step}</div>
-                    <h3 className="text-2xl font-bold mb-3 tracking-tight">{p.title}</h3>
-                    <p className="text-sm text-zinc-500 leading-relaxed max-w-xs mx-auto">{p.desc}</p>
+                  <div className="text-center relative group">
+                    <div className="text-blue-500/10 text-8xl font-extrabold mb-6 select-none group-hover:text-blue-500/20 transition-colors duration-500">{p.step}</div>
+                    <h3 className="text-2xl font-bold mb-4 tracking-tight">{p.title}</h3>
+                    <p className="text-sm text-zinc-500 leading-relaxed max-w-sm mx-auto">{p.desc}</p>
                   </div>
                 </ScaleIn>
               </div>
@@ -764,11 +764,12 @@ export default function App() {
       </section>
 
       {/* Mini CTA */}
-      <section className="py-16 border-y border-white/[0.04]">
-        <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-6">
+      <section className="py-20 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/[0.04] via-transparent to-violet-600/[0.04]" />
+        <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h3 className="text-2xl font-bold tracking-tight">{t.projectInMind}</h3>
-            <p className="text-zinc-500 text-sm mt-1">{t.projectInMindDesc}</p>
+            <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">{t.projectInMind}</h3>
+            <p className="text-zinc-500 text-base mt-2">{t.projectInMindDesc}</p>
           </div>
           <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95] shrink-0">
             {t.bookCall} <ArrowRight className="w-4 h-4" />
@@ -801,7 +802,7 @@ export default function App() {
                   >
                     {p.popular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
-                        Most Popular
+                        {t.mostPopular}
                       </div>
                     )}
                     <h3 className="text-xl font-bold mb-2 tracking-tight">{p.name}</h3>
@@ -819,7 +820,7 @@ export default function App() {
                         p.popular ? 'bg-blue-600 text-white hover:bg-blue-500' : 'border border-white/10 text-white hover:bg-white/5'
                       }`}
                     >
-                      Get Started
+                      {t.getStarted}
                     </MagneticButton>
                   </motion.div>
                 </Reveal>
@@ -873,7 +874,7 @@ export default function App() {
             ].map((post, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
-                  <div className="border border-white/[0.06] rounded-2xl p-7 hover:border-white/[0.1] transition-colors group h-full flex flex-col">
+                  <div className="border border-white/[0.05] rounded-2xl p-8 hover:border-white/[0.1] transition-all duration-300 group h-full flex flex-col bg-white/[0.01] glow-border">
                     <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-400 mb-4">{post.tag}</span>
                     <h3 className="text-lg font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors flex-1">{post.title}</h3>
                     <div className="flex items-center justify-between text-xs text-zinc-600 pt-4 border-t border-white/[0.04]">
@@ -898,11 +899,11 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { name: 'Daniel Reed', role: t.role1, img: '/team/person-8.png' },
-              { name: 'Luka Kapanadze', role: t.role2, img: '/team/person-9.png' },
-              { name: 'Nika Gelashvili', role: t.role3, img: '/team/person-10.png' },
-              { name: 'Ana Javakhishvili', role: t.role4, img: '/team/person-11.png' },
-              { name: 'Irakli Mtchedlishvili', role: t.role5, img: '/team/person-12.png' },
+              { name: 'Tiko Shakeladze', role: t.role1, img: '/team/ceo.png' },
+              { name: 'Dato Khutsishvili', role: t.role2, img: '/team/cto.png' },
+              { name: 'Tinatin Kereselidze', role: t.role3, img: '/team/designer.png' },
+              { name: 'Bozi Javakhishvili', role: t.role4, img: '/team/engineer.png' },
+              { name: 'Irakli Mtchedlishvili', role: t.role5, img: '/team/backend.png' },
               { name: 'James Chen', role: t.role6, img: '/team/person-13.png' },
             ].map((member, i) => (
               <Reveal key={i} delay={i * 0.08}>
@@ -1092,8 +1093,9 @@ export default function App() {
       {/* ═══ CONTACT ═══ */}
       <section id="contact" className="py-24 md:py-36 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5" />
-          <FloatingOrb className="absolute top-[20%] right-[20%] w-[400px] h-[400px] bg-blue-600/[0.06] rounded-full blur-[100px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/[0.06] via-transparent to-violet-600/[0.06]" />
+          <FloatingOrb className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-600/[0.07] rounded-full blur-[130px]" />
+          <FloatingOrb className="absolute bottom-[10%] left-[10%] w-[300px] h-[300px] bg-violet-600/[0.04] rounded-full blur-[100px]" />
         </div>
         <div className="relative max-w-[1400px] mx-auto px-6 md:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
