@@ -581,10 +581,10 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-start gap-4"
           >
-            <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95]">
-              {t.heroCta} <ArrowRight className="w-4 h-4" />
+            <MagneticButton href="#contact" className="px-10 py-4.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-bold text-base inline-flex items-center gap-2.5 hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-500/30 active:scale-[0.95]">
+              {t.heroCta} <ArrowRight className="w-5 h-5" />
             </MagneticButton>
-            <a href="#portfolio" className="px-8 py-4 border border-white/10 text-white/70 rounded-full text-sm font-medium hover:text-white hover:border-white/20 transition-all inline-flex items-center gap-2">
+            <a href="#portfolio" className="px-10 py-4.5 border border-white/[0.12] text-white/70 rounded-full text-base font-medium hover:text-white hover:border-white/25 hover:bg-white/[0.04] transition-all inline-flex items-center gap-2.5">
               {t.heroExplore}
             </a>
           </motion.div>
@@ -597,9 +597,11 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         >
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-[1px] h-12 bg-gradient-to-b from-transparent via-zinc-600 to-transparent" />
+          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5">
+            <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }} className="w-1 h-2 bg-white/40 rounded-full" />
+          </div>
         </motion.div>
       </section>
 
@@ -751,7 +753,7 @@ export default function App() {
                         <h3 className="text-lg font-bold mb-2 tracking-tight">{p.title}</h3>
                         <p className="text-xs text-zinc-600 leading-relaxed flex-1">{p.desc}</p>
                         <div className="mt-4 flex items-center gap-1 text-xs text-zinc-600 group-hover:text-blue-400 transition-colors">
-                          View project <ArrowUpRight className="w-3 h-3" />
+                          {`${t.viewProject}`} <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </div>
                       </div>
                     </div>
@@ -771,8 +773,8 @@ export default function App() {
             <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">{t.projectInMind}</h3>
             <p className="text-zinc-500 text-base mt-2">{t.projectInMindDesc}</p>
           </div>
-          <MagneticButton href="#contact" className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-sm inline-flex items-center gap-2 hover:bg-blue-500 transition-all active:scale-[0.95] shrink-0">
-            {t.bookCall} <ArrowRight className="w-4 h-4" />
+          <MagneticButton href="#contact" className="px-10 py-4.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full font-bold text-base inline-flex items-center gap-2.5 hover:from-blue-500 hover:to-blue-400 transition-all shadow-lg shadow-blue-600/20 hover:shadow-xl active:scale-[0.95] shrink-0">
+            {t.bookCall} <ArrowRight className="w-5 h-5" />
           </MagneticButton>
         </div>
       </section>
@@ -794,10 +796,10 @@ export default function App() {
                 <Reveal delay={i * 0.1}>
                   <motion.div
                     whileHover={{ y: -4 }}
-                    className={`rounded-3xl p-8 border relative h-full flex flex-col ${
+                    className={`rounded-3xl p-10 border relative h-full flex flex-col transition-all duration-300 ${
                       p.popular
                         ? 'border-blue-500/30 bg-gradient-to-b from-blue-600/10 to-transparent shadow-[0_0_60px_rgba(59,130,246,0.12)] scale-[1.02]'
-                        : 'border-white/[0.04] bg-black'
+                        : 'border-white/[0.05] bg-white/[0.01] hover:border-white/[0.1] hover:bg-white/[0.02]'
                     }`}
                   >
                     {p.popular && (
@@ -874,7 +876,8 @@ export default function App() {
             ].map((post, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
-                  <div className="border border-white/[0.05] rounded-2xl p-8 hover:border-white/[0.1] transition-all duration-300 group h-full flex flex-col bg-white/[0.01] glow-border">
+                  <div className="border border-white/[0.05] rounded-2xl p-8 hover:border-white/[0.1] transition-all duration-300 group h-full flex flex-col bg-white/[0.01] glow-border relative overflow-hidden">
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-400 mb-4">{post.tag}</span>
                     <h3 className="text-lg font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors flex-1">{post.title}</h3>
                     <div className="flex items-center justify-between text-xs text-zinc-600 pt-4 border-t border-white/[0.04]">
