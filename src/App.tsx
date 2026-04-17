@@ -899,12 +899,12 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { name: 'Tiko Shakeladze', role: t.role1, img: '/team/ceo.png' },
-              { name: 'Dato Khutsishvili', role: t.role2, img: '/team/cto.png' },
-              { name: 'Tinatin Kereselidze', role: t.role3, img: '/team/designer.png' },
-              { name: 'Bozi Javakhishvili', role: t.role4, img: '/team/engineer.png' },
-              { name: 'Irakli Mtchedlishvili', role: t.role5, img: '/team/backend.png' },
-              { name: 'James Chen', role: t.role6, img: '/team/person-13.png' },
+              { name: 'Alex Mitchell', role: t.role1, img: '/team/member-8.png' },
+              { name: 'Luka Kapanadze', role: t.role2, img: '/team/member-9.png' },
+              { name: 'Nika Gelashvili', role: t.role3, img: '/team/member-10.png' },
+              { name: 'Ana Javakhishvili', role: t.role4, img: '/team/member-11.png' },
+              { name: 'David Bakradze', role: t.role5, img: '/team/member-12.png' },
+              { name: 'James Chen', role: t.role6, img: '/team/member-13.png' },
             ].map((member, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div className="group text-center">
