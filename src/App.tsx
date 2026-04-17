@@ -465,7 +465,7 @@ export default function App() {
           {/* Nav — center, pushed right */}
           <nav className="hidden lg:flex items-center gap-6 flex-1">
             {NAV.map(item => (
-              <a key={item.id} href={`#${item.id}`} className="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">{item.label}</a>
+              <a key={item.id} href={`#${item.id}`} className="text-sm text-zinc-400 hover:text-white transition-colors font-medium">{item.label}</a>
             ))}
           </nav>
 
@@ -628,7 +628,7 @@ export default function App() {
       <section id="services" className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.whatWeDo}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4">{`${t.whatWeDo}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-4">{`${t.servicesTitle}`}</h2>
             <p className="text-zinc-500 text-lg max-w-xl mb-16">{t.servicesDesc}</p>
           </Reveal>
@@ -698,7 +698,7 @@ export default function App() {
         <div className="absolute inset-0 bg-black" />
         <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.howWeWork}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.howWeWork}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-20">{`${t.processTitle}`}</h2>
           </Reveal>
 
@@ -727,7 +727,7 @@ export default function App() {
       <section id="portfolio" className="py-24 md:py-36 bg-black">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.selectedWork}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4">{`${t.selectedWork}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-16">{`${t.portfolioTitle}`}</h2>
           </Reveal>
 
@@ -782,7 +782,7 @@ export default function App() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
             <div className="text-center mb-16">
-              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.pricing}`}</p>
+              <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4">{`${t.pricing}`}</p>
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em]">{t.pricingTitle}</h2>
               <p className="text-zinc-500 mt-4 max-w-lg mx-auto">{t.pricingDesc}</p>
             </div>
@@ -834,7 +834,7 @@ export default function App() {
       <section className="py-24 md:py-36 bg-black">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.testimonials}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.testimonials}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-16">{`${t.testimonialsTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -863,7 +863,7 @@ export default function App() {
       <section className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.insights}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4">{`${t.insights}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-16">{`${t.blogTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -893,7 +893,7 @@ export default function App() {
       <section className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4">{`${t.ourTeam}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-6">{`${t.teamTitle}`}</h2>
             <p className="text-zinc-500 leading-relaxed mb-10 max-w-2xl">{`${t.teamDesc}`}</p>
           </Reveal>
@@ -924,10 +924,10 @@ export default function App() {
       <section className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.partners}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4 text-center">{`${t.partners}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-16">{`${t.partnersTitle}`}</h2>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 md:gap-10 items-center justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10 md:gap-14 items-center justify-items-center">
             {[
               { name: 'Partner 1', src: '/logos/partner-1.svg' },
               { name: 'Partner 2', src: '/logos/partner-2.svg' },
@@ -941,8 +941,8 @@ export default function App() {
               { name: 'Showcase 7', src: '/logos/showcase-7.svg' },
             ].map((partner, i) => (
               <Reveal key={i} delay={i * 0.06}>
-                <div className="opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-default grayscale hover:grayscale-0">
-                  <img src={partner.src} alt={partner.name} className="h-10 md:h-12 w-auto max-w-[140px] object-contain invert brightness-200" />
+                <div className="opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-default grayscale hover:grayscale-0">
+                  <img src={partner.src} alt={partner.name} className="h-14 md:h-20 w-auto max-w-[200px] object-contain invert brightness-200" />
                 </div>
               </Reveal>
             ))}
@@ -954,7 +954,7 @@ export default function App() {
       <section id="careers" className="py-24 md:py-36">
         <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
           <Reveal>
-            <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-4">{`${t.joinUs}`}</p>
+            <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-4">{`${t.joinUs}`}</p>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-4">{`${t.careersTitle}`}</h2>
             <p className="text-zinc-500 mb-12">{t.careersDesc}</p>
           </Reveal>
@@ -1101,7 +1101,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left — text */}
             <Reveal>
-              <p className="text-blue-500 text-xs font-semibold uppercase tracking-[0.25em] mb-6">{t.getInTouch}</p>
+              <p className="text-blue-500 text-sm font-semibold uppercase tracking-[0.25em] mb-6">{t.getInTouch}</p>
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] mb-6 whitespace-pre-line">{t.contactTitle}</h2>
               <p className="text-zinc-500 text-base mb-10 leading-relaxed">{t.contactDesc}</p>
               <div className="space-y-5 text-sm text-zinc-500">
