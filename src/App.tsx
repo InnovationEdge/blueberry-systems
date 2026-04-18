@@ -278,7 +278,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
     setSending(true);
     setError('');
     try {
-      const res = await fetch('https://formsubmit.co/ajax/ikerdikoshv@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/info@blueberry.codes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -302,7 +302,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
       setTimeout(() => {
         const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
         const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
-        window.location.href = `mailto:ikerdikoshv@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:info@blueberry.codes?subject=${subject}&body=${body}`;
         setSent(true);
         setError('');
       }, 1500);
@@ -840,17 +840,17 @@ export default function App() {
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.03em] text-center mb-16">{`${t.testimonialsTitle}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {TESTIMONIALS.map((t, i) => (
+            {TESTIMONIALS.map((review, i) => (
               <div key={i}>
                 <Reveal delay={i * 0.1}>
                   <div className="border border-white/[0.04] rounded-3xl p-10 h-full flex flex-col hover:border-white/[0.08] transition-colors glow-border">
                     <svg className="w-8 h-8 text-blue-500/20 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                    <p className="text-sm text-zinc-400 leading-relaxed flex-1 mb-8">{t.quote}</p>
+                    <p className="text-sm text-zinc-400 leading-relaxed flex-1 mb-8">{review.quote}</p>
                     <div className="flex items-center gap-4">
-                      <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center text-xs font-bold text-white`}>{t.avatar}</div>
+                      <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center text-xs font-bold text-white`}>{review.avatar}</div>
                       <div>
-                        <p className="font-semibold text-sm">{t.name}</p>
-                        <p className="text-xs text-zinc-600">{t.role}</p>
+                        <p className="font-semibold text-sm">{review.name}</p>
+                        <p className="text-xs text-zinc-600">{review.role}</p>
                       </div>
                     </div>
                   </div>
