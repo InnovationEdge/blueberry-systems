@@ -278,7 +278,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
     setSending(true);
     setError('');
     try {
-      const res = await fetch('https://formsubmit.co/ajax/info@blueberry.codes', {
+      const res = await fetch('https://formsubmit.co/ajax/ikerdikoshv@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -302,7 +302,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
       setTimeout(() => {
         const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
         const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nBudget: ${form.budget}\n\nMessage:\n${form.message}`);
-        window.location.href = `mailto:info@blueberry.codes?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:ikerdikoshv@gmail.com?subject=${subject}&body=${body}`;
         setSent(true);
         setError('');
       }, 1500);
@@ -1025,7 +1025,7 @@ export default function App() {
                   formData.append('position', applyJob || '');
                   if (applyForm.resume) formData.append('attachment', applyForm.resume);
                   try {
-                    await fetch('https://formsubmit.co/ajax/info@blueberry.codes', { method: 'POST', body: formData });
+                    await fetch('https://formsubmit.co/ajax/ikerdikoshv@gmail.com', { method: 'POST', body: formData });
                     setApplySent(true);
                   } catch { /* silent */ }
                   setApplySending(false);
