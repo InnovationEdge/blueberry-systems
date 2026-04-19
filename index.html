@@ -17,21 +17,95 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Blueberry Systems" />
     <meta name="twitter:description" content="Custom software development, performance marketing, and product design." />
+    <link rel="canonical" href="https://blueberry.codes/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Blueberry Systems" />
+    <meta name="theme-color" content="#000000" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Organization Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       "name": "Blueberry Systems",
+      "alternateName": "Blueberry",
       "url": "https://blueberry.codes",
-      "logo": "https://blueberry.codes/logo-white.svg",
-      "description": "Custom software development, performance marketing, and product design.",
-      "address": { "@type": "PostalAddress", "addressLocality": "Tbilisi", "addressCountry": "GE" },
+      "logo": "https://blueberry.codes/logo-blue.svg",
+      "image": "https://blueberry.codes/logo-blue.svg",
+      "description": "Tbilisi-based software development company specializing in custom web applications, mobile apps, SaaS platforms, and performance marketing. We build digital products that scale.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tbilisi",
+        "addressRegion": "Tbilisi",
+        "addressCountry": "GE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.7151,
+        "longitude": 44.8271
+      },
       "telephone": "+995598449644",
       "email": "info@blueberry.codes",
       "foundingDate": "2020",
-      "sameAs": ["https://blueberryedu.ge"]
+      "founder": {
+        "@type": "Person",
+        "name": "Tiko Shakeladze",
+        "jobTitle": "Founder & CEO"
+      },
+      "numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 10, "maxValue": 50 },
+      "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "AWS", "Docker", "Flutter", "Swift", "Kotlin"],
+      "serviceType": ["Custom Software Development", "Web Application Development", "Mobile App Development", "SaaS Platform Development", "UI/UX Design", "Performance Marketing", "DevOps & Cloud Infrastructure"],
+      "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 41.7151, "longitude": 44.8271 }, "geoRadius": "10000 km" },
+      "priceRange": "$$",
+      "sameAs": [
+        "https://blueberryedu.ge",
+        "https://github.com/InnovationEdge",
+        "https://www.linkedin.com/company/blueberry-systems"
+      ]
+    }
+    </script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What services does Blueberry Systems offer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We offer custom software development, web & mobile app development, SaaS platforms, UI/UX design, performance marketing, and DevOps & cloud infrastructure services." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Blueberry Systems located?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Blueberry Systems is based in Tbilisi, Georgia. We serve clients globally with remote-first and hybrid work models." }
+        },
+        {
+          "@type": "Question",
+          "name": "What technologies does Blueberry Systems use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We use React, Next.js, TypeScript, Node.js, Python, PostgreSQL, AWS, Docker, Flutter, Swift, and Kotlin among other modern technologies." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Blueberry Systems offer free consultations?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer free initial consultations to discuss your project requirements, timeline, and budget. Contact us to schedule a call." }
+        }
+      ]
+    }
+    </script>
+
+    <!-- WebSite Schema with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Blueberry Systems",
+      "url": "https://blueberry.codes",
+      "description": "Custom software development company in Tbilisi, Georgia",
+      "publisher": { "@type": "Organization", "name": "Blueberry Systems" }
     }
     </script>
   </head>
