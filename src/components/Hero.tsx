@@ -32,10 +32,10 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
       <CursorSpotlight color="rgba(99,168,255,0.18)" />
 
       {/* Background layers */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-grid bg-grid-fade" />
         <HeroParticles />
-        <motion.div style={{ y: orbY }} className="absolute inset-0">
+        <motion.div style={{ y: orbY }} className="absolute inset-0 pointer-events-none">
           <FloatingOrb className="absolute top-[6%] right-[6%] w-[680px] h-[680px] bg-blue-500/[0.13] rounded-full blur-[160px]" />
           <FloatingOrb className="absolute bottom-[8%] left-[2%] w-[560px] h-[560px] bg-violet-600/[0.10] rounded-full blur-[150px]" />
           <FloatingOrb className="absolute top-[45%] left-[35%] w-[360px] h-[360px] bg-cyan-500/[0.07] rounded-full blur-[120px]" />
@@ -62,7 +62,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="inline-flex items-center gap-3 bg-white/[0.04] backdrop-blur-xl border border-white/[0.10] rounded-full pl-2 pr-5 py-1.5 text-[11px] font-medium text-zinc-300 uppercase tracking-[0.22em] mb-12"
+            className="inline-flex items-center gap-3 bg-white/[0.04] backdrop-blur-xl border border-white/[0.10] rounded-full pl-2 pr-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] mb-12"
           >
             <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-300 px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal">
               <span className="relative flex w-1.5 h-1.5">
@@ -72,7 +72,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               Now booking Q3
             </span>
             <span className="text-zinc-500">·</span>
-            <span>{t.onMarket}</span>
+            <span className="text-zinc-300">{t.onMarket}</span>
           </motion.div>
 
           {/* Cinematic display headline */}
