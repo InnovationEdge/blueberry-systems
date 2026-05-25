@@ -10,6 +10,7 @@ import { FAQ, Contact } from './components/Contact';
 import { Footer, ScrollToTop } from './components/Footer';
 import { ScrollProgress, NowBuilding } from './components/ScrollProgress';
 import { FounderNote } from './components/FounderNote';
+import { Industries } from './components/Industries';
 import { getT } from './i18n';
 
 const ProjectModal = lazy(() =>
@@ -28,6 +29,7 @@ export default function App() {
 
       <Hero t={t} />
       <StatsStrip t={t} />
+      <Industries />
       <Services t={t} />
       <TechStrip t={t} />
       <Process t={t} />

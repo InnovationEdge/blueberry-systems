@@ -18,8 +18,8 @@ export type Project = {
 
 export const PORTFOLIO: Project[] = [
   {
-    title: 'NovaPay',
-    initials: 'NP',
+    title: 'Project Atlas',
+    initials: 'AT',
     category: 'Fintech · Payments Infrastructure',
     year: '2025',
     desc: 'Cross-border payment rails processing $400M+ in annualized volume with real-time fraud scoring and 7-currency support.',
@@ -35,11 +35,11 @@ export const PORTFOLIO: Project[] = [
     solution: 'Event-driven microservices on AWS with multi-region failover, ML-based fraud scoring, and a custom ledger with cryptographic audit trails. Migrated $90M of in-flight payments without a single failed transaction.',
     stack: ['Go', 'React', 'PostgreSQL', 'Kafka', 'AWS', 'Terraform', 'Stripe Connect'],
     results: ['$400M+ annualized GMV', '99.99% uptime', '0.01% fraud rate', '7-currency support'],
-    client: 'Series B fintech, EU + MENA',
+    client: 'Series B fintech · EU + MENA · Under NDA',
   },
   {
-    title: 'Vendora',
-    initials: 'Vn',
+    title: 'Project Forum',
+    initials: 'FM',
     category: 'Commerce · Multi-Vendor SaaS',
     year: '2024',
     desc: 'Enterprise marketplace platform powering 500+ sellers, 15K monthly orders, with real-time inventory sync across 6 fulfillment centers.',
@@ -55,11 +55,11 @@ export const PORTFOLIO: Project[] = [
     solution: 'Next.js headless storefront, WebSocket inventory bus, automated 3PL routing, and AI-assisted SKU mapping. Cut catalog onboarding from 6 weeks to 3 days.',
     stack: ['Next.js 15', 'TypeScript', 'Supabase', 'Vercel', 'Stripe', 'Shippo'],
     results: ['500+ active sellers', '15K monthly orders', '40% lower fulfillment time', '4.8 app store rating'],
-    client: 'D2C aggregator, US + UK',
+    client: 'D2C aggregator · US + UK · Under NDA',
   },
   {
-    title: 'HealthBridge',
-    initials: 'HB',
+    title: 'Project Meridian',
+    initials: 'MD',
     category: 'Healthcare · Patient Platform',
     year: '2025',
     desc: 'HIPAA-grade telemedicine and patient management system serving 200+ daily consultations across 18 clinics.',
@@ -75,11 +75,11 @@ export const PORTFOLIO: Project[] = [
     solution: 'End-to-end encrypted video over WebRTC, role-based EHR, SMS/email reminder cadence, and an FHIR-compatible records vault. Rolled out across 18 clinics in 11 weeks.',
     stack: ['React', 'Python (FastAPI)', 'PostgreSQL', 'WebRTC', 'Docker', 'AWS GovCloud'],
     results: ['3.2 to 4.8 user rating', '60% fewer no-shows', 'HIPAA compliant', '200+ daily consultations'],
-    client: 'Regional clinic network, EU',
+    client: 'Regional clinic network · EU · Under NDA',
   },
   {
-    title: 'LogiTrack',
-    initials: 'LT',
+    title: 'Project Compass',
+    initials: 'CP',
     category: 'Logistics · Fleet Operations',
     year: '2024',
     desc: 'Real-time fleet management and route optimization across 200+ vehicles, 3 countries, with predictive ETA and 30% fuel savings.',
@@ -95,11 +95,11 @@ export const PORTFOLIO: Project[] = [
     solution: 'Proprietary routing engine with traffic + weather inputs, real-time GPS ingestion at 1Hz, predictive ETAs from historical telemetry, and driver-facing PWA.',
     stack: ['React', 'Go', 'PostgreSQL', 'PostGIS', 'Google Maps API', 'Docker'],
     results: ['30% fuel savings', '200+ vehicles tracked', '3 countries', '25% faster deliveries'],
-    client: 'Regional 3PL operator',
+    client: 'Regional 3PL operator · Under NDA',
   },
   {
-    title: 'EduVerse',
-    initials: 'EV',
+    title: 'Project Beacon',
+    initials: 'BC',
     category: 'EdTech · Live Learning',
     year: '2025',
     desc: 'Interactive learning platform with live cohorts, AI tutoring, and gamified progression for 10K+ active learners.',
@@ -115,11 +115,11 @@ export const PORTFOLIO: Project[] = [
     solution: 'Realtime classroom on WebRTC, an XP-based progression system, and Gemini-powered content recommender with content-safety filters.',
     stack: ['Next.js', 'TypeScript', 'Supabase', 'OpenAI', 'Google Gemini', 'Vercel'],
     results: ['10K+ active learners', '85% completion rate', '4.9 satisfaction score', 'AI personalization'],
-    client: 'Adult-learning EdTech',
+    client: 'Adult-learning EdTech · Under NDA',
   },
   {
-    title: 'CryptoNest',
-    initials: 'CN',
+    title: 'Project Vault',
+    initials: 'VT',
     category: 'DeFi · Portfolio Analytics',
     year: '2024',
     desc: 'Multi-chain DeFi analytics suite tracking $50M+ in AUM across 20+ protocols with automated yield strategy execution.',
@@ -135,9 +135,19 @@ export const PORTFOLIO: Project[] = [
     solution: 'Multi-chain indexer with WebSocket price feeds, risk-scored strategy router, and a simulation sandbox for one-click execution. Audited by Trail of Bits.',
     stack: ['React', 'Node.js', 'Python', 'Redis', 'Web3.js', 'The Graph'],
     results: ['$50M+ tracked assets', '20+ DeFi protocols', 'Real-time analytics', '15% avg yield improvement'],
-    client: 'DeFi power-users + funds',
+    client: 'DeFi power-users + funds · Under NDA',
   },
 ];
+
+/* ─── Industries we serve (sector badges for hero/footer strip) ─── */
+export const INDUSTRIES = [
+  { name: 'Fintech', accent: '#3b82f6', codename: 'Atlas' },
+  { name: 'Commerce', accent: '#10b981', codename: 'Forum' },
+  { name: 'Healthcare', accent: '#06b6d4', codename: 'Meridian' },
+  { name: 'Logistics', accent: '#8b5cf6', codename: 'Compass' },
+  { name: 'EdTech', accent: '#f59e0b', codename: 'Beacon' },
+  { name: 'DeFi', accent: '#ec4899', codename: 'Vault' },
+] as const;
 
 /* ─── Testimonials ─── */
 export const AVATAR_COLORS = [
