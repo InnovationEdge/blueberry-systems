@@ -49,7 +49,7 @@ export default function App() {
       </Suspense>
 
       <ScrollToTop />
-      <NowBuilding projects={['NovaPay v2', 'EduVerse Live']} />
+      <NowBuilding projects={['3 active engagements', 'Q3 2026 cohort']} />
     </div>
   );
 }

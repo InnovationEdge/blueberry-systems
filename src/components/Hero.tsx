@@ -166,7 +166,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                 <span className="w-2.5 h-2.5 rounded-full bg-white/30" />
                 <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
                 <span className="ml-3 flex-1 max-w-[260px] h-2 mockup-bar" />
-                <span className="font-mono text-[10px] text-white/60">novapay.io / dashboard</span>
+                <span className="font-mono text-[10px] text-white/60">blueberry.codes / case-studies</span>
               </div>
 
               {/* Center content */}
@@ -229,20 +229,20 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                 </div>
               </div>
 
-              {/* Floating "Featured" tag */}
+              {/* Floating live tag */}
               <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Live · Featured case study
+                Live ops · sample dashboard
               </div>
 
               {/* Bottom caption */}
               <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
                 <div>
                   <p className="text-[10px] text-white/60 uppercase tracking-[0.22em] font-semibold">
-                    Fintech · Payments infrastructure
+                    What we build · Fintech / SaaS / Mobile
                   </p>
                   <p className="text-lg sm:text-2xl font-bold text-white tracking-tight mt-1">
-                    NovaPay — $400M+ processed
+                    Operations dashboards your team will actually open
                   </p>
                 </div>
                 <a
@@ -257,15 +257,15 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             {/* Floating accent stickers */}
             <div className="hidden md:block absolute -top-6 -left-6 px-4 py-2 rounded-xl border border-white/[0.12] bg-zinc-950/80 backdrop-blur-xl shadow-xl rotate-[-4deg]">
               <p className="text-[10px] text-zinc-500 uppercase tracking-[0.22em] font-mono">
-                /shipped
+                /avg
               </p>
-              <p className="text-sm text-white font-semibold mt-0.5">14-week launch</p>
+              <p className="text-sm text-white font-semibold mt-0.5">10-week launch</p>
             </div>
             <div className="hidden md:block absolute -bottom-5 -right-5 px-4 py-2 rounded-xl border border-blue-500/30 bg-blue-500/[0.08] backdrop-blur-xl shadow-xl rotate-[3deg]">
               <p className="text-[10px] text-blue-300 uppercase tracking-[0.22em] font-mono">
-                /uptime
+                /sla
               </p>
-              <p className="text-sm text-white font-semibold mt-0.5">99.99% SLA</p>
+              <p className="text-sm text-white font-semibold mt-0.5">99.99% uptime</p>
             </div>
           </motion.div>
 

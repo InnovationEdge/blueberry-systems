@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo, type ReactNode } from 'react';
+import { useState, useRef, useEffect, useMemo, type MouseEvent as RMouseEvent, type ReactNode } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useReducedMotion as fmReducedMotion } from 'motion/react';
 
 /* ─── Motion guard ─── */
@@ -230,7 +230,7 @@ export function MagneticButton({ children, className = '', href, onClick }: { ch
   const sy = useSpring(y, { stiffness: 280, damping: 22 });
   const reduced = useReducedMotion();
 
-  const handleMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMove = (e: RMouseEvent<HTMLElement>) => {
     if (reduced) return;
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     x.set((e.clientX - rect.left - rect.width / 2) * 0.18);

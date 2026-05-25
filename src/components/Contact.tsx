@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle, Mail, MapPin, Phone } from 'lucide-react';
 import { Reveal, SlideIn, FloatingOrb, SectionEyebrow } from './primitives';
@@ -139,7 +139,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSending(true);
     setError('');
@@ -300,7 +300,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
   );
 }
 
-function FormField({ label, children }: { label: string; children: React.ReactNode }) {
+function FormField({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
       <label className="block text-[10px] font-semibold text-zinc-500 mb-2 uppercase tracking-[0.22em]">
