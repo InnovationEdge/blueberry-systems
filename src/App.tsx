@@ -23,7 +23,7 @@ export default function App() {
   const t = getT(lang);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden noise-overlay">
+    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white overflow-x-hidden noise-overlay transition-colors duration-300">
       <ScrollProgress />
       <Header t={t} lang={lang} setLang={setLang} />
 

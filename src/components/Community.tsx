@@ -23,7 +23,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {posts.map((post, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="lift relative h-full flex flex-col border border-white/[0.06] rounded-3xl p-8 hover:border-white/[0.14] transition-all duration-300 group bg-white/[0.01] overflow-hidden">
+              <article className="lift relative h-full flex flex-col border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 hover:border-black/[0.14] dark:hover:border-black/[0.14] dark:border-white/[0.14] transition-all duration-300 group bg-black/[0.01] dark:bg-white/[0.01] overflow-hidden">
                 <div
                   className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   aria-hidden
@@ -34,7 +34,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
                 <h3 className="text-xl font-bold mb-4 tracking-tight group-hover:text-blue-300 transition-colors flex-1">
                   {post.title}
                 </h3>
-                <div className="flex items-center justify-between text-[11px] text-zinc-500 pt-4 border-t border-white/[0.06] font-mono">
+                <div className="flex items-center justify-between text-[11px] text-zinc-500 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] font-mono">
                   <span>{post.date}</span>
                   <span>
                     {post.read} {t.minRead}
@@ -76,10 +76,10 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
           {members.map((m, i) => (
             <Reveal key={i} delay={i * 0.06}>
               <div className="group text-center">
-                <div className={`relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border transition-all duration-300 bg-zinc-900 ${
+                <div className={`relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border transition-all duration-300 bg-zinc-50 dark:bg-zinc-900 ${
                   m.founder
                     ? 'border-blue-500/40 shadow-lg shadow-blue-500/20 group-hover:border-blue-400/60'
-                    : 'border-white/[0.06] group-hover:border-blue-500/30'
+                    : 'border-black/[0.06] dark:border-white/[0.06] group-hover:border-blue-500/30'
                 }`}>
                   <img
                     src={m.img}
@@ -88,7 +88,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                     className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700"
                   />
                   {m.founder && (
-                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-blue-500/90 backdrop-blur-sm text-[9px] font-bold uppercase tracking-[0.2em] text-white">
+                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-blue-500/90 backdrop-blur-sm text-[9px] font-bold uppercase tracking-[0.2em] text-black dark:text-white">
                       Founder
                     </div>
                   )}
@@ -139,12 +139,12 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
           {partners.map((p) => (
             <div
               key={p.name}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-white/[0.06] bg-white/[0.015] whitespace-nowrap hover:border-white/[0.18] hover:bg-white/[0.04] transition-colors"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] whitespace-nowrap hover:border-black/[0.18] dark:hover:border-black/[0.18] dark:border-white/[0.18] hover:bg-black/[0.04] dark:hover:bg-black/[0.04] dark:bg-white/[0.04] transition-colors"
             >
-              <span className="text-[15px] md:text-base font-bold tracking-tight text-white">
+              <span className="text-[15px] md:text-base font-bold tracking-tight text-black dark:text-white">
                 {p.name}
               </span>
-              <span className="w-px h-4 bg-white/[0.12]" />
+              <span className="w-px h-4 bg-black/[0.12] dark:bg-white/[0.12]" />
               <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-mono">
                 {p.tier}
               </span>

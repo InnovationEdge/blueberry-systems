@@ -32,7 +32,7 @@ export function FAQ({ t }: { t: ReturnType<typeof getT> }) {
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   open === i
                     ? 'border-blue-500/30 bg-blue-600/[0.04]'
-                    : 'border-white/[0.06] hover:border-white/[0.12]'
+                    : 'border-black/[0.06] dark:border-white/[0.06] hover:border-black/[0.12] dark:hover:border-black/[0.12] dark:border-white/[0.12]'
                 }`}
               >
                 <button
@@ -90,7 +90,7 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
               <div className="space-y-4 text-sm">
                 <a
                   href="mailto:info@blueberry.codes"
-                  className="flex items-center gap-3 text-zinc-300 hover:text-white transition-colors group"
+                  className="flex items-center gap-3 text-zinc-300 hover:text-black dark:text-white transition-colors group"
                 >
                   <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Mail className="w-4 h-4 text-blue-300" />
@@ -105,7 +105,7 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
                 </div>
                 <a
                   href="tel:+995598449644"
-                  className="flex items-center gap-3 text-zinc-300 hover:text-white transition-colors group"
+                  className="flex items-center gap-3 text-zinc-300 hover:text-black dark:text-white transition-colors group"
                 >
                   <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Phone className="w-4 h-4 text-blue-300" />
@@ -207,7 +207,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-white/[0.08] bg-zinc-950/70 backdrop-blur-xl rounded-3xl p-8 md:p-10 space-y-5"
+      className="border border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-zinc-950/70 backdrop-blur-xl rounded-3xl p-8 md:p-10 space-y-5"
     >
       {error && (
         <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-sm text-amber-300">
@@ -223,7 +223,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder={t.placeholderName}
-            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
 
@@ -234,7 +234,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder={t.placeholderEmail}
-            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
       </div>
@@ -246,7 +246,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.company}
             onChange={(e) => setForm({ ...form, company: e.target.value })}
             placeholder={t.placeholderCompany}
-            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
 
@@ -254,15 +254,15 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           <select
             value={form.budget}
             onChange={(e) => setForm({ ...form, budget: e.target.value })}
-            className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
           >
-            <option value="" className="bg-zinc-900">
+            <option value="" className="bg-zinc-50 dark:bg-zinc-900">
               {t.contactSelectBudget}
             </option>
-            <option value="$5,000 - $15,000" className="bg-zinc-900">$5,000 – $15,000</option>
-            <option value="$15,000 - $40,000" className="bg-zinc-900">$15,000 – $40,000</option>
-            <option value="$40,000 - $100,000" className="bg-zinc-900">$40,000 – $100,000</option>
-            <option value="$100,000+" className="bg-zinc-900">$100,000+</option>
+            <option value="$5,000 - $15,000" className="bg-zinc-50 dark:bg-zinc-900">$5,000 – $15,000</option>
+            <option value="$15,000 - $40,000" className="bg-zinc-50 dark:bg-zinc-900">$15,000 – $40,000</option>
+            <option value="$40,000 - $100,000" className="bg-zinc-50 dark:bg-zinc-900">$40,000 – $100,000</option>
+            <option value="$100,000+" className="bg-zinc-50 dark:bg-zinc-900">$100,000+</option>
           </select>
         </FormField>
       </div>
@@ -274,7 +274,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder={t.placeholderMessage}
-          className="w-full px-4 py-3.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/40 transition-all"
+          className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/40 transition-all"
         />
       </FormField>
 

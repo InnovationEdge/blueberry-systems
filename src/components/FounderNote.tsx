@@ -20,7 +20,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
         {/* Portrait — left, 5 cols, with parallax */}
         <div className="lg:col-span-5 order-2 lg:order-1">
           <Reveal>
-            <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-white/[0.10] shadow-2xl shadow-blue-500/10">
+            <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-black/[0.10] dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
               <motion.img
                 src="/team/founder.png"
                 alt="Tiko Shakeladze — Founder of Blueberry Systems"
@@ -30,9 +30,9 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
               {/* Floating identity card */}
-              <div className="absolute bottom-5 left-5 right-5 backdrop-blur-xl bg-black/40 border border-white/[0.12] rounded-2xl p-4 flex items-center justify-between">
+              <div className="absolute bottom-5 left-5 right-5 backdrop-blur-xl bg-black/40 border border-black/[0.12] dark:border-white/[0.12] rounded-2xl p-4 flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-bold tracking-tight text-white">Tiko Shakeladze</p>
+                  <p className="text-sm font-bold tracking-tight text-black dark:text-white">Tiko Shakeladze</p>
                   <p className="text-[11px] text-zinc-300 mt-0.5">Founder & CEO · Tbilisi</p>
                 </div>
                 <a
@@ -45,12 +45,12 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
               </div>
 
               {/* Tag */}
-              <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/[0.15]">
+              <div className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-black/[0.15] dark:border-white/[0.15]">
                 <span className="relative flex w-1.5 h-1.5">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
                 </span>
-                <span className="text-[10px] text-white uppercase tracking-[0.22em] font-semibold">
+                <span className="text-[10px] text-black dark:text-white uppercase tracking-[0.22em] font-semibold">
                   Available for calls
                 </span>
               </div>
@@ -96,10 +96,10 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
           {/* Signature */}
           <motion.div
             style={{ opacity: sigOpacity }}
-            className="mt-10 pt-8 border-t border-white/[0.06] flex items-center justify-between gap-6 flex-wrap"
+            className="mt-10 pt-8 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-6 flex-wrap"
           >
             <div>
-              <p className="text-3xl md:text-4xl text-white tracking-tight leading-none font-semibold">
+              <p className="text-3xl md:text-4xl text-black dark:text-white tracking-tight leading-none font-semibold">
                 — Tiko
               </p>
               <p className="text-[11px] text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">
@@ -108,7 +108,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
             </div>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 text-sm text-white hover:text-blue-300 transition-colors font-medium"
+              className="group inline-flex items-center gap-2 text-sm text-black dark:text-white hover:text-blue-300 transition-colors font-medium"
             >
               Reach me directly
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

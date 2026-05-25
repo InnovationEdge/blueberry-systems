@@ -32,13 +32,13 @@ export function Careers({ t }: { t: ReturnType<typeof getT> }) {
               <Reveal key={i} delay={i * 0.05}>
                 <button
                   onClick={() => setApplyJob(j.title)}
-                  className="w-full flex items-center justify-between p-6 border border-white/[0.06] rounded-2xl hover:border-blue-500/30 hover:bg-blue-600/[0.04] transition-all group text-left"
+                  className="w-full flex items-center justify-between p-6 border border-black/[0.06] dark:border-white/[0.06] rounded-2xl hover:border-blue-500/30 hover:bg-blue-600/[0.04] transition-all group text-left"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 min-w-0">
                     <h3 className="font-semibold text-base group-hover:text-blue-300 transition-colors">
                       {j.title}
                     </h3>
-                    <span className="text-[11px] text-zinc-500 bg-white/[0.04] border border-white/[0.06] px-3 py-1 rounded-full font-mono uppercase tracking-wider">
+                    <span className="text-[11px] text-zinc-500 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.06] px-3 py-1 rounded-full font-mono uppercase tracking-wider">
                       {j.dept}
                     </span>
                   </div>
@@ -104,7 +104,7 @@ function ApplyModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 24 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-zinc-950 border border-white/[0.08] rounded-3xl z-50 p-8 overflow-y-auto max-h-[92vh]"
+            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-white dark:bg-zinc-950 border border-black/[0.08] dark:border-white/[0.08] rounded-3xl z-50 p-8 overflow-y-auto max-h-[92vh]"
             role="dialog"
             aria-modal="true"
             aria-label={t.applyNow}
@@ -117,7 +117,7 @@ function ApplyModal({
               <button
                 onClick={handleClose}
                 aria-label="Close"
-                className="p-2 text-zinc-400 hover:text-white hover:bg-white/[0.06] rounded-full transition-colors"
+                className="p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-black/[0.06] dark:bg-white/[0.06] rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -164,7 +164,7 @@ function ApplyModal({
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
+                    className="w-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -176,7 +176,7 @@ function ApplyModal({
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
+                    className="w-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -187,14 +187,14 @@ function ApplyModal({
                     type="text"
                     readOnly
                     value={job || ''}
-                    className="w-full bg-white/[0.02] border border-white/[0.06] rounded-xl px-4 py-3 text-sm text-zinc-400 cursor-default"
+                    className="w-full bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] rounded-xl px-4 py-3 text-sm text-zinc-400 cursor-default"
                   />
                 </div>
                 <div>
                   <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mb-2">
                     {t.applyResume}
                   </label>
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/[0.08] rounded-xl cursor-pointer hover:border-blue-500/30 transition-colors bg-white/[0.02]">
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-black/[0.08] dark:border-white/[0.08] rounded-xl cursor-pointer hover:border-blue-500/30 transition-colors bg-black/[0.02] dark:bg-white/[0.02]">
                     <Upload className="w-6 h-6 text-zinc-500 mb-2" />
                     <span className="text-xs text-zinc-400">
                       {form.resume ? form.resume.name : t.applyDragDrop}

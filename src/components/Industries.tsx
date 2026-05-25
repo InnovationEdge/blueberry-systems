@@ -15,7 +15,7 @@ export function Industries() {
               <SectionEyebrow num="·" label="Industries we ship into" />
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight max-w-xl text-zinc-300">
                 Six sectors. One playbook:{' '}
-                <span className="text-white">build the part that matters,</span>{' '}
+                <span className="text-black dark:text-white">build the part that matters,</span>{' '}
                 cut the rest.
               </h2>
             </div>
@@ -30,7 +30,7 @@ export function Industries() {
             <Reveal key={s.name} delay={i * 0.05}>
               <a
                 href="#portfolio"
-                className="group block rounded-2xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.04] p-4 lift transition-all"
+                className="group block rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.01] dark:bg-white/[0.01] hover:bg-black/[0.04] dark:hover:bg-black/[0.04] dark:bg-white/[0.04] p-4 lift transition-all"
                 style={{ ['--accent' as string]: s.accent }}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -42,7 +42,7 @@ export function Industries() {
                     {s.codename}
                   </span>
                 </div>
-                <p className="text-base font-bold tracking-tight text-white group-hover:text-zinc-200 transition-colors">
+                <p className="text-base font-bold tracking-tight text-black dark:text-white group-hover:text-zinc-800 dark:text-zinc-200 transition-colors">
                   {s.name}
                 </p>
               </a>

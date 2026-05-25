@@ -91,7 +91,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
             </div>
             <a
               href="#contact"
-              className="hidden md:inline-flex text-sm text-zinc-400 hover:text-white transition-colors items-center gap-2 self-end"
+              className="hidden md:inline-flex text-sm text-zinc-400 hover:text-black dark:text-white transition-colors items-center gap-2 self-end"
             >
               {t.bookCall} <ArrowUpRight className="w-4 h-4" />
             </a>
@@ -107,7 +107,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                 <button
                   type="button"
                   onClick={() => onOpen(originalIdx)}
-                  className="group relative w-full text-left lift rounded-3xl border border-white/[0.06] bg-white/[0.015] hover:border-white/[0.14] overflow-hidden h-full flex flex-col"
+                  className="group relative w-full text-left lift rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-black/[0.14] dark:border-white/[0.14] overflow-hidden h-full flex flex-col"
                 >
                   <BorderBeam
                     size={70}
@@ -132,7 +132,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                     </div>
                     <h3 className="text-xl font-bold mb-2 tracking-tight">{p.title}</h3>
                     <p className="text-sm text-zinc-500 leading-relaxed mb-5 flex-1">{p.desc}</p>
-                    <div className="flex items-center justify-between text-[12px] text-zinc-500 pt-4 border-t border-white/[0.06] group-hover:text-blue-300 transition-colors">
+                    <div className="flex items-center justify-between text-[12px] text-zinc-500 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] group-hover:text-blue-300 transition-colors">
                       <span>{t.viewProject}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>

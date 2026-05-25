@@ -46,7 +46,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
               <div key={i} className={isFeature ? 'md:col-span-3 lg:col-span-2 lg:row-span-2' : ''}>
                 <ScaleIn delay={i * 0.06}>
                   <article
-                    className="group relative h-full min-h-[280px] lift rounded-3xl border border-white/[0.06] bg-white/[0.015] hover:border-white/[0.12] hover:bg-white/[0.03] p-8 md:p-10 overflow-hidden"
+                    className="group relative h-full min-h-[280px] lift rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.12] dark:hover:border-black/[0.12] dark:border-white/[0.12] hover:bg-black/[0.03] dark:bg-white/[0.03] p-8 md:p-10 overflow-hidden"
                     style={{ ['--accent' as string]: accent }}
                   >
                     {/* Accent glow */}
@@ -87,7 +87,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
                         {s.stats.map((stat) => (
                           <span
                             key={stat}
-                            className="px-3 py-1.5 text-[11px] font-mono rounded-full border border-white/[0.08] text-zinc-400"
+                            className="px-3 py-1.5 text-[11px] font-mono rounded-full border border-black/[0.08] dark:border-white/[0.08] text-zinc-400"
                           >
                             {stat}
                           </span>
@@ -109,7 +109,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
 export function TechStrip({ t }: { t: ReturnType<typeof getT> }) {
   const allTech = TECH_GROUPS.flatMap((g) => g.items);
   return (
-    <section className="py-16 md:py-20 border-y border-white/[0.04]">
+    <section className="py-16 md:py-20 border-y border-black/[0.04] dark:border-white/[0.04]">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 mb-8">
         <Reveal>
           <p className="text-center text-zinc-500 text-[11px] uppercase tracking-[0.32em] font-medium">
@@ -122,7 +122,7 @@ export function TechStrip({ t }: { t: ReturnType<typeof getT> }) {
           {allTech.map((tech) => (
             <div
               key={tech.name}
-              className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-white/[0.05] bg-white/[0.015] whitespace-nowrap"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-black/[0.05] dark:border-white/[0.05] bg-black/[0.015] dark:bg-white/[0.015] whitespace-nowrap"
             >
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: tech.color, boxShadow: `0 0 10px ${tech.color}55` }} />
               <span className="text-sm text-zinc-300 font-medium">{tech.name}</span>
@@ -136,7 +136,7 @@ export function TechStrip({ t }: { t: ReturnType<typeof getT> }) {
           {[...allTech].reverse().map((tech) => (
             <div
               key={`r-${tech.name}`}
-              className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-white/[0.05] bg-white/[0.015] whitespace-nowrap"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-black/[0.05] dark:border-white/[0.05] bg-black/[0.015] dark:bg-white/[0.015] whitespace-nowrap"
             >
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: tech.color }} />
               <span className="text-sm text-zinc-300 font-medium">{tech.name}</span>
@@ -203,12 +203,12 @@ export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
     { v: '15+', l: t.clients },
   ];
   return (
-    <section className="py-20 md:py-24 border-t border-white/[0.04]">
+    <section className="py-20 md:py-24 border-t border-black/[0.04] dark:border-white/[0.04]">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.06] border border-white/[0.06] rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/[0.06] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.06] rounded-3xl overflow-hidden">
           {stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <div className="bg-black/40 backdrop-blur-sm p-8 md:p-10 h-full flex flex-col items-start group hover:bg-white/[0.02] transition-colors">
+              <div className="bg-black/40 backdrop-blur-sm p-8 md:p-10 h-full flex flex-col items-start group hover:bg-black/[0.02] dark:bg-white/[0.02] transition-colors">
                 <p className="text-5xl md:text-6xl font-extrabold tracking-tighter shimmer-text">{s.v}</p>
                 <p className="text-[11px] text-zinc-500 mt-4 uppercase tracking-[0.22em] font-medium">{s.l}</p>
               </div>

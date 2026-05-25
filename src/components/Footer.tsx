@@ -1,22 +1,19 @@
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react';
 import { useState } from 'react';
+import { Logo } from './Logo';
 import type { getT } from '../i18n';
 
 export function Footer({ t }: { t: ReturnType<typeof getT> }) {
   return (
-    <footer className="relative border-t border-white/[0.06] py-16">
+    <footer className="relative border-t border-black/[0.06] dark:border-white/[0.06] py-16">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div className="flex items-center gap-4">
-          <img
-            src="/logo-brand-white.svg"
-            alt="Blueberry Systems"
-            className="h-8 w-auto opacity-60 hover:opacity-90 transition-opacity"
-          />
-          <div className="w-px h-5 bg-white/[0.10]" />
-          <span className="text-[11px] text-zinc-500 tracking-wide">© {t.footerRights}</span>
+          <Logo className="h-8 w-auto opacity-60 hover:opacity-90 transition-opacity" />
+          <div className="w-px h-5 bg-black/[0.10] dark:bg-white/[0.10]" />
+          <span className="text-[11px] text-zinc-600 dark:text-zinc-500 tracking-wide">© {t.footerRights}</span>
         </div>
-        <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-500">
+        <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-600 dark:text-zinc-500">
           <a
             href="https://blueberryedu.ge"
             target="_blank"
@@ -29,7 +26,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://github.com/InnovationEdge"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-zinc-300 transition-colors"
+            className="hover:text-black dark:hover:text-zinc-300 transition-colors"
           >
             GitHub
           </a>
@@ -37,14 +34,14 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://www.linkedin.com/company/blueberry-systems"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-zinc-300 transition-colors"
+            className="hover:text-black dark:hover:text-zinc-300 transition-colors"
           >
             LinkedIn
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-black dark:hover:text-zinc-300 transition-colors">
             {t.footerTerms}
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-black dark:hover:text-zinc-300 transition-colors">
             {t.footerPrivacy}
           </a>
         </div>
@@ -67,7 +64,7 @@ export function ScrollToTop() {
           exit={{ opacity: 0, scale: 0.85 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Scroll to top"
-          className="fixed bottom-6 right-6 z-40 w-11 h-11 bg-white text-black rounded-full flex items-center justify-center shadow-2xl shadow-black/40 hover:bg-zinc-200 transition-colors"
+          className="fixed bottom-6 right-6 z-40 w-11 h-11 bg-black text-black dark:text-white dark:bg-white dark:text-black rounded-full flex items-center justify-center shadow-2xl shadow-black/30 hover:opacity-90 transition-opacity"
         >
           <ArrowUp className="w-5 h-5" />
         </motion.button>
