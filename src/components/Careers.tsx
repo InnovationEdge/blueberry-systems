@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, Check, Upload, X } from 'lucide-react';
-import { Reveal } from './primitives';
+import { Reveal, SectionEyebrow } from './primitives';
 import type { getT } from '../i18n';
 
 export function Careers({ t }: { t: ReturnType<typeof getT> }) {
@@ -20,9 +20,7 @@ export function Careers({ t }: { t: ReturnType<typeof getT> }) {
       <section id="careers" className="py-24 md:py-36">
         <div className="max-w-[1400px] mx-auto px-6 md:px-16">
           <Reveal>
-            <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center gap-2.5">
-              <span className="w-6 h-px bg-blue-400/50" /> {t.joinUs}
-            </p>
+            <SectionEyebrow num="08" label={t.joinUs} />
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em] mb-4">
               {t.careersTitle}
             </h2>

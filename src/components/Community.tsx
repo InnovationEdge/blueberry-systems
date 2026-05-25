@@ -1,4 +1,4 @@
-import { Reveal, Marquee } from './primitives';
+import { Reveal, Marquee, SectionEyebrow } from './primitives';
 import type { getT } from '../i18n';
 
 export function Blog({ t }: { t: ReturnType<typeof getT> }) {
@@ -14,9 +14,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
-              <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center gap-2.5">
-                <span className="w-6 h-px bg-blue-400/50" /> {t.insights}
-              </p>
+              <SectionEyebrow num="06" label={t.insights} />
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em]">{t.blogTitle}</h2>
             </div>
           </div>
@@ -67,9 +65,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
         <Reveal>
           <div className="grid md:grid-cols-2 gap-10 items-end mb-14">
             <div>
-              <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center gap-2.5">
-                <span className="w-6 h-px bg-blue-400/50" /> {t.ourTeam}
-              </p>
+              <SectionEyebrow num="07" label={t.ourTeam} />
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em]">{t.teamTitle}</h2>
             </div>
             <p className="text-zinc-400 leading-relaxed text-lg max-w-xl">{t.teamDesc}</p>

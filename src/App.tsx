@@ -8,6 +8,7 @@ import { Blog, Team, Partners } from './components/Community';
 import { Careers } from './components/Careers';
 import { FAQ, Contact } from './components/Contact';
 import { Footer, ScrollToTop } from './components/Footer';
+import { ScrollProgress, NowBuilding } from './components/ScrollProgress';
 import { getT } from './i18n';
 
 const ProjectModal = lazy(() =>
@@ -21,6 +22,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden noise-overlay">
+      <ScrollProgress />
       <Header t={t} lang={lang} setLang={setLang} />
 
       <Hero t={t} />
@@ -45,6 +47,7 @@ export default function App() {
       </Suspense>
 
       <ScrollToTop />
+      <NowBuilding projects={['NovaPay v2', 'EduVerse Live']} />
     </div>
   );
 }

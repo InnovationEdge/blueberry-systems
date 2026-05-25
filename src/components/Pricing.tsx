@@ -1,5 +1,5 @@
 import { CheckCircle, Quote } from 'lucide-react';
-import { Reveal, MagneticButton } from './primitives';
+import { Reveal, MagneticButton, SectionEyebrow } from './primitives';
 import { TESTIMONIALS, AVATAR_COLORS } from '../data';
 import type { getT } from '../i18n';
 
@@ -60,10 +60,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
       <div className="max-w-[1400px] mx-auto px-6 md:px-16">
         <Reveal>
           <div className="text-center mb-16">
-            <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center justify-center gap-2.5">
-              <span className="w-6 h-px bg-blue-400/50" /> {t.pricing}{' '}
-              <span className="w-6 h-px bg-blue-400/50" />
-            </p>
+            <SectionEyebrow num="04" label={t.pricing} center />
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em]">{t.pricingTitle}</h2>
             <p className="text-zinc-500 mt-5 max-w-lg mx-auto leading-relaxed">{t.pricingDesc}</p>
           </div>
@@ -132,10 +129,7 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
     <section className="py-24 md:py-36 bg-black">
       <div className="max-w-[1600px] mx-auto px-6 md:px-16 xl:px-24">
         <Reveal>
-          <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 text-center flex items-center justify-center gap-2.5">
-            <span className="w-6 h-px bg-blue-400/50" /> {t.testimonials}{' '}
-            <span className="w-6 h-px bg-blue-400/50" />
-          </p>
+          <SectionEyebrow num="05" label={t.testimonials} center />
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em] text-center mb-16">
             {t.testimonialsTitle}
           </h2>

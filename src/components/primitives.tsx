@@ -288,6 +288,22 @@ export function CursorSpotlight({ color = 'rgba(59,130,246,0.15)' }: { color?: s
   );
 }
 
+/* ─── Section eyebrow (reusable label with serial number) ─── */
+export function SectionEyebrow({ num, label, center = false }: { num: string; label: string; center?: boolean }) {
+  return (
+    <p
+      className={`text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center gap-2.5 ${
+        center ? 'justify-center' : ''
+      }`}
+    >
+      <span className="font-mono text-zinc-600">/{num}</span>
+      <span className="w-6 h-px bg-blue-400/50" />
+      {label}
+      {center && <span className="w-6 h-px bg-blue-400/50" />}
+    </p>
+  );
+}
+
 /* ─── Marquee (auto-scrolling horizontal strip) ─── */
 export function Marquee({ children, speed = 32, reverse = false, className = '' }: { children: ReactNode; speed?: number; reverse?: boolean; className?: string }) {
   const reduced = useReducedMotion();

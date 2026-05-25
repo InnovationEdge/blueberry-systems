@@ -1,5 +1,5 @@
 import { Code2, Megaphone, Palette, TrendingUp } from 'lucide-react';
-import { Reveal, ScaleIn, Marquee } from './primitives';
+import { Reveal, ScaleIn, Marquee, SectionEyebrow } from './primitives';
 import { TECH_GROUPS } from '../data';
 import type { getT } from '../i18n';
 
@@ -27,10 +27,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
-              <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center gap-2.5">
-                <span className="w-6 h-px bg-blue-400/50" />
-                {t.whatWeDo}
-              </p>
+              <SectionEyebrow num="01" label={t.whatWeDo} />
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] max-w-3xl">
                 {t.servicesTitle}
               </h2>
@@ -163,11 +160,7 @@ export function Process({ t }: { t: ReturnType<typeof getT> }) {
     <section id="process" className="py-24 md:py-36 relative">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
         <Reveal>
-          <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 text-center flex items-center justify-center gap-2.5">
-            <span className="w-6 h-px bg-blue-400/50" />
-            {t.howWeWork}
-            <span className="w-6 h-px bg-blue-400/50" />
-          </p>
+          <SectionEyebrow num="02" label={t.howWeWork} center />
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em] text-center mb-20 max-w-3xl mx-auto">
             {t.processTitle}
           </h2>

@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import { Reveal } from './primitives';
+import { Reveal, SectionEyebrow } from './primitives';
 import { PORTFOLIO } from '../data';
 import type { getT } from '../i18n';
 
@@ -84,9 +84,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div>
-              <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-4 flex items-center gap-2.5">
-                <span className="w-6 h-px bg-blue-400/50" /> {t.selectedWork}
-              </p>
+              <SectionEyebrow num="03" label={t.selectedWork} />
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] max-w-3xl">
                 {t.portfolioTitle}
               </h2>

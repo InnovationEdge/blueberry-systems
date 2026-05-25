@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle, Mail, MapPin, Phone } from 'lucide-react';
-import { Reveal, SlideIn, FloatingOrb } from './primitives';
+import { Reveal, SlideIn, FloatingOrb, SectionEyebrow } from './primitives';
 import type { getT } from '../i18n';
 
 export function FAQ({ t }: { t: ReturnType<typeof getT> }) {
@@ -80,9 +80,7 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-2">
             <Reveal>
-              <p className="text-blue-400 text-[11px] font-semibold uppercase tracking-[0.28em] mb-5">
-                {t.getInTouch}
-              </p>
+              <SectionEyebrow num="09" label={t.getInTouch} />
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] mb-6 whitespace-pre-line">
                 {t.contactTitle}
               </h2>
