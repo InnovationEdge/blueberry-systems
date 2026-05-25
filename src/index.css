@@ -1,49 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-html {
-  scroll-behavior: smooth;
+:root {
+  --bb-bg: #050507;
+  --bb-bg-soft: #0a0a0d;
+  --bb-fg: #f4f4f6;
+  --bb-muted: #8a8a93;
+  --bb-blue: #3b82f6;
+  --bb-cyan: #06b6d4;
+  --bb-violet: #8b5cf6;
+  --bb-border: rgba(255, 255, 255, 0.06);
+  --bb-border-strong: rgba(255, 255, 255, 0.12);
 }
+
+html { scroll-behavior: smooth; }
+html, body { background: var(--bb-bg); }
 
 body {
   margin: 0;
-  background: #000;
-  color: #fff;
+  color: var(--bb-fg);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-::selection {
-  background-color: #3b82f6;
-  color: white;
+.font-serif { font-family: 'Instrument Serif', Georgia, serif; }
+.font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+::selection { background-color: var(--bb-blue); color: #fff; }
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% / 3)); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* ─── Premium: Noise grain overlay ─── */
+/* ─── Grain overlay (film texture) ─── */
 .noise-overlay::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
 }
 
-/* ─── Premium: Glow effects ─── */
-.glow-blue {
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.08), 0 0 80px rgba(59, 130, 246, 0.04);
+/* ─── Grid pattern background ─── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: -1px -1px;
 }
-.glow-blue-hover:hover {
-  box-shadow: 0 0 50px rgba(59, 130, 246, 0.15), 0 0 100px rgba(59, 130, 246, 0.06);
+.bg-grid-fade {
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* ─── Glow effects ─── */
+.glow-blue {
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.10), 0 0 80px rgba(59, 130, 246, 0.04);
+}
+.glow-blue-strong {
+  box-shadow: 0 0 60px rgba(59, 130, 246, 0.20), 0 0 120px rgba(59, 130, 246, 0.08);
 }
 .glow-border {
   position: relative;
@@ -54,25 +90,79 @@ body {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(59,130,246,0.2), transparent 40%, transparent 60%, rgba(139,92,246,0.2));
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), transparent 40%, transparent 60%, rgba(139, 92, 246, 0.3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+          mask-composite: exclude;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s;
 }
-.glow-border:hover::after {
-  opacity: 1;
+.glow-border:hover::after { opacity: 1; }
+
+/* ─── Animated gradient border (premium cards) ─── */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--bb-bg-soft), var(--bb-bg-soft)) padding-box,
+              linear-gradient(135deg, rgba(59,130,246,0.4), rgba(139,92,246,0.4)) border-box;
+  border: 1px solid transparent;
 }
 
-/* ─── Premium: Smooth focus glow on inputs ─── */
+/* ─── Shimmer text effect ─── */
+.shimmer-text {
+  background: linear-gradient(110deg, #ffffff 30%, #93c5fd 50%, #ffffff 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+/* ─── Focus rings ─── */
 input:focus, textarea:focus, select:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.08);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.18), 0 0 24px rgba(59, 130, 246, 0.08);
+}
+button:focus-visible, a:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* ─── Premium: Scrollbar ─── */
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+
+/* ─── Premium card hover lift ─── */
+.lift {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease;
+  will-change: transform;
+}
+.lift:hover {
+  transform: translateY(-4px);
+}
+
+/* ─── Mockup chip bar (used inside portfolio cards) ─── */
+.mockup-bar {
+  background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+  border-radius: 4px;
+}
+.mockup-dot {
+  width: 8px; height: 8px; border-radius: 50%; opacity: 0.6;
+}
+
+/* ─── Accessibility ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .shimmer-text { animation: none; background: #fff; -webkit-text-fill-color: #fff; }
+  html { scroll-behavior: auto; }
+}
