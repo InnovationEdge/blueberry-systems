@@ -80,19 +80,19 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="font-extrabold leading-[0.86] tracking-[-0.05em] mb-10 max-w-[1300px]"
-            style={{ fontSize: 'clamp(3rem, 9vw, 9.5rem)' }}
+            className="font-extrabold leading-[0.98] tracking-[-0.04em] mb-10 max-w-[1300px]"
+            style={{ fontSize: 'clamp(2.8rem, 8.5vw, 9rem)' }}
           >
-            <span className="block text-black dark:text-white">{t.heroPrefix}</span>
-            <span className="block">
+            <span className="block text-black dark:text-white pb-1">{t.heroPrefix}</span>
+            <span className="block leading-[1.05] py-1">
               <KineticWords
                 words={t.heroWords as unknown as string[]}
-                className="bg-gradient-to-br from-blue-300 via-cyan-200 to-violet-300 bg-clip-text text-transparent"
+                className="bg-gradient-to-br from-blue-500 via-cyan-400 to-violet-500 dark:from-blue-300 dark:via-cyan-200 dark:to-violet-300 bg-clip-text text-transparent"
               />
             </span>
             <span
-              className="block text-zinc-400 font-light tracking-tight"
-              style={{ fontSize: '0.7em', lineHeight: 0.95 }}
+              className="block text-zinc-500 dark:text-zinc-400 font-light tracking-tight mt-2"
+              style={{ fontSize: '0.68em', lineHeight: 1.05 }}
             >
               {t.digitalProducts}
             </span>
@@ -255,17 +255,17 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             </div>
 
             {/* Floating accent stickers */}
-            <div className="hidden md:block absolute -top-6 -left-6 px-4 py-2 rounded-xl border border-black/[0.12] dark:border-white/[0.12] bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-xl rotate-[-4deg]">
-              <p className="text-[10px] text-zinc-500 uppercase tracking-[0.22em] font-mono">
+            <div className="hidden md:block absolute -top-6 -left-6 px-4 py-2.5 rounded-xl border border-black/[0.12] dark:border-white/[0.12] bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-xl rotate-[-4deg]">
+              <p className="text-[10px] leading-none text-zinc-500 uppercase tracking-[0.22em] font-mono mb-1.5">
                 /avg
               </p>
-              <p className="text-sm text-black dark:text-white font-semibold mt-0.5">10-week launch</p>
+              <p className="text-sm leading-none text-black dark:text-white font-semibold">10-week launch</p>
             </div>
-            <div className="hidden md:block absolute -bottom-5 -right-5 px-4 py-2 rounded-xl border border-blue-500/30 bg-blue-500/[0.08] backdrop-blur-xl shadow-xl rotate-[3deg]">
-              <p className="text-[10px] text-blue-600 dark:text-blue-300 uppercase tracking-[0.22em] font-mono">
+            <div className="hidden md:block absolute -bottom-5 -right-5 px-4 py-2.5 rounded-xl border border-blue-500/30 bg-blue-500/[0.08] backdrop-blur-xl shadow-xl rotate-[3deg]">
+              <p className="text-[10px] leading-none text-blue-600 dark:text-blue-300 uppercase tracking-[0.22em] font-mono mb-1.5">
                 /sla
               </p>
-              <p className="text-sm text-black dark:text-white font-semibold mt-0.5">99.99% uptime</p>
+              <p className="text-sm leading-none text-black dark:text-white font-semibold">99.99% uptime</p>
             </div>
           </motion.div>
 
