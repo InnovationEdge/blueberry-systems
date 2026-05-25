@@ -83,16 +83,16 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             className="font-extrabold leading-[0.98] tracking-[-0.04em] mb-10 max-w-[1300px]"
             style={{ fontSize: 'clamp(2.8rem, 8.5vw, 9rem)' }}
           >
-            <span className="block text-black dark:text-white pb-1">{t.heroPrefix}</span>
-            <span className="block leading-[1.05] py-1">
+            <span className="block text-black dark:text-white pb-2">{t.heroPrefix}</span>
+            <span className="block leading-[1.1] py-2">
               <KineticWords
                 words={t.heroWords as unknown as string[]}
                 className="bg-gradient-to-br from-blue-500 via-cyan-400 to-violet-500 dark:from-blue-300 dark:via-cyan-200 dark:to-violet-300 bg-clip-text text-transparent"
               />
             </span>
             <span
-              className="block text-zinc-500 dark:text-zinc-400 font-light tracking-tight mt-2"
-              style={{ fontSize: '0.68em', lineHeight: 1.05 }}
+              className="block text-zinc-500 dark:text-zinc-400 font-light tracking-tight mt-4"
+              style={{ fontSize: '0.65em', lineHeight: 1.1 }}
             >
               {t.digitalProducts}
             </span>
