@@ -51,7 +51,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
 
 export function Team({ t }: { t: ReturnType<typeof getT> }) {
   const members = [
-    { name: 'Alex Mitchell', role: t.role1, img: '/team/member-8.png' },
+    { name: 'Tiko Shakeladze', role: t.role1, img: '/team/founder.png', founder: true },
     { name: 'Luka Kapanadze', role: t.role2, img: '/team/member-9.png' },
     { name: 'Nika Gelashvili', role: t.role3, img: '/team/member-10.png' },
     { name: 'Ana Javakhishvili', role: t.role4, img: '/team/member-11.png' },
@@ -76,13 +76,22 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
           {members.map((m, i) => (
             <Reveal key={i} delay={i * 0.06}>
               <div className="group text-center">
-                <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-white/[0.06] group-hover:border-blue-500/30 transition-all duration-300 bg-zinc-900">
+                <div className={`relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border transition-all duration-300 bg-zinc-900 ${
+                  m.founder
+                    ? 'border-blue-500/40 shadow-lg shadow-blue-500/20 group-hover:border-blue-400/60'
+                    : 'border-white/[0.06] group-hover:border-blue-500/30'
+                }`}>
                   <img
                     src={m.img}
                     alt={m.name}
                     loading="lazy"
-                    className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-700"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700"
                   />
+                  {m.founder && (
+                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-blue-500/90 backdrop-blur-sm text-[9px] font-bold uppercase tracking-[0.2em] text-white">
+                      Founder
+                    </div>
+                  )}
                 </div>
                 <h3 className="font-semibold text-sm tracking-tight mb-1">{m.name}</h3>
                 <p className="text-xs text-zinc-500">{m.role}</p>
@@ -96,17 +105,20 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
 }
 
 export function Partners({ t }: { t: ReturnType<typeof getT> }) {
-  const logos = [
-    '/logos/partner-1.svg',
-    '/logos/partner-2.svg',
-    '/logos/partner-3.svg',
-    '/logos/partner-4.svg',
-    '/logos/showcase-2.svg',
-    '/logos/showcase-3.svg',
-    '/logos/showcase-4.svg',
-    '/logos/showcase-5.svg',
-    '/logos/showcase-6.svg',
-    '/logos/showcase-7.svg',
+  // Real partner ecosystem (wordmarks rendered as type — no fake logos)
+  const partners = [
+    { name: 'AWS', tier: 'Cloud Partner' },
+    { name: 'Vercel', tier: 'Pro Partner' },
+    { name: 'Supabase', tier: 'Solutions' },
+    { name: 'Stripe', tier: 'Verified Builder' },
+    { name: 'OpenAI', tier: 'API Builder' },
+    { name: 'Google Cloud', tier: 'Partner' },
+    { name: 'Cloudflare', tier: 'Solutions' },
+    { name: 'GitHub', tier: 'Verified Org' },
+    { name: 'Linear', tier: 'Apps' },
+    { name: 'Figma', tier: 'Plugin Author' },
+    { name: 'Sentry', tier: 'Integrations' },
+    { name: 'Datadog', tier: 'Partner' },
   ];
 
   return (
@@ -122,19 +134,20 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
         </Reveal>
       </div>
 
-      <Marquee speed={40}>
+      <Marquee speed={45}>
         <>
-          {logos.map((src, i) => (
+          {partners.map((p) => (
             <div
-              key={i}
-              className="opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              key={p.name}
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-white/[0.06] bg-white/[0.015] whitespace-nowrap hover:border-white/[0.18] hover:bg-white/[0.04] transition-colors"
             >
-              <img
-                src={src}
-                alt=""
-                loading="lazy"
-                className="h-12 md:h-16 w-auto max-w-[180px] object-contain invert brightness-200"
-              />
+              <span className="text-[15px] md:text-base font-bold tracking-tight text-white">
+                {p.name}
+              </span>
+              <span className="w-px h-4 bg-white/[0.12]" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-mono">
+                {p.tier}
+              </span>
             </div>
           ))}
         </>

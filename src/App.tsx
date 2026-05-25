@@ -9,6 +9,7 @@ import { Careers } from './components/Careers';
 import { FAQ, Contact } from './components/Contact';
 import { Footer, ScrollToTop } from './components/Footer';
 import { ScrollProgress, NowBuilding } from './components/ScrollProgress';
+import { FounderNote } from './components/FounderNote';
 import { getT } from './i18n';
 
 const ProjectModal = lazy(() =>
@@ -30,6 +31,7 @@ export default function App() {
       <Services t={t} />
       <TechStrip t={t} />
       <Process t={t} />
+      <FounderNote t={t} />
       <Portfolio t={t} onOpen={setSelected} />
       <MiniCta t={t} />
       <Pricing t={t} />

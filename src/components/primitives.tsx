@@ -115,32 +115,30 @@ export function AnimatedCounter({ value, suffix = '' }: { value: string; suffix?
   return <span ref={ref}>{display}{suffix}</span>;
 }
 
-/* ─── Kinetic word swap (replaces TypeWriter with smoother feel) ─── */
+/* ─── Kinetic word swap (grid-stack so children keep their own background-clip) ─── */
 export function KineticWords({ words, className = '' }: { words: string[]; className?: string }) {
   const [i, setI] = useState(0);
   const reduced = useReducedMotion();
 
   useEffect(() => {
     if (reduced || words.length === 0) return;
-    const t = setInterval(() => setI(v => (v + 1) % words.length), 2400);
+    const t = setInterval(() => setI((v) => (v + 1) % words.length), 2400);
     return () => clearInterval(t);
   }, [words.length, reduced]);
 
   if (reduced) return <span className={className}>{words[0]}</span>;
 
   return (
-    <span className={`inline-block relative ${className}`} style={{ minWidth: '4ch' }}>
+    <span className="inline-grid align-baseline">
       {words.map((w, idx) => (
         <motion.span
-          key={w + idx}
+          key={w}
           aria-hidden={idx !== i}
           initial={false}
-          animate={idx === i
-            ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-            : { opacity: 0, y: 18, filter: 'blur(8px)' }}
+          animate={idx === i ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 18, filter: 'blur(8px)' }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 whitespace-nowrap"
-          style={{ position: idx === i ? 'relative' : 'absolute' }}
+          style={{ gridArea: '1 / 1', pointerEvents: idx === i ? 'auto' : 'none' }}
+          className={`whitespace-nowrap ${className}`}
         >
           {w}
         </motion.span>
