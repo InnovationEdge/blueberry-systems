@@ -47,8 +47,12 @@ export function Header({
         }`}
       >
         <div className="w-full px-6 md:px-10 h-[68px] flex items-center">
-          <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5">
-            <img src="/logo-white.svg" alt="Blueberry Systems" className="h-14 md:h-16 w-auto -my-3" />
+          <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5" aria-label="Blueberry Systems">
+            <img
+              src="/logo-brand-white.svg"
+              alt="Blueberry Systems"
+              className="h-12 md:h-14 w-auto -my-2"
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-1 flex-1">

@@ -15,7 +15,7 @@ export function Industries() {
               <SectionEyebrow num="·" label="Industries we ship into" />
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight max-w-xl text-zinc-300">
                 Six sectors. One playbook:{' '}
-                <span className="font-serif italic text-white">build the part that matters,</span>{' '}
+                <span className="text-white">build the part that matters,</span>{' '}
                 cut the rest.
               </h2>
             </div>

@@ -67,19 +67,17 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
           <Reveal delay={0.15}>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] mb-8 leading-[1.05]">
               We don't ship{' '}
-              <span className="font-serif italic font-normal text-blue-300">
-                features.
-              </span>
+              <span className="text-blue-300">features.</span>
               <br />
               We ship{' '}
-              <span className="font-serif italic font-normal bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
                 outcomes.
               </span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.25}>
-            <div className="space-y-5 text-zinc-300 text-lg leading-relaxed max-w-[60ch] font-serif">
+            <div className="space-y-5 text-zinc-300 text-lg leading-relaxed max-w-[60ch] font-light">
               <p>
                 Most agencies sell you hours. We sell you the thing your hours
                 were supposed to produce — a product your users open every day,
@@ -101,7 +99,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
             className="mt-10 pt-8 border-t border-white/[0.06] flex items-center justify-between gap-6 flex-wrap"
           >
             <div>
-              <p className="font-serif italic text-3xl md:text-4xl text-white tracking-tight leading-none">
+              <p className="text-3xl md:text-4xl text-white tracking-tight leading-none font-semibold">
                 — Tiko
               </p>
               <p className="text-[11px] text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">

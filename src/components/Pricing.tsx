@@ -140,7 +140,7 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
             <Reveal key={i} delay={i * 0.08}>
               <article className="relative border border-white/[0.06] rounded-3xl p-8 md:p-10 h-full flex flex-col hover:border-white/[0.14] transition-colors glow-border bg-white/[0.01]">
                 <Quote className="w-10 h-10 text-blue-500/30 mb-5" />
-                <p className="text-lg md:text-xl text-zinc-200 leading-relaxed flex-1 mb-8 font-serif italic">
+                <p className="text-lg md:text-xl text-zinc-200 leading-relaxed flex-1 mb-8 font-light">
                   &ldquo;{r.quote}&rdquo;
                 </p>
 

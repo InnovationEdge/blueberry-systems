@@ -9,7 +9,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div className="flex items-center gap-4">
           <img
-            src="/logo-white.svg"
+            src="/logo-brand-white.svg"
             alt="Blueberry Systems"
             className="h-8 w-auto opacity-60 hover:opacity-90 transition-opacity"
           />

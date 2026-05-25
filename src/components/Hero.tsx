@@ -91,7 +91,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               />
             </span>
             <span
-              className="block font-serif italic text-zinc-400 font-normal tracking-tight"
+              className="block text-zinc-400 font-light tracking-tight"
               style={{ fontSize: '0.7em', lineHeight: 0.95 }}
             >
               {t.digitalProducts}
