@@ -23,7 +23,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {posts.map((post, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="lift relative h-full flex flex-col border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 hover:border-black/[0.14] dark:hover:border-black/[0.14] dark:border-white/[0.14] transition-all duration-300 group bg-black/[0.01] dark:bg-white/[0.01] overflow-hidden">
+              <article className="lift relative h-full flex flex-col border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 hover:border-black/[0.14] dark:hover:border-white/[0.14] transition-all duration-300 group bg-black/[0.01] dark:bg-white/[0.01] overflow-hidden">
                 <div
                   className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   aria-hidden
@@ -51,7 +51,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
 
 export function Team({ t }: { t: ReturnType<typeof getT> }) {
   const members = [
-    { name: 'Tiko Shakeladze', role: t.role1, img: '/team/founder.png', founder: true },
+    { name: 'Irakli Kerdikoshvili', role: t.role1, img: '/team/founder.png', founder: true },
     { name: 'Luka Kapanadze', role: t.role2, img: '/team/member-9.png' },
     { name: 'Nika Gelashvili', role: t.role3, img: '/team/member-10.png' },
     { name: 'Ana Javakhishvili', role: t.role4, img: '/team/member-11.png' },
@@ -139,7 +139,7 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
           {partners.map((p) => (
             <div
               key={p.name}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] whitespace-nowrap hover:border-black/[0.18] dark:hover:border-black/[0.18] dark:border-white/[0.18] hover:bg-black/[0.04] dark:hover:bg-black/[0.04] dark:bg-white/[0.04] transition-colors"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] whitespace-nowrap hover:border-black/[0.18] dark:hover:border-white/[0.18] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-colors"
             >
               <span className="text-[15px] md:text-base font-bold tracking-tight text-black dark:text-white">
                 {p.name}

@@ -32,7 +32,7 @@ export function FAQ({ t }: { t: ReturnType<typeof getT> }) {
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   open === i
                     ? 'border-blue-500/30 bg-blue-600/[0.04]'
-                    : 'border-black/[0.06] dark:border-white/[0.06] hover:border-black/[0.12] dark:hover:border-black/[0.12] dark:border-white/[0.12]'
+                    : 'border-black/[0.06] dark:border-white/[0.06] hover:border-black/[0.12] dark:hover:border-white/[0.12]'
                 }`}
               >
                 <button

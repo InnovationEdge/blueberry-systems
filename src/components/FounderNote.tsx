@@ -23,7 +23,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
             <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-black/[0.10] dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
               <motion.img
                 src="/team/founder.png"
-                alt="Tiko Shakeladze — Founder of Blueberry Systems"
+                alt="Irakli Kerdikoshvili — Founder & CEO of Blueberry Systems"
                 style={{ y: imageY }}
                 className="absolute inset-0 w-full h-[112%] object-cover object-center"
               />
@@ -32,13 +32,13 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
               {/* Floating identity card */}
               <div className="absolute bottom-5 left-5 right-5 backdrop-blur-xl bg-black/40 border border-black/[0.12] dark:border-white/[0.12] rounded-2xl p-4 flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-bold tracking-tight text-black dark:text-white">Tiko Shakeladze</p>
+                  <p className="text-sm font-bold tracking-tight text-white">Irakli Kerdikoshvili</p>
                   <p className="text-[11px] text-zinc-300 mt-0.5">Founder & CEO · Tbilisi</p>
                 </div>
                 <a
                   href="mailto:info@blueberry.codes"
                   className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center hover:bg-zinc-200 transition-colors"
-                  aria-label="Email Tiko"
+                  aria-label="Email Irakli"
                 >
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
@@ -100,7 +100,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
           >
             <div>
               <p className="text-3xl md:text-4xl text-black dark:text-white tracking-tight leading-none font-semibold">
-                — Tiko
+                — Irakli
               </p>
               <p className="text-[11px] text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">
                 Founder · Blueberry Systems · 2020

@@ -73,7 +73,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                 className={`relative h-full flex flex-col p-8 md:p-10 rounded-3xl border transition-all duration-300 lift ${
                   p.popular
                     ? 'border-blue-500/40 bg-gradient-to-b from-blue-600/[0.10] via-blue-600/[0.04] to-transparent glow-blue-strong'
-                    : 'border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-black/[0.14] dark:border-white/[0.14]'
+                    : 'border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-white/[0.14]'
                 }`}
               >
                 {p.popular && (
@@ -110,7 +110,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                   className={`block text-center py-3.5 rounded-full text-sm font-semibold transition-all ${
                     p.popular
                       ? 'bg-white text-black hover:bg-zinc-200'
-                      : 'border border-white/15 text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-black/[0.06] dark:bg-white/[0.06]'
+                      : 'border border-white/15 text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.06]'
                   }`}
                 >
                   {t.getStarted}
@@ -126,7 +126,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
 
 export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
   return (
-    <section className="py-24 md:py-36 bg-black">
+    <section className="py-24 md:py-36 bg-white dark:bg-black">
       <div className="max-w-[1600px] mx-auto px-6 md:px-16 xl:px-24">
         <Reveal>
           <SectionEyebrow num="05" label={t.testimonials} center />
@@ -138,7 +138,7 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {TESTIMONIALS.map((r, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="relative border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 md:p-10 h-full flex flex-col hover:border-black/[0.14] dark:hover:border-black/[0.14] dark:border-white/[0.14] transition-colors glow-border bg-black/[0.01] dark:bg-white/[0.01]">
+              <article className="relative border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 md:p-10 h-full flex flex-col hover:border-black/[0.14] dark:hover:border-white/[0.14] transition-colors glow-border bg-black/[0.01] dark:bg-white/[0.01]">
                 <Quote className="w-10 h-10 text-blue-500/30 mb-5" />
                 <p className="text-lg md:text-xl text-zinc-800 dark:text-zinc-200 leading-relaxed flex-1 mb-8 font-light">
                   &ldquo;{r.quote}&rdquo;

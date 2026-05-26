@@ -60,7 +60,7 @@ export function Header({
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="px-3.5 py-2 text-[13px] text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-black dark:text-white rounded-md hover:bg-black/[0.04] dark:hover:bg-black/[0.04] dark:bg-white/[0.04] transition-all font-medium"
+                className="px-3.5 py-2 text-[13px] text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white rounded-md hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all font-medium"
               >
                 {item.label}
               </a>
@@ -71,14 +71,14 @@ export function Header({
             <AnimatedThemeToggler
               variant="circle"
               duration={500}
-              className="hidden md:inline-flex w-9 h-9 items-center justify-center rounded-md border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.18] dark:hover:border-black/[0.18] dark:border-white/[0.18] text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-black dark:text-white transition-all [&_svg]:w-4 [&_svg]:h-4"
+              className="hidden md:inline-flex w-9 h-9 items-center justify-center rounded-md border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.18] dark:hover:border-white/[0.18] text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-all [&_svg]:w-4 [&_svg]:h-4"
             />
             <div className="relative hidden md:block">
               <button
                 onClick={() => setShowLang((v) => !v)}
                 aria-haspopup="listbox"
                 aria-expanded={showLang}
-                className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-black dark:text-white transition-colors font-medium px-3 py-1.5 border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.18] dark:hover:border-black/[0.18] dark:border-white/[0.18] rounded-md flex items-center gap-1.5"
+                className="text-xs text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium px-3 py-1.5 border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.18] dark:hover:border-white/[0.18] rounded-md flex items-center gap-1.5"
               >
                 {lang} <ChevronDown className="w-3 h-3" />
               </button>
@@ -120,7 +120,7 @@ export function Header({
             <button
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="lg:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-black dark:text-white transition-colors"
+              className="lg:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -152,7 +152,7 @@ export function Header({
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.04, duration: 0.3 }}
-                    className="block py-4 text-base text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-black dark:text-white border-b border-black/[0.06] dark:border-white/[0.06] transition-colors"
+                    className="block py-4 text-base text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white border-b border-black/[0.06] dark:border-white/[0.06] transition-colors"
                   >
                     {item.label}
                   </motion.a>
@@ -180,7 +180,7 @@ export function Header({
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                           lang === l
                             ? 'bg-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-500/30'
-                            : 'text-zinc-500 border border-black/[0.06] dark:border-white/[0.06] hover:text-black dark:hover:text-black dark:text-white'
+                            : 'text-zinc-500 border border-black/[0.06] dark:border-white/[0.06] hover:text-black dark:hover:text-white'
                         }`}
                       >
                         {l}

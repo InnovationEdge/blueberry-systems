@@ -30,7 +30,7 @@ export function Industries() {
             <Reveal key={s.name} delay={i * 0.05}>
               <a
                 href="#portfolio"
-                className="group block rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.01] dark:bg-white/[0.01] hover:bg-black/[0.04] dark:hover:bg-black/[0.04] dark:bg-white/[0.04] p-4 lift transition-all"
+                className="group block rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.01] dark:bg-white/[0.01] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] p-4 lift transition-all"
                 style={{ ['--accent' as string]: s.accent }}
               >
                 <div className="flex items-center gap-2 mb-3">

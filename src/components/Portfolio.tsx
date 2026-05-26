@@ -76,7 +76,7 @@ function ProductMockup({ accent, gradient }: { accent: string; gradient: string 
 
 export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (i: number) => void }) {
   return (
-    <section id="portfolio" className="py-24 md:py-36 bg-black">
+    <section id="portfolio" className="py-24 md:py-36 bg-white dark:bg-black">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
@@ -107,7 +107,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                 <button
                   type="button"
                   onClick={() => onOpen(originalIdx)}
-                  className="group relative w-full text-left lift rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-black/[0.14] dark:border-white/[0.14] overflow-hidden h-full flex flex-col"
+                  className="group relative w-full text-left lift rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-white/[0.14] overflow-hidden h-full flex flex-col"
                 >
                   <BorderBeam
                     size={70}

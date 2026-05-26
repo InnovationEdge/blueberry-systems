@@ -40,7 +40,7 @@ export function ProjectModal({
                 <button
                   onClick={onClose}
                   aria-label="Close"
-                  className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-black/[0.06] dark:bg-white/[0.06] rounded-full transition-colors z-10"
+                  className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.06] rounded-full transition-colors z-10"
                 >
                   <X className="w-5 h-5" />
                 </button>

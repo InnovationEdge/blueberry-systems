@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import {
   CursorSpotlight,
   FloatingOrb,
@@ -122,7 +122,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                   href="#contact"
                   className="group px-8 py-4 bg-white text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-200 transition-all shadow-2xl shadow-blue-500/10 active:scale-[0.97]"
                 >
-                  <Sparkles className="w-4 h-4 text-blue-600" /> {t.heroCta}
+                  {t.heroCta}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </MagneticButton>
                 <a

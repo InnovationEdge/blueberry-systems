@@ -117,7 +117,7 @@ function ApplyModal({
               <button
                 onClick={handleClose}
                 aria-label="Close"
-                className="p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-black/[0.06] dark:bg-white/[0.06] rounded-full transition-colors"
+                className="p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.06] rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
