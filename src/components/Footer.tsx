@@ -9,7 +9,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
     <footer className="relative border-t border-zinc-200 dark:border-white/[0.06] py-16">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div className="flex items-center gap-4">
-          <Logo className="h-8 w-auto opacity-60 hover:opacity-90 transition-opacity" />
+          <Logo className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity" />
           <div className="w-px h-5 bg-black/[0.10] dark:bg-white/[0.10]" />
           <span className="text-[11px] text-zinc-600 dark:text-zinc-500 tracking-wide">© {t.footerRights}</span>
         </div>

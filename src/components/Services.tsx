@@ -46,7 +46,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
               <div key={i} className={isFeature ? 'md:col-span-3 lg:col-span-2 lg:row-span-2' : ''}>
                 <ScaleIn delay={i * 0.06}>
                   <article
-                    className="group relative h-full min-h-[280px] lift rounded-3xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] hover:border-zinc-400 dark:hover:border-white/[0.12] hover:bg-zinc-100/80 dark:bg-white/[0.03] p-8 md:p-10 overflow-hidden"
+                    className="group relative h-full min-h-[280px] lift rounded-3xl border border-zinc-300 dark:border-white/[0.06] bg-white dark:bg-white/[0.015] hover:border-zinc-500/70 dark:hover:border-white/[0.12] hover:shadow-xl hover:shadow-black/5 dark:hover:bg-white/[0.03] p-8 md:p-10 overflow-hidden transition-all"
                     style={{ ['--accent' as string]: accent }}
                   >
                     {/* Accent glow */}

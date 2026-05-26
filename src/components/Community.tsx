@@ -52,11 +52,11 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
 export function Team({ t }: { t: ReturnType<typeof getT> }) {
   const members = [
     { name: 'Irakli Kerdikoshvili', role: t.role1, img: '/team/founder.png', founder: true },
-    { name: 'Luka Kapanadze', role: t.role2, img: '/team/member-9.png' },
-    { name: 'Nika Gelashvili', role: t.role3, img: '/team/member-10.png' },
-    { name: 'Ana Javakhishvili', role: t.role4, img: '/team/member-11.png' },
-    { name: 'David Bakradze', role: t.role5, img: '/team/member-12.png' },
-    { name: 'James Chen', role: t.role6, img: '/team/member-13.png' },
+    { name: 'Tinatin Shakeladze', role: t.role2, img: '/team/tinatin.png' },
+    { name: 'Luka Giorgadze', role: t.role3, img: '/team/luka.png' },
+    { name: 'Datuna Bakradze', role: t.role4, img: '/team/datuna.png' },
+    { name: 'Irakli Lomidze', role: t.role5, img: '/team/member-12.png' },
+    { name: 'Open Position', role: t.role6, img: '/team/member-13.png' },
   ];
 
   return (

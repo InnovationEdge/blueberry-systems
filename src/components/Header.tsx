@@ -50,7 +50,7 @@ export function Header({
             : 'bg-transparent'
         }`}
       >
-        <div className="w-full px-6 md:px-10 h-[68px] flex items-center">
+        <div className="w-full px-6 md:px-10 h-[88px] flex items-center">
           <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5" aria-label="Blueberry Systems">
             <Logo />
           </a>
@@ -193,7 +193,7 @@ export function Header({
           )}
         </AnimatePresence>
       </motion.header>
-      <div className="h-[68px]" />
+      <div className="h-[88px]" />
     </>
   );
 }
