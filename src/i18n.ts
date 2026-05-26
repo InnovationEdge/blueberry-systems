@@ -170,6 +170,8 @@ interface T {
   test2Quote: string; test2Role: string;
   test3Quote: string; test3Role: string;
   test4Quote: string; test4Role: string;
+  // Contact form
+  contactError: string;
 }
 
 const en: T = {
@@ -336,6 +338,7 @@ const en: T = {
   test3Role: 'Director of Digital, healthcare network',
   test4Quote: 'Professional, fast, zero theatrics. They understand startup constraints and ship enterprise quality within budgets that other agencies wouldn\'t even take meetings on.',
   test4Role: 'CEO, regional 3PL',
+  contactError: 'Connection issue. Opening email client…',
   teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
   applyNow: 'Apply Now', applyName: 'Full Name', applyEmail: 'Email', applyPosition: 'Position', applyResume: 'Resume (PDF)', applySend: 'Send Application', applySending: 'Sending...', applySent: 'Application Sent!', applySentDesc: 'We will review your resume and get back to you within 48 hours.', applyDragDrop: 'Drag & drop or click to upload',
@@ -511,6 +514,7 @@ const ka: T = {
   test3Role: 'ციფრული მიმართულების ხელმძღვანელი, ჯანდაცვის ქსელი',
   test4Quote: 'პროფესიონალები, სწრაფები, ზედმეტი თეატრის გარეშე. ესმით სტარტაპის შეზღუდვები და enterprise ხარისხს გვაწვდიან ისეთ ბიუჯეტში, რომელზეც სხვა სააგენტოები შეხვედრაზეც კი არ წამოვიდოდნენ.',
   test4Role: 'აღმასრულებელი დირექტორი, რეგიონული 3PL',
+  contactError: 'კავშირის პრობლემა. ვხსნით ელ.ფოსტას…',
   teamDesc: 'სენიორი ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი თბილისიდან. ციფრულ პროდუქტებს 2020 წლიდან ვქმნით.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
   applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'შენს რეზიუმეს განვიხილავთ და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდე ან დააჭირე ასატვირთად',
