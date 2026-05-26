@@ -2,33 +2,82 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Favicon — theme-aware BL </> mark; SVG auto-swaps via embedded media query for Safari + Firefox -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="/favicon-night.svg" />
+    <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="/favicon-day.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>Blueberry Systems</title>
-    <meta name="description" content="Custom software development, performance marketing, and product design." />
-    <meta property="og:title" content="Blueberry Systems" />
-    <meta property="og:description" content="We build software that scales, design products people love, and grow businesses." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://blueberry.codes" />
-    <meta property="og:image" content="https://blueberry.codes/logo-blue.svg" />
-    <meta property="og:site_name" content="Blueberry Systems" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Blueberry Systems" />
-    <meta name="twitter:description" content="Custom software development, performance marketing, and product design." />
-    <link rel="canonical" href="https://blueberry.codes/" />
-    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/favicon.svg" color="#004aad" />
+
+    <!-- Primary Meta — SEO foundation -->
+    <title>Blueberry Systems — Custom Software Development Agency in Tbilisi, Georgia</title>
+    <meta name="title" content="Blueberry Systems — Custom Software Development Agency in Tbilisi, Georgia" />
+    <meta name="description" content="Blueberry Systems is a senior software development agency in Tbilisi, Georgia. We build custom web platforms, mobile apps, SaaS products, and AI/ML systems for fintech, healthcare, commerce and EdTech — on time and at scale." />
+    <meta name="keywords" content="Blueberry Systems, software development company Tbilisi, software development Georgia, custom software development, web development agency, mobile app development, SaaS development, React Next.js, AI ML solutions, fintech development, product design agency, Irakli Kerdikoshvili" />
     <meta name="author" content="Blueberry Systems" />
+    <meta name="creator" content="Blueberry Systems" />
+    <meta name="publisher" content="Blueberry Systems" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow" />
+    <link rel="canonical" href="https://blueberry.codes/" />
+    <link rel="alternate" hreflang="en" href="https://blueberry.codes/" />
+    <link rel="alternate" hreflang="ka" href="https://blueberry.codes/?lang=ka" />
+    <link rel="alternate" hreflang="x-default" href="https://blueberry.codes/" />
+
+    <!-- Open Graph — premium social cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://blueberry.codes/" />
+    <meta property="og:site_name" content="Blueberry Systems" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ka_GE" />
+    <meta property="og:title" content="Blueberry Systems — Custom Software Development Agency" />
+    <meta property="og:description" content="A senior software team in Tbilisi shipping production-grade web, mobile, SaaS and AI/ML products for fintech, healthcare, commerce and EdTech." />
+    <meta property="og:image" content="https://blueberry.codes/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Blueberry Systems — Custom Software Development Agency" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@blueberrysys" />
+    <meta name="twitter:creator" content="@blueberrysys" />
+    <meta name="twitter:title" content="Blueberry Systems — Custom Software Development Agency" />
+    <meta name="twitter:description" content="A senior software team in Tbilisi shipping production-grade web, mobile, SaaS and AI/ML products." />
+    <meta name="twitter:image" content="https://blueberry.codes/og-image.png" />
+    <meta name="twitter:image:alt" content="Blueberry Systems" />
+
+    <!-- iOS / Android PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Blueberry Systems" />
+    <meta name="application-name" content="Blueberry Systems" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-TileColor" content="#004aad" />
     <meta name="theme-color" content="#050507" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
 
-    <!-- Theme init (avoid FOUC). Defaults to dark unless user picked light. -->
+    <!-- Geo -->
+    <meta name="geo.region" content="GE-TB" />
+    <meta name="geo.placename" content="Tbilisi, Georgia" />
+    <meta name="geo.position" content="41.7151;44.8271" />
+    <meta name="ICBM" content="41.7151, 44.8271" />
+
+    <!-- Theme init — respects system preference on first visit, persisted choice afterwards -->
     <script>
       (function () {
         try {
           var stored = localStorage.getItem('theme');
-          var theme = stored || 'dark';
+          var theme;
+          if (stored === 'dark' || stored === 'light') {
+            theme = stored;
+          } else {
+            theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
           if (theme === 'dark') document.documentElement.classList.add('dark');
         } catch (e) {
           document.documentElement.classList.add('dark');
@@ -39,18 +88,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="dns-prefetch" href="https://formsubmit.co" />
 
-    <!-- Organization Schema -->
+    <!-- ▸ Organization Schema — search-engine identity card -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
+      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+      "@id": "https://blueberry.codes/#organization",
       "name": "Blueberry Systems",
-      "alternateName": "Blueberry",
+      "alternateName": ["Blueberry", "Blueberry Systems Ltd"],
+      "legalName": "Blueberry Systems",
       "url": "https://blueberry.codes",
-      "logo": "https://blueberry.codes/logo-blue.svg",
-      "image": "https://blueberry.codes/logo-blue.svg",
-      "description": "Tbilisi-based software development company specializing in custom web applications, mobile apps, SaaS platforms, and performance marketing. We build digital products that scale.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blueberry.codes/favicon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://blueberry.codes/og-image.png",
+      "description": "Tbilisi-based senior software development agency specializing in custom web applications, mobile apps, SaaS platforms, AI/ML solutions, and product design. We ship outcomes, not hours.",
+      "slogan": "We ship outcomes, not hours.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Tbilisi",
@@ -65,25 +123,141 @@
       "telephone": "+995598449644",
       "email": "info@blueberry.codes",
       "foundingDate": "2020",
-      "founder": {
-        "@type": "Person",
-        "name": "Irakli Kerdikoshvili",
-        "jobTitle": "Founder & CEO"
-      },
-      "numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 10, "maxValue": 50 },
-      "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "AWS", "Docker", "Flutter", "Swift", "Kotlin"],
-      "serviceType": ["Custom Software Development", "Web Application Development", "Mobile App Development", "SaaS Platform Development", "UI/UX Design", "Performance Marketing", "DevOps & Cloud Infrastructure"],
-      "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 41.7151, "longitude": 44.8271 }, "geoRadius": "10000 km" },
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Irakli Kerdikoshvili",
+          "jobTitle": "Founder & CEO",
+          "sameAs": "https://www.linkedin.com/in/iraklikerdikoshvili/"
+        }
+      ],
+      "employee": [
+        { "@type": "Person", "name": "Irakli Kerdikoshvili", "jobTitle": "Founder & CEO" },
+        { "@type": "Person", "name": "Tinatin Shakeladze", "jobTitle": "Chief Marketing Officer" },
+        { "@type": "Person", "name": "Luka Giorgadze", "jobTitle": "Chief Finance Officer" },
+        { "@type": "Person", "name": "Datuna Bakradze", "jobTitle": "Chief Operating Officer" },
+        { "@type": "Person", "name": "Giorgi Menteshashvili", "jobTitle": "Head of Engineering" },
+        { "@type": "Person", "name": "Irakli Lomidze", "jobTitle": "Chief Legal Officer" }
+      ],
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 15 },
+      "knowsAbout": [
+        "Custom Software Development",
+        "Web Application Development",
+        "Mobile App Development",
+        "SaaS Platform Development",
+        "AI and Machine Learning",
+        "Product Design (UI/UX)",
+        "Performance Marketing",
+        "DevOps and Cloud Infrastructure",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "NestJS",
+        "Python",
+        "Go",
+        "PostgreSQL",
+        "AWS",
+        "Vercel",
+        "Docker",
+        "Kubernetes",
+        "Flutter",
+        "Swift",
+        "Kotlin",
+        "React Native",
+        "Expo",
+        "OpenAI",
+        "Google Gemini"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Software Development",
+            "description": "Mobile apps, web platforms, CRM, ERP, and internal tools engineered for scale and performance.",
+            "areaServed": { "@type": "Place", "name": "Worldwide" }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Product Marketing",
+            "description": "Data-driven acquisition strategies that lower costs and accelerate user growth."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Product Design",
+            "description": "Human-centered interfaces that convert visitors into loyal customers."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Consulting",
+            "description": "Strategic guidance to optimize operations and unlock new revenue streams."
+          }
+        }
+      ],
+      "areaServed": [
+        { "@type": "Country", "name": "Worldwide" },
+        { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 41.7151, "longitude": 44.8271 }, "geoRadius": "10000 km" }
+      ],
       "priceRange": "$$",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
       "sameAs": [
-        "https://blueberryedu.ge",
+        "https://www.linkedin.com/company/blueberry-systems/",
         "https://github.com/InnovationEdge",
-        "https://www.linkedin.com/company/blueberry-systems"
+        "https://blueberryedu.ge"
       ]
     }
     </script>
 
-    <!-- FAQPage Schema -->
+    <!-- ▸ WebSite Schema with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://blueberry.codes/#website",
+      "url": "https://blueberry.codes/",
+      "name": "Blueberry Systems",
+      "description": "Senior software development agency in Tbilisi, Georgia",
+      "inLanguage": ["en", "ka"],
+      "publisher": { "@id": "https://blueberry.codes/#organization" }
+    }
+    </script>
+
+    <!-- ▸ BreadcrumbList — anchors single-page sections for sitelinks -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://blueberry.codes/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://blueberry.codes/#services" },
+        { "@type": "ListItem", "position": 3, "name": "Portfolio", "item": "https://blueberry.codes/#portfolio" },
+        { "@type": "ListItem", "position": 4, "name": "Process", "item": "https://blueberry.codes/#process" },
+        { "@type": "ListItem", "position": 5, "name": "Pricing", "item": "https://blueberry.codes/#pricing" },
+        { "@type": "ListItem", "position": 6, "name": "Careers", "item": "https://blueberry.codes/#careers" },
+        { "@type": "ListItem", "position": 7, "name": "FAQ", "item": "https://blueberry.codes/#faq" },
+        { "@type": "ListItem", "position": 8, "name": "Contact", "item": "https://blueberry.codes/#contact" }
+      ]
+    }
+    </script>
+
+    <!-- ▸ FAQPage Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -92,36 +266,34 @@
         {
           "@type": "Question",
           "name": "What services does Blueberry Systems offer?",
-          "acceptedAnswer": { "@type": "Answer", "text": "We offer custom software development, web & mobile app development, SaaS platforms, UI/UX design, performance marketing, and DevOps & cloud infrastructure services." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Blueberry Systems offers custom software development, product design (UI/UX), performance marketing, and business consulting. We work across fintech, healthcare, commerce, EdTech and SaaS." }
         },
         {
           "@type": "Question",
           "name": "Where is Blueberry Systems located?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Blueberry Systems is based in Tbilisi, Georgia. We serve clients globally with remote-first and hybrid work models." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Blueberry Systems is headquartered in Tbilisi, Georgia, serving clients globally with remote-first and hybrid engagements." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who founded Blueberry Systems?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Blueberry Systems was founded in 2020 by Irakli Kerdikoshvili, who serves as Founder & CEO." }
         },
         {
           "@type": "Question",
           "name": "What technologies does Blueberry Systems use?",
-          "acceptedAnswer": { "@type": "Answer", "text": "We use React, Next.js, TypeScript, Node.js, Python, PostgreSQL, AWS, Docker, Flutter, Swift, and Kotlin among other modern technologies." }
+          "acceptedAnswer": { "@type": "Answer", "text": "React, Next.js, TypeScript, Node.js, NestJS, Python, Go, PostgreSQL, AWS, Vercel, Docker, Kubernetes, Flutter, Swift, Kotlin, React Native and Expo — plus AI/ML via OpenAI and Google Gemini." }
         },
         {
           "@type": "Question",
           "name": "Does Blueberry Systems offer free consultations?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer free initial consultations to discuss your project requirements, timeline, and budget. Contact us to schedule a call." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Blueberry Systems offers a free initial consultation to scope your project, timeline and budget. Book a call from the contact section." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a typical project take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Web and mobile projects ship in 2 to 6 weeks. Full product builds run 8 to 14 weeks. Enterprise engagements are scoped individually." }
         }
       ]
-    }
-    </script>
-
-    <!-- WebSite Schema with SearchAction -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Blueberry Systems",
-      "url": "https://blueberry.codes",
-      "description": "Custom software development company in Tbilisi, Georgia",
-      "publisher": { "@type": "Organization", "name": "Blueberry Systems" }
     }
     </script>
   </head>
