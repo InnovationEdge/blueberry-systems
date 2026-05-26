@@ -100,19 +100,20 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
 
         {/* Equal grid (no featured pedestal) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {PORTFOLIO.map((p) => {
-            const originalIdx = PORTFOLIO.indexOf(p);
+          {PORTFOLIO.map((p, idx) => {
+            const localizedCategory = [t.proj1Category, t.proj2Category, t.proj3Category, t.proj4Category, t.proj5Category, t.proj6Category][idx] ?? p.category;
+            const localizedDesc = [t.proj1Desc, t.proj2Desc, t.proj3Desc, t.proj4Desc, t.proj5Desc, t.proj6Desc][idx] ?? p.desc;
             return (
-              <Reveal key={p.title} delay={originalIdx * 0.05}>
+              <Reveal key={p.title} delay={idx * 0.05}>
                 <button
                   type="button"
-                  onClick={() => onOpen(originalIdx)}
+                  onClick={() => onOpen(idx)}
                   className="group relative w-full text-left lift rounded-3xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] hover:border-zinc-400 dark:hover:border-white/[0.14] overflow-hidden h-full flex flex-col"
                 >
                   <BorderBeam
                     size={70}
                     duration={6}
-                    delay={originalIdx * 0.5}
+                    delay={idx * 0.5}
                     colorFrom={p.accent}
                     colorTo="rgba(255,255,255,0)"
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -126,12 +127,12 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                         className="text-[10px] font-semibold uppercase tracking-[0.22em]"
                         style={{ color: p.accent }}
                       >
-                        {p.category}
+                        {localizedCategory}
                       </span>
                       <span className="text-[10px] text-zinc-600 font-mono">{p.year}</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 tracking-tight">{p.title}</h3>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed mb-5 flex-1">{p.desc}</p>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed mb-5 flex-1">{localizedDesc}</p>
                     <div className="flex items-center justify-between text-[12px] text-zinc-600 dark:text-zinc-500 pt-4 border-t border-zinc-200 dark:border-white/[0.06] group-hover:text-blue-300 transition-colors">
                       <span>{t.viewProject}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

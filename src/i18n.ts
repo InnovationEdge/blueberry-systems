@@ -158,6 +158,18 @@ interface T {
   fromPrice3: string; timeline3: string;
   // Portfolio subtitle
   portfolioSubtitle: string;
+  // Portfolio cards (visible in grid)
+  proj1Category: string; proj1Desc: string;
+  proj2Category: string; proj2Desc: string;
+  proj3Category: string; proj3Desc: string;
+  proj4Category: string; proj4Desc: string;
+  proj5Category: string; proj5Desc: string;
+  proj6Category: string; proj6Desc: string;
+  // Testimonials
+  test1Quote: string; test1Role: string;
+  test2Quote: string; test2Role: string;
+  test3Quote: string; test3Role: string;
+  test4Quote: string; test4Role: string;
 }
 
 const en: T = {
@@ -292,6 +304,26 @@ const en: T = {
   fromPrice2: 'from $15k', timeline2: '8–14 weeks',
   fromPrice3: 'Custom', timeline3: 'Ongoing',
   portfolioSubtitle: 'A representative slice of the kind of work we ship. Anonymized where required by NDA.',
+  proj1Category: 'Fintech · Payments Infrastructure',
+  proj1Desc: 'Cross-border payment rails processing $400M+ in annualized volume with real-time fraud scoring and 7-currency support.',
+  proj2Category: 'Commerce · Multi-Vendor SaaS',
+  proj2Desc: 'Enterprise marketplace platform powering 500+ sellers, 15K monthly orders, with real-time inventory sync across 6 fulfillment centers.',
+  proj3Category: 'Healthcare · Patient Platform',
+  proj3Desc: 'HIPAA-grade telemedicine and patient management system serving 200+ daily consultations across 18 clinics.',
+  proj4Category: 'Logistics · Fleet Operations',
+  proj4Desc: 'Real-time fleet management and route optimization across 200+ vehicles, 3 countries, with predictive ETA and 30% fuel savings.',
+  proj5Category: 'EdTech · Live Learning',
+  proj5Desc: 'Interactive learning platform with live cohorts, AI tutoring, and gamified progression for 10K+ active learners.',
+  proj6Category: 'DeFi · Portfolio Analytics',
+  proj6Desc: 'Multi-chain DeFi analytics suite tracking $50M+ in AUM across 20+ protocols with automated yield strategy execution.',
+  test1Quote: 'They shipped our entire fintech rail in 14 weeks. We were the first cohort on the new platform and we have not had a single production incident since launch. The closest thing I have to in-house senior engineers.',
+  test1Role: 'CTO at a Series B fintech',
+  test2Quote: 'Working with Blueberry felt like hiring a senior product team. They pushed back where it mattered, simplified scope where they could, and the MVP just worked on day one.',
+  test2Role: 'Founder, commerce SaaS',
+  test3Quote: 'They redesigned our entire patient portal and rolled it out across 18 clinics in three months. Patient satisfaction jumped from 3.2 to 4.8 stars. The ROI conversation was over before it started.',
+  test3Role: 'Director of Digital, healthcare network',
+  test4Quote: 'Professional, fast, zero theatrics. They understand startup constraints and ship enterprise quality within budgets that other agencies wouldn\'t even take meetings on.',
+  test4Role: 'CEO, regional 3PL',
   teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
   applyNow: 'Apply Now', applyName: 'Full Name', applyEmail: 'Email', applyPosition: 'Position', applyResume: 'Resume (PDF)', applySend: 'Send Application', applySending: 'Sending...', applySent: 'Application Sent!', applySentDesc: 'We will review your resume and get back to you within 48 hours.', applyDragDrop: 'Drag & drop or click to upload',
@@ -435,6 +467,26 @@ const ka: T = {
   fromPrice2: '$15k-დან', timeline2: '8–14 კვირა',
   fromPrice3: 'ინდივიდუალური', timeline3: 'მუდმივი',
   portfolioSubtitle: 'რეპრეზენტატიული ნაწილი იმისა, რასაც ვაკეთებთ. სადაც NDA მოითხოვს — ანონიმური.',
+  proj1Category: 'ფინტექი · გადახდის ინფრასტრუქტურა',
+  proj1Desc: 'ტრანსსაზღვრო გადახდის სისტემა, რომელიც ამუშავებს $400M+ წლიური მოცულობით, რეალურ დროში ფრაუდის სკორინგით და 7 ვალუტის მხარდაჭერით.',
+  proj2Category: 'ე-კომერცია · მრავალგამყიდველი SaaS',
+  proj2Desc: 'საენთერპრაიზო მარკეტფლეისი — 500+ გამყიდველი, 15ათ. შეკვეთა თვეში და რეალურ დროში ინვენტარის სინქრონიზაცია 6 დისტრიბუციის ცენტრს შორის.',
+  proj3Category: 'ჯანდაცვა · პაციენტთა პლატფორმა',
+  proj3Desc: 'HIPAA-ის შესაბამისი ტელემედიცინა და პაციენტთა მართვის სისტემა — 200+ კონსულტაცია დღეში, 18 კლინიკაში.',
+  proj4Category: 'ლოგისტიკა · ფლოტის ოპერაციები',
+  proj4Desc: 'რეალურ დროში ფლოტის მართვა და მარშრუტის ოპტიმიზაცია 200+ მანქანისთვის 3 ქვეყანაში, პროგნოზული ETA და 30% საწვავის დაზოგვა.',
+  proj5Category: 'განათლება · ცოცხალი სწავლება',
+  proj5Desc: 'ინტერაქტიური სასწავლო პლატფორმა ცოცხალი კოჰორტებით, AI-ტუტორინგით და გეიმიფიცირებული პროგრესით — 10ათ.+ აქტიური მსმენელი.',
+  proj6Category: 'DeFi · პორტფოლიოს ანალიტიკა',
+  proj6Desc: 'მრავალქსელიანი DeFi ანალიტიკის სუიტი — $50M+ AUM 20+ პროტოკოლზე, ავტომატური yield-სტრატეგიის შესრულებით.',
+  test1Quote: 'მთლიანი ფინტექის რეილი 14 კვირაში მოგვცეს. პირველი კოჰორტა ვიყავით ახალ პლატფორმაზე და გაშვების შემდეგ ერთი ინციდენტიც კი არ გვქონია. ეს ყველაზე ახლოს არის იმასთან, რასაც შიდა სენიორ ინჟინერთა გუნდს ვუწოდებდი.',
+  test1Role: 'ფინტექის Series B კომპანიის ტექნოლოგიური დირექტორი',
+  test2Quote: 'Blueberry-სთან მუშაობა ისეთი იყო, თითქოს სენიორი პროდუქტის გუნდი დავიქირავე. დაიცვეს თავიანთი პოზიცია იქ, სადაც საჭირო იყო, გაამარტივეს scope სადაც შეიძლებოდა, და MVP-მ პირველ დღესვე უპრობლემოდ იმუშავა.',
+  test2Role: 'დამფუძნებელი, ე-კომერციის SaaS',
+  test3Quote: 'მთლიანი პაციენტთა პორტალი ხელახლა გადააწყვეს და 18 კლინიკაში სამ თვეში გავუშვით. პაციენტთა კმაყოფილება 3.2-დან 4.8 ვარსკვლავამდე ავიდა. ROI-ის შესახებ საუბარი დაიწყებამდე დასრულდა.',
+  test3Role: 'ციფრული მიმართულების ხელმძღვანელი, ჯანდაცვის ქსელი',
+  test4Quote: 'პროფესიონალები, სწრაფები, ზედმეტი თეატრის გარეშე. ესმით სტარტაპის შეზღუდვები და enterprise ხარისხს გვაწვდიან ისეთ ბიუჯეტში, რომელზეც სხვა სააგენტოები შეხვედრაზეც კი არ წამოვიდოდნენ.',
+  test4Role: 'აღმასრულებელი დირექტორი, რეგიონული 3PL',
   teamDesc: 'სენიორი ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი თბილისიდან. ციფრულ პროდუქტებს 2020 წლიდან ვქმნით.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
   applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'შენს რეზიუმეს განვიხილავთ და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდე ან დააჭირე ასატვირთად',

@@ -136,12 +136,15 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {TESTIMONIALS.map((r, i) => (
+          {TESTIMONIALS.map((r, i) => {
+            const localizedQuote = [t.test1Quote, t.test2Quote, t.test3Quote, t.test4Quote][i] ?? r.quote;
+            const localizedRole = [t.test1Role, t.test2Role, t.test3Role, t.test4Role][i] ?? r.role;
+            return (
             <Reveal key={i} delay={i * 0.08}>
               <article className="relative border border-zinc-200 dark:border-white/[0.06] rounded-3xl p-8 md:p-10 h-full flex flex-col hover:border-zinc-400 dark:hover:border-white/[0.14] transition-colors glow-border bg-zinc-50/60 dark:bg-white/[0.01]">
                 <Quote className="w-10 h-10 text-blue-500/30 mb-5" />
                 <p className="text-lg md:text-xl text-zinc-800 dark:text-zinc-200 leading-relaxed flex-1 mb-8 font-light">
-                  &ldquo;{r.quote}&rdquo;
+                  &ldquo;{localizedQuote}&rdquo;
                 </p>
 
                 <div className="flex items-center justify-between gap-4 pt-6 border-t border-zinc-200 dark:border-white/[0.06]">
@@ -158,7 +161,7 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
                     <div className="min-w-0">
                       <p className="font-semibold text-sm truncate">{r.name}</p>
                       <p className="text-xs text-zinc-600 dark:text-zinc-500 truncate">
-                        {r.role} · {r.company}
+                        {localizedRole} · {r.company}
                       </p>
                     </div>
                   </div>
@@ -168,7 +171,8 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
                 </div>
               </article>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
