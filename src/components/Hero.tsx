@@ -62,17 +62,17 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="inline-flex items-center gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] mb-12"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-3 sm:pr-5 py-1.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.22em] mb-10 sm:mb-12 max-w-full"
           >
-            <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-300 px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal">
+            <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-2 sm:px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal whitespace-nowrap">
               <span className="relative flex w-1.5 h-1.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
               </span>
-              Now booking Q3
+              Booking Q3
             </span>
             <span className="text-zinc-600 dark:text-zinc-500">·</span>
-            <span className="text-zinc-700 dark:text-zinc-300">{t.onMarket}</span>
+            <span className="text-zinc-700 dark:text-zinc-300 whitespace-nowrap">Since 2020</span>
           </motion.div>
 
           {/* Cinematic display headline */}
@@ -261,8 +261,17 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               </p>
               <p className="text-sm leading-none text-black dark:text-white font-semibold">10-week launch</p>
             </div>
-            <div className="hidden md:block absolute -bottom-5 -right-5 px-4 py-2.5 rounded-xl border border-blue-500/30 bg-blue-500/[0.08] backdrop-blur-xl shadow-xl rotate-[3deg]">
-              <p className="text-[10px] leading-none text-blue-600 dark:text-blue-300 uppercase tracking-[0.22em] font-mono mb-1.5">
+            <div
+              className="hidden md:block absolute -bottom-5 -right-5 px-4 py-2.5 rounded-xl backdrop-blur-xl shadow-xl rotate-[3deg] border"
+              style={{
+                borderColor: 'rgba(0, 74, 173, 0.30)',
+                background: 'color-mix(in srgb, #004aad 8%, var(--bb-bg-soft))',
+              }}
+            >
+              <p
+                className="text-[10px] leading-none uppercase tracking-[0.22em] font-mono mb-1.5"
+                style={{ color: '#004aad' }}
+              >
                 /sla
               </p>
               <p className="text-sm leading-none text-black dark:text-white font-semibold">99.99% uptime</p>

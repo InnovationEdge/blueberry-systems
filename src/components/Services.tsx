@@ -36,73 +36,65 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
           </div>
         </Reveal>
 
-        {/* Bento grid: 1 feature (2x2) + 2 small + 1 wide footer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 md:gap-5">
+        {/* Clean equal-cards grid — 1col mobile, 2col tablet, 4col desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[i];
             const accent = ACCENTS[i];
-            const isFeature = i === 0;
-            const isWideFooter = i === 3;
-            const cellClass = isFeature
-              ? 'lg:col-span-2 lg:row-span-2'
-              : isWideFooter
-                ? 'sm:col-span-2 lg:col-span-2 lg:row-span-1'
-                : '';
             return (
-              <div key={i} className={cellClass}>
-                <ScaleIn delay={i * 0.06}>
-                  <article
-                    className="group relative h-full min-h-[280px] lift rounded-3xl border border-zinc-300 dark:border-white/[0.06] bg-white dark:bg-white/[0.015] hover:border-zinc-500/70 dark:hover:border-white/[0.12] hover:shadow-xl hover:shadow-black/5 dark:hover:bg-white/[0.03] p-8 md:p-10 overflow-hidden transition-all"
-                    style={{ ['--accent' as string]: accent }}
+              <ScaleIn key={i} delay={i * 0.05}>
+                <article
+                  className="group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 p-7 sm:p-8 transition-all duration-300"
+                >
+                  {/* Icon — large, bold, accent-colored */}
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+                    style={{
+                      backgroundColor: `${accent}14`,
+                      color: accent,
+                    }}
                   >
-                    {/* Accent glow */}
-                    <div
-                      className="absolute -top-24 -right-24 w-[260px] h-[260px] rounded-full blur-[80px] opacity-30 group-hover:opacity-60 transition-opacity duration-500"
-                      style={{ backgroundColor: accent }}
-                      aria-hidden
-                    />
+                    <Icon className="w-7 h-7" strokeWidth={1.75} />
+                  </div>
 
-                    <div className="relative flex flex-col h-full">
-                      <div className="flex items-start justify-between mb-8">
-                        <span
-                          className="font-mono text-[11px] tracking-wider"
-                          style={{ color: accent }}
-                        >
-                          {s.num}
-                        </span>
-                        <div
-                          className="w-11 h-11 rounded-xl flex items-center justify-center border"
-                          style={{
-                            backgroundColor: `${accent}10`,
-                            borderColor: `${accent}30`,
-                            color: accent,
-                          }}
-                        >
-                          <Icon className="w-5 h-5" />
-                        </div>
-                      </div>
+                  {/* Step number — small caps eyebrow */}
+                  <p
+                    className="font-mono text-[10px] tracking-[0.22em] uppercase mb-3"
+                    style={{ color: accent }}
+                  >
+                    /{s.num}
+                  </p>
 
-                      <h3 className={`font-bold tracking-tight mb-3 ${isFeature ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-xl md:text-2xl'}`}>
-                        {s.title}
-                      </h3>
-                      <p className={`text-zinc-600 dark:text-zinc-500 leading-relaxed mb-6 ${isFeature ? 'text-base md:text-lg max-w-xl' : 'text-sm'}`}>
-                        {s.desc}
-                      </p>
+                  {/* Title */}
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-3 text-black dark:text-white">
+                    {s.title}
+                  </h3>
 
-                      <div className="mt-auto flex flex-wrap gap-2">
-                        {s.stats.map((stat) => (
-                          <span
-                            key={stat}
-                            className="px-3 py-1.5 text-[11px] font-mono rounded-full border border-zinc-300/70 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-400"
-                          >
-                            {stat}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </article>
-                </ScaleIn>
-              </div>
+                  {/* Description */}
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+                    {s.desc}
+                  </p>
+
+                  {/* Stats — compact, theme-aware */}
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-4 border-t border-zinc-100 dark:border-white/[0.06]">
+                    {s.stats.map((stat) => (
+                      <span
+                        key={stat}
+                        className="px-2.5 py-1 text-[10px] font-mono rounded-full bg-zinc-100 dark:bg-white/[0.04] text-zinc-700 dark:text-zinc-300"
+                      >
+                        {stat}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Accent line on hover (top) */}
+                  <span
+                    className="absolute top-0 left-7 right-7 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: accent }}
+                    aria-hidden
+                  />
+                </article>
+              </ScaleIn>
             );
           })}
         </div>

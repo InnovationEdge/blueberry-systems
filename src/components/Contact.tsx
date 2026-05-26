@@ -164,7 +164,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         throw new Error('Failed');
       }
     } catch {
-      setError('Connection issue — opening email client...');
+      setError('Connection issue. Opening email client…');
       setTimeout(() => {
         const subject = encodeURIComponent(`Project Inquiry from ${form.name}`);
         const body = encodeURIComponent(

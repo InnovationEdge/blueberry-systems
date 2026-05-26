@@ -86,7 +86,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                 {t.portfolioTitle}
               </h2>
               <p className="text-zinc-600 dark:text-zinc-500 mt-4 max-w-md text-base">
-                A representative slice of the kind of work we ship — anonymized where required by NDA.
+                A representative slice of the kind of work we ship. Anonymized where required by NDA.
               </p>
             </div>
             <a
