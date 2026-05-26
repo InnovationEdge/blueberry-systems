@@ -35,7 +35,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
           <FloatingOrb className="absolute bottom-[8%] left-[2%] w-[560px] h-[560px] bg-violet-600/[0.10] rounded-full blur-[150px]" />
           <FloatingOrb className="absolute top-[45%] left-[35%] w-[360px] h-[360px] bg-cyan-500/[0.07] rounded-full blur-[120px]" />
         </motion.div>
-        <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-black via-black/70 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white dark:from-black via-white/60 dark:via-black/60 to-transparent" />
       </div>
 
       {/* Side rails — editorial detail */}
