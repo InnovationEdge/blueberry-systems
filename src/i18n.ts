@@ -159,12 +159,12 @@ interface T {
   // Portfolio subtitle
   portfolioSubtitle: string;
   // Portfolio cards (visible in grid)
-  proj1Category: string; proj1Desc: string;
-  proj2Category: string; proj2Desc: string;
-  proj3Category: string; proj3Desc: string;
-  proj4Category: string; proj4Desc: string;
-  proj5Category: string; proj5Desc: string;
-  proj6Category: string; proj6Desc: string;
+  proj1Category: string; proj1Desc: string; proj1Challenge: string; proj1Solution: string;
+  proj2Category: string; proj2Desc: string; proj2Challenge: string; proj2Solution: string;
+  proj3Category: string; proj3Desc: string; proj3Challenge: string; proj3Solution: string;
+  proj4Category: string; proj4Desc: string; proj4Challenge: string; proj4Solution: string;
+  proj5Category: string; proj5Desc: string; proj5Challenge: string; proj5Solution: string;
+  proj6Category: string; proj6Desc: string; proj6Challenge: string; proj6Solution: string;
   // Testimonials
   test1Quote: string; test1Role: string;
   test2Quote: string; test2Role: string;
@@ -306,16 +306,28 @@ const en: T = {
   portfolioSubtitle: 'A representative slice of the kind of work we ship. Anonymized where required by NDA.',
   proj1Category: 'Fintech · Payments Infrastructure',
   proj1Desc: 'Cross-border payment rails processing $400M+ in annualized volume with real-time fraud scoring and 7-currency support.',
+  proj1Challenge: 'Replace a brittle legacy gateway and process high-volume cross-border payments under strict regulatory constraints with zero-downtime cutover.',
+  proj1Solution: 'Event-driven microservices on AWS with multi-region failover, ML-based fraud scoring, and a custom ledger with cryptographic audit trails. Migrated $90M of in-flight payments without a single failed transaction.',
   proj2Category: 'Commerce · Multi-Vendor SaaS',
   proj2Desc: 'Enterprise marketplace platform powering 500+ sellers, 15K monthly orders, with real-time inventory sync across 6 fulfillment centers.',
+  proj2Challenge: 'Unify three legacy commerce stacks under one multi-tenant platform with real-time inventory across distributed fulfillment.',
+  proj2Solution: 'Next.js headless storefront, WebSocket inventory bus, automated 3PL routing, and AI-assisted SKU mapping. Cut catalog onboarding from 6 weeks to 3 days.',
   proj3Category: 'Healthcare · Patient Platform',
   proj3Desc: 'HIPAA-grade telemedicine and patient management system serving 200+ daily consultations across 18 clinics.',
+  proj3Challenge: 'Digitize 18 clinics under one HIPAA-grade platform with telemedicine, automated scheduling, and audit-ready records.',
+  proj3Solution: 'End-to-end encrypted video over WebRTC, role-based EHR, SMS/email reminder cadence, and an FHIR-compatible records vault. Rolled out across 18 clinics in 11 weeks.',
   proj4Category: 'Logistics · Fleet Operations',
   proj4Desc: 'Real-time fleet management and route optimization across 200+ vehicles, 3 countries, with predictive ETA and 30% fuel savings.',
+  proj4Challenge: 'Replace a paper-and-spreadsheet dispatch operation with a real-time fleet ops platform covering 200+ vehicles across 3 countries.',
+  proj4Solution: 'Proprietary routing engine with traffic + weather inputs, real-time GPS ingestion at 1Hz, predictive ETAs from historical telemetry, and driver-facing PWA.',
   proj5Category: 'EdTech · Live Learning',
   proj5Desc: 'Interactive learning platform with live cohorts, AI tutoring, and gamified progression for 10K+ active learners.',
+  proj5Challenge: 'Convert a slow legacy LMS into a live-first learning platform with personalized paths and measurable outcomes.',
+  proj5Solution: 'Realtime classroom on WebRTC, an XP-based progression system, and Gemini-powered content recommender with content-safety filters.',
   proj6Category: 'DeFi · Portfolio Analytics',
   proj6Desc: 'Multi-chain DeFi analytics suite tracking $50M+ in AUM across 20+ protocols with automated yield strategy execution.',
+  proj6Challenge: 'Aggregate trustworthy real-time portfolio data across fragmented DeFi protocols and execute yield strategies safely.',
+  proj6Solution: 'Multi-chain indexer with WebSocket price feeds, risk-scored strategy router, and a simulation sandbox for one-click execution. Audited by Trail of Bits.',
   test1Quote: 'They shipped our entire fintech rail in 14 weeks. We were the first cohort on the new platform and we have not had a single production incident since launch. The closest thing I have to in-house senior engineers.',
   test1Role: 'CTO at a Series B fintech',
   test2Quote: 'Working with Blueberry felt like hiring a senior product team. They pushed back where it mattered, simplified scope where they could, and the MVP just worked on day one.',
@@ -469,16 +481,28 @@ const ka: T = {
   portfolioSubtitle: 'რეპრეზენტატიული ნაწილი იმისა, რასაც ვაკეთებთ. სადაც NDA მოითხოვს — ანონიმური.',
   proj1Category: 'ფინტექი · გადახდის ინფრასტრუქტურა',
   proj1Desc: 'ტრანსსაზღვრო გადახდის სისტემა, რომელიც ამუშავებს $400M+ წლიური მოცულობით, რეალურ დროში ფრაუდის სკორინგით და 7 ვალუტის მხარდაჭერით.',
+  proj1Challenge: 'მოძველებული, არასტაბილური gateway-ის შეცვლა და მაღალი მოცულობის ტრანსსაზღვრო გადახდების დამუშავება მკაცრი რეგულირების პირობებში, downtime-ის გარეშე.',
+  proj1Solution: 'Event-driven მიკროსერვისები AWS-ზე მრავალრეგიონული failover-ით, ML-ფრაუდის სკორინგი და კრიპტოგრაფიული აუდიტის კვალით აღჭურვილი საკუთარი ledger. $90M-ის ღია გადახდის მიგრაცია ერთი ჩაშლილი ტრანზაქციის გარეშე.',
   proj2Category: 'ე-კომერცია · მრავალგამყიდველი SaaS',
   proj2Desc: 'საენთერპრაიზო მარკეტფლეისი — 500+ გამყიდველი, 15ათ. შეკვეთა თვეში და რეალურ დროში ინვენტარის სინქრონიზაცია 6 დისტრიბუციის ცენტრს შორის.',
+  proj2Challenge: 'სამი მოძველებული commerce stack-ის გაერთიანება ერთ multi-tenant პლატფორმაში რეალურ დროში ინვენტარით განაწილებულ ფულფილმენტში.',
+  proj2Solution: 'Next.js headless ვიტრინა, WebSocket ინვენტარის bus, ავტომატური 3PL მარშრუტიზაცია და AI-დახმარებით SKU-ის mapping. კატალოგის ჩართვის დრო 6 კვირიდან 3 დღემდე შემცირდა.',
   proj3Category: 'ჯანდაცვა · პაციენტთა პლატფორმა',
   proj3Desc: 'HIPAA-ის შესაბამისი ტელემედიცინა და პაციენტთა მართვის სისტემა — 200+ კონსულტაცია დღეში, 18 კლინიკაში.',
+  proj3Challenge: '18 კლინიკის ციფრულიზაცია ერთ HIPAA-სტანდარტის პლატფორმაში ტელემედიცინით, ავტომატური განრიგით და აუდიტისთვის მზა ჩანაწერებით.',
+  proj3Solution: 'End-to-end დაშიფრული ვიდეო WebRTC-ზე, როლზე დაფუძნებული EHR, SMS/email შეხსენების კადენცია და FHIR-თავსებადი ჩანაწერების სეიფი. 18 კლინიკაში 11 კვირაში გავუშვით.',
   proj4Category: 'ლოგისტიკა · ფლოტის ოპერაციები',
   proj4Desc: 'რეალურ დროში ფლოტის მართვა და მარშრუტის ოპტიმიზაცია 200+ მანქანისთვის 3 ქვეყანაში, პროგნოზული ETA და 30% საწვავის დაზოგვა.',
+  proj4Challenge: 'ქაღალდისა და ცხრილების დისპეტჩერული ოპერაციის ჩანაცვლება რეალურ დროში ფლოტ-ოპერაციების პლატფორმით 200+ მანქანისთვის 3 ქვეყანაში.',
+  proj4Solution: 'საკუთარი routing ძრავა საგზაო და ამინდის შემავალი მონაცემებით, რეალურ დროში GPS 1Hz სიხშირით, ისტორიული ტელემეტრიიდან პროგნოზული ETA და მძღოლის PWA.',
   proj5Category: 'განათლება · ცოცხალი სწავლება',
   proj5Desc: 'ინტერაქტიური სასწავლო პლატფორმა ცოცხალი კოჰორტებით, AI-ტუტორინგით და გეიმიფიცირებული პროგრესით — 10ათ.+ აქტიური მსმენელი.',
+  proj5Challenge: 'ნელი legacy LMS-ის გადაკეთება ცოცხალ-ფირველ სასწავლო პლატფორმად პერსონალიზებული გზებითა და გაზომვადი შედეგებით.',
+  proj5Solution: 'რეალურ დროში კლასი WebRTC-ზე, XP-ზე დაფუძნებული პროგრესის სისტემა და Gemini-ით აღჭურვილი კონტენტის რეკომენდატორი უსაფრთხოების ფილტრებით.',
   proj6Category: 'DeFi · პორტფოლიოს ანალიტიკა',
   proj6Desc: 'მრავალქსელიანი DeFi ანალიტიკის სუიტი — $50M+ AUM 20+ პროტოკოლზე, ავტომატური yield-სტრატეგიის შესრულებით.',
+  proj6Challenge: 'სანდო, რეალურ დროში პორტფოლიოს მონაცემების აგრეგაცია გაყოფილი DeFi პროტოკოლების მასშტაბით და yield-სტრატეგიების უსაფრთხო შესრულება.',
+  proj6Solution: 'მრავალქსელიანი ინდექსერი WebSocket ფასების ფიდით, რისკის სკორირებული strategy router და სიმულაციის sandbox ერთი-კლიკზე შესრულებისთვის. ნაუდიტი Trail of Bits-მა.',
   test1Quote: 'მთლიანი ფინტექის რეილი 14 კვირაში მოგვცეს. პირველი კოჰორტა ვიყავით ახალ პლატფორმაზე და გაშვების შემდეგ ერთი ინციდენტიც კი არ გვქონია. ეს ყველაზე ახლოს არის იმასთან, რასაც შიდა სენიორ ინჟინერთა გუნდს ვუწოდებდი.',
   test1Role: 'ფინტექის Series B კომპანიის ტექნოლოგიური დირექტორი',
   test2Quote: 'Blueberry-სთან მუშაობა ისეთი იყო, თითქოს სენიორი პროდუქტის გუნდი დავიქირავე. დაიცვეს თავიანთი პოზიცია იქ, სადაც საჭირო იყო, გაამარტივეს scope სადაც შეიძლებოდა, და MVP-მ პირველ დღესვე უპრობლემოდ იმუშავა.',

@@ -18,6 +18,9 @@ export function ProjectModal({
       {index !== null &&
         (() => {
           const p = PORTFOLIO[index];
+          const localizedCategory = [t.proj1Category, t.proj2Category, t.proj3Category, t.proj4Category, t.proj5Category, t.proj6Category][index] ?? p.category;
+          const localizedChallenge = [t.proj1Challenge, t.proj2Challenge, t.proj3Challenge, t.proj4Challenge, t.proj5Challenge, t.proj6Challenge][index] ?? p.challenge;
+          const localizedSolution = [t.proj1Solution, t.proj2Solution, t.proj3Solution, t.proj4Solution, t.proj5Solution, t.proj6Solution][index] ?? p.solution;
           return (
             <>
               <motion.div
@@ -67,7 +70,7 @@ export function ProjectModal({
                           backdropFilter: 'blur(8px)',
                         }}
                       >
-                        {p.category}
+                        {localizedCategory}
                       </span>
                       <span className="text-[11px] text-white/70 font-mono">{p.year}</span>
                       {p.client && <span className="text-[11px] text-white/70">· {p.client}</span>}
@@ -95,13 +98,13 @@ export function ProjectModal({
                       <h3 className="text-[11px] text-blue-400 font-semibold uppercase tracking-[0.28em] mb-3">
                         {t.challenge}
                       </h3>
-                      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.challenge}</p>
+                      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{localizedChallenge}</p>
                     </div>
                     <div>
                       <h3 className="text-[11px] text-blue-400 font-semibold uppercase tracking-[0.28em] mb-3">
                         {t.solution}
                       </h3>
-                      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.solution}</p>
+                      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{localizedSolution}</p>
                     </div>
                   </div>
 
