@@ -1,26 +1,27 @@
 import { Reveal, SectionEyebrow } from './primitives';
 import { INDUSTRIES } from '../data';
+import type { getT } from '../i18n';
 
 /**
  * Industries-we-serve strip. Sits between Stats and Services.
  * Premium use: sets up the codename scheme used downstream in Portfolio.
  */
-export function Industries() {
+export function Industries({ t }: { t: ReturnType<typeof getT> }) {
   return (
     <section className="py-16 md:py-20 relative">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
             <div>
-              <SectionEyebrow num="·" label="Industries we ship into" />
+              <SectionEyebrow num="·" label={t.industriesEyebrow} />
               <h2 className="text-2xl md:text-3xl font-bold tracking-tight max-w-xl text-zinc-700 dark:text-zinc-300">
-                Six sectors. One playbook:{' '}
-                <span className="text-black dark:text-white">build the part that matters,</span>{' '}
-                cut the rest.
+                {t.industriesTitle1}{' '}
+                <span className="text-black dark:text-white">{t.industriesTitleAccent}</span>{' '}
+                {t.industriesTitle2}
               </h2>
             </div>
             <p className="text-xs text-zinc-600 font-mono uppercase tracking-[0.22em] max-w-xs">
-              Active client work shown under NDA codenames. Hover for case study.
+              {t.industriesNote}
             </p>
           </div>
         </Reveal>

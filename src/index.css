@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Georgian:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 /* Class-based dark mode for Tailwind v4 */
@@ -46,11 +46,22 @@ html, body { background: var(--bb-bg); transition: background-color 0.4s ease; }
 body {
   margin: 0;
   color: var(--bb-fg);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', 'Noto Sans Georgian', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: color 0.4s ease;
+}
+
+/* Georgian unicode range — Noto Sans Georgian renders these glyphs while Inter
+   keeps Latin. Layered via unicode-range so the browser picks the right font per char. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 900;
+  src: local('Noto Sans Georgian');
+  unicode-range: U+10A0-10FF, U+2D00-2D2F, U+1C90-1CBF;
+  font-display: swap;
 }
 
 /* ─── View Transitions for theme swap (Magic UI animated-theme-toggler) ─── */
@@ -66,8 +77,8 @@ html[data-magicui-theme-vt] ::view-transition-new(root) {
 }
 
 /* Single Inter typeface across the site — variation via weight + spacing only */
-.font-serif { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 400; letter-spacing: -0.01em; }
-.font-mono { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 500; font-feature-settings: 'tnum'; letter-spacing: 0.06em; }
+.font-serif { font-family: 'Inter', 'Noto Sans Georgian', system-ui, -apple-system, sans-serif; font-weight: 400; letter-spacing: -0.01em; }
+.font-mono { font-family: 'Inter', 'Noto Sans Georgian', system-ui, -apple-system, sans-serif; font-weight: 500; font-feature-settings: 'tnum'; letter-spacing: 0.06em; }
 
 ::selection { background-color: var(--bb-blue); color: #fff; }
 

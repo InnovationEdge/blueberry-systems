@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Reveal, SectionEyebrow } from './primitives';
 import type { getT } from '../i18n';
 
-export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
+export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const imageY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
@@ -23,7 +23,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
             <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
               <motion.img
                 src="/team/founder.png"
-                alt="Irakli Kerdikoshvili, Founder & CEO of Blueberry Systems"
+                alt={`Irakli Kerdikoshvili — ${t.roleCEO}`}
                 style={{ y: imageY }}
                 className="absolute inset-0 w-full h-[112%] object-cover object-center"
               />
@@ -33,12 +33,12 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
               <div className="absolute bottom-5 left-5 right-5 backdrop-blur-xl bg-black/40 border border-zinc-400/70 dark:border-white/[0.12] rounded-2xl p-4 flex items-center justify-between">
                 <div>
                   <p className="text-sm font-bold tracking-tight text-white">Irakli Kerdikoshvili</p>
-                  <p className="text-[11px] text-zinc-700 dark:text-zinc-300 mt-0.5">Founder & CEO · Tbilisi</p>
+                  <p className="text-[11px] text-zinc-700 dark:text-zinc-300 mt-0.5">{t.founderRoleLine}</p>
                 </div>
                 <a
                   href="mailto:info@blueberry.codes"
                   className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center hover:bg-zinc-200 transition-colors"
-                  aria-label="Email Irakli"
+                  aria-label={`Email Irakli`}
                 >
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
@@ -50,8 +50,8 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
                 </span>
-                <span className="text-[10px] text-black dark:text-white uppercase tracking-[0.22em] font-semibold">
-                  Available for calls
+                <span className="text-[10px] text-white uppercase tracking-[0.22em] font-semibold">
+                  {t.founderAvailable}
                 </span>
               </div>
             </div>
@@ -61,35 +61,25 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
         {/* Note — right, 7 cols */}
         <div className="lg:col-span-7 order-1 lg:order-2">
           <Reveal delay={0.1}>
-            <SectionEyebrow num="00" label="A note from the founder" />
+            <SectionEyebrow num="00" label={t.founderEyebrow} />
           </Reveal>
 
           <Reveal delay={0.15}>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] mb-8 leading-[1.05]">
-              We don't ship{' '}
-              <span className="text-blue-300">features.</span>
+              {t.founderTitle1}{' '}
+              <span className="text-blue-500 dark:text-blue-300">{t.founderTitleAccent1}</span>
               <br />
-              We ship{' '}
+              {t.founderTitle2}{' '}
               <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-                outcomes.
+                {t.founderTitleAccent2}
               </span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.25}>
             <div className="space-y-5 text-zinc-700 dark:text-zinc-300 text-lg leading-relaxed max-w-[60ch] font-light">
-              <p>
-                Most agencies sell you hours. We sell you the thing your hours
-                were supposed to produce. A product your users open every day,
-                a payment rail that doesn't drop transactions, a launch that
-                ships when the market needs it, not when the invoice clears.
-              </p>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                We're a small, senior team. We pick the projects we believe in,
-                push back where it matters, and stay long enough to see them
-                work in the wild. If that sounds like the partner you've been
-                looking for, let's talk.
-              </p>
+              <p>{t.founderP1}</p>
+              <p className="text-zinc-600 dark:text-zinc-400">{t.founderP2}</p>
             </div>
           </Reveal>
 
@@ -103,14 +93,14 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
                 Irakli K.
               </p>
               <p className="text-[11px] text-zinc-600 dark:text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">
-                Founder · Blueberry Systems · 2020
+                {t.founderSigLine}
               </p>
             </div>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 text-sm text-black dark:text-white hover:text-blue-300 transition-colors font-medium"
+              className="group inline-flex items-center gap-2 text-sm text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-medium"
             >
-              Reach me directly
+              {t.founderReachOut}
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </motion.div>

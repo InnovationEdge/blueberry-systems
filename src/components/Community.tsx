@@ -55,38 +55,38 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
   const members = [
     {
       name: 'Irakli Kerdikoshvili',
-      role: 'Founder & CEO',
+      role: t.roleCEO,
       img: '/team/founder.png',
       founder: true,
       linkedin: 'https://www.linkedin.com/in/iraklikerdikoshvili/',
     },
     {
       name: 'Tinatin Shakeladze',
-      role: 'Chief Marketing Officer',
+      role: t.roleCMO,
       img: '/team/tinatin.png',
       linkedin: BB_COMPANY_LINKEDIN,
     },
     {
       name: 'Luka Giorgadze',
-      role: 'Chief Finance Officer',
+      role: t.roleCFO,
       img: '/team/luka.png',
       linkedin: BB_COMPANY_LINKEDIN,
     },
     {
       name: 'Datuna Bakradze',
-      role: 'Chief Operating Officer',
+      role: t.roleCOO,
       img: '/team/datuna.png',
       linkedin: BB_COMPANY_LINKEDIN,
     },
     {
       name: 'Giorgi Menteshashvili',
-      role: 'Head of Engineering',
+      role: t.roleHeadEng,
       img: '/team/giorgi.png',
       linkedin: BB_COMPANY_LINKEDIN,
     },
     {
       name: 'Irakli Lomidze',
-      role: 'Chief Legal Officer',
+      role: t.roleCLO,
       img: '/team/irakli-l.png',
       linkedin: BB_COMPANY_LINKEDIN,
     },
@@ -128,7 +128,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                   />
                   {m.founder && (
                     <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-blue-500/90 backdrop-blur-sm text-[9px] font-bold uppercase tracking-[0.2em] text-white">
-                      Founder
+                      {t.founderBadge}
                     </div>
                   )}
                   {/* LinkedIn hover hint */}

@@ -47,7 +47,7 @@ export default function App() {
       >
         <Hero t={t} />
         <StatsStrip t={t} />
-        <Industries />
+        <Industries t={t} />
         <Services t={t} />
         <TechStrip t={t} />
         <Process t={t} />
@@ -70,7 +70,7 @@ export default function App() {
       </Suspense>
 
       <ScrollToTop />
-      <NowBuilding projects={['3 active engagements', 'Q3 2026 cohort']} />
+      <NowBuilding label={t.nowBuilding} projects={[t.nowBuildingItem1, t.nowBuildingItem2]} />
     </div>
   );
 }

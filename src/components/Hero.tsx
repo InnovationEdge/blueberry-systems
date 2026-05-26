@@ -46,7 +46,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
       </div>
       <div className="hidden lg:flex absolute top-[40%] -translate-y-1/2 right-6 xl:right-10 flex-col items-end gap-3 z-10 pointer-events-none">
         <span className="font-mono text-[10px] text-zinc-600 tracking-[0.3em] uppercase -rotate-90 origin-top-right -translate-y-12">
-          {t.onMarket} · 99.99% Uptime
+          {t.onMarket} · {t.uptimeBadge}
         </span>
       </div>
 
@@ -64,10 +64,10 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
               </span>
-              Booking Q3
+              {t.bookingQ}
             </span>
             <span className="text-zinc-600 dark:text-zinc-500">·</span>
-            <span className="text-zinc-700 dark:text-zinc-300 whitespace-nowrap">Since 2020</span>
+            <span className="text-zinc-700 dark:text-zinc-300 whitespace-nowrap">{t.since2020}</span>
           </motion.div>
 
           {/* Cinematic display headline */}

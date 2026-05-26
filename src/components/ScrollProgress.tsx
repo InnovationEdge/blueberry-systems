@@ -17,7 +17,7 @@ export function ScrollProgress() {
   );
 }
 
-export function NowBuilding({ projects }: { projects: string[] }) {
+export function NowBuilding({ label, projects }: { label: string; projects: string[] }) {
   const reduced = useReducedMotion();
   return (
     <motion.div
@@ -30,7 +30,7 @@ export function NowBuilding({ projects }: { projects: string[] }) {
         <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
       </span>
-      <span className="text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.18em]">Now building</span>
+      <span className="text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.18em]">{label}</span>
       <span className="text-[11px] text-zinc-700 dark:text-zinc-300 font-mono">{projects.join(' · ')}</span>
     </motion.div>
   );
