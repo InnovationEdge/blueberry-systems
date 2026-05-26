@@ -192,33 +192,63 @@ export function Process({ t }: { t: ReturnType<typeof getT> }) {
   );
 }
 
-/* ─── Stats strip below hero ─── */
+/* ─── Stats strip — brand-blue feature band, big impact, no dividers ─── */
 export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
   const stats = [
-    { v: '$400M+', l: 'Annualized GMV processed' },
+    { v: '$400M+', l: 'GMV processed' },
     { v: '50+', l: t.projects },
     { v: '99.99%', l: t.uptime },
     { v: '15+', l: t.clients },
   ];
   return (
-    <section className="py-16 md:py-20 border-t border-zinc-200 dark:border-white/[0.04]">
+    <section className="py-10 md:py-14">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-zinc-200 dark:divide-white/[0.06]">
-          {stats.map((s, i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <div className="p-6 md:p-8 h-full flex flex-col items-start">
-                <p
-                  className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-black dark:text-white"
-                  style={{ letterSpacing: '-0.04em' }}
-                >
-                  {s.v}
-                </p>
-                <p className="text-[10px] md:text-[11px] text-zinc-600 dark:text-zinc-500 mt-3 uppercase tracking-[0.22em] font-medium">
-                  {s.l}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+        <div
+          className="relative rounded-3xl overflow-hidden p-8 md:p-12 lg:p-14"
+          style={{
+            background:
+              'linear-gradient(135deg, #004aad 0%, #003a8c 50%, #002966 100%)',
+          }}
+        >
+          {/* Decorative grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.07] pointer-events-none"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+              maskImage: 'radial-gradient(ellipse at center, black 35%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 35%, transparent 80%)',
+            }}
+            aria-hidden
+          />
+          {/* Soft accent orb */}
+          <div
+            className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%)',
+            }}
+            aria-hidden
+          />
+
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-0 gap-x-4 md:gap-x-8">
+            {stats.map((s, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <div className="flex flex-col items-start">
+                  <p
+                    className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-white"
+                    style={{ letterSpacing: '-0.04em' }}
+                  >
+                    {s.v}
+                  </p>
+                  <p className="text-[10px] md:text-[11px] text-white/70 mt-2 md:mt-3 uppercase tracking-[0.2em] font-medium">
+                    {s.l}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
