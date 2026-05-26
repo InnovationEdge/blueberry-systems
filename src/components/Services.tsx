@@ -201,14 +201,21 @@ export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
     { v: '15+', l: t.clients },
   ];
   return (
-    <section className="py-20 md:py-24 border-t border-zinc-200/60 dark:border-white/[0.04]">
+    <section className="py-16 md:py-20 border-t border-zinc-200 dark:border-white/[0.04]">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-200/70 dark:bg-white/[0.06] border border-zinc-200 dark:border-white/[0.06] rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-zinc-200 dark:divide-white/[0.06]">
           {stats.map((s, i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <div className="bg-black/40 backdrop-blur-sm p-8 md:p-10 h-full flex flex-col items-start group hover:bg-zinc-100/60 dark:bg-white/[0.02] transition-colors">
-                <p className="text-5xl md:text-6xl font-extrabold tracking-tighter shimmer-text">{s.v}</p>
-                <p className="text-[11px] text-zinc-600 dark:text-zinc-500 mt-4 uppercase tracking-[0.22em] font-medium">{s.l}</p>
+            <Reveal key={i} delay={i * 0.06}>
+              <div className="p-6 md:p-8 h-full flex flex-col items-start">
+                <p
+                  className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-black dark:text-white"
+                  style={{ letterSpacing: '-0.04em' }}
+                >
+                  {s.v}
+                </p>
+                <p className="text-[10px] md:text-[11px] text-zinc-600 dark:text-zinc-500 mt-3 uppercase tracking-[0.22em] font-medium">
+                  {s.l}
+                </p>
               </div>
             </Reveal>
           ))}

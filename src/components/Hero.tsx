@@ -7,10 +7,9 @@ import {
   HeroParticles,
   KineticWords,
   MagneticButton,
-  Marquee,
   Reveal,
 } from './primitives';
-import { AWARDS, TECH_GROUPS } from '../data';
+import { AWARDS } from '../data';
 import type { getT } from '../i18n';
 
 export function Hero({ t }: { t: ReturnType<typeof getT> }) {
@@ -22,10 +21,6 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 220]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const orbY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const previewY = useTransform(scrollYProgress, [0, 1], [0, 80]);
-  const previewScale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-
-  const allTech = TECH_GROUPS.flatMap((g) => g.items);
 
   return (
     <section ref={heroRef} className="relative min-h-[100svh] flex items-center overflow-hidden">
@@ -136,152 +131,10 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             </div>
           </div>
 
-          {/* Hero preview card — sneak peek of featured project */}
-          <motion.div
-            style={{ y: previewY, scale: previewScale }}
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-2 relative max-w-[1200px] mx-auto"
-          >
-            <div
-              className="relative aspect-[16/8.5] rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10"
-              style={{ background: 'linear-gradient(135deg, #0a1f3d 0%, #062052 35%, #1e3a8a 100%)' }}
-            >
-              {/* Grid + Faux UI */}
-              <div
-                className="absolute inset-0 opacity-30"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
-                  backgroundSize: '48px 48px',
-                  maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
-                }}
-                aria-hidden
-              />
-              {/* Window chrome */}
-              <div className="absolute top-4 left-4 right-4 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-white/50" />
-                <span className="w-2.5 h-2.5 rounded-full bg-white/30" />
-                <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                <span className="ml-3 flex-1 max-w-[260px] h-2 mockup-bar" />
-                <span className="font-mono text-[10px] text-white/60">blueberry.codes / case-studies</span>
-              </div>
-
-              {/* Center content */}
-              <div className="absolute inset-x-12 top-16 bottom-12 grid grid-cols-12 gap-5">
-                {/* Left rail */}
-                <div className="col-span-3 space-y-3">
-                  <div className="mockup-bar h-3 w-full" />
-                  <div className="mockup-bar h-3 w-2/3 opacity-60" />
-                  <div className="mockup-bar h-3 w-3/4 opacity-50" />
-                  <div className="mockup-bar h-3 w-1/2 opacity-40" />
-                </div>
-                {/* Main panel */}
-                <div className="col-span-9 grid grid-cols-3 gap-4">
-                  <div className="col-span-3 grid grid-cols-3 gap-4">
-                    {[
-                      { v: '$418M', l: 'GMV / annualized' },
-                      { v: '99.99%', l: 'SLA' },
-                      { v: '120 ms', l: 'p99 latency' },
-                    ].map((s) => (
-                      <div
-                        key={s.l}
-                        className="rounded-xl border border-white/15 bg-zinc-200/60 dark:bg-white/[0.05] backdrop-blur-sm p-3 sm:p-4"
-                      >
-                        <p className="text-base sm:text-2xl font-bold text-white tracking-tight">
-                          {s.v}
-                        </p>
-                        <p className="text-[9px] sm:text-[10px] text-white/60 uppercase tracking-[0.18em] mt-1">
-                          {s.l}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Chart row */}
-                  <div className="col-span-3 rounded-xl border border-white/15 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-sm p-4 flex items-end">
-                    <svg
-                      viewBox="0 0 100 30"
-                      preserveAspectRatio="none"
-                      className="w-full h-16 sm:h-20"
-                      aria-hidden
-                    >
-                      <defs>
-                        <linearGradient id="hero-chart" x1="0" x2="0" y1="0" y2="1">
-                          <stop offset="0%" stopColor="#fff" stopOpacity="0.5" />
-                          <stop offset="100%" stopColor="#fff" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M0,24 L8,18 L16,21 L24,12 L32,15 L40,8 L48,12 L56,6 L64,9 L72,4 L80,6 L88,2 L100,4 L100,30 L0,30 Z"
-                        fill="url(#hero-chart)"
-                      />
-                      <path
-                        d="M0,24 L8,18 L16,21 L24,12 L32,15 L40,8 L48,12 L56,6 L64,9 L72,4 L80,6 L88,2 L100,4"
-                        stroke="#fff"
-                        strokeOpacity="0.9"
-                        strokeWidth="0.7"
-                        fill="none"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating live tag */}
-              <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Live ops · sample dashboard
-              </div>
-
-              {/* Bottom caption */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-[10px] text-white/60 uppercase tracking-[0.22em] font-semibold">
-                    What we build · Fintech / SaaS / Mobile
-                  </p>
-                  <p className="text-lg sm:text-2xl font-bold text-white tracking-tight mt-1">
-                    Operations dashboards your team will actually open
-                  </p>
-                </div>
-                <a
-                  href="#portfolio"
-                  className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-semibold hover:bg-zinc-200 transition-colors"
-                >
-                  {t.viewProject} <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Floating accent stickers */}
-            <div className="hidden md:block absolute -top-6 -left-6 px-4 py-2.5 rounded-xl border border-zinc-400/70 dark:border-white/[0.12] bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-xl rotate-[-4deg]">
-              <p className="text-[10px] leading-none text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-mono mb-1.5">
-                /avg
-              </p>
-              <p className="text-sm leading-none text-black dark:text-white font-semibold">10-week launch</p>
-            </div>
-            <div
-              className="hidden md:block absolute -bottom-5 -right-5 px-4 py-2.5 rounded-xl backdrop-blur-xl shadow-xl rotate-[3deg] border"
-              style={{
-                borderColor: 'rgba(0, 74, 173, 0.30)',
-                background: 'color-mix(in srgb, #004aad 8%, var(--bb-bg-soft))',
-              }}
-            >
-              <p
-                className="text-[10px] leading-none uppercase tracking-[0.22em] font-mono mb-1.5"
-                style={{ color: '#004aad' }}
-              >
-                /sla
-              </p>
-              <p className="text-sm leading-none text-black dark:text-white font-semibold">99.99% uptime</p>
-            </div>
-          </motion.div>
-
           {/* Awards ribbon */}
           <Reveal delay={0.4}>
-            <div className="mt-20 border-t border-zinc-200 dark:border-white/[0.06] pt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-medium">
-              <span className="text-zinc-600">{t.trustedBy}</span>
+            <div className="border-t border-zinc-200 dark:border-white/[0.06] pt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-medium">
+              <span>{t.trustedBy}</span>
               {AWARDS.map((a) => (
                 <span key={a.label} className="flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full bg-blue-500/60" />
@@ -293,25 +146,6 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
         </motion.div>
       </div>
 
-      {/* Tech marquee fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 pb-5">
-        <Marquee speed={45}>
-          <>
-            {allTech.map((tech) => (
-              <span
-                key={tech.name}
-                className="inline-flex items-center gap-2 text-[13px] text-zinc-600 font-mono whitespace-nowrap"
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: tech.color }}
-                />
-                {tech.name}
-              </span>
-            ))}
-          </>
-        </Marquee>
-      </div>
     </section>
   );
 }

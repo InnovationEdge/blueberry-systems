@@ -253,7 +253,7 @@ export const TECH_GROUPS = [
 ];
 
 /* ─── Languages ─── */
-export const LANGUAGES = ['EN', 'ქარ', 'RU', '中文', 'عربي'] as const;
+export const LANGUAGES = ['EN', 'ქარ'] as const;
 
 /* ─── Awards ribbon ─── */
 export const AWARDS = [
