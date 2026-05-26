@@ -165,10 +165,6 @@ export function Process({ t }: { t: ReturnType<typeof getT> }) {
         </Reveal>
 
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          <div className="hidden md:block absolute top-[68px] left-[16%] right-[16%] h-px">
-            <div className="h-full w-full bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
-          </div>
-
           {steps.map((p, i) => (
             <ScaleIn key={i} delay={i * 0.12}>
               <div className="relative group text-center">
