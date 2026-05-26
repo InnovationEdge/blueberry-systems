@@ -20,7 +20,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
         {/* Portrait — left, 5 cols, with parallax */}
         <div className="lg:col-span-5 order-2 lg:order-1">
           <Reveal>
-            <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-black/[0.10] dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
+            <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
               <motion.img
                 src="/team/founder.png"
                 alt="Irakli Kerdikoshvili — Founder & CEO of Blueberry Systems"
@@ -30,10 +30,10 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
               {/* Floating identity card */}
-              <div className="absolute bottom-5 left-5 right-5 backdrop-blur-xl bg-black/40 border border-black/[0.12] dark:border-white/[0.12] rounded-2xl p-4 flex items-center justify-between">
+              <div className="absolute bottom-5 left-5 right-5 backdrop-blur-xl bg-black/40 border border-zinc-400/70 dark:border-white/[0.12] rounded-2xl p-4 flex items-center justify-between">
                 <div>
                   <p className="text-sm font-bold tracking-tight text-white">Irakli Kerdikoshvili</p>
-                  <p className="text-[11px] text-zinc-300 mt-0.5">Founder & CEO · Tbilisi</p>
+                  <p className="text-[11px] text-zinc-700 dark:text-zinc-300 mt-0.5">Founder & CEO · Tbilisi</p>
                 </div>
                 <a
                   href="mailto:info@blueberry.codes"
@@ -77,14 +77,14 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
           </Reveal>
 
           <Reveal delay={0.25}>
-            <div className="space-y-5 text-zinc-300 text-lg leading-relaxed max-w-[60ch] font-light">
+            <div className="space-y-5 text-zinc-700 dark:text-zinc-300 text-lg leading-relaxed max-w-[60ch] font-light">
               <p>
                 Most agencies sell you hours. We sell you the thing your hours
                 were supposed to produce — a product your users open every day,
                 a payment rail that doesn't drop transactions, a launch that
                 ships when the market needs it, not when the invoice clears.
               </p>
-              <p className="text-zinc-400">
+              <p className="text-zinc-600 dark:text-zinc-400">
                 We're a small, senior team. We pick the projects we believe in,
                 push back where it matters, and stay long enough to see them
                 work in the wild. If that sounds like the partner you've been
@@ -96,13 +96,13 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
           {/* Signature */}
           <motion.div
             style={{ opacity: sigOpacity }}
-            className="mt-10 pt-8 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-6 flex-wrap"
+            className="mt-10 pt-8 border-t border-zinc-200 dark:border-white/[0.06] flex items-center justify-between gap-6 flex-wrap"
           >
             <div>
               <p className="text-3xl md:text-4xl text-black dark:text-white tracking-tight leading-none font-semibold">
                 — Irakli
               </p>
-              <p className="text-[11px] text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">
+              <p className="text-[11px] text-zinc-600 dark:text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">
                 Founder · Blueberry Systems · 2020
               </p>
             </div>

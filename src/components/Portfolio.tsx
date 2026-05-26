@@ -85,13 +85,13 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] max-w-3xl">
                 {t.portfolioTitle}
               </h2>
-              <p className="text-zinc-500 mt-4 max-w-md text-base">
+              <p className="text-zinc-600 dark:text-zinc-500 mt-4 max-w-md text-base">
                 A representative slice of the kind of work we ship — anonymized where required by NDA.
               </p>
             </div>
             <a
               href="#contact"
-              className="hidden md:inline-flex text-sm text-zinc-400 hover:text-black dark:text-white transition-colors items-center gap-2 self-end"
+              className="hidden md:inline-flex text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:text-white transition-colors items-center gap-2 self-end"
             >
               {t.bookCall} <ArrowUpRight className="w-4 h-4" />
             </a>
@@ -107,7 +107,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                 <button
                   type="button"
                   onClick={() => onOpen(originalIdx)}
-                  className="group relative w-full text-left lift rounded-3xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-white/[0.14] overflow-hidden h-full flex flex-col"
+                  className="group relative w-full text-left lift rounded-3xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] hover:border-zinc-400 dark:hover:border-white/[0.14] overflow-hidden h-full flex flex-col"
                 >
                   <BorderBeam
                     size={70}
@@ -131,8 +131,8 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                       <span className="text-[10px] text-zinc-600 font-mono">{p.year}</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 tracking-tight">{p.title}</h3>
-                    <p className="text-sm text-zinc-500 leading-relaxed mb-5 flex-1">{p.desc}</p>
-                    <div className="flex items-center justify-between text-[12px] text-zinc-500 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] group-hover:text-blue-300 transition-colors">
+                    <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed mb-5 flex-1">{p.desc}</p>
+                    <div className="flex items-center justify-between text-[12px] text-zinc-600 dark:text-zinc-500 pt-4 border-t border-zinc-200 dark:border-white/[0.06] group-hover:text-blue-300 transition-colors">
                       <span>{t.viewProject}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>

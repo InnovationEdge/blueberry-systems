@@ -23,7 +23,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {posts.map((post, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="lift relative h-full flex flex-col border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 hover:border-black/[0.14] dark:hover:border-white/[0.14] transition-all duration-300 group bg-black/[0.01] dark:bg-white/[0.01] overflow-hidden">
+              <article className="lift relative h-full flex flex-col border border-zinc-200 dark:border-white/[0.06] rounded-3xl p-8 hover:border-zinc-400 dark:hover:border-white/[0.14] transition-all duration-300 group bg-zinc-50/60 dark:bg-white/[0.01] overflow-hidden">
                 <div
                   className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   aria-hidden
@@ -34,7 +34,7 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
                 <h3 className="text-xl font-bold mb-4 tracking-tight group-hover:text-blue-300 transition-colors flex-1">
                   {post.title}
                 </h3>
-                <div className="flex items-center justify-between text-[11px] text-zinc-500 pt-4 border-t border-black/[0.06] dark:border-white/[0.06] font-mono">
+                <div className="flex items-center justify-between text-[11px] text-zinc-600 dark:text-zinc-500 pt-4 border-t border-zinc-200 dark:border-white/[0.06] font-mono">
                   <span>{post.date}</span>
                   <span>
                     {post.read} {t.minRead}
@@ -68,7 +68,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
               <SectionEyebrow num="07" label={t.ourTeam} />
               <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em]">{t.teamTitle}</h2>
             </div>
-            <p className="text-zinc-400 leading-relaxed text-lg max-w-xl">{t.teamDesc}</p>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg max-w-xl">{t.teamDesc}</p>
           </div>
         </Reveal>
 
@@ -79,7 +79,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                 <div className={`relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border transition-all duration-300 bg-zinc-50 dark:bg-zinc-900 ${
                   m.founder
                     ? 'border-blue-500/40 shadow-lg shadow-blue-500/20 group-hover:border-blue-400/60'
-                    : 'border-black/[0.06] dark:border-white/[0.06] group-hover:border-blue-500/30'
+                    : 'border-zinc-200 dark:border-white/[0.06] group-hover:border-blue-500/30'
                 }`}>
                   <img
                     src={m.img}
@@ -94,7 +94,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                   )}
                 </div>
                 <h3 className="font-semibold text-sm tracking-tight mb-1">{m.name}</h3>
-                <p className="text-xs text-zinc-500">{m.role}</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-500">{m.role}</p>
               </div>
             </Reveal>
           ))}
@@ -125,7 +125,7 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
     <section className="py-20 md:py-28">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 mb-10">
         <Reveal>
-          <p className="text-center text-zinc-500 text-[11px] uppercase tracking-[0.32em] font-medium mb-3">
+          <p className="text-center text-zinc-600 dark:text-zinc-500 text-[11px] uppercase tracking-[0.32em] font-medium mb-3">
             {t.partners}
           </p>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-[-0.03em] text-center max-w-3xl mx-auto">
@@ -139,13 +139,13 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
           {partners.map((p) => (
             <div
               key={p.name}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] whitespace-nowrap hover:border-black/[0.18] dark:hover:border-white/[0.18] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-colors"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] whitespace-nowrap hover:border-zinc-500/70 dark:hover:border-white/[0.18] hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
             >
               <span className="text-[15px] md:text-base font-bold tracking-tight text-black dark:text-white">
                 {p.name}
               </span>
               <span className="w-px h-4 bg-black/[0.12] dark:bg-white/[0.12]" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-mono">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-500 font-mono">
                 {p.tier}
               </span>
             </div>

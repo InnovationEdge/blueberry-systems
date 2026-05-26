@@ -179,14 +179,21 @@ html[data-magicui-theme-vt] ::view-transition-new(root) {
   border: 1px solid transparent;
 }
 
-/* ─── Shimmer text effect ─── */
+/* ─── Shimmer text effect (theme-aware) ─── */
 .shimmer-text {
-  background: linear-gradient(110deg, #ffffff 30%, #93c5fd 50%, #ffffff 70%);
+  background: linear-gradient(110deg, #0a0a0d 30%, #2563eb 50%, #0a0a0d 70%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 8s linear infinite;
+}
+.dark .shimmer-text {
+  background: linear-gradient(110deg, #ffffff 30%, #93c5fd 50%, #ffffff 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* ─── Focus rings ─── */

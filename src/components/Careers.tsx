@@ -24,7 +24,7 @@ export function Careers({ t }: { t: ReturnType<typeof getT> }) {
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em] mb-4">
               {t.careersTitle}
             </h2>
-            <p className="text-zinc-400 mb-12 text-lg max-w-2xl">{t.careersDesc}</p>
+            <p className="text-zinc-600 dark:text-zinc-400 mb-12 text-lg max-w-2xl">{t.careersDesc}</p>
           </Reveal>
 
           <div className="space-y-2.5">
@@ -32,22 +32,22 @@ export function Careers({ t }: { t: ReturnType<typeof getT> }) {
               <Reveal key={i} delay={i * 0.05}>
                 <button
                   onClick={() => setApplyJob(j.title)}
-                  className="w-full flex items-center justify-between p-6 border border-black/[0.06] dark:border-white/[0.06] rounded-2xl hover:border-blue-500/30 hover:bg-blue-600/[0.04] transition-all group text-left"
+                  className="w-full flex items-center justify-between p-6 border border-zinc-200 dark:border-white/[0.06] rounded-2xl hover:border-blue-500/30 hover:bg-blue-600/[0.04] transition-all group text-left"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 min-w-0">
                     <h3 className="font-semibold text-base group-hover:text-blue-300 transition-colors">
                       {j.title}
                     </h3>
-                    <span className="text-[11px] text-zinc-500 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.06] px-3 py-1 rounded-full font-mono uppercase tracking-wider">
+                    <span className="text-[11px] text-zinc-600 dark:text-zinc-500 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] px-3 py-1 rounded-full font-mono uppercase tracking-wider">
                       {j.dept}
                     </span>
                   </div>
                   <div className="flex items-center gap-4 shrink-0">
-                    <span className="text-xs text-zinc-500">{j.type}</span>
+                    <span className="text-xs text-zinc-600 dark:text-zinc-500">{j.type}</span>
                     <span className="text-xs text-blue-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">
                       {t.applyNow}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-blue-300 transition-colors" />
+                    <ArrowUpRight className="w-4 h-4 text-zinc-600 dark:text-zinc-500 group-hover:text-blue-300 transition-colors" />
                   </div>
                 </button>
               </Reveal>
@@ -104,7 +104,7 @@ function ApplyModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 24 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-white dark:bg-zinc-950 border border-black/[0.08] dark:border-white/[0.08] rounded-3xl z-50 p-8 overflow-y-auto max-h-[92vh]"
+            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-white dark:bg-zinc-950 border border-zinc-300/70 dark:border-white/[0.08] rounded-3xl z-50 p-8 overflow-y-auto max-h-[92vh]"
             role="dialog"
             aria-modal="true"
             aria-label={t.applyNow}
@@ -117,7 +117,7 @@ function ApplyModal({
               <button
                 onClick={handleClose}
                 aria-label="Close"
-                className="p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.06] rounded-full transition-colors"
+                className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06] rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -129,7 +129,7 @@ function ApplyModal({
                   <Check className="w-7 h-7 text-emerald-400" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{t.applySent}</h3>
-                <p className="text-sm text-zinc-500 max-w-xs mx-auto">{t.applySentDesc}</p>
+                <p className="text-sm text-zinc-600 dark:text-zinc-500 max-w-xs mx-auto">{t.applySentDesc}</p>
               </div>
             ) : (
               <form
@@ -156,7 +156,7 @@ function ApplyModal({
                 className="space-y-5"
               >
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-500 mb-2">
                     {t.applyName}
                   </label>
                   <input
@@ -164,11 +164,11 @@ function ApplyModal({
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
+                    className="w-full bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-500 mb-2">
                     {t.applyEmail}
                   </label>
                   <input
@@ -176,27 +176,27 @@ function ApplyModal({
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
+                    className="w-full bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-500 mb-2">
                     {t.applyPosition}
                   </label>
                   <input
                     type="text"
                     readOnly
                     value={job || ''}
-                    className="w-full bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] rounded-xl px-4 py-3 text-sm text-zinc-400 cursor-default"
+                    className="w-full bg-zinc-100/60 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/[0.06] rounded-xl px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 cursor-default"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mb-2">
+                  <label className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-500 mb-2">
                     {t.applyResume}
                   </label>
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-black/[0.08] dark:border-white/[0.08] rounded-xl cursor-pointer hover:border-blue-500/30 transition-colors bg-black/[0.02] dark:bg-white/[0.02]">
-                    <Upload className="w-6 h-6 text-zinc-500 mb-2" />
-                    <span className="text-xs text-zinc-400">
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-zinc-300/70 dark:border-white/[0.08] rounded-xl cursor-pointer hover:border-blue-500/30 transition-colors bg-zinc-100/60 dark:bg-white/[0.02]">
+                    <Upload className="w-6 h-6 text-zinc-600 dark:text-zinc-500 mb-2" />
+                    <span className="text-xs text-zinc-600 dark:text-zinc-400">
                       {form.resume ? form.resume.name : t.applyDragDrop}
                     </span>
                     <span className="text-[10px] text-zinc-600 mt-1">{t.fileHint}</span>
@@ -213,7 +213,7 @@ function ApplyModal({
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full py-3.5 bg-white text-black rounded-xl text-sm font-semibold hover:bg-zinc-200 disabled:opacity-50 transition-all"
+                  className="w-full py-3.5 bg-black text-white dark:bg-white dark:text-black rounded-xl text-sm font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-200 disabled:opacity-50 transition-all"
                 >
                   {sending ? t.applySending : t.applySend}
                 </button>

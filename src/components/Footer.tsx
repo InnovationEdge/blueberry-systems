@@ -6,7 +6,7 @@ import type { getT } from '../i18n';
 
 export function Footer({ t }: { t: ReturnType<typeof getT> }) {
   return (
-    <footer className="relative border-t border-black/[0.06] dark:border-white/[0.06] py-16">
+    <footer className="relative border-t border-zinc-200 dark:border-white/[0.06] py-16">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div className="flex items-center gap-4">
           <Logo className="h-8 w-auto opacity-60 hover:opacity-90 transition-opacity" />
@@ -26,7 +26,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://github.com/InnovationEdge"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black dark:hover:text-zinc-300 transition-colors"
+            className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
           >
             GitHub
           </a>
@@ -34,14 +34,14 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://www.linkedin.com/company/blueberry-systems"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black dark:hover:text-zinc-300 transition-colors"
+            className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
           >
             LinkedIn
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-black dark:hover:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
             {t.footerTerms}
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-black dark:hover:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
             {t.footerPrivacy}
           </a>
         </div>

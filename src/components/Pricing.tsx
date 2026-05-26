@@ -10,14 +10,14 @@ export function MiniCta({ t }: { t: ReturnType<typeof getT> }) {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/[0.06] via-transparent to-violet-600/[0.06]" />
       </div>
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-16">
-        <div className="border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-10 md:p-14 bg-black/[0.01] dark:bg-white/[0.01] backdrop-blur-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="border border-zinc-200 dark:border-white/[0.06] rounded-3xl p-10 md:p-14 bg-zinc-50/60 dark:bg-white/[0.01] backdrop-blur-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight">{t.projectInMind}</h3>
-            <p className="text-zinc-400 text-base mt-3 max-w-md">{t.projectInMindDesc}</p>
+            <p className="text-zinc-600 dark:text-zinc-400 text-base mt-3 max-w-md">{t.projectInMindDesc}</p>
           </div>
           <MagneticButton
             href="#contact"
-            className="px-8 py-4 bg-white text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-200 transition-all shrink-0"
+            className="px-8 py-4 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shrink-0"
           >
             {t.bookCall}
           </MagneticButton>
@@ -62,7 +62,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
           <div className="text-center mb-16">
             <SectionEyebrow num="04" label={t.pricing} center />
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-[-0.035em]">{t.pricingTitle}</h2>
-            <p className="text-zinc-500 mt-5 max-w-lg mx-auto leading-relaxed">{t.pricingDesc}</p>
+            <p className="text-zinc-600 dark:text-zinc-500 mt-5 max-w-lg mx-auto leading-relaxed">{t.pricingDesc}</p>
           </div>
         </Reveal>
 
@@ -73,7 +73,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                 className={`relative h-full flex flex-col p-8 md:p-10 rounded-3xl border transition-all duration-300 lift ${
                   p.popular
                     ? 'border-blue-500/40 bg-gradient-to-b from-blue-600/[0.10] via-blue-600/[0.04] to-transparent glow-blue-strong'
-                    : 'border-black/[0.06] dark:border-white/[0.06] bg-black/[0.015] dark:bg-white/[0.015] hover:border-black/[0.14] dark:hover:border-white/[0.14]'
+                    : 'border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] hover:border-zinc-400 dark:hover:border-white/[0.14]'
                 }`}
               >
                 {p.popular && (
@@ -84,21 +84,21 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
 
                 <div className="mb-7">
                   <h3 className="text-xl font-bold mb-2 tracking-tight">{p.name}</h3>
-                  <p className="text-sm text-zinc-500">{p.desc}</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-500">{p.desc}</p>
                 </div>
 
-                <div className="mb-7 pb-7 border-b border-black/[0.06] dark:border-white/[0.06]">
+                <div className="mb-7 pb-7 border-b border-zinc-200 dark:border-white/[0.06]">
                   <p className={`text-4xl font-extrabold tracking-tight ${p.popular ? 'text-black dark:text-white' : 'text-zinc-800 dark:text-zinc-200'}`}>
                     {p.from}
                   </p>
-                  <p className="text-xs text-zinc-500 mt-2 font-mono">{p.timeline}</p>
+                  <p className="text-xs text-zinc-600 dark:text-zinc-500 mt-2 font-mono">{p.timeline}</p>
                 </div>
 
                 <ul className="space-y-3.5 mb-10 flex-1">
                   {p.features.map((f) => (
-                    <li key={f} className="text-sm text-zinc-300 flex items-start gap-3">
+                    <li key={f} className="text-sm text-zinc-700 dark:text-zinc-300 flex items-start gap-3">
                       <CheckCircle
-                        className={`w-4 h-4 mt-0.5 shrink-0 ${p.popular ? 'text-blue-400' : 'text-zinc-500'}`}
+                        className={`w-4 h-4 mt-0.5 shrink-0 ${p.popular ? 'text-blue-400' : 'text-zinc-600 dark:text-zinc-500'}`}
                       />
                       <span>{f}</span>
                     </li>
@@ -109,8 +109,8 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                   href="#contact"
                   className={`block text-center py-3.5 rounded-full text-sm font-semibold transition-all ${
                     p.popular
-                      ? 'bg-white text-black hover:bg-zinc-200'
-                      : 'border border-white/15 text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.06]'
+                      ? 'bg-black text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200'
+                      : 'border border-white/15 text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06]'
                   }`}
                 >
                   {t.getStarted}
@@ -138,13 +138,13 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {TESTIMONIALS.map((r, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="relative border border-black/[0.06] dark:border-white/[0.06] rounded-3xl p-8 md:p-10 h-full flex flex-col hover:border-black/[0.14] dark:hover:border-white/[0.14] transition-colors glow-border bg-black/[0.01] dark:bg-white/[0.01]">
+              <article className="relative border border-zinc-200 dark:border-white/[0.06] rounded-3xl p-8 md:p-10 h-full flex flex-col hover:border-zinc-400 dark:hover:border-white/[0.14] transition-colors glow-border bg-zinc-50/60 dark:bg-white/[0.01]">
                 <Quote className="w-10 h-10 text-blue-500/30 mb-5" />
                 <p className="text-lg md:text-xl text-zinc-800 dark:text-zinc-200 leading-relaxed flex-1 mb-8 font-light">
                   &ldquo;{r.quote}&rdquo;
                 </p>
 
-                <div className="flex items-center justify-between gap-4 pt-6 border-t border-black/[0.06] dark:border-white/[0.06]">
+                <div className="flex items-center justify-between gap-4 pt-6 border-t border-zinc-200 dark:border-white/[0.06]">
                   <div className="flex items-center gap-4 min-w-0">
                     <div
                       className={`w-11 h-11 rounded-full bg-gradient-to-br ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center text-xs font-bold text-black dark:text-white shrink-0`}
@@ -157,7 +157,7 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
                     </div>
                     <div className="min-w-0">
                       <p className="font-semibold text-sm truncate">{r.name}</p>
-                      <p className="text-xs text-zinc-500 truncate">
+                      <p className="text-xs text-zinc-600 dark:text-zinc-500 truncate">
                         {r.role} · {r.company}
                       </p>
                     </div>

@@ -32,7 +32,7 @@ export function FAQ({ t }: { t: ReturnType<typeof getT> }) {
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   open === i
                     ? 'border-blue-500/30 bg-blue-600/[0.04]'
-                    : 'border-black/[0.06] dark:border-white/[0.06] hover:border-black/[0.12] dark:hover:border-white/[0.12]'
+                    : 'border-zinc-200 dark:border-white/[0.06] hover:border-zinc-400 dark:hover:border-white/[0.12]'
                 }`}
               >
                 <button
@@ -44,7 +44,7 @@ export function FAQ({ t }: { t: ReturnType<typeof getT> }) {
                   <motion.span
                     animate={{ rotate: open === i ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-2xl text-zinc-400 font-light shrink-0 leading-none"
+                    className="text-2xl text-zinc-600 dark:text-zinc-400 font-light shrink-0 leading-none"
                     aria-hidden
                   >
                     +
@@ -56,7 +56,7 @@ export function FAQ({ t }: { t: ReturnType<typeof getT> }) {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="text-sm text-zinc-400 leading-relaxed px-6 pb-6">{faq.a}</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed px-6 pb-6">{faq.a}</p>
                 </motion.div>
               </div>
             </Reveal>
@@ -84,20 +84,20 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.035em] mb-6 whitespace-pre-line">
                 {t.contactTitle}
               </h2>
-              <p className="text-zinc-400 text-base mb-10 leading-relaxed max-w-md">
+              <p className="text-zinc-600 dark:text-zinc-400 text-base mb-10 leading-relaxed max-w-md">
                 {t.contactDesc}
               </p>
               <div className="space-y-4 text-sm">
                 <a
                   href="mailto:info@blueberry.codes"
-                  className="flex items-center gap-3 text-zinc-300 hover:text-black dark:text-white transition-colors group"
+                  className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
                 >
                   <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Mail className="w-4 h-4 text-blue-300" />
                   </span>
                   info@blueberry.codes
                 </a>
-                <div className="flex items-center gap-3 text-zinc-300">
+                <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
                   <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-blue-300" />
                   </span>
@@ -105,7 +105,7 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
                 </div>
                 <a
                   href="tel:+995598449644"
-                  className="flex items-center gap-3 text-zinc-300 hover:text-black dark:text-white transition-colors group"
+                  className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
                 >
                   <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Phone className="w-4 h-4 text-blue-300" />
@@ -190,7 +190,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           <CheckCircle className="w-8 h-8 text-blue-300" />
         </div>
         <h3 className="text-2xl font-bold mb-2 tracking-tight">{t.contactSent}</h3>
-        <p className="text-sm text-zinc-400 max-w-sm mx-auto">{t.contactSentDesc}</p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-sm mx-auto">{t.contactSentDesc}</p>
         <button
           onClick={() => {
             setSent(false);
@@ -207,7 +207,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-zinc-950/70 backdrop-blur-xl rounded-3xl p-8 md:p-10 space-y-5"
+      className="border border-zinc-300/70 dark:border-white/[0.08] bg-white dark:bg-zinc-950/70 backdrop-blur-xl rounded-3xl p-8 md:p-10 space-y-5"
     >
       {error && (
         <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-sm text-amber-300">
@@ -223,7 +223,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder={t.placeholderName}
-            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
 
@@ -234,7 +234,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder={t.placeholderEmail}
-            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
       </div>
@@ -246,7 +246,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.company}
             onChange={(e) => setForm({ ...form, company: e.target.value })}
             placeholder={t.placeholderCompany}
-            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
 
@@ -254,7 +254,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           <select
             value={form.budget}
             onChange={(e) => setForm({ ...form, budget: e.target.value })}
-            className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
           >
             <option value="" className="bg-zinc-50 dark:bg-zinc-900">
               {t.contactSelectBudget}
@@ -274,7 +274,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder={t.placeholderMessage}
-          className="w-full px-4 py-3.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/40 transition-all"
+          className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/40 transition-all"
         />
       </FormField>
 
@@ -283,7 +283,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         disabled={sending}
         whileHover={{ scale: 1.005 }}
         whileTap={{ scale: 0.985 }}
-        className="w-full py-4 bg-white text-black rounded-xl font-semibold text-sm hover:bg-zinc-200 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+        className="w-full py-4 bg-black text-white dark:bg-white dark:text-black rounded-xl font-semibold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {sending ? (
           <>
@@ -303,7 +303,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
 function FormField({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <label className="block text-[10px] font-semibold text-zinc-500 mb-2 uppercase tracking-[0.22em]">
+      <label className="block text-[10px] font-semibold text-zinc-600 dark:text-zinc-500 mb-2 uppercase tracking-[0.22em]">
         {label}
       </label>
       {children}

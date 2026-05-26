@@ -62,7 +62,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="inline-flex items-center gap-3 bg-black/[0.04] dark:bg-white/[0.04] backdrop-blur-xl border border-black/[0.10] dark:border-white/[0.10] rounded-full pl-2 pr-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] mb-12"
+            className="inline-flex items-center gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] mb-12"
           >
             <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-300 px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal">
               <span className="relative flex w-1.5 h-1.5">
@@ -71,8 +71,8 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               </span>
               Now booking Q3
             </span>
-            <span className="text-zinc-500">·</span>
-            <span className="text-zinc-300">{t.onMarket}</span>
+            <span className="text-zinc-600 dark:text-zinc-500">·</span>
+            <span className="text-zinc-700 dark:text-zinc-300">{t.onMarket}</span>
           </motion.div>
 
           {/* Cinematic display headline */}
@@ -105,7 +105,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.55 }}
-                className="text-zinc-300 text-lg md:text-2xl max-w-[40ch] leading-[1.4] font-light"
+                className="text-zinc-700 dark:text-zinc-300 text-lg md:text-2xl max-w-[40ch] leading-[1.4] font-light"
               >
                 {t.heroSubtitle}
               </motion.p>
@@ -120,14 +120,14 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               >
                 <MagneticButton
                   href="#contact"
-                  className="group px-8 py-4 bg-white text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-200 transition-all shadow-2xl shadow-blue-500/10 active:scale-[0.97]"
+                  className="group px-8 py-4 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-2xl shadow-blue-500/10 active:scale-[0.97]"
                 >
                   {t.heroCta}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </MagneticButton>
                 <a
                   href="#portfolio"
-                  className="group px-8 py-4 border border-black/[0.14] dark:border-white/[0.14] text-black dark:text-white rounded-full text-[15px] font-medium hover:border-black/30 dark:hover:border-white/30 hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all inline-flex items-center gap-2.5"
+                  className="group px-8 py-4 border border-zinc-400/80 dark:border-white/[0.14] text-black dark:text-white rounded-full text-[15px] font-medium hover:border-black/30 dark:hover:border-white/30 hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-all inline-flex items-center gap-2.5"
                 >
                   {t.heroExplore}
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -145,7 +145,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             className="mt-2 relative max-w-[1200px] mx-auto"
           >
             <div
-              className="relative aspect-[16/8.5] rounded-3xl overflow-hidden border border-black/[0.10] dark:border-white/[0.10] shadow-2xl shadow-blue-500/10"
+              className="relative aspect-[16/8.5] rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10"
               style={{ background: 'linear-gradient(135deg, #0a1f3d 0%, #062052 35%, #1e3a8a 100%)' }}
             >
               {/* Grid + Faux UI */}
@@ -188,7 +188,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                     ].map((s) => (
                       <div
                         key={s.l}
-                        className="rounded-xl border border-white/15 bg-black/[0.05] dark:bg-white/[0.05] backdrop-blur-sm p-3 sm:p-4"
+                        className="rounded-xl border border-white/15 bg-zinc-200/60 dark:bg-white/[0.05] backdrop-blur-sm p-3 sm:p-4"
                       >
                         <p className="text-base sm:text-2xl font-bold text-white tracking-tight">
                           {s.v}
@@ -200,7 +200,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
                     ))}
                   </div>
                   {/* Chart row */}
-                  <div className="col-span-3 rounded-xl border border-white/15 bg-black/[0.04] dark:bg-white/[0.04] backdrop-blur-sm p-4 flex items-end">
+                  <div className="col-span-3 rounded-xl border border-white/15 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-sm p-4 flex items-end">
                     <svg
                       viewBox="0 0 100 30"
                       preserveAspectRatio="none"
@@ -255,8 +255,8 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             </div>
 
             {/* Floating accent stickers */}
-            <div className="hidden md:block absolute -top-6 -left-6 px-4 py-2.5 rounded-xl border border-black/[0.12] dark:border-white/[0.12] bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-xl rotate-[-4deg]">
-              <p className="text-[10px] leading-none text-zinc-500 uppercase tracking-[0.22em] font-mono mb-1.5">
+            <div className="hidden md:block absolute -top-6 -left-6 px-4 py-2.5 rounded-xl border border-zinc-400/70 dark:border-white/[0.12] bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-xl rotate-[-4deg]">
+              <p className="text-[10px] leading-none text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-mono mb-1.5">
                 /avg
               </p>
               <p className="text-sm leading-none text-black dark:text-white font-semibold">10-week launch</p>
@@ -271,7 +271,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
 
           {/* Awards ribbon */}
           <Reveal delay={0.4}>
-            <div className="mt-20 border-t border-black/[0.06] dark:border-white/[0.06] pt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] text-zinc-500 uppercase tracking-[0.22em] font-medium">
+            <div className="mt-20 border-t border-zinc-200 dark:border-white/[0.06] pt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-medium">
               <span className="text-zinc-600">{t.trustedBy}</span>
               {AWARDS.map((a) => (
                 <span key={a.label} className="flex items-center gap-2">

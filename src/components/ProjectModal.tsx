@@ -32,7 +32,7 @@ export function ProjectModal({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 40, scale: 0.96 }}
                 transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                className="fixed inset-4 md:inset-10 lg:inset-x-24 lg:inset-y-12 bg-white dark:bg-zinc-950 border border-black/[0.08] dark:border-white/[0.08] rounded-3xl z-50 overflow-y-auto shadow-2xl"
+                className="fixed inset-4 md:inset-10 lg:inset-x-24 lg:inset-y-12 bg-white dark:bg-zinc-950 border border-zinc-300/70 dark:border-white/[0.08] rounded-3xl z-50 overflow-y-auto shadow-2xl"
                 role="dialog"
                 aria-modal="true"
                 aria-label={p.title}
@@ -40,7 +40,7 @@ export function ProjectModal({
                 <button
                   onClick={onClose}
                   aria-label="Close"
-                  className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.06] rounded-full transition-colors z-10"
+                  className="absolute top-5 right-5 p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06] rounded-full transition-colors z-10"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -81,11 +81,11 @@ export function ProjectModal({
                 <div className="p-8 md:p-14 max-w-5xl mx-auto">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
                     {p.metrics.map((m) => (
-                      <div key={m.label} className="border border-black/[0.06] dark:border-white/[0.06] rounded-2xl p-5 bg-black/[0.015] dark:bg-white/[0.015]">
+                      <div key={m.label} className="border border-zinc-200 dark:border-white/[0.06] rounded-2xl p-5 bg-zinc-50 dark:bg-white/[0.015]">
                         <p className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: p.accent }}>
                           {m.value}
                         </p>
-                        <p className="text-[11px] text-zinc-500 mt-2 uppercase tracking-[0.18em]">{m.label}</p>
+                        <p className="text-[11px] text-zinc-600 dark:text-zinc-500 mt-2 uppercase tracking-[0.18em]">{m.label}</p>
                       </div>
                     ))}
                   </div>
@@ -95,13 +95,13 @@ export function ProjectModal({
                       <h3 className="text-[11px] text-blue-400 font-semibold uppercase tracking-[0.28em] mb-3">
                         {t.challenge}
                       </h3>
-                      <p className="text-zinc-300 leading-relaxed">{p.challenge}</p>
+                      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.challenge}</p>
                     </div>
                     <div>
                       <h3 className="text-[11px] text-blue-400 font-semibold uppercase tracking-[0.28em] mb-3">
                         {t.solution}
                       </h3>
-                      <p className="text-zinc-300 leading-relaxed">{p.solution}</p>
+                      <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.solution}</p>
                     </div>
                   </div>
 
@@ -113,7 +113,7 @@ export function ProjectModal({
                       {p.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3.5 py-1.5 bg-black/[0.04] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.06] rounded-full text-xs text-zinc-300 font-mono"
+                          className="px-3.5 py-1.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] rounded-full text-xs text-zinc-700 dark:text-zinc-300 font-mono"
                         >
                           {tech}
                         </span>
@@ -127,19 +127,19 @@ export function ProjectModal({
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {p.results.map((r) => (
-                        <div key={r} className="bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/[0.06] rounded-xl p-4 text-center">
+                        <div key={r} className="bg-zinc-100/60 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/[0.06] rounded-xl p-4 text-center">
                           <p className="text-sm font-semibold text-black dark:text-white">{r}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="pt-8 border-t border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <p className="text-sm text-zinc-500">{t.interestedProject}</p>
+                  <div className="pt-8 border-t border-zinc-200 dark:border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <p className="text-sm text-zinc-600 dark:text-zinc-500">{t.interestedProject}</p>
                     <MagneticButton
                       href="#contact"
                       onClick={onClose}
-                      className="px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-zinc-200 transition-all inline-flex items-center gap-2"
+                      className="px-6 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full text-sm font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all inline-flex items-center gap-2"
                     >
                       {t.startProject} <ArrowRight className="w-4 h-4" />
                     </MagneticButton>
