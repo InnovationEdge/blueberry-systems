@@ -31,7 +31,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             GitHub
           </a>
           <a
-            href="https://www.linkedin.com/company/blueberry-systems"
+            href="https://www.linkedin.com/company/blueberry-systems/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
