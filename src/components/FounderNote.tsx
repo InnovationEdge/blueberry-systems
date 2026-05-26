@@ -23,7 +23,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
             <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
               <motion.img
                 src="/team/founder.png"
-                alt="Irakli Kerdikoshvili — Founder & CEO of Blueberry Systems"
+                alt="Irakli Kerdikoshvili, Founder & CEO of Blueberry Systems"
                 style={{ y: imageY }}
                 className="absolute inset-0 w-full h-[112%] object-cover object-center"
               />
@@ -80,7 +80,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
             <div className="space-y-5 text-zinc-700 dark:text-zinc-300 text-lg leading-relaxed max-w-[60ch] font-light">
               <p>
                 Most agencies sell you hours. We sell you the thing your hours
-                were supposed to produce — a product your users open every day,
+                were supposed to produce. A product your users open every day,
                 a payment rail that doesn't drop transactions, a launch that
                 ships when the market needs it, not when the invoice clears.
               </p>
@@ -88,7 +88,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
                 We're a small, senior team. We pick the projects we believe in,
                 push back where it matters, and stay long enough to see them
                 work in the wild. If that sounds like the partner you've been
-                looking for — let's talk.
+                looking for, let's talk.
               </p>
             </div>
           </Reveal>
@@ -100,7 +100,7 @@ export function FounderNote({ t: _t }: { t: ReturnType<typeof getT> }) {
           >
             <div>
               <p className="text-3xl md:text-4xl text-black dark:text-white tracking-tight leading-none font-semibold">
-                — Irakli
+                Irakli K.
               </p>
               <p className="text-[11px] text-zinc-600 dark:text-zinc-500 mt-2 uppercase tracking-[0.24em] font-mono">
                 Founder · Blueberry Systems · 2020
