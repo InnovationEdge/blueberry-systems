@@ -203,16 +203,16 @@ export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
   return (
     <section className="py-16 md:py-24">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0 gap-x-6 md:gap-x-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 gap-x-8 md:gap-x-12 lg:gap-x-16">
           {stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.06}>
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start min-w-0">
                 <p
-                  className="font-extrabold tracking-tighter text-black dark:text-white"
+                  className="font-extrabold text-black dark:text-white whitespace-nowrap"
                   style={{
-                    fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-                    letterSpacing: '-0.045em',
-                    lineHeight: 0.95,
+                    fontSize: 'clamp(2rem, 4.2vw, 3.75rem)',
+                    letterSpacing: '-0.035em',
+                    lineHeight: 1,
                   }}
                 >
                   {s.v}
