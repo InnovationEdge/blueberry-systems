@@ -112,7 +112,7 @@ export function Header({
 
             <a
               href="#contact"
-              className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-black dark:text-white dark:bg-white dark:text-black rounded-lg text-[13px] font-semibold hover:opacity-90 transition-all"
+              className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-lg text-[13px] font-semibold hover:opacity-90 transition-all"
             >
               {t.getInTouch}
             </a>
@@ -161,7 +161,7 @@ export function Header({
                 <a
                   href="#contact"
                   onClick={() => setMobileOpen(false)}
-                  className="block mt-6 py-3.5 bg-black text-black dark:text-white dark:bg-white dark:text-black rounded-xl text-sm font-semibold text-center hover:opacity-90 transition-all"
+                  className="block mt-6 py-3.5 bg-black text-white dark:bg-white dark:text-black rounded-xl text-sm font-semibold text-center hover:opacity-90 transition-all"
                 >
                   {t.getInTouch}
                 </a>

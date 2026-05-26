@@ -55,8 +55,8 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
     { name: 'Tinatin Shakeladze', role: t.role2, img: '/team/tinatin.png' },
     { name: 'Luka Giorgadze', role: t.role3, img: '/team/luka.png' },
     { name: 'Datuna Bakradze', role: t.role4, img: '/team/datuna.png' },
-    { name: 'Irakli Lomidze', role: t.role5, img: '/team/member-12.png' },
-    { name: 'Open Position', role: t.role6, img: '/team/member-13.png' },
+    { name: 'Giorgi Menteshashvili', role: t.role5, img: '/team/giorgi.png' },
+    { name: 'Irakli Lomidze', role: t.role6, img: '/team/irakli-l.png' },
   ];
 
   return (
@@ -93,8 +93,14 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                     </div>
                   )}
                 </div>
-                <h3 className="font-semibold text-sm tracking-tight mb-1">{m.name}</h3>
-                <p className="text-xs text-zinc-600 dark:text-zinc-500">{m.role}</p>
+                <div className="min-h-[3.25rem] flex flex-col items-center justify-start">
+                  <h3 className="font-semibold text-sm tracking-tight mb-1 line-clamp-1 w-full px-1">
+                    {m.name}
+                  </h3>
+                  <p className="text-xs text-zinc-600 dark:text-zinc-500 line-clamp-1 w-full px-1">
+                    {m.role}
+                  </p>
+                </div>
               </div>
             </Reveal>
           ))}

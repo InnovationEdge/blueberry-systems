@@ -36,14 +36,20 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
           </div>
         </Reveal>
 
-        {/* Bento grid: 1 wide + 3 stacked */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        {/* Bento grid: 1 feature (2x2) + 2 small + 1 wide footer */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 md:gap-5">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[i];
             const accent = ACCENTS[i];
             const isFeature = i === 0;
+            const isWideFooter = i === 3;
+            const cellClass = isFeature
+              ? 'lg:col-span-2 lg:row-span-2'
+              : isWideFooter
+                ? 'sm:col-span-2 lg:col-span-2 lg:row-span-1'
+                : '';
             return (
-              <div key={i} className={isFeature ? 'md:col-span-3 lg:col-span-2 lg:row-span-2' : ''}>
+              <div key={i} className={cellClass}>
                 <ScaleIn delay={i * 0.06}>
                   <article
                     className="group relative h-full min-h-[280px] lift rounded-3xl border border-zinc-300 dark:border-white/[0.06] bg-white dark:bg-white/[0.015] hover:border-zinc-500/70 dark:hover:border-white/[0.12] hover:shadow-xl hover:shadow-black/5 dark:hover:bg-white/[0.03] p-8 md:p-10 overflow-hidden transition-all"
