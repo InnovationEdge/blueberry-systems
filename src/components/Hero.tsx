@@ -28,7 +28,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
   const allTech = TECH_GROUPS.flatMap((g) => g.items);
 
   return (
-    <section ref={heroRef} className="relative min-h-[100svh] overflow-hidden">
+    <section ref={heroRef} className="relative min-h-[100svh] flex items-center overflow-hidden">
       <CursorSpotlight color="rgba(99,168,255,0.18)" />
 
       {/* Background layers */}
@@ -55,14 +55,14 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
         </span>
       </div>
 
-      <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 pt-28 pb-28 md:pt-36 md:pb-32 w-full">
+      <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 pt-24 pb-12 md:pt-20 md:pb-16 w-full">
         <motion.div style={{ y: titleY, opacity: titleOpacity }}>
           {/* Status badge */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-3 sm:pr-5 py-1.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.22em] mb-10 sm:mb-12 max-w-full"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-3 sm:pr-5 py-1.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.22em] mb-6 sm:mb-8 max-w-full"
           >
             <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-2 sm:px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal whitespace-nowrap">
               <span className="relative flex w-1.5 h-1.5">
@@ -80,7 +80,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="font-extrabold leading-[0.98] tracking-[-0.04em] mb-10 max-w-[1300px]"
+            className="font-extrabold leading-[0.98] tracking-[-0.04em] mb-6 sm:mb-8 max-w-[1300px]"
             style={{ fontSize: 'clamp(2.8rem, 8.5vw, 9rem)' }}
           >
             <span className="block text-black dark:text-white pb-2">{t.heroPrefix}</span>
@@ -99,7 +99,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
           </motion.h1>
 
           {/* Split row: subtitle (left) + meta + CTAs (right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 sm:mb-12">
             <div className="lg:col-span-7">
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
