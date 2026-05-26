@@ -1,4 +1,4 @@
-# Blueberry Systems — robots.txt
+# Blueberry Systems · robots.txt
 # https://blueberry.codes
 # Last updated: 2026-05-26
 
