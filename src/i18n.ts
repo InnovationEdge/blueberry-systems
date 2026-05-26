@@ -145,6 +145,19 @@ interface T {
   nowBuilding: string;
   nowBuildingItem1: string;
   nowBuildingItem2: string;
+  // Industries sector names
+  indFintech: string;
+  indCommerce: string;
+  indHealthcare: string;
+  indLogistics: string;
+  indEdtech: string;
+  indDefi: string;
+  // Pricing
+  fromPrice1: string; timeline1: string;
+  fromPrice2: string; timeline2: string;
+  fromPrice3: string; timeline3: string;
+  // Portfolio subtitle
+  portfolioSubtitle: string;
 }
 
 const en: T = {
@@ -269,6 +282,16 @@ const en: T = {
   nowBuilding: 'NOW BUILDING',
   nowBuildingItem1: '3 active engagements',
   nowBuildingItem2: 'Q3 2026 cohort',
+  indFintech: 'Fintech',
+  indCommerce: 'Commerce',
+  indHealthcare: 'Healthcare',
+  indLogistics: 'Logistics',
+  indEdtech: 'EdTech',
+  indDefi: 'DeFi',
+  fromPrice1: 'from $4.5k', timeline1: '2–6 weeks',
+  fromPrice2: 'from $15k', timeline2: '8–14 weeks',
+  fromPrice3: 'Custom', timeline3: 'Ongoing',
+  portfolioSubtitle: 'A representative slice of the kind of work we ship. Anonymized where required by NDA.',
   teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
   applyNow: 'Apply Now', applyName: 'Full Name', applyEmail: 'Email', applyPosition: 'Position', applyResume: 'Resume (PDF)', applySend: 'Send Application', applySending: 'Sending...', applySent: 'Application Sent!', applySentDesc: 'We will review your resume and get back to you within 48 hours.', applyDragDrop: 'Drag & drop or click to upload',
@@ -402,6 +425,16 @@ const ka: T = {
   nowBuilding: 'მუშავდება ახლა',
   nowBuildingItem1: '3 აქტიური პროექტი',
   nowBuildingItem2: 'III კვარტალი 2026',
+  indFintech: 'ფინტექი',
+  indCommerce: 'ე-კომერცია',
+  indHealthcare: 'ჯანდაცვა',
+  indLogistics: 'ლოგისტიკა',
+  indEdtech: 'განათლება',
+  indDefi: 'DeFi',
+  fromPrice1: '$4.5k-დან', timeline1: '2–6 კვირა',
+  fromPrice2: '$15k-დან', timeline2: '8–14 კვირა',
+  fromPrice3: 'ინდივიდუალური', timeline3: 'მუდმივი',
+  portfolioSubtitle: 'რეპრეზენტატიული ნაწილი იმისა, რასაც ვაკეთებთ. სადაც NDA მოითხოვს — ანონიმური.',
   teamDesc: 'სენიორი ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი თბილისიდან. ციფრულ პროდუქტებს 2020 წლიდან ვქმნით.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
   applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'შენს რეზიუმეს განვიხილავთ და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდე ან დააჭირე ასატვირთად',

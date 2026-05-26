@@ -7,6 +7,14 @@ import type { getT } from '../i18n';
  * Premium use: sets up the codename scheme used downstream in Portfolio.
  */
 export function Industries({ t }: { t: ReturnType<typeof getT> }) {
+  const labels: Record<string, string> = {
+    Fintech: t.indFintech,
+    Commerce: t.indCommerce,
+    Healthcare: t.indHealthcare,
+    Logistics: t.indLogistics,
+    EdTech: t.indEdtech,
+    DeFi: t.indDefi,
+  };
   return (
     <section className="py-16 md:py-20 relative">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
@@ -44,7 +52,7 @@ export function Industries({ t }: { t: ReturnType<typeof getT> }) {
                   </span>
                 </div>
                 <p className="text-base font-bold tracking-tight text-black dark:text-white group-hover:text-zinc-800 dark:text-zinc-200 transition-colors">
-                  {s.name}
+                  {labels[s.name] ?? s.name}
                 </p>
               </a>
             </Reveal>
