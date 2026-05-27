@@ -1,0 +1,75 @@
+{
+  "name": "Blueberry Systems",
+  "short_name": "Blueberry",
+  "description": "Senior software development agency in Tbilisi, Georgia — custom web, mobile, SaaS and AI/ML products.",
+  "id": "https://blueberry.codes/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Blueberry Systems homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book a free call",
+      "short_name": "Book a call",
+      "description": "Schedule a free 30-minute consultation",
+      "url": "/#contact",
+      "icons": [{ "src": "/favicon-32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "View portfolio",
+      "short_name": "Portfolio",
+      "description": "Recent client work",
+      "url": "/#portfolio",
+      "icons": [{ "src": "/favicon-32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "Open positions",
+      "short_name": "Careers",
+      "description": "Join the team",
+      "url": "/#careers",
+      "icons": [{ "src": "/favicon-32.png", "sizes": "32x32" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
