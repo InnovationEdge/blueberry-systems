@@ -191,7 +191,7 @@ export function Process({ t }: { t: ReturnType<typeof getT> }) {
 /* ─── Stats strip — editorial magazine-style, no card, massive numbers ─── */
 export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
   const stats = [
-    { v: '$400M+', l: 'GMV processed' },
+    { v: '$400M+', l: t.gmvProcessed },
     { v: '50+', l: t.projects },
     { v: '99.99%', l: t.uptime },
     { v: '15+', l: t.clients },

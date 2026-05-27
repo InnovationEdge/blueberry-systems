@@ -177,6 +177,8 @@ interface T {
   award2: string;
   award3: string;
   award4: string;
+  // Stats strip
+  gmvProcessed: string;
 }
 
 const en: T = {
@@ -348,6 +350,7 @@ const en: T = {
   award2: 'CSS Design Awards · Best UI',
   award3: 'Featured · Vercel Showcase',
   award4: 'Top 1% · Clutch Global',
+  gmvProcessed: 'GMV processed',
   teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
   applyNow: 'Apply Now', applyName: 'Full Name', applyEmail: 'Email', applyPosition: 'Position', applyResume: 'Resume (PDF)', applySend: 'Send Application', applySending: 'Sending...', applySent: 'Application Sent!', applySentDesc: 'We will review your resume and get back to you within 48 hours.', applyDragDrop: 'Drag & drop or click to upload',
@@ -528,6 +531,7 @@ const ka: T = {
   award2: 'CSS Design Awards · საუკეთესო UI',
   award3: 'წარდგენილი · Vercel Showcase',
   award4: 'ტოპ 1% · Clutch Global',
+  gmvProcessed: 'დამუშავებული GMV',
   teamDesc: 'სენიორი ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი თბილისიდან. ციფრულ პროდუქტებს 2020 წლიდან ვქმნით.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
   applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'შენს რეზიუმეს განვიხილავთ და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდე ან დააჭირე ასატვირთად',
