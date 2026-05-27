@@ -15,12 +15,34 @@ const ProjectModal = lazy(() =>
   import('./components/ProjectModal').then((m) => ({ default: m.ProjectModal })),
 );
 
-// Read ?lang= from URL once at mount — supports hreflang deep links
+// Pick initial language on mount in priority order:
+// 1. ?lang= URL param  (deep-link from hreflang or share)
+// 2. localStorage 'lang'  (user's persisted choice from a previous visit)
+// 3. navigator.language / navigator.languages  (browser preference)
+// 4. EN fallback
 function getInitialLang(): string {
   if (typeof window === 'undefined') return 'EN';
+
+  // 1. URL param wins (explicit intent)
   const param = new URLSearchParams(window.location.search).get('lang');
   if (param === 'ka' || param === 'ქარ') return 'ქარ';
   if (param === 'ru' || param === 'RU') return 'RU';
+
+  // 2. Persisted preference
+  try {
+    const stored = window.localStorage.getItem('lang');
+    if (stored === 'ქარ' || stored === 'RU' || stored === 'EN') return stored;
+  } catch { /* localStorage blocked — fall through */ }
+
+  // 3. Browser language(s)
+  const codes = (navigator.languages?.length ? navigator.languages : [navigator.language]) || [];
+  for (const raw of codes) {
+    const code = raw.toLowerCase().slice(0, 2);
+    if (code === 'ka') return 'ქარ';
+    if (code === 'ru') return 'RU';
+    if (code === 'en') return 'EN';
+  }
+
   return 'EN';
 }
 
@@ -68,6 +90,11 @@ export default function App() {
       url.searchParams.set('lang', code);
     }
     window.history.replaceState({}, '', url.toString());
+
+    // Persist user's choice so subsequent visits respect it over browser locale
+    try {
+      window.localStorage.setItem('lang', lang);
+    } catch { /* localStorage blocked — silent */ }
 
     // Document title + meta description (browser tab + bookmarks + share)
     document.title = t.metaTitle;
