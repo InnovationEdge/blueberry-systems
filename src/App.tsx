@@ -41,11 +41,14 @@ export default function App() {
     }, 180);
   }, [lang]);
 
-  // Sync <html lang="..."> + ?lang= URL param with active language
-  // — improves a11y (screen readers), SEO (hreflang signal), and shareability
+  // Sync <html lang="..."> + ?lang= URL param + document.title + meta description
+  // with active language — improves a11y (screen readers), SEO (hreflang +
+  // localized title/description), and shareability.
   useEffect(() => {
     const code = lang === 'ქარ' ? 'ka' : 'en';
     document.documentElement.lang = code;
+
+    // URL param sync
     const url = new URL(window.location.href);
     if (code === 'en') {
       url.searchParams.delete('lang');
@@ -53,7 +56,18 @@ export default function App() {
       url.searchParams.set('lang', code);
     }
     window.history.replaceState({}, '', url.toString());
-  }, [lang]);
+
+    // Document title + meta description (browser tab + bookmarks + share)
+    document.title = t.metaTitle;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', t.metaDescription);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', t.metaTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', t.metaDescription);
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', code === 'ka' ? 'ka_GE' : 'en_US');
+  }, [lang, t.metaTitle, t.metaDescription]);
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white overflow-x-hidden noise-overlay transition-colors duration-300">
