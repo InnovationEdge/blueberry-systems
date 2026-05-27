@@ -1,10 +1,14 @@
 {
   "rewrites": [
     { "source": "/software-development", "destination": "/software-development/index.html" },
+    { "source": "/software-development/", "destination": "/software-development/index.html" },
     { "source": "/product-marketing", "destination": "/product-marketing/index.html" },
+    { "source": "/product-marketing/", "destination": "/product-marketing/index.html" },
     { "source": "/product-design", "destination": "/product-design/index.html" },
+    { "source": "/product-design/", "destination": "/product-design/index.html" },
     { "source": "/business-consulting", "destination": "/business-consulting/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/business-consulting/", "destination": "/business-consulting/index.html" },
+    { "source": "/((?!software-development|product-marketing|product-design|business-consulting|assets|team|.*\\.[a-z0-9]+).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
