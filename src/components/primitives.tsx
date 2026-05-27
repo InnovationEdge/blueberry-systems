@@ -89,32 +89,6 @@ export function FloatingOrb({ className }: { className: string }) {
   );
 }
 
-/* ─── Counter ─── */
-export function AnimatedCounter({ value, suffix = '' }: { value: string; suffix?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const reduced = useReducedMotion();
-  const [display, setDisplay] = useState(reduced ? value : '0');
-
-  useEffect(() => {
-    if (!isInView || reduced) return;
-    const num = parseInt(value.replace(/[^0-9]/g, ''));
-    if (isNaN(num)) { setDisplay(value); return; }
-    const duration = 1800;
-    const steps = 50;
-    const inc = num / steps;
-    let cur = 0;
-    const timer = setInterval(() => {
-      cur += inc;
-      if (cur >= num) { setDisplay(value); clearInterval(timer); }
-      else setDisplay(String(Math.floor(cur)));
-    }, duration / steps);
-    return () => clearInterval(timer);
-  }, [isInView, value, reduced]);
-
-  return <span ref={ref}>{display}{suffix}</span>;
-}
-
 /* ─── Kinetic word swap (grid-stack so children keep their own background-clip) ─── */
 export function KineticWords({ words, className = '' }: { words: string[]; className?: string }) {
   const [i, setI] = useState(0);
