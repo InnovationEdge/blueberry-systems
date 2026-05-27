@@ -18,7 +18,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://blueberryedu.ge"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-300 hover:text-blue-200 transition-colors font-medium"
+            className="text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-medium"
           >
             Blueberry Academy
           </a>

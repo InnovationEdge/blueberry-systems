@@ -51,7 +51,7 @@ export function Header({
         }`}
       >
         <div className="w-full px-6 md:px-10 h-[88px] flex items-center">
-          <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5" aria-label="Blueberry Systems">
+          <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5">
             <Logo />
           </a>
 

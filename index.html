@@ -443,21 +443,34 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Firebase Analytics -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-analytics.js";
-      const firebaseConfig = {
-        apiKey: "AIzaSyAfgrf9AW5gD2PTJJfenOdWPpwh6M0gAT4",
-        authDomain: "blueberry-8100c.firebaseapp.com",
-        projectId: "blueberry-8100c",
-        storageBucket: "blueberry-8100c.firebasestorage.app",
-        messagingSenderId: "982437547798",
-        appId: "1:982437547798:web:feccd09ad2b46d3d580a37",
-        measurementId: "G-V2RV3C9PYX"
-      };
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
+    <!-- Firebase Analytics — deferred until browser is idle to keep LCP fast -->
+    <script>
+      (function loadAnalytics() {
+        var load = function () {
+          var s = document.createElement('script');
+          s.type = 'module';
+          s.textContent = [
+            'import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";',
+            'import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-analytics.js";',
+            'const app = initializeApp({',
+            '  apiKey: "AIzaSyAfgrf9AW5gD2PTJJfenOdWPpwh6M0gAT4",',
+            '  authDomain: "blueberry-8100c.firebaseapp.com",',
+            '  projectId: "blueberry-8100c",',
+            '  storageBucket: "blueberry-8100c.firebasestorage.app",',
+            '  messagingSenderId: "982437547798",',
+            '  appId: "1:982437547798:web:feccd09ad2b46d3d580a37",',
+            '  measurementId: "G-V2RV3C9PYX"',
+            '});',
+            'getAnalytics(app);'
+          ].join('\n');
+          document.head.appendChild(s);
+        };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(load, { timeout: 3000 });
+        } else {
+          setTimeout(load, 2000);
+        }
+      })();
     </script>
   </body>
 </html>
