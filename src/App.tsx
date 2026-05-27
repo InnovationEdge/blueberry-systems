@@ -17,8 +17,16 @@ const ProjectModal = lazy(() =>
   import('./components/ProjectModal').then((m) => ({ default: m.ProjectModal })),
 );
 
+// Read ?lang= from URL once at mount — supports hreflang deep links
+function getInitialLang(): string {
+  if (typeof window === 'undefined') return 'EN';
+  const param = new URLSearchParams(window.location.search).get('lang');
+  if (param === 'ka' || param === 'ქარ') return 'ქარ';
+  return 'EN';
+}
+
 export default function App() {
-  const [lang, setLangState] = useState('EN');
+  const [lang, setLangState] = useState(getInitialLang);
   const [selected, setSelected] = useState<number | null>(null);
   const [shown, setShown] = useState(true);
   const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -35,9 +43,18 @@ export default function App() {
     }, 180);
   }, [lang]);
 
-  // Sync <html lang="..."> with active language for screen readers + SEO
+  // Sync <html lang="..."> + ?lang= URL param with active language
+  // — improves a11y (screen readers), SEO (hreflang signal), and shareability
   useEffect(() => {
-    document.documentElement.lang = lang === 'ქარ' ? 'ka' : 'en';
+    const code = lang === 'ქარ' ? 'ka' : 'en';
+    document.documentElement.lang = code;
+    const url = new URL(window.location.href);
+    if (code === 'en') {
+      url.searchParams.delete('lang');
+    } else {
+      url.searchParams.set('lang', code);
+    }
+    window.history.replaceState({}, '', url.toString());
   }, [lang]);
 
   return (
