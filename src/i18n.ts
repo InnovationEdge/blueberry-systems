@@ -391,7 +391,7 @@ const ka: T = {
   testimonials: 'გამოხმაურებები',
   testimonialsTitle: 'რას ამბობენ კლიენტები',
   faqTitle: 'ხშირად დასმული კითხვები',
-  contactTitle: 'მზად ხარ\nშექმნა დაიწყო?',
+  contactTitle: 'მზად ხარ რომ\nშევქმნათ რაიმე დიდი?',
   contactDesc: 'ყველა პროექტი საუბრით იწყება. შეავსე ფორმა და 24 საათში დაგიკავშირდებით.',
   contactSend: 'გაგზავნა',
   contactSending: 'იგზავნება...',
