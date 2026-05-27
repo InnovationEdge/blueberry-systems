@@ -1,0 +1,29 @@
+/* TEAM */
+Founder & CEO: Irakli Kerdikoshvili
+  Site: https://blueberry.codes
+  LinkedIn: https://www.linkedin.com/in/iraklikerdikoshvili/
+  Location: Tbilisi, Georgia
+
+Chief Marketing Officer: Tinatin Shakeladze
+Chief Finance Officer: Luka Giorgadze
+Chief Operating Officer: Datuna Bakradze
+Head of Engineering: Giorgi Menteshashvili
+Chief Legal Officer: Irakli Lomidze
+
+/* CONTACT */
+Email: info@blueberry.codes
+Careers: careers@blueberry.codes
+LinkedIn: https://www.linkedin.com/company/blueberry-systems/
+
+/* THANKS */
+The engineers, designers, and operators who built this with us.
+The clients who trusted us with their roadmaps.
+
+/* SITE */
+Last update: 2026-05-27
+Language: English, ქართული
+Doctype: HTML5
+Framework: React 19 + Vite 6 + Tailwind v4
+Hosting: Vercel
+Standards: WCAG 2.2 AA, schema.org, OpenGraph, hreflang
+Components: Lucide icons, Framer Motion, Magic UI primitives
