@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found · Blueberry Systems</title>
+    <meta name="description" content="The page you were looking for doesn't exist on Blueberry Systems. Head back to the homepage." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+    <meta name="theme-color" content="#050507" />
+    <link rel="stylesheet" href="/landing.css" />
+    <style>
+      .center { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+      .code { font-family: ui-monospace, SF Mono, Menlo, monospace; font-size: clamp(5rem, 18vw, 9rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1; background: linear-gradient(120deg,#60a5fa,#22d3ee,#a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 24px; }
+      .center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 16px; }
+      .center p { max-width: 460px; margin-bottom: 40px; }
+      .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); max-width: 600px; width: 100%; margin-top: 24px; }
+      .grid a { padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; color: var(--fg); transition: all .2s; }
+      .grid a:hover { border-color: rgba(96, 165, 250, 0.5); background: rgba(96, 165, 250, 0.04); color: #60a5fa; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="brand">
+        <img src="/logo-mark-white.svg" alt="" aria-hidden="true" />
+        Blueberry
+      </a>
+      <a href="/" class="back">← Home</a>
+    </header>
+    <div class="center">
+      <div class="code">404</div>
+      <h1>Page not found</h1>
+      <p>The URL you tried doesn't exist on blueberry.codes. Maybe you meant one of these?</p>
+      <div class="grid">
+        <a href="/">→ Homepage</a>
+        <a href="/software-development/">→ Software Development</a>
+        <a href="/product-marketing/">→ Product Marketing</a>
+        <a href="/product-design/">→ Product Design</a>
+        <a href="/business-consulting/">→ Business Consulting</a>
+        <a href="/#contact">→ Contact us</a>
+      </div>
+    </div>
+  </body>
+</html>
