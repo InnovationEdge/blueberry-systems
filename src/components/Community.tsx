@@ -122,8 +122,11 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                 }`}>
                   <img
                     src={m.img}
-                    alt={m.name}
+                    alt={`${m.name} — ${m.role}`}
                     loading="lazy"
+                    decoding="async"
+                    width="300"
+                    height="400"
                     className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700"
                   />
                   {m.founder && (

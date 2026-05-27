@@ -24,6 +24,10 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
               <motion.img
                 src="/team/founder.png"
                 alt={`Irakli Kerdikoshvili — ${t.roleCEO}`}
+                width="460"
+                height="575"
+                decoding="async"
+                loading="lazy"
                 style={{ y: imageY }}
                 className="absolute inset-0 w-full h-[112%] object-cover object-center"
               />

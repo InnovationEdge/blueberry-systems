@@ -10,7 +10,16 @@ export function Logo({ className }: LogoProps) {
   const mark = theme === 'dark' ? '/logo-mark-white.svg' : '/logo-mark-blue.svg';
   return (
     <span className={className ?? 'inline-flex items-center gap-2.5'}>
-      <img src={mark} alt="" aria-hidden className="h-9 md:h-10 w-auto" />
+      <img
+        src={mark}
+        alt=""
+        aria-hidden
+        decoding="async"
+        fetchPriority="high"
+        width="42"
+        height="42"
+        className="h-9 md:h-10 w-auto"
+      />
       <span className="text-[17px] md:text-[18px] font-extrabold tracking-[-0.02em] text-black dark:text-white">
         Blueberry
       </span>
