@@ -442,6 +442,150 @@
     }
     </script>
 
+    <!-- ▸ Service Schema × 4 — separately indexable, each ranks on its own queries -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://blueberry.codes/#service-software",
+          "name": "Custom Software Development",
+          "alternateName": ["Bespoke Software", "Custom App Development", "Software Engineering Services"],
+          "description": "End-to-end custom software development: mobile apps (iOS, Android, React Native, Flutter), web platforms (React, Next.js, Vue), CRM and ERP systems, internal tools, and APIs. We design, build, deploy, and maintain production-grade software for startups and enterprises.",
+          "provider": { "@id": "https://blueberry.codes/#organization" },
+          "serviceType": "Software Development",
+          "category": "Software Development Services",
+          "areaServed": [
+            { "@type": "Country", "name": "Worldwide" },
+            { "@type": "Country", "name": "Georgia" },
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "United Kingdom" },
+            { "@type": "Country", "name": "Germany" }
+          ],
+          "audience": { "@type": "BusinessAudience", "audienceType": "Startups, SMBs, Enterprises" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": "4500",
+            "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": "4500" },
+            "availability": "https://schema.org/InStock",
+            "validFrom": "2026-01-01"
+          },
+          "url": "https://blueberry.codes/#services",
+          "image": "https://blueberry.codes/og-image.png",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Software Development Deliverables",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development (iOS, Android, React Native, Flutter)" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Application Development (React, Next.js, TypeScript)" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom CRM and ERP Systems" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "API Development and Integration" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Internal Tooling and Admin Dashboards" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Legacy System Modernization" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI/ML Integration (OpenAI, Google Gemini, pgvector)" } }
+            ]
+          },
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "bestRating": "5", "ratingCount": "22" }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://blueberry.codes/#service-marketing",
+          "name": "Product Marketing & Growth",
+          "alternateName": ["Performance Marketing", "Growth Marketing", "Digital Marketing Services"],
+          "description": "Data-driven growth marketing for SaaS, e-commerce, and mobile apps. Paid acquisition (Google Ads, Meta Ads, TikTok Ads), SEO, content marketing, conversion rate optimization, marketing analytics, and lifecycle automation. We measurably lower CAC and accelerate MAU growth.",
+          "provider": { "@id": "https://blueberry.codes/#organization" },
+          "serviceType": "Digital Marketing",
+          "category": "Marketing Services",
+          "areaServed": [
+            { "@type": "Country", "name": "Worldwide" },
+            { "@type": "Country", "name": "Georgia" }
+          ],
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": "3500",
+            "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": "3500" }
+          },
+          "url": "https://blueberry.codes/#services",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Growth Marketing Deliverables",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paid Acquisition (Google, Meta, TikTok)" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technical SEO Audit and Implementation" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content Strategy and Production" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conversion Rate Optimization (CRO)" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing Analytics and Attribution" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lifecycle and Email Automation" } }
+            ]
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://blueberry.codes/#service-design",
+          "name": "Product Design (UI/UX)",
+          "alternateName": ["UI Design", "UX Design", "Product Design Services", "Interaction Design"],
+          "description": "Human-centered product design for digital products: user research, information architecture, wireframing, high-fidelity Figma design, prototyping, design systems, and design-engineering handoff. We design interfaces that convert visitors into loyal customers.",
+          "provider": { "@id": "https://blueberry.codes/#organization" },
+          "serviceType": "UI/UX Design",
+          "category": "Design Services",
+          "areaServed": { "@type": "Country", "name": "Worldwide" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": "5500",
+            "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": "5500" }
+          },
+          "url": "https://blueberry.codes/#services",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Design Deliverables",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "User Research and Discovery" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wireframing and Prototyping" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High-Fidelity UI Design (Figma)" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design Systems and Component Libraries" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App UI Design (iOS, Android)" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Identity and Visual Design" } }
+            ]
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://blueberry.codes/#service-consulting",
+          "name": "Business & Technology Consulting",
+          "alternateName": ["IT Consulting", "Digital Strategy", "Technology Advisory"],
+          "description": "Strategic guidance for founders and executives: technical architecture review, technology stack selection, team augmentation, fractional CTO services, due diligence, M&A technical assessment, and digital transformation roadmaps.",
+          "provider": { "@id": "https://blueberry.codes/#organization" },
+          "serviceType": "Business Consulting",
+          "category": "Consulting Services",
+          "areaServed": { "@type": "Country", "name": "Worldwide" },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "price": "250",
+            "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD", "minPrice": "250", "unitText": "HOUR" }
+          },
+          "url": "https://blueberry.codes/#services",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Consulting Engagements",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technical Architecture Review" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fractional CTO Services" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technology Stack Selection" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Team Augmentation and Hiring Strategy" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "M&A Technical Due Diligence" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Transformation Roadmaps" } }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- ▸ JobPosting Schema × 5 — eligible for Google for Jobs surface -->
     <script type="application/ld+json">
     {
