@@ -56,7 +56,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0 }}
             className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-3 sm:pr-5 py-1.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.22em] mb-6 sm:mb-8 max-w-full"
           >
             <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-2 sm:px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal whitespace-nowrap">
@@ -74,7 +74,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="font-extrabold leading-[0.98] tracking-[-0.04em] mb-6 sm:mb-8 max-w-[1300px]"
             style={{ fontSize: 'clamp(2.8rem, 8.5vw, 9rem)' }}
           >
@@ -99,7 +99,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               <motion.p
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.55 }}
+                transition={{ duration: 0.6, delay: 0.25 }}
                 className="text-zinc-700 dark:text-zinc-300 text-lg md:text-2xl max-w-[40ch] leading-[1.4] font-light"
               >
                 {t.heroSubtitle}
@@ -110,7 +110,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                transition={{ duration: 0.6, delay: 0.35 }}
                 className="flex flex-col sm:flex-row items-start gap-3"
               >
                 <MagneticButton
