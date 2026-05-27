@@ -120,15 +120,18 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                     ? 'border-blue-500/40 shadow-lg shadow-blue-500/20 group-hover:border-blue-400/60'
                     : 'border-zinc-200 dark:border-white/[0.06] group-hover:border-blue-500/30'
                 }`}>
-                  <img
-                    src={m.img}
-                    alt={`${m.name} — ${m.role}`}
-                    loading="lazy"
-                    decoding="async"
-                    width="300"
-                    height="400"
-                    className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700"
-                  />
+                  <picture>
+                    <source type="image/webp" srcSet={m.img.replace('.jpg', '.webp')} />
+                    <img
+                      src={m.img}
+                      alt={`${m.name} — ${m.role}`}
+                      loading="lazy"
+                      decoding="async"
+                      width="300"
+                      height="400"
+                      className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-700"
+                    />
+                  </picture>
                   {m.founder && (
                     <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-blue-500/90 backdrop-blur-sm text-[9px] font-bold uppercase tracking-[0.2em] text-white">
                       {t.founderBadge}

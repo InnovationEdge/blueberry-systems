@@ -21,16 +21,19 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
         <div className="lg:col-span-5 order-2 lg:order-1">
           <Reveal>
             <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
-              <motion.img
-                src="/team/founder.jpg"
-                alt={`Irakli Kerdikoshvili — ${t.roleCEO}`}
-                width="460"
-                height="575"
-                decoding="async"
-                loading="lazy"
-                style={{ y: imageY }}
-                className="absolute inset-0 w-full h-[112%] object-cover object-center"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/team/founder.webp" />
+                <motion.img
+                  src="/team/founder.jpg"
+                  alt={`Irakli Kerdikoshvili — ${t.roleCEO}`}
+                  width="460"
+                  height="575"
+                  decoding="async"
+                  loading="lazy"
+                  style={{ y: imageY }}
+                  className="absolute inset-0 w-full h-[112%] object-cover object-center"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
               {/* Floating identity card */}
