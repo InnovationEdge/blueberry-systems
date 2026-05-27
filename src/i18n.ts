@@ -535,7 +535,7 @@ const ka: T = {
   teamDesc: 'სენიორი ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი თბილისიდან. ციფრულ პროდუქტებს 2020 წლიდან ვქმნით.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
   applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'შენს რეზიუმეს განვიხილავთ და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდე ან დააჭირე ასატვირთად',
-  heroWords: ['ვქმნით', 'ვაშენებთ', 'ვუშვებთ', 'ვამასშტაბირებთ'],
+  heroWords: ['ვქმნით', 'ვაშენებთ', 'ვუშვებთ'],
   blogTagEng: 'ინჟინერია', blogTagBiz: 'ბიზნესი', blogTagFront: 'Frontend', minRead: 'წთ წაკითხვა',
   deptEng: 'ინჟინერია', deptDesign: 'დიზაინი', deptProduct: 'პროდუქტი', deptMarketing: 'მარკეტინგი',
   typeRemote: 'დისტანციური', typeHybrid: 'ჰიბრიდი', typeTbilisi: 'თბილისი',
