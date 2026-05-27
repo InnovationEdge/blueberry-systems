@@ -135,12 +135,15 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
           <Reveal delay={0.4}>
             <div className="border-t border-zinc-200 dark:border-white/[0.06] pt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-medium">
               <span>{t.trustedBy}</span>
-              {AWARDS.map((a) => (
-                <span key={a.label} className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-blue-500/60" />
-                  {a.label}
-                </span>
-              ))}
+              {AWARDS.map((a, i) => {
+                const label = [t.award1, t.award2, t.award3, t.award4][i] ?? a.label;
+                return (
+                  <span key={a.label} className="flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-blue-500/60" />
+                    {label}
+                  </span>
+                );
+              })}
             </div>
           </Reveal>
         </motion.div>

@@ -172,6 +172,11 @@ interface T {
   test4Quote: string; test4Role: string;
   // Contact form
   contactError: string;
+  // Awards ribbon (Hero)
+  award1: string;
+  award2: string;
+  award3: string;
+  award4: string;
 }
 
 const en: T = {
@@ -339,6 +344,10 @@ const en: T = {
   test4Quote: 'Professional, fast, zero theatrics. They understand startup constraints and ship enterprise quality within budgets that other agencies wouldn\'t even take meetings on.',
   test4Role: 'CEO, regional 3PL',
   contactError: 'Connection issue. Opening email client…',
+  award1: 'Awwwards · Site of the Day',
+  award2: 'CSS Design Awards · Best UI',
+  award3: 'Featured · Vercel Showcase',
+  award4: 'Top 1% · Clutch Global',
   teamDesc: 'Tbilisi-based team of engineers, designers, and strategists building digital products since 2020.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX Designer', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Marketing Lead',
   applyNow: 'Apply Now', applyName: 'Full Name', applyEmail: 'Email', applyPosition: 'Position', applyResume: 'Resume (PDF)', applySend: 'Send Application', applySending: 'Sending...', applySent: 'Application Sent!', applySentDesc: 'We will review your resume and get back to you within 48 hours.', applyDragDrop: 'Drag & drop or click to upload',
@@ -515,6 +524,10 @@ const ka: T = {
   test4Quote: 'პროფესიონალები, სწრაფები, ზედმეტი თეატრის გარეშე. ესმით სტარტაპის შეზღუდვები და enterprise ხარისხს გვაწვდიან ისეთ ბიუჯეტში, რომელზეც სხვა სააგენტოები შეხვედრაზეც კი არ წამოვიდოდნენ.',
   test4Role: 'აღმასრულებელი დირექტორი, რეგიონული 3PL',
   contactError: 'კავშირის პრობლემა. ვხსნით ელ.ფოსტას…',
+  award1: 'Awwwards · დღის საიტი',
+  award2: 'CSS Design Awards · საუკეთესო UI',
+  award3: 'წარდგენილი · Vercel Showcase',
+  award4: 'ტოპ 1% · Clutch Global',
   teamDesc: 'სენიორი ინჟინრების, დიზაინერებისა და სტრატეგების გუნდი თბილისიდან. ციფრულ პროდუქტებს 2020 წლიდან ვქმნით.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX დიზაინერი', job3: 'DevOps ინჟინერი', job4: 'პროდუქტ მენეჯერი', job5: 'მარკეტინგის ლიდი',
   applyNow: 'გამოაგზავნე', applyName: 'სახელი და გვარი', applyEmail: 'ელ. ფოსტა', applyPosition: 'პოზიცია', applyResume: 'რეზიუმე (PDF)', applySend: 'გაგზავნა', applySending: 'იგზავნება...', applySent: 'განაცხადი გაგზავნილია!', applySentDesc: 'შენს რეზიუმეს განვიხილავთ და 48 საათში დაგიკავშირდებით.', applyDragDrop: 'ჩააგდე ან დააჭირე ასატვირთად',
