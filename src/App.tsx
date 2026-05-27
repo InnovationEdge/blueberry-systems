@@ -30,15 +30,20 @@ export default function App() {
   const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t = getT(lang);
 
-  // Smooth fade when switching languages — no remount, no scroll loss
+  // Smooth fade when switching languages — no remount, no scroll loss.
+  // Two-stage: 220ms fade-out + soft blur, then swap, then 280ms fade-in
+  // with eased curve. Feels like a film cut, not a flash.
   const setLang = useCallback((newLang: string) => {
     if (newLang === lang) return;
     if (transitionTimer.current) clearTimeout(transitionTimer.current);
     setShown(false);
     transitionTimer.current = setTimeout(() => {
       setLangState(newLang);
-      requestAnimationFrame(() => setShown(true));
-    }, 180);
+      // Force layout calc before flipping shown back on, so the
+      // browser renders the new text in the hidden state first —
+      // eliminates any KA-font-loading flash.
+      requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
+    }, 220);
   }, [lang]);
 
   // Sync <html lang="..."> + ?lang= URL param + document.title + meta description
@@ -75,9 +80,10 @@ export default function App() {
       <Header t={t} lang={lang} setLang={setLang} />
 
       <div
-        className={`transition-[opacity,filter] duration-200 ease-out ${
-          shown ? 'opacity-100 blur-0' : 'opacity-0 blur-[2px]'
+        className={`transition-[opacity,filter] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          shown ? 'opacity-100 blur-0' : 'opacity-0 blur-[3px]'
         }`}
+        style={{ willChange: shown ? 'auto' : 'opacity, filter' }}
       >
         <Hero t={t} />
         <StatsStrip t={t} />

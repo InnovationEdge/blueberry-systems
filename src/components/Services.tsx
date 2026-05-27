@@ -1,4 +1,4 @@
-import { Code2, Megaphone, Palette, TrendingUp } from 'lucide-react';
+import { ArrowUpRight, Code2, Megaphone, Palette, TrendingUp } from 'lucide-react';
 import { Reveal, ScaleIn, Marquee, SectionEyebrow } from './primitives';
 import { TECH_GROUPS } from '../data';
 import type { getT } from '../i18n';
@@ -12,6 +12,12 @@ const STATS = {
 
 const ICONS = [Code2, Megaphone, Palette, TrendingUp] as const;
 const ACCENTS = ['#3b82f6', '#06b6d4', '#8b5cf6', '#f59e0b'] as const;
+const SERVICE_HREFS = [
+  '/software-development/',
+  '/product-marketing/',
+  '/product-design/',
+  '/business-consulting/',
+] as const;
 
 export function Services({ t }: { t: ReturnType<typeof getT> }) {
   const SERVICES = [
@@ -41,10 +47,12 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
           {SERVICES.map((s, i) => {
             const Icon = ICONS[i];
             const accent = ACCENTS[i];
+            const href = SERVICE_HREFS[i];
             return (
               <ScaleIn key={i} delay={i * 0.05}>
-                <article
-                  className="group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 p-7 sm:p-8 transition-all duration-300"
+                <a
+                  href={href}
+                  className="group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 p-7 sm:p-8 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   {/* Icon — large, bold, accent-colored */}
                   <div
@@ -76,7 +84,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
                   </p>
 
                   {/* Stats — compact, theme-aware */}
-                  <div className="mt-auto flex flex-wrap gap-1.5 pt-4 border-t border-zinc-100 dark:border-white/[0.06]">
+                  <div className="flex flex-wrap gap-1.5 pt-4 mb-4 border-t border-zinc-100 dark:border-white/[0.06]">
                     {s.stats.map((stat) => (
                       <span
                         key={stat}
@@ -87,13 +95,21 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
                     ))}
                   </div>
 
+                  {/* Learn-more arrow — anchors the card visually + crawlable internal link */}
+                  <span
+                    className="mt-auto inline-flex items-center gap-1.5 text-[12px] font-medium opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
+                    style={{ color: accent }}
+                  >
+                    {t.learnMore} <ArrowUpRight className="w-3.5 h-3.5" />
+                  </span>
+
                   {/* Accent line on hover (top) */}
                   <span
                     className="absolute top-0 left-7 right-7 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ background: accent }}
                     aria-hidden
                   />
-                </article>
+                </a>
               </ScaleIn>
             );
           })}
