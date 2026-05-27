@@ -438,6 +438,88 @@
       ]
     }
     </script>
+
+    <!-- ▸ JobPosting Schema × 5 — eligible for Google for Jobs surface -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "JobPosting",
+          "@id": "https://blueberry.codes/#job-fullstack",
+          "title": "Senior Full Stack Developer",
+          "description": "Build production-grade web and mobile products end-to-end. React + Next.js on the front, Node.js / NestJS / Python on the back. Direct collaboration with founders and product, no middle layers.",
+          "datePosted": "2026-05-01",
+          "validThrough": "2026-12-31",
+          "employmentType": "FULL_TIME",
+          "hiringOrganization": { "@id": "https://blueberry.codes/#organization" },
+          "jobLocationType": "TELECOMMUTE",
+          "applicantLocationRequirements": { "@type": "Country", "name": "Worldwide" },
+          "directApply": false,
+          "skills": "React, Next.js, TypeScript, Node.js, NestJS, PostgreSQL"
+        },
+        {
+          "@type": "JobPosting",
+          "@id": "https://blueberry.codes/#job-uiux",
+          "title": "UI/UX Designer",
+          "description": "Lead product design from research through high-fidelity components. Figma-first, design-system fluent, comfortable shipping live alongside engineering.",
+          "datePosted": "2026-05-01",
+          "validThrough": "2026-12-31",
+          "employmentType": "FULL_TIME",
+          "hiringOrganization": { "@id": "https://blueberry.codes/#organization" },
+          "jobLocationType": "TELECOMMUTE",
+          "applicantLocationRequirements": { "@type": "Country", "name": "Worldwide" },
+          "directApply": false,
+          "skills": "Figma, Design Systems, Prototyping, UX Research"
+        },
+        {
+          "@type": "JobPosting",
+          "@id": "https://blueberry.codes/#job-devops",
+          "title": "DevOps Engineer",
+          "description": "Own the cloud infrastructure, CI/CD pipelines, and observability stack across multiple client engagements. AWS / Vercel / Docker / Kubernetes.",
+          "datePosted": "2026-05-01",
+          "validThrough": "2026-12-31",
+          "employmentType": "FULL_TIME",
+          "hiringOrganization": { "@id": "https://blueberry.codes/#organization" },
+          "jobLocation": {
+            "@type": "Place",
+            "address": { "@type": "PostalAddress", "addressLocality": "Tbilisi", "addressCountry": "GE" }
+          },
+          "directApply": false,
+          "skills": "AWS, Docker, Kubernetes, Terraform, GitHub Actions"
+        },
+        {
+          "@type": "JobPosting",
+          "@id": "https://blueberry.codes/#job-pm",
+          "title": "Product Manager",
+          "description": "Own product strategy and execution for one or two client engagements at a time. Roadmap, stakeholder communication, scope discipline.",
+          "datePosted": "2026-05-01",
+          "validThrough": "2026-12-31",
+          "employmentType": "FULL_TIME",
+          "hiringOrganization": { "@id": "https://blueberry.codes/#organization" },
+          "jobLocation": {
+            "@type": "Place",
+            "address": { "@type": "PostalAddress", "addressLocality": "Tbilisi", "addressCountry": "GE" }
+          },
+          "directApply": false
+        },
+        {
+          "@type": "JobPosting",
+          "@id": "https://blueberry.codes/#job-marketing",
+          "title": "Marketing Lead",
+          "description": "Run growth marketing across our own brand and client accounts. Paid acquisition, content, lifecycle. Performance-driven, data-fluent.",
+          "datePosted": "2026-05-01",
+          "validThrough": "2026-12-31",
+          "employmentType": "FULL_TIME",
+          "hiringOrganization": { "@id": "https://blueberry.codes/#organization" },
+          "jobLocationType": "TELECOMMUTE",
+          "applicantLocationRequirements": { "@type": "Country", "name": "Worldwide" },
+          "directApply": false,
+          "skills": "Paid acquisition, content strategy, marketing analytics"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
