@@ -64,6 +64,19 @@ body {
   font-display: swap;
 }
 
+/* Georgian script has no upper/lower case in Mkhedruli, but `text-transform:
+   uppercase` triggers a Mkhedruli→Mtavruli mapping in modern fonts.
+   That makes Georgian eyebrows / labels appear ALL-CAPS-LIKE which feels
+   wrong for normal body usage. Disable the transform on the KA document
+   and replace with slightly wider tracking for visual hierarchy. */
+html[lang="ka"] .uppercase,
+html[lang="ka"] [class*="uppercase"] {
+  text-transform: none;
+}
+html[lang="ka"] :is(.tracking-\[0\.18em\], .tracking-\[0\.2em\], .tracking-\[0\.22em\], .tracking-\[0\.24em\], .tracking-\[0\.28em\], .tracking-\[0\.3em\], .tracking-\[0\.32em\]) {
+  letter-spacing: 0.06em;
+}
+
 /* ─── View Transitions for theme swap (Magic UI animated-theme-toggler) ─── */
 ::view-transition-old(root),
 ::view-transition-new(root) {

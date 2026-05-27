@@ -20,7 +20,14 @@ function getInitialLang(): string {
   if (typeof window === 'undefined') return 'EN';
   const param = new URLSearchParams(window.location.search).get('lang');
   if (param === 'ka' || param === 'ქარ') return 'ქარ';
+  if (param === 'ru' || param === 'RU') return 'RU';
   return 'EN';
+}
+
+function langCode(lang: string): 'en' | 'ka' | 'ru' {
+  if (lang === 'ქარ') return 'ka';
+  if (lang === 'RU') return 'ru';
+  return 'en';
 }
 
 export default function App() {
@@ -50,7 +57,7 @@ export default function App() {
   // with active language — improves a11y (screen readers), SEO (hreflang +
   // localized title/description), and shareability.
   useEffect(() => {
-    const code = lang === 'ქარ' ? 'ka' : 'en';
+    const code = langCode(lang);
     document.documentElement.lang = code;
 
     // URL param sync
@@ -71,7 +78,10 @@ export default function App() {
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute('content', t.metaDescription);
     const ogLocale = document.querySelector('meta[property="og:locale"]');
-    if (ogLocale) ogLocale.setAttribute('content', code === 'ka' ? 'ka_GE' : 'en_US');
+    if (ogLocale) {
+      const localeMap = { en: 'en_US', ka: 'ka_GE', ru: 'ru_RU' } as const;
+      ogLocale.setAttribute('content', localeMap[code]);
+    }
   }, [lang, t.metaTitle, t.metaDescription]);
 
   return (
