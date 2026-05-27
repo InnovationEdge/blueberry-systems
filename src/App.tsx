@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useRef, useCallback } from 'react';
+import { lazy, Suspense, useState, useRef, useCallback, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Services, TechStrip, Process, StatsStrip } from './components/Services';
@@ -33,6 +33,11 @@ export default function App() {
       setLangState(newLang);
       requestAnimationFrame(() => setShown(true));
     }, 180);
+  }, [lang]);
+
+  // Sync <html lang="..."> with active language for screen readers + SEO
+  useEffect(() => {
+    document.documentElement.lang = lang === 'ქარ' ? 'ka' : 'en';
   }, [lang]);
 
   return (
