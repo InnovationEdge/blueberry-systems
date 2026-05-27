@@ -22,7 +22,7 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
           <Reveal>
             <div className="relative aspect-[4/5] max-w-[460px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-zinc-300 dark:border-white/[0.10] shadow-2xl shadow-blue-500/10">
               <motion.img
-                src="/team/founder.png"
+                src="/team/founder.jpg"
                 alt={`Irakli Kerdikoshvili — ${t.roleCEO}`}
                 width="460"
                 height="575"
