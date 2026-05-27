@@ -50,7 +50,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
         </span>
       </div>
 
-      <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 pt-24 pb-12 md:pt-20 md:pb-16 w-full">
+      <div className="relative max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24 pt-10 pb-12 md:pt-20 md:pb-16 w-full">
         <motion.div style={{ y: titleY, opacity: titleOpacity }}>
           {/* Status badge */}
           <motion.div
