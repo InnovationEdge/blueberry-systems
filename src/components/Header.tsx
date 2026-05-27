@@ -44,13 +44,14 @@ export function Header({
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        className={`fixed top-0 left-0 right-0 z-[60] transition-colors duration-300 ${
           scrolled
             ? 'bg-white/80 dark:bg-black/80 backdrop-blur-2xl border-b border-zinc-200 dark:border-white/[0.06]'
-            : 'bg-transparent'
+            : 'bg-white/40 dark:bg-black/40 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-0'
         }`}
       >
-        <div className="w-full px-6 md:px-10 h-[88px] flex items-center">
+        <div className="w-full px-6 md:px-10 h-[64px] md:h-[88px] flex items-center">
           <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5">
             <Logo />
           </a>
@@ -142,8 +143,23 @@ export function Header({
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'tween', duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-zinc-950 border-l border-black/[0.06] dark:border-white/[0.08] z-50 lg:hidden px-6 pt-24 pb-8 overflow-y-auto"
+                style={{
+                  paddingTop: 'calc(env(safe-area-inset-top) + 5rem)',
+                  paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+                }}
+                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-zinc-950 border-l border-black/[0.06] dark:border-white/[0.08] z-50 lg:hidden px-6 overflow-y-auto"
               >
+                {/* Explicit close button — guarantees a closable affordance even if
+                    the outer burger toggle is somehow obscured */}
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Close menu"
+                  style={{ top: 'calc(env(safe-area-inset-top) + 1rem)' }}
+                  className="absolute right-4 p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors rounded-md hover:bg-zinc-100 dark:hover:bg-white/[0.04]"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
                 {NAV.map((item, i) => (
                   <motion.a
                     key={item.id}
@@ -193,7 +209,12 @@ export function Header({
           )}
         </AnimatePresence>
       </motion.header>
-      <div className="h-[88px]" />
+      {/* Spacer matches header height + iPhone notch inset */}
+      <div
+        className="h-[64px] md:h-[88px]"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        aria-hidden
+      />
     </>
   );
 }

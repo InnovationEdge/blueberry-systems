@@ -217,11 +217,25 @@ button:focus-visible, a:focus-visible {
   border-radius: 4px;
 }
 
-/* ─── Scrollbar ─── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--bb-border-strong); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--bb-muted); }
+/* ─── Scrollbar — visible on pointer:fine (desktop), invisible on touch (mobile) ─── */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--bb-border-strong); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--bb-muted); }
+}
+@media (hover: none), (pointer: coarse) {
+  ::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  * { scrollbar-width: none; -ms-overflow-style: none; }
+}
+
+/* ─── iOS safe area for status bar + home indicator ─── */
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
 
 /* ─── Premium card hover lift ─── */
 .lift {
