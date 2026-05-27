@@ -1,17 +1,15 @@
 import { lazy, Suspense, useState, useRef, useCallback, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Services, TechStrip, Process, StatsStrip } from './components/Services';
-import { Portfolio } from './components/Portfolio';
-import { Pricing, Testimonials, MiniCta } from './components/Pricing';
-import { Blog, Team, Partners } from './components/Community';
-import { Careers } from './components/Careers';
-import { FAQ, Contact } from './components/Contact';
-import { Footer, ScrollToTop } from './components/Footer';
+import { StatsStrip } from './components/Services';
+import { ScrollToTop } from './components/Footer';
 import { ScrollProgress, NowBuilding } from './components/ScrollProgress';
-import { FounderNote } from './components/FounderNote';
 import { Industries } from './components/Industries';
 import { getT } from './i18n';
+
+// Everything below-the-fold ships in its own chunk so the home-page
+// initial load only pays for Hero + StatsStrip + Industries.
+const BelowFold = lazy(() => import('./BelowFold'));
 
 const ProjectModal = lazy(() =>
   import('./components/ProjectModal').then((m) => ({ default: m.ProjectModal })),
@@ -70,21 +68,9 @@ export default function App() {
         <Hero t={t} />
         <StatsStrip t={t} />
         <Industries t={t} />
-        <Services t={t} />
-        <TechStrip t={t} />
-        <Process t={t} />
-        <FounderNote t={t} />
-        <Portfolio t={t} onOpen={setSelected} />
-        <MiniCta t={t} />
-        <Pricing t={t} />
-        <Testimonials t={t} />
-        <Blog t={t} />
-        <Team t={t} />
-        <Partners t={t} />
-        <Careers t={t} />
-        <FAQ t={t} />
-        <Contact t={t} />
-        <Footer t={t} />
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <BelowFold t={t} onOpenProject={setSelected} />
+        </Suspense>
       </div>
 
       <Suspense fallback={null}>
