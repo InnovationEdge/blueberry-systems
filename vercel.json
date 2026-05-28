@@ -8,7 +8,26 @@
     { "source": "/product-design/", "destination": "/product-design/index.html" },
     { "source": "/business-consulting", "destination": "/business-consulting/index.html" },
     { "source": "/business-consulting/", "destination": "/business-consulting/index.html" },
-    { "source": "/((?!software-development|product-marketing|product-design|business-consulting|assets|team|.*\\.[a-z0-9]+).*)", "destination": "/index.html" }
+
+    { "source": "/ka/software-development", "destination": "/ka/software-development/index.html" },
+    { "source": "/ka/software-development/", "destination": "/ka/software-development/index.html" },
+    { "source": "/ka/product-marketing", "destination": "/ka/product-marketing/index.html" },
+    { "source": "/ka/product-marketing/", "destination": "/ka/product-marketing/index.html" },
+    { "source": "/ka/product-design", "destination": "/ka/product-design/index.html" },
+    { "source": "/ka/product-design/", "destination": "/ka/product-design/index.html" },
+    { "source": "/ka/business-consulting", "destination": "/ka/business-consulting/index.html" },
+    { "source": "/ka/business-consulting/", "destination": "/ka/business-consulting/index.html" },
+
+    { "source": "/ru/software-development", "destination": "/ru/software-development/index.html" },
+    { "source": "/ru/software-development/", "destination": "/ru/software-development/index.html" },
+    { "source": "/ru/product-marketing", "destination": "/ru/product-marketing/index.html" },
+    { "source": "/ru/product-marketing/", "destination": "/ru/product-marketing/index.html" },
+    { "source": "/ru/product-design", "destination": "/ru/product-design/index.html" },
+    { "source": "/ru/product-design/", "destination": "/ru/product-design/index.html" },
+    { "source": "/ru/business-consulting", "destination": "/ru/business-consulting/index.html" },
+    { "source": "/ru/business-consulting/", "destination": "/ru/business-consulting/index.html" },
+
+    { "source": "/((?!software-development|product-marketing|product-design|business-consulting|ka/|ru/|assets|team|.*\\.[a-z0-9]+).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
