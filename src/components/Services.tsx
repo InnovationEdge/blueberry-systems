@@ -42,75 +42,91 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
           </div>
         </Reveal>
 
-        {/* Clean equal-cards grid — 1col mobile, 2col tablet, 4col desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/*
+          Bento grid: 1 feature (i=0, 2×2) + 2 small (i=1,2) + 1 wide footer (i=3, spans 2 cols).
+          - mobile: 1 col, all stack
+          - sm (2 col): card 4 spans both cols as full-width footer; feature + small ride 1 col
+          - lg (4 col × 2 rows): feature 2×2 on left, two small stacked top-right, wide footer bottom-right
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 sm:gap-5">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[i];
             const accent = ACCENTS[i];
             const href = SERVICE_HREFS[i];
+            const isFeature = i === 0;
+            const isWideFooter = i === 3;
+            const spanClass = isFeature
+              ? 'lg:col-span-2 lg:row-span-2'
+              : isWideFooter
+                ? 'sm:col-span-2 lg:col-span-2 lg:row-span-1'
+                : '';
             return (
-              <ScaleIn key={i} delay={i * 0.05}>
-                <a
-                  href={href}
-                  className="group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 p-7 sm:p-8 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                >
-                  {/* Icon — large, bold, accent-colored */}
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-                    style={{
-                      backgroundColor: `${accent}14`,
-                      color: accent,
-                    }}
+              <div key={i} className={`h-full ${spanClass}`}>
+                <ScaleIn delay={i * 0.05} className="h-full">
+                  <a
+                    href={href}
+                    className={`group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 ${isFeature ? 'p-8 sm:p-10 lg:p-12' : 'p-7 sm:p-8'} transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
                   >
-                    <Icon className="w-7 h-7" strokeWidth={1.75} />
-                  </div>
+                    {/* Icon — large, bold, accent-colored */}
+                    <div
+                      className={`${isFeature ? 'w-16 h-16 mb-8' : 'w-14 h-14 mb-6'} rounded-2xl flex items-center justify-center`}
+                      style={{
+                        backgroundColor: `${accent}14`,
+                        color: accent,
+                      }}
+                    >
+                      <Icon className={isFeature ? 'w-8 h-8' : 'w-7 h-7'} strokeWidth={1.75} />
+                    </div>
 
-                  {/* Step number — small caps eyebrow */}
-                  <p
-                    className="font-mono text-[10px] tracking-[0.22em] uppercase mb-3"
-                    style={{ color: accent }}
-                  >
-                    /{s.num}
-                  </p>
+                    {/* Step number — small caps eyebrow */}
+                    <p
+                      className="font-mono text-[10px] tracking-[0.22em] uppercase mb-3"
+                      style={{ color: accent }}
+                    >
+                      /{s.num}
+                    </p>
 
-                  {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-3 text-black dark:text-white">
-                    {s.title}
-                  </h3>
+                    {/* Title — feature card gets the editorial-size treatment */}
+                    <h3
+                      className={`${isFeature ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-xl md:text-2xl'} font-bold tracking-tight mb-3 text-black dark:text-white`}
+                    >
+                      {s.title}
+                    </h3>
 
-                  {/* Description */}
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
-                    {s.desc}
-                  </p>
+                    {/* Description */}
+                    <p className={`${isFeature ? 'text-base md:text-lg' : 'text-sm'} text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 ${isFeature ? 'max-w-xl' : ''}`}>
+                      {s.desc}
+                    </p>
 
-                  {/* Stats — compact, theme-aware */}
-                  <div className="flex flex-wrap gap-1.5 pt-4 mb-4 border-t border-zinc-100 dark:border-white/[0.06]">
-                    {s.stats.map((stat) => (
-                      <span
-                        key={stat}
-                        className="px-2.5 py-1 text-[10px] font-mono rounded-full bg-zinc-100 dark:bg-white/[0.04] text-zinc-700 dark:text-zinc-300"
-                      >
-                        {stat}
-                      </span>
-                    ))}
-                  </div>
+                    {/* Stats — compact, theme-aware */}
+                    <div className="flex flex-wrap gap-1.5 pt-4 mb-4 border-t border-zinc-100 dark:border-white/[0.06]">
+                      {s.stats.map((stat) => (
+                        <span
+                          key={stat}
+                          className="px-2.5 py-1 text-[10px] font-mono rounded-full bg-zinc-100 dark:bg-white/[0.04] text-zinc-700 dark:text-zinc-300"
+                        >
+                          {stat}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* Learn-more arrow — anchors the card visually + crawlable internal link */}
-                  <span
-                    className="mt-auto inline-flex items-center gap-1.5 text-[12px] font-medium opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
-                    style={{ color: accent }}
-                  >
-                    {t.learnMore} <ArrowUpRight className="w-3.5 h-3.5" />
-                  </span>
+                    {/* Learn-more arrow — anchors the card visually + crawlable internal link */}
+                    <span
+                      className="mt-auto inline-flex items-center gap-1.5 text-[12px] font-medium opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
+                      style={{ color: accent }}
+                    >
+                      {t.learnMore} <ArrowUpRight className="w-3.5 h-3.5" />
+                    </span>
 
-                  {/* Accent line on hover (top) */}
-                  <span
-                    className="absolute top-0 left-7 right-7 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: accent }}
-                    aria-hidden
-                  />
-                </a>
-              </ScaleIn>
+                    {/* Accent line on hover (top) */}
+                    <span
+                      className="absolute top-0 left-7 right-7 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: accent }}
+                      aria-hidden
+                    />
+                  </a>
+                </ScaleIn>
+              </div>
             );
           })}
         </div>
