@@ -126,7 +126,7 @@ export default function App() {
         <StatsStrip t={t} />
         <Industries t={t} />
         <Suspense fallback={<div className="min-h-[400px]" />}>
-          <BelowFold t={t} onOpenProject={setSelected} />
+          <BelowFold t={t} lang={lang} onOpenProject={setSelected} />
         </Suspense>
       </div>
 

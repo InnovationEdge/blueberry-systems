@@ -12,14 +12,23 @@ const STATS = {
 
 const ICONS = [Code2, Megaphone, Palette, TrendingUp] as const;
 const ACCENTS = ['#3b82f6', '#06b6d4', '#8b5cf6', '#f59e0b'] as const;
-const SERVICE_HREFS = [
-  '/software-development/',
-  '/product-marketing/',
-  '/product-design/',
-  '/business-consulting/',
+const SERVICE_SLUGS = [
+  'software-development',
+  'product-marketing',
+  'product-design',
+  'business-consulting',
 ] as const;
 
-export function Services({ t }: { t: ReturnType<typeof getT> }) {
+// Pick the localized landing page matching the visitor's active language.
+// Falls through to the English root for EN + unknown — that's also where
+// hreflang x-default resolves, so search engines get a consistent picture.
+function serviceHref(lang: string, slug: string): string {
+  if (lang === 'ქარ') return `/ka/${slug}/`;
+  if (lang === 'RU') return `/ru/${slug}/`;
+  return `/${slug}/`;
+}
+
+export function Services({ t, lang }: { t: ReturnType<typeof getT>; lang: string }) {
   const SERVICES = [
     { num: '01', title: t.svc1Title, desc: t.svc1Desc, stats: STATS.s1 },
     { num: '02', title: t.svc2Title, desc: t.svc2Desc, stats: STATS.s2 },
@@ -52,7 +61,7 @@ export function Services({ t }: { t: ReturnType<typeof getT> }) {
           {SERVICES.map((s, i) => {
             const Icon = ICONS[i];
             const accent = ACCENTS[i];
-            const href = SERVICE_HREFS[i];
+            const href = serviceHref(lang, SERVICE_SLUGS[i]);
             const isFeature = i === 0;
             const isWideFooter = i === 3;
             const spanClass = isFeature

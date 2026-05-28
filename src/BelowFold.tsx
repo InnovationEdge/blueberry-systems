@@ -15,14 +15,16 @@ import type { getT } from './i18n';
  */
 export default function BelowFold({
   t,
+  lang,
   onOpenProject,
 }: {
   t: ReturnType<typeof getT>;
+  lang: string;
   onOpenProject: (index: number) => void;
 }) {
   return (
     <>
-      <Services t={t} />
+      <Services t={t} lang={lang} />
       <TechStrip t={t} />
       <Process t={t} />
       <FounderNote t={t} />
