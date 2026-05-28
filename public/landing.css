@@ -34,6 +34,18 @@ li span { color: var(--muted); font-size: 14px; }
 footer { padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; margin-top: 80px; }
 .stack { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 32px; }
 .stack span { padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); font-family: ui-monospace, SF Mono, Menlo, monospace; }
+/* Related-services cross-link grid — strengthens intra-language internal
+   linking. Sits at the bottom of every landing page, links to the OTHER 3
+   services in the same language. */
+.related { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+.related h2 { margin-top: 0; }
+.related-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 24px 0 0; }
+.related-grid a { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--border); border-radius: 20px; transition: border-color .2s, transform .25s, background .2s; }
+.related-grid a:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); background: rgba(255,255,255,0.02); }
+.related-grid a strong { font-size: 1.05rem; margin-bottom: 8px; color: var(--fg); }
+.related-grid a span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.related-grid a small { margin-top: 16px; color: var(--brand); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
+
 @media (prefers-color-scheme: light) {
   :root { --bg: #fafafa; --fg: #0a0a0d; --muted: #6e6e76; --border: rgba(0,0,0,0.08); }
   li { background: #fff; }
@@ -41,4 +53,6 @@ footer { padding: 40px 24px; border-top: 1px solid var(--border); color: var(--m
   .btn-primary:hover { background: #27272a; }
   .btn-secondary { border-color: rgba(0,0,0,0.15); color: #000; }
   .btn-secondary:hover { background: rgba(0,0,0,0.04); }
+  .related-grid a { background: #fff; }
+  .related-grid a:hover { border-color: rgba(0,0,0,0.18); background: rgba(0,0,0,0.02); }
 }

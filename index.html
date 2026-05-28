@@ -444,6 +444,51 @@
     }
     </script>
 
+    <!-- ▸ ItemList — describes the Services bento as an ordered list of 4 services.
+         Helps Google understand the homepage IA and surface the list as a
+         sitelinks-style result for brand searches. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": "https://blueberry.codes/#services-list",
+      "name": "Blueberry Systems — Services",
+      "description": "Our four core service lines, each separately indexable in English, Georgian and Russian.",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 4,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Custom Software Development",
+          "url": "https://blueberry.codes/software-development/",
+          "item": { "@id": "https://blueberry.codes/#service-software" }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Product Marketing & Growth",
+          "url": "https://blueberry.codes/product-marketing/",
+          "item": { "@id": "https://blueberry.codes/#service-marketing" }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Product Design (UI/UX)",
+          "url": "https://blueberry.codes/product-design/",
+          "item": { "@id": "https://blueberry.codes/#service-design" }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Business & Technology Consulting",
+          "url": "https://blueberry.codes/business-consulting/",
+          "item": { "@id": "https://blueberry.codes/#service-consulting" }
+        }
+      ]
+    }
+    </script>
+
     <!-- ▸ Service Schema × 4 — separately indexable, each ranks on its own queries -->
     <script type="application/ld+json">
     {
