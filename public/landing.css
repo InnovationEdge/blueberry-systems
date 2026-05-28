@@ -34,6 +34,15 @@ li span { color: var(--muted); font-size: 14px; }
 footer { padding: 40px 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; margin-top: 80px; }
 .stack { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 32px; }
 .stack span { padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); font-family: ui-monospace, SF Mono, Menlo, monospace; }
+/* Visible breadcrumb — mirrors the BreadcrumbList JSON-LD, so Google can
+   render either or both in mobile snippets. Sits above the meta strip. */
+.crumbs { margin-bottom: 24px; font-size: 13px; color: var(--muted); }
+.crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; }
+.crumbs li:not(:last-child)::after { content: "/"; margin-left: 6px; opacity: 0.5; }
+.crumbs a { color: var(--muted); text-decoration: none; transition: color .2s; }
+.crumbs a:hover { color: var(--fg); }
+.crumbs li[aria-current="page"] { color: var(--fg); }
+
 /* Related-services cross-link grid — strengthens intra-language internal
    linking. Sits at the bottom of every landing page, links to the OTHER 3
    services in the same language. */
