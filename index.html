@@ -363,6 +363,44 @@
     }
     </script>
 
+    <!-- ▸ Person Schema for the founder. Google uses standalone Person
+         entities to seed Knowledge Panel candidacy when search intent maps to
+         a named individual rather than the company. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://blueberry.codes/#irakli-kerdikoshvili",
+      "name": "Irakli Kerdikoshvili",
+      "alternateName": "ირაკლი ქერდიკოშვილი",
+      "jobTitle": "Founder and CEO",
+      "worksFor": { "@id": "https://blueberry.codes/#organization" },
+      "url": "https://blueberry.codes/",
+      "image": "https://blueberry.codes/team/founder.jpg",
+      "nationality": { "@type": "Country", "name": "Georgia" },
+      "homeLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tbilisi",
+          "addressCountry": "GE"
+        }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/iraklikerdikoshvili/",
+        "https://github.com/InnovationEdge"
+      ],
+      "knowsAbout": [
+        "Software architecture",
+        "Web development",
+        "Mobile development",
+        "Product strategy",
+        "AI and machine learning"
+      ],
+      "knowsLanguage": ["English", "Georgian", "Russian"]
+    }
+    </script>
+
     <!-- ▸ WebPage Schema — explicit type + speakable for voice assistants -->
     <script type="application/ld+json">
     {

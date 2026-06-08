@@ -20,7 +20,7 @@ The engineers, designers, and operators who built this with us.
 The clients who trusted us with their roadmaps.
 
 /* SITE */
-Last update: 2026-05-27
+Last update: 2026-06-08
 Language: English, ქართული
 Doctype: HTML5
 Framework: React 19 + Vite 6 + Tailwind v4

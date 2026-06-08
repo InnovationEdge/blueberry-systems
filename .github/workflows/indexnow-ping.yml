@@ -1,0 +1,60 @@
+name: IndexNow ping
+
+# Pings the IndexNow API on every push to main so Bing, Yandex,
+# Naver, and Seznam discover changed pages within minutes instead of
+# days. Google does not participate in IndexNow — it still relies on
+# GSC sitemap submission + organic crawl, both already covered.
+#
+# The host MUST own /<key>.txt at the root for IndexNow to accept the
+# submission. That file lives in `public/c81664...d54c.txt` and ships
+# with every Vercel deploy.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify IndexNow
+        run: |
+          KEY="c816645968e6493cae4670c82eddd54c"
+          HOST="blueberry.codes"
+          URLS=(
+            "https://blueberry.codes/"
+            "https://blueberry.codes/?lang=ka"
+            "https://blueberry.codes/?lang=ru"
+            "https://blueberry.codes/software-development/"
+            "https://blueberry.codes/product-marketing/"
+            "https://blueberry.codes/product-design/"
+            "https://blueberry.codes/business-consulting/"
+            "https://blueberry.codes/ka/software-development/"
+            "https://blueberry.codes/ka/product-marketing/"
+            "https://blueberry.codes/ka/product-design/"
+            "https://blueberry.codes/ka/business-consulting/"
+            "https://blueberry.codes/ru/software-development/"
+            "https://blueberry.codes/ru/product-marketing/"
+            "https://blueberry.codes/ru/product-design/"
+            "https://blueberry.codes/ru/business-consulting/"
+          )
+
+          # Build JSON urlList safely with jq
+          URL_JSON=$(printf '%s\n' "${URLS[@]}" | jq -R . | jq -s .)
+          PAYLOAD=$(jq -n \
+            --arg host "$HOST" \
+            --arg key "$KEY" \
+            --arg keyLoc "https://${HOST}/${KEY}.txt" \
+            --argjson urlList "$URL_JSON" \
+            '{host: $host, key: $key, keyLocation: $keyLoc, urlList: $urlList}')
+
+          echo "Payload:"
+          echo "$PAYLOAD"
+
+          # api.indexnow.org fans out to Bing, Yandex, Naver, Seznam.
+          # 200/202 = accepted; 422 = key check failed (deploy not live yet).
+          curl -sS -X POST 'https://api.indexnow.org/IndexNow' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "$PAYLOAD" \
+            -w "\nHTTP %{http_code}\n"

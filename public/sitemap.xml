@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
   <url>
     <loc>https://blueberry.codes/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/"/>
@@ -13,8 +13,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blueberry.codes/"/>
     <image:image>
       <image:loc>https://blueberry.codes/og-image.png</image:loc>
-      <image:title>Blueberry Systems · Custom Software Development Agency</image:title>
-      <image:caption>Senior software team in Tbilisi shipping production-grade web, mobile, SaaS and AI/ML products.</image:caption>
+      <image:title>Blueberry Systems · Software development team in Tbilisi</image:title>
+      <image:caption>A small team of senior engineers in Tbilisi. We build web apps, mobile apps, SaaS and AI tools.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://blueberry.codes/favicon-512.png</image:loc>
@@ -24,7 +24,7 @@
 
   <url>
     <loc>https://blueberry.codes/?lang=ka</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/"/>
@@ -35,7 +35,7 @@
 
   <url>
     <loc>https://blueberry.codes/?lang=ru</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/"/>
@@ -44,10 +44,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blueberry.codes/"/>
   </url>
 
-  <!-- English service landing pages — separately indexable -->
+  <!-- English service landing pages. Separately indexable. -->
   <url>
     <loc>https://blueberry.codes/software-development/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/software-development/"/>
@@ -58,7 +58,7 @@
 
   <url>
     <loc>https://blueberry.codes/product-marketing/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/product-marketing/"/>
@@ -69,7 +69,7 @@
 
   <url>
     <loc>https://blueberry.codes/product-design/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/product-design/"/>
@@ -80,7 +80,7 @@
 
   <url>
     <loc>https://blueberry.codes/business-consulting/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/business-consulting/"/>
@@ -89,10 +89,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blueberry.codes/business-consulting/"/>
   </url>
 
-  <!-- Georgian (KA) service landing pages — full localized content -->
+  <!-- Georgian (KA) service landing pages. Full localized content. -->
   <url>
     <loc>https://blueberry.codes/ka/software-development/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/software-development/"/>
@@ -103,7 +103,7 @@
 
   <url>
     <loc>https://blueberry.codes/ka/product-marketing/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/product-marketing/"/>
@@ -114,7 +114,7 @@
 
   <url>
     <loc>https://blueberry.codes/ka/product-design/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/product-design/"/>
@@ -125,7 +125,7 @@
 
   <url>
     <loc>https://blueberry.codes/ka/business-consulting/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/business-consulting/"/>
@@ -134,10 +134,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blueberry.codes/business-consulting/"/>
   </url>
 
-  <!-- Russian (RU) service landing pages — full localized content -->
+  <!-- Russian (RU) service landing pages. Full localized content. -->
   <url>
     <loc>https://blueberry.codes/ru/software-development/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/software-development/"/>
@@ -148,7 +148,7 @@
 
   <url>
     <loc>https://blueberry.codes/ru/product-marketing/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/product-marketing/"/>
@@ -159,7 +159,7 @@
 
   <url>
     <loc>https://blueberry.codes/ru/product-design/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/product-design/"/>
@@ -170,7 +170,7 @@
 
   <url>
     <loc>https://blueberry.codes/ru/business-consulting/</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blueberry.codes/business-consulting/"/>
@@ -182,37 +182,37 @@
   <!-- On-page anchor sections (lower priority, secondary signals) -->
   <url>
     <loc>https://blueberry.codes/#portfolio</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://blueberry.codes/#process</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://blueberry.codes/#pricing</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://blueberry.codes/#careers</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://blueberry.codes/#faq</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://blueberry.codes/#contact</loc>
-    <lastmod>2026-05-28</lastmod>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
