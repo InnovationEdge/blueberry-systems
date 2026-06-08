@@ -25,7 +25,7 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
                 <source type="image/webp" srcSet="/team/founder.webp" />
                 <motion.img
                   src="/team/founder.jpg"
-                  alt={`Irakli Kerdikoshvili — ${t.roleCEO}`}
+                  alt={`Irakli Kerdikoshvili, ${t.roleCEO}`}
                   width="460"
                   height="575"
                   decoding="async"

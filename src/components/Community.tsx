@@ -124,7 +124,7 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
                     <source type="image/webp" srcSet={m.img.replace('.jpg', '.webp')} />
                     <img
                       src={m.img}
-                      alt={`${m.name} — ${m.role}`}
+                      alt={`${m.name}, ${m.role}`}
                       loading="lazy"
                       decoding="async"
                       width="300"
