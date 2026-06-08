@@ -401,6 +401,47 @@
     }
     </script>
 
+    <!-- ▸ Speakable Schema. Marks the title + lead paragraph as eligible to be
+         read aloud by Google Assistant, Siri Shortcuts, and Alexa skills when
+         a user asks a voice query that matches the brand. Voice surface is
+         small today but it's a cheap signal Google rewards. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://blueberry.codes/#speakable",
+      "url": "https://blueberry.codes/",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".hero-tagline", "meta[name='description']"]
+      },
+      "inLanguage": ["en", "ka", "ru"]
+    }
+    </script>
+
+    <!-- ▸ WebApplication Schema. Provides Google an alternate classification
+         path beyond ProfessionalService — useful when the brand is queried
+         as a SaaS/product team rather than an agency. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://blueberry.codes/#webapp",
+      "name": "Blueberry Systems",
+      "url": "https://blueberry.codes/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any (browser-based)",
+      "browserRequirements": "Requires JavaScript. Modern evergreen browsers.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "creator": { "@id": "https://blueberry.codes/#organization" }
+    }
+    </script>
+
     <!-- ▸ WebPage Schema — explicit type + speakable for voice assistants -->
     <script type="application/ld+json">
     {
@@ -765,6 +806,28 @@
     </script>
   </head>
   <body>
+    <!-- Crawler / no-JS fallback. The marketing site is a React SPA, so a
+         crawler that fails to execute JavaScript (still common for Bing,
+         Yandex, Slack, LinkedIn unfurlers, and older bots) would otherwise
+         see an empty <body>. This visually-hidden block gives them the brand
+         name, tagline, services, founder, and direct contact links inline in
+         the initial HTML. Real browsers render the React app over the top,
+         so this content is never visible to users. -->
+    <noscript>
+      <div style="position:fixed;inset:0;background:#050507;color:#f5f5f5;font-family:Inter,sans-serif;padding:48px;line-height:1.6">
+        <h1 style="font-size:32px;margin:0 0 16px">Blueberry Systems</h1>
+        <p style="font-size:18px;margin:0 0 12px">Software development team in Tbilisi, Georgia.</p>
+        <p style="margin:0 0 24px">A small team of senior engineers. We build web apps, mobile apps, SaaS and AI tools for clients in fintech, healthcare, commerce and education.</p>
+        <ul style="margin:0 0 24px;padding-left:20px">
+          <li><a href="/software-development/" style="color:#3b9eff">Custom software development</a></li>
+          <li><a href="/product-design/" style="color:#3b9eff">Product design</a></li>
+          <li><a href="/product-marketing/" style="color:#3b9eff">Product marketing</a></li>
+          <li><a href="/business-consulting/" style="color:#3b9eff">Business consulting</a></li>
+        </ul>
+        <p>Contact: <a href="mailto:info@blueberry.codes" style="color:#3b9eff">info@blueberry.codes</a> · <a href="tel:+995598449644" style="color:#3b9eff">+995 598 449 644</a></p>
+        <p style="margin-top:24px;font-size:13px;color:#a0a0a0">This page needs JavaScript to load the interactive experience. Please enable JavaScript in your browser.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
