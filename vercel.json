@@ -48,7 +48,7 @@
       ]
     },
     {
-      "source": "/(favicon|logo|apple-touch-icon|og-image).*\\.(svg|png|ico|webp)",
+      "source": "/:name(favicon|favicon-32|favicon-512|favicon-day|favicon-night|apple-touch-icon|og-image|logo-blue|logo-white|logo-brand-blue|logo-brand-white|logo-brand-full-blue|logo-brand-full-white|logo-mark-blue|logo-mark-white).:ext(svg|png|ico|webp)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
       ]
