@@ -14,6 +14,14 @@ export type Project = {
   results: string[];
   client?: string;
   featured?: boolean;
+  /**
+   * Real product screenshot, served from /work. Omit it and the card falls
+   * back to the abstract CSS mockup, so a project without a usable capture
+   * still renders. `shotKind` picks the device frame drawn around it.
+   */
+  shot?: string;
+  shotKind?: 'phone' | 'browser';
+  shotAlt?: string;
 };
 
 export const PORTFOLIO: Project[] = [
@@ -41,6 +49,9 @@ export const PORTFOLIO: Project[] = [
       '5,582 tests across mobile, backend and web',
     ],
     client: 'iOS and Android via EAS · four Next.js dashboards',
+    shot: '/work/vybe.png',
+    shotKind: 'phone',
+    shotAlt: 'Vybe For You feed running on iPhone, with the live tab, engagement rail and bottom navigation',
   },
   {
     title: 'KnowHow AI',
@@ -66,6 +77,9 @@ export const PORTFOLIO: Project[] = [
       'Cloud Run in europe-west3, native iOS and Android',
     ],
     client: 'Live at knowhow.ge · web, iOS and Android',
+    shot: '/work/knowhow.png',
+    shotKind: 'browser',
+    shotAlt: 'KnowHow AI landing page, Legal Explained, with Google sign-in',
   },
   {
     title: 'Georgian Insurance',
@@ -91,6 +105,9 @@ export const PORTFOLIO: Project[] = [
       'Admin panel with resend, retry and order detail',
     ],
     client: 'Live at georgianinsurance.ge',
+    shot: '/work/insurance.png',
+    shotKind: 'browser',
+    shotAlt: 'Georgian Insurance quote form with departure and return dates and traveller count',
   },
   {
     title: 'Reach',

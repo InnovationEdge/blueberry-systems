@@ -48,7 +48,7 @@ export function ProjectModal({
                   <X className="w-5 h-5" />
                 </button>
 
-                <div className="relative h-56 md:h-72" style={{ background: p.hero }}>
+                <div className="relative h-56 md:h-72 overflow-hidden" style={{ background: p.hero }}>
                   <div
                     className="absolute inset-0 opacity-30"
                     style={{
@@ -58,7 +58,32 @@ export function ProjectModal({
                     }}
                     aria-hidden
                   />
+                  {/* Screenshot bleeds in from the right so the title block on
+                      the left keeps its contrast and stays readable. */}
+                  {p.shot && (
+                    <picture>
+                      <source type="image/webp" srcSet={p.shot.replace('.png', '.webp')} />
+                      <img
+                        src={p.shot}
+                        alt=""
+                        aria-hidden
+                        loading="lazy"
+                        decoding="async"
+                        className={
+                          p.shotKind === 'phone'
+                            ? 'absolute right-[6%] -top-[6%] h-[150%] w-auto rounded-[2rem] opacity-90 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]'
+                            : 'absolute right-0 top-[14%] w-[52%] rounded-tl-xl opacity-85 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]'
+                        }
+                      />
+                    </picture>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                  {p.shot && (
+                    <div
+                      className="absolute inset-0 bg-gradient-to-r from-zinc-950/85 via-zinc-950/35 to-transparent"
+                      aria-hidden
+                    />
+                  )}
 
                   <div className="absolute bottom-8 left-8 right-8 md:left-14 md:right-14">
                     <div className="flex flex-wrap items-center gap-3 mb-3">

@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal, SectionEyebrow } from './primitives';
 import { BorderBeam } from './ui/border-beam';
+import { WorkShot } from './WorkShot';
 import { PORTFOLIO } from '../data';
 import type { getT } from '../i18n';
 
@@ -118,8 +119,20 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                     colorTo="rgba(255,255,255,0)"
                     className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   />
+                  {/* Real screenshot where we have one; the abstract mockup
+                      is the fallback so a project without a usable capture
+                      still gets a card that looks finished. */}
                   <div className="relative aspect-[16/10]">
-                    <ProductMockup accent={p.accent} gradient={p.hero} />
+                    {p.shot ? (
+                      <WorkShot
+                        shot={p.shot}
+                        shotKind={p.shotKind}
+                        shotAlt={p.shotAlt ?? p.title}
+                        hero={p.hero}
+                      />
+                    ) : (
+                      <ProductMockup accent={p.accent} gradient={p.hero} />
+                    )}
                   </div>
                   <div className="p-7 flex-1 flex flex-col">
                     <div className="flex items-center justify-between mb-3">
