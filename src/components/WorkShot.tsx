@@ -16,6 +16,41 @@ import type { Project } from '../data';
 
 type Props = Pick<Project, 'shot' | 'shotKind' | 'shotAlt' | 'hero'>;
 
+/**
+ * The product's own mark, floated over the gradient at the top-left.
+ * Backdrop blur plus a hairline border so it holds up on any of the six
+ * hero gradients without needing a per-project treatment.
+ *
+ * Lives outside WorkShot so it sits over the abstract fallback mockup too:
+ * a project can have a logo without having a usable screenshot yet.
+ */
+export function LogoTile({ logo, title }: { logo: string; title: string }) {
+  const isSvg = logo.endsWith('.svg');
+  const img = (
+    <img
+      src={logo}
+      alt={`${title} logo`}
+      loading="lazy"
+      decoding="async"
+      width="44"
+      height="44"
+      className="w-full h-full object-contain"
+    />
+  );
+  return (
+    <div className="absolute top-3.5 left-3.5 z-10 w-11 h-11 rounded-xl bg-black/35 backdrop-blur-md border border-white/20 shadow-lg grid place-items-center p-1.5">
+      {isSvg ? (
+        img
+      ) : (
+        <picture>
+          <source type="image/webp" srcSet={logo.replace('.png', '.webp')} />
+          {img}
+        </picture>
+      )}
+    </div>
+  );
+}
+
 /* Wraps the shot in a phone body: thick bezel, dynamic island, rounded corners. */
 function PhoneFrame({ src, alt }: { src: string; alt: string }) {
   return (

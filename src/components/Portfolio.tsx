@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal, SectionEyebrow } from './primitives';
 import { BorderBeam } from './ui/border-beam';
-import { WorkShot } from './WorkShot';
+import { WorkShot, LogoTile } from './WorkShot';
 import { PORTFOLIO } from '../data';
 import type { getT } from '../i18n';
 
@@ -133,6 +133,9 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                     ) : (
                       <ProductMockup accent={p.accent} gradient={p.hero} />
                     )}
+                    {/* Sits over either variant: a project can have a mark
+                        without having a usable screenshot yet. */}
+                    {p.logo && <LogoTile logo={p.logo} title={p.title} />}
                   </div>
                   <div className="p-7 flex-1 flex flex-col">
                     <div className="flex items-center justify-between mb-3">

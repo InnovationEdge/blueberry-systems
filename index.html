@@ -294,40 +294,6 @@
           }
         }
       ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "37",
-        "reviewCount": "15"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "author": { "@type": "Person", "name": "M. Chen", "jobTitle": "CTO at a Series B fintech" },
-          "reviewBody": "They shipped our entire fintech rail in 14 weeks. We were the first cohort on the new platform and we have not had a single production incident since launch."
-        },
-        {
-          "@type": "Review",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "author": { "@type": "Person", "name": "S. Bergman", "jobTitle": "Founder, commerce SaaS" },
-          "reviewBody": "Working with Blueberry felt like hiring a senior product team. They pushed back where it mattered, simplified scope where they could, and the MVP just worked on day one."
-        },
-        {
-          "@type": "Review",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "author": { "@type": "Person", "name": "Dr. J. Park", "jobTitle": "Director of Digital, healthcare network" },
-          "reviewBody": "They redesigned our entire patient portal and rolled it out across 18 clinics in three months. Patient satisfaction jumped from 3.2 to 4.8 stars."
-        },
-        {
-          "@type": "Review",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "author": { "@type": "Person", "name": "A. Kowalski", "jobTitle": "CEO, regional 3PL" },
-          "reviewBody": "Professional, fast, zero theatrics. They understand startup constraints and ship enterprise quality within budgets that other agencies wouldn't even take meetings on."
-        }
-      ],
       "areaServed": [
         { "@type": "Country", "name": "Worldwide" },
         { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 41.7151, "longitude": 44.8271 }, "geoRadius": "10000 km" }
@@ -579,6 +545,283 @@
     }
     </script>
 
+    <!-- ▸ Portfolio: each shipped project as its own SoftwareApplication
+         entity, collected by an ItemList. Six named products with real
+         descriptions are six more things Google can surface, and they anchor
+         the Organization to work that actually exists. -->
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ItemList",
+          "@id": "https://blueberry.codes/#portfolio",
+          "name": "Blueberry Systems Recent Projects",
+          "description": "Six production systems designed, built and shipped by Blueberry Systems.",
+          "numberOfItems": 6,
+          "itemListOrder": "https://schema.org/ItemListOrderAscending",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Vybe",
+              "item": {
+                "@id": "https://blueberry.codes/#project-vybe"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "KnowHow AI",
+              "item": {
+                "@id": "https://blueberry.codes/#project-knowhow-ai"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Georgian Insurance",
+              "item": {
+                "@id": "https://blueberry.codes/#project-georgian-insurance"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Reach",
+              "item": {
+                "@id": "https://blueberry.codes/#project-reach"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Direct",
+              "item": {
+                "@id": "https://blueberry.codes/#project-direct"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "Silknet Observability",
+              "item": {
+                "@id": "https://blueberry.codes/#project-silknet-observability"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://blueberry.codes/#project-vybe",
+          "name": "Vybe",
+          "description": "Short-form video network with a vertical feed, live streaming with gifting, direct messaging, stories and a coin wallet. Ships on iOS, Android and four web dashboards against a single NestJS API with 48 modules and 431 endpoints.",
+          "applicationCategory": "SocialNetworkingApplication",
+          "operatingSystem": "iOS, Android, Web",
+          "inLanguage": [
+            "en",
+            "ka",
+            "ru",
+            "es"
+          ],
+          "creator": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "author": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "isPartOf": {
+            "@id": "https://blueberry.codes/#website"
+          },
+          "keywords": "React Native, Expo, NestJS, PostgreSQL, Prisma, Redis, BullMQ, Socket.IO",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "screenshot": {
+            "@type": "ImageObject",
+            "url": "https://blueberry.codes/work/vybe.png",
+            "width": 1400,
+            "height": 875
+          },
+          "image": "https://blueberry.codes/work/logos/vybe.png"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://blueberry.codes/#project-knowhow-ai",
+          "name": "KnowHow AI",
+          "description": "Legal assistant that answers from Georgian legislation and Supreme Court case law using hybrid BM25 plus vector retrieval with a cross-encoder reranker, then drafts the document. Web plus native iOS and Android.",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web, iOS, Android",
+          "inLanguage": [
+            "en",
+            "ka",
+            "ru"
+          ],
+          "creator": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "author": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "isPartOf": {
+            "@id": "https://blueberry.codes/#website"
+          },
+          "keywords": "Django, React, PostgreSQL, pgvector, LangChain, Google Gemini, OpenAI, Capacitor",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "url": "https://knowhow.ge/",
+          "screenshot": {
+            "@type": "ImageObject",
+            "url": "https://blueberry.codes/work/knowhow.png",
+            "width": 1400,
+            "height": 875
+          },
+          "image": "https://blueberry.codes/work/logos/knowhow.svg"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://blueberry.codes/#project-georgian-insurance",
+          "name": "Georgian Insurance",
+          "description": "Travel and student medical insurance sold end to end online. Card payment through Flitt, insurer registration against the Unison health API via a job queue with atomic claiming, and a policy PDF generated and emailed on completion. Thirteen locales.",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "Web",
+          "inLanguage": [
+            "en",
+            "ru",
+            "ka",
+            "de",
+            "pt",
+            "tr",
+            "az",
+            "uk",
+            "ar",
+            "fa",
+            "he",
+            "zh",
+            "hi"
+          ],
+          "creator": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "author": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "isPartOf": {
+            "@id": "https://blueberry.codes/#website"
+          },
+          "keywords": "Next.js, React, Supabase, next-intl, Tailwind CSS, pdf-lib, Resend",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "url": "https://www.georgianinsurance.ge/",
+          "screenshot": {
+            "@type": "ImageObject",
+            "url": "https://blueberry.codes/work/insurance.png",
+            "width": 1400,
+            "height": 875
+          },
+          "image": "https://blueberry.codes/work/logos/insurance.png"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://blueberry.codes/#project-reach",
+          "name": "Reach",
+          "description": "Multi-channel campaign platform for SMS, Viber, WhatsApp and email, with paid-ads management across Meta, Google and TikTok, a prepaid wallet and per-campaign cost tracking. Multi-tenant with organizations, memberships and role guards.",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "inLanguage": [
+            "ka",
+            "en",
+            "ru"
+          ],
+          "creator": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "author": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "isPartOf": {
+            "@id": "https://blueberry.codes/#website"
+          },
+          "keywords": "Next.js, React, Supabase, Infobip, Meta Marketing API, Recharts",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "image": "https://blueberry.codes/work/logos/reach.svg"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://blueberry.codes/#project-direct",
+          "name": "Direct",
+          "description": "Private messenger whose encryption core is a Rust implementation of the MLS protocol (RFC 9420) on OpenMLS, bridged into Flutter. Voice and video calls on LiveKit, disappearing messages, chat lock and biometric app lock.",
+          "applicationCategory": "CommunicationApplication",
+          "operatingSystem": "iOS, Android",
+          "inLanguage": [
+            "en",
+            "ka"
+          ],
+          "creator": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "author": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "isPartOf": {
+            "@id": "https://blueberry.codes/#website"
+          },
+          "keywords": "Flutter, Dart, Rust, OpenMLS, NestJS, Fastify, PostgreSQL, LiveKit, NATS",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "image": "https://blueberry.codes/work/logos/direct.png"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://blueberry.codes/#project-silknet-observability",
+          "name": "Silknet Observability",
+          "description": "Datadog observability buildout for a national telecom operator: one dashboard with an IT-operations and a digital-performance lens across two platforms, nine SLOs with burn-rate alerting, a composite outage monitor, six synthetic checks and a GA4 to Datadog product-analytics pipeline.",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web",
+          "inLanguage": [
+            "en"
+          ],
+          "creator": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "author": {
+            "@id": "https://blueberry.codes/#organization"
+          },
+          "isPartOf": {
+            "@id": "https://blueberry.codes/#website"
+          },
+          "keywords": "Datadog, Python, Google Analytics 4 Data API, Firebase",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- ▸ Service Schema × 4 — separately indexable, each ranks on its own queries -->
     <script type="application/ld+json">
     {
@@ -623,8 +866,7 @@
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Legacy System Modernization" } },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI/ML Integration (OpenAI, Google Gemini, pgvector)" } }
             ]
-          },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "bestRating": "5", "ratingCount": "22" }
+          }
         },
         {
           "@type": "Service",

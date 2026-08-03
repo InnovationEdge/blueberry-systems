@@ -22,6 +22,9 @@ export type Project = {
   shot?: string;
   shotKind?: 'phone' | 'browser';
   shotAlt?: string;
+  /** Product's own mark, served from /work/logos. Omitted where we have no
+   *  rights-cleared asset, in which case the card simply renders without one. */
+  logo?: string;
 };
 
 export const PORTFOLIO: Project[] = [
@@ -52,6 +55,7 @@ export const PORTFOLIO: Project[] = [
     shot: '/work/vybe.png',
     shotKind: 'phone',
     shotAlt: 'Vybe For You feed running on iPhone, with the live tab, engagement rail and bottom navigation',
+    logo: '/work/logos/vybe.png',
   },
   {
     title: 'KnowHow AI',
@@ -80,6 +84,7 @@ export const PORTFOLIO: Project[] = [
     shot: '/work/knowhow.png',
     shotKind: 'browser',
     shotAlt: 'KnowHow AI landing page, Legal Explained, with Google sign-in',
+    logo: '/work/logos/knowhow.svg',
   },
   {
     title: 'Georgian Insurance',
@@ -108,6 +113,7 @@ export const PORTFOLIO: Project[] = [
     shot: '/work/insurance.png',
     shotKind: 'browser',
     shotAlt: 'Georgian Insurance quote form with departure and return dates and traveller count',
+    logo: '/work/logos/insurance.png',
   },
   {
     title: 'Reach',
@@ -133,6 +139,7 @@ export const PORTFOLIO: Project[] = [
       '30 tables, 939 tests including a container-backed suite',
     ],
     client: 'B2B SaaS · Georgian, English and Russian',
+    logo: '/work/logos/reach.svg',
   },
   {
     title: 'Direct',
@@ -158,6 +165,7 @@ export const PORTFOLIO: Project[] = [
       '1,825 tests including golden visual regression',
     ],
     client: 'Flutter app · Android bundle and iOS build in CI',
+    logo: '/work/logos/direct.png',
   },
   {
     title: 'Silknet Observability',
