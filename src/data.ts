@@ -140,6 +140,9 @@ export const PORTFOLIO: Project[] = [
     ],
     client: 'B2B SaaS · Georgian, English and Russian',
     logo: '/work/logos/reach.svg',
+    shot: '/work/reach.png',
+    shotKind: 'browser',
+    shotAlt: 'Reach landing page in Georgian, showing SMS, WhatsApp and Viber campaign messaging with Meta, Google and TikTok ad accounts',
   },
   {
     title: 'Direct',
@@ -166,13 +169,16 @@ export const PORTFOLIO: Project[] = [
     ],
     client: 'Flutter app · Android bundle and iOS build in CI',
     logo: '/work/logos/direct.png',
+    shot: '/work/direct.png',
+    shotKind: 'phone',
+    shotAlt: 'Direct chat list on mobile, with pinned conversations, unread badges and status ring',
   },
   {
-    title: 'Silknet Observability',
-    initials: 'SO',
+    title: 'Telecom Observability',
+    initials: 'TO',
     category: 'Telecom · Observability',
     year: '2026',
-    desc: 'Datadog buildout for a national telecom: one dashboard covering the mobile app and the website, with SLA burn-rate alerting and a product-analytics pipeline out of GA4.',
+    desc: 'Datadog buildout for a telecom operator: one dashboard covering a mobile app and a website, with SLA burn-rate alerting and a product-analytics pipeline out of GA4.',
     accent: '#ec4899',
     hero: 'linear-gradient(135deg, #500724 0%, #831843 50%, #be185d 100%)',
     metrics: [
@@ -190,7 +196,7 @@ export const PORTFOLIO: Project[] = [
       'GA4 to Datadog pipeline for three properties',
       'Reproducible from one script, no secrets committed',
     ],
-    client: 'National telecom operator · Georgia',
+    client: 'Telecom operator · under NDA',
   },
 ];
 
@@ -203,7 +209,7 @@ export const INDUSTRIES = [
   { name: 'Insurance', accent: '#10b981', codename: 'Georgian Insurance' },
   { name: 'MarTech', accent: '#f59e0b', codename: 'Reach' },
   { name: 'Messaging', accent: '#06b6d4', codename: 'Direct' },
-  { name: 'Telecom', accent: '#ec4899', codename: 'Silknet' },
+  { name: 'Telecom', accent: '#ec4899', codename: 'Observability' },
 ] as const;
 
 /* ─── Testimonials ─── */

@@ -35,6 +35,16 @@
       <image:title>Georgian Insurance, online insurance platform built by Blueberry Systems</image:title>
       <image:caption>The Georgian Insurance quote form, with departure and return dates and traveller count.</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://blueberry.codes/work/reach.png</image:loc>
+      <image:title>Reach, multi-channel campaign platform built by Blueberry Systems</image:title>
+      <image:caption>The Reach landing page: SMS, WhatsApp and Viber campaigns with Meta, Google and TikTok ad accounts in one place.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://blueberry.codes/work/direct.png</image:loc>
+      <image:title>Direct, end-to-end encrypted messenger built by Blueberry Systems</image:title>
+      <image:caption>The Direct chat list on mobile, with pinned conversations, unread badges and a status ring.</image:caption>
+    </image:image>
   </url>
 
   <url>
