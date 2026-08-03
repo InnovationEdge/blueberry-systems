@@ -4,16 +4,17 @@ import type { getT } from '../i18n';
 
 /**
  * Industries-we-serve strip. Sits between Stats and Services.
- * Premium use: sets up the codename scheme used downstream in Portfolio.
+ * Each entry names the real project we shipped in that sector and links
+ * down to its case study in Portfolio.
  */
 export function Industries({ t }: { t: ReturnType<typeof getT> }) {
   const labels: Record<string, string> = {
-    Fintech: t.indFintech,
-    Commerce: t.indCommerce,
-    Healthcare: t.indHealthcare,
-    Logistics: t.indLogistics,
-    EdTech: t.indEdtech,
-    DeFi: t.indDefi,
+    Social: t.indSocial,
+    'Legal Tech': t.indLegal,
+    Insurance: t.indInsurance,
+    MarTech: t.indMartech,
+    Messaging: t.indMessaging,
+    Telecom: t.indTelecom,
   };
   return (
     <section className="py-16 md:py-20 relative">
