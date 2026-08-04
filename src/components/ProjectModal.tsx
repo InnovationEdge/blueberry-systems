@@ -101,10 +101,14 @@ export function ProjectModal({
                       {p.client && <span className="text-[11px] text-white/70">· {p.client}</span>}
                     </div>
                     <div className="flex items-center gap-4">
-                      {p.logo && (
-                        <span className="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-black/35 backdrop-blur-md border border-white/20 shadow-lg grid place-items-center p-2">
+                      {/* One tile per mark, matching the card. */}
+                      {(Array.isArray(p.logo) ? p.logo : p.logo ? [p.logo] : []).map((mark) => (
+                        <span
+                          key={mark}
+                          className="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-black/35 backdrop-blur-md border border-white/20 shadow-lg grid place-items-center p-2"
+                        >
                           <img
-                            src={p.logo}
+                            src={mark}
                             alt=""
                             aria-hidden
                             loading="lazy"
@@ -114,7 +118,7 @@ export function ProjectModal({
                             className="w-full h-full object-contain"
                           />
                         </span>
-                      )}
+                      ))}
                       <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-black dark:text-white">
                         {p.title}
                       </h2>

@@ -24,29 +24,40 @@ type Props = Pick<Project, 'shot' | 'shotKind' | 'shotAlt' | 'hero'>;
  * Lives outside WorkShot so it sits over the abstract fallback mockup too:
  * a project can have a logo without having a usable screenshot yet.
  */
-export function LogoTile({ logo, title }: { logo: string; title: string }) {
-  const isSvg = logo.endsWith('.svg');
-  const img = (
-    <img
-      src={logo}
-      alt={`${title} logo`}
-      loading="lazy"
-      decoding="async"
-      width="44"
-      height="44"
-      className="w-full h-full object-contain"
-    />
-  );
+export function LogoTile({ logo, title }: { logo: string | string[]; title: string }) {
+  // One tile per mark. Engagements where the client and the platform both
+  // belong on the card pass an array and get two tiles side by side.
+  const marks = Array.isArray(logo) ? logo : [logo];
   return (
-    <div className="absolute top-3.5 left-3.5 z-10 w-11 h-11 rounded-xl bg-black/35 backdrop-blur-md border border-white/20 shadow-lg grid place-items-center p-1.5">
-      {isSvg ? (
-        img
-      ) : (
-        <picture>
-          <source type="image/webp" srcSet={logo.replace('.png', '.webp')} />
-          {img}
-        </picture>
-      )}
+    <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+      {marks.map((mark) => {
+        const img = (
+          <img
+            src={mark}
+            alt={`${title} logo`}
+            loading="lazy"
+            decoding="async"
+            width="44"
+            height="44"
+            className="w-full h-full object-contain"
+          />
+        );
+        return (
+          <span
+            key={mark}
+            className="w-11 h-11 rounded-xl bg-black/35 backdrop-blur-md border border-white/20 shadow-lg grid place-items-center p-1.5"
+          >
+            {mark.endsWith('.svg') ? (
+              img
+            ) : (
+              <picture>
+                <source type="image/webp" srcSet={mark.replace('.png', '.webp')} />
+                {img}
+              </picture>
+            )}
+          </span>
+        );
+      })}
     </div>
   );
 }

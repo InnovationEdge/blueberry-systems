@@ -22,9 +22,13 @@ export type Project = {
   shot?: string;
   shotKind?: 'phone' | 'browser';
   shotAlt?: string;
-  /** Product's own mark, served from /work/logos. Omitted where we have no
-   *  rights-cleared asset, in which case the card simply renders without one. */
-  logo?: string;
+  /**
+   * Marks shown on the card, served from /work/logos. A single string is the
+   * product's own mark; an array renders one tile per entry, left to right,
+   * for engagements where the client and the platform both belong on the card.
+   * Omitted where we have no rights-cleared asset.
+   */
+  logo?: string | string[];
 };
 
 export const PORTFOLIO: Project[] = [
@@ -196,7 +200,8 @@ export const PORTFOLIO: Project[] = [
       'GA4 to Datadog pipeline for three properties',
       'Reproducible from one script, no secrets committed',
     ],
-    client: 'Telecom operator · under NDA',
+    client: 'Silknet · Datadog buildout',
+    logo: ['/work/logos/silknet.png', '/work/logos/datadog.png'],
   },
 ];
 
