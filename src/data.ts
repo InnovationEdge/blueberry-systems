@@ -201,7 +201,10 @@ export const PORTFOLIO: Project[] = [
       'Reproducible from one script, no secrets committed',
     ],
     client: 'Silknet · Datadog buildout',
-    logo: ['/work/logos/silknet.png', '/work/logos/datadog.png'],
+    shot: '/work/telecom.png',
+    shotKind: 'browser',
+    shotAlt: 'Observability dashboard: SLO tiles with error budget, burn-rate, per-flow success, an error-budget burn-down chart, synthetic checks and a composite outage strip',
+    logo: '/work/logos/silknet.png',
   },
 ];
 

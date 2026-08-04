@@ -43,7 +43,7 @@ export function ProjectModal({
                 <button
                   onClick={onClose}
                   aria-label="Close"
-                  className="absolute top-5 right-5 p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06] rounded-full transition-colors z-10"
+                  className="absolute top-5 right-5 p-2 text-white/70 hover:text-white hover:bg-white/[0.12] rounded-full transition-colors z-10"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -88,7 +88,7 @@ export function ProjectModal({
                   <div className="absolute bottom-8 left-8 right-8 md:left-14 md:right-14">
                     <div className="flex flex-wrap items-center gap-3 mb-3">
                       <span
-                        className="text-[10px] font-semibold uppercase tracking-[0.22em] px-3 py-1 rounded-full border text-black dark:text-white"
+                        className="text-[10px] font-semibold uppercase tracking-[0.22em] px-3 py-1 rounded-full border text-white"
                         style={{
                           borderColor: 'rgba(255,255,255,0.3)',
                           backgroundColor: 'rgba(255,255,255,0.12)',
@@ -119,7 +119,12 @@ export function ProjectModal({
                           />
                         </span>
                       ))}
-                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-black dark:text-white">
+                      {/* The hero band is always dark: a gradient, a dark
+                          screenshot, and a zinc-950 scrim on top. So this text
+                          is always light, never theme-dependent. It used to be
+                          text-black dark:text-white, which rendered black on
+                          black for every visitor in light mode. */}
+                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
                         {p.title}
                       </h2>
                     </div>
