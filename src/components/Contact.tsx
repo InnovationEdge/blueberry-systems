@@ -223,7 +223,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder={t.placeholderName}
-            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-base sm:text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
 
@@ -234,7 +234,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder={t.placeholderEmail}
-            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-base sm:text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
       </div>
@@ -246,7 +246,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             value={form.company}
             onChange={(e) => setForm({ ...form, company: e.target.value })}
             placeholder={t.placeholderCompany}
-            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-base sm:text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-blue-500/40 transition-all"
           />
         </FormField>
 
@@ -254,7 +254,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           <select
             value={form.budget}
             onChange={(e) => setForm({ ...form, budget: e.target.value })}
-            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
+            className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-base sm:text-sm text-black dark:text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
           >
             <option value="" className="bg-zinc-50 dark:bg-zinc-900">
               {t.contactSelectBudget}
@@ -274,7 +274,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder={t.placeholderMessage}
-          className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/40 transition-all"
+          className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-base sm:text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 resize-none focus:outline-none focus:border-blue-500/40 transition-all"
         />
       </FormField>
 

@@ -164,7 +164,7 @@ function ApplyModal({
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
+                    className="w-full bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl px-4 py-3 text-base sm:text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -176,7 +176,7 @@ function ApplyModal({
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
+                    className="w-full bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl px-4 py-3 text-base sm:text-sm text-black dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:border-blue-500/40 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -187,7 +187,7 @@ function ApplyModal({
                     type="text"
                     readOnly
                     value={job || ''}
-                    className="w-full bg-zinc-100/60 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/[0.06] rounded-xl px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400 cursor-default"
+                    className="w-full bg-zinc-100/60 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/[0.06] rounded-xl px-4 py-3 text-base sm:text-sm text-zinc-600 dark:text-zinc-400 cursor-default"
                   />
                 </div>
                 <div>
