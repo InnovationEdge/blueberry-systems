@@ -136,7 +136,7 @@ export function Header({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setMobileOpen(false)}
-                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 lg:hidden"
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[65] lg:hidden"
               />
               <motion.nav
                 initial={{ x: '100%' }}
@@ -147,7 +147,9 @@ export function Header({
                   paddingTop: 'calc(env(safe-area-inset-top) + 5rem)',
                   paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
                 }}
-                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-zinc-950 border-l border-black/[0.06] dark:border-white/[0.08] z-50 lg:hidden px-6 overflow-y-auto"
+                /* Above the z-[60] header, which otherwise painted over the
+                   drawer and swallowed its close button. */
+                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-zinc-950 border-l border-black/[0.06] dark:border-white/[0.08] z-[70] lg:hidden px-6 overflow-y-auto overscroll-contain"
               >
                 {/* Explicit close button — guarantees a closable affordance even if
                     the outer burger toggle is somehow obscured */}
@@ -155,7 +157,7 @@ export function Header({
                   onClick={() => setMobileOpen(false)}
                   aria-label="Close menu"
                   style={{ top: 'calc(env(safe-area-inset-top) + 1rem)' }}
-                  className="absolute right-4 p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors rounded-md hover:bg-zinc-100 dark:hover:bg-white/[0.04]"
+                  className="absolute right-4 grid place-items-center w-11 h-11 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-zinc-100 dark:hover:bg-white/[0.04]"
                 >
                   <X className="w-6 h-6" />
                 </button>
