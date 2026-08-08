@@ -13,12 +13,12 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
           <div className="w-px h-5 bg-black/[0.10] dark:bg-white/[0.10]" />
           <span className="text-[11px] text-zinc-600 dark:text-zinc-500 tracking-wide">© {t.footerRights}</span>
         </div>
-        <div className="flex flex-wrap items-center gap-6 text-xs text-zinc-600 dark:text-zinc-500">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-xs text-zinc-600 dark:text-zinc-500">
           <a
             href="https://blueberryedu.ge"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-medium"
+            className="inline-flex items-center min-h-11 text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-medium"
           >
             Blueberry Academy
           </a>
@@ -26,7 +26,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://github.com/InnovationEdge"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
+            className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
           >
             GitHub
           </a>
@@ -34,14 +34,14 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://www.linkedin.com/company/blueberry-systems/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
+            className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
           >
             LinkedIn
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Terms" className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Terms" className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
             {t.footerTerms}
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Privacy" className="hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Privacy" className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
             {t.footerPrivacy}
           </a>
         </div>

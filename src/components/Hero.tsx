@@ -57,9 +57,9 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0 }}
-            className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-3 sm:pr-5 py-1.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.22em] mb-6 sm:mb-8 max-w-full"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-zinc-100 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-300 dark:border-white/[0.10] rounded-full pl-2 pr-3 sm:pr-5 py-1.5 text-[11px] font-medium uppercase tracking-[0.14em] sm:tracking-[0.22em] mb-6 sm:mb-8 max-w-full"
           >
-            <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-2 sm:px-2.5 py-1 rounded-full text-[10px] font-semibold normal-case tracking-normal whitespace-nowrap">
+            <span className="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-semibold normal-case tracking-normal whitespace-nowrap">
               <span className="relative flex w-1.5 h-1.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />

@@ -44,7 +44,7 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
                 </div>
                 <a
                   href="mailto:info@blueberry.codes"
-                  className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center hover:bg-zinc-200 transition-colors"
+                  className="w-11 h-11 shrink-0 rounded-full bg-white text-black flex items-center justify-center hover:bg-zinc-200 transition-colors"
                   aria-label={`Email Irakli`}
                 >
                   <ArrowUpRight className="w-4 h-4" />
@@ -57,7 +57,7 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
                 </span>
-                <span className="text-[10px] text-white uppercase tracking-[0.22em] font-semibold">
+                <span className="text-[11px] text-white uppercase tracking-[0.18em] sm:tracking-[0.22em] font-semibold">
                   {t.founderAvailable}
                 </span>
               </div>
@@ -105,7 +105,7 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
             </div>
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 text-sm text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-medium"
+              className="group inline-flex items-center gap-2 min-h-11 text-sm text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-300 transition-colors font-medium"
             >
               {t.founderReachOut}
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

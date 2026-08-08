@@ -48,7 +48,7 @@ export function Industries({ t }: { t: ReturnType<typeof getT> }) {
                     className="w-2 h-2 rounded-full transition-shadow duration-300 group-hover:shadow-[0_0_12px]"
                     style={{ backgroundColor: s.accent, ['--tw-shadow-color' as string]: s.accent }}
                   />
-                  <span className="font-mono text-[10px] text-zinc-600 uppercase tracking-[0.2em]">
+                  <span className="font-mono text-[11px] text-zinc-600 uppercase tracking-[0.16em] sm:tracking-[0.2em]">
                     {s.codename}
                   </span>
                 </div>

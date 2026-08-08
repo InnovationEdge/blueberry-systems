@@ -52,7 +52,7 @@ export function Header({
         }`}
       >
         <div className="w-full px-6 md:px-10 h-[64px] md:h-[88px] flex items-center">
-          <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5">
+          <a href="/" className="shrink-0 mr-8 flex items-center gap-2.5 min-h-11 -my-1">
             <Logo />
           </a>
 
@@ -118,10 +118,13 @@ export function Header({
               {t.getInTouch}
             </a>
 
+            {/* -mr-2 keeps the optical alignment while the box grows to the
+                44px minimum touch target. This is the most-tapped control on
+                mobile and it was 40x40. */}
             <button
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="lg:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+              className="lg:hidden -mr-2 grid place-items-center w-11 h-11 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.06] transition-colors"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

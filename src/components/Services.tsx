@@ -259,7 +259,7 @@ export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
                   style={{ background: '#004aad' }}
                   aria-hidden
                 />
-                <p className="text-[10px] md:text-[11px] text-zinc-600 dark:text-zinc-400 mt-3 md:mt-4 uppercase tracking-[0.22em] font-medium">
+                <p className="text-[11px] text-zinc-600 dark:text-zinc-400 mt-3 md:mt-4 uppercase tracking-[0.18em] sm:tracking-[0.22em] font-medium">
                   {s.l}
                 </p>
               </div>

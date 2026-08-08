@@ -90,24 +90,24 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
               <div className="space-y-4 text-sm">
                 <a
                   href="mailto:info@blueberry.codes"
-                  className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
+                  className="flex items-center gap-3 min-h-11 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
                 >
-                  <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                  <span className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Mail className="w-4 h-4 text-blue-300" />
                   </span>
                   info@blueberry.codes
                 </a>
                 <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
-                  <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                  <span className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-blue-300" />
                   </span>
                   Tbilisi, Georgia
                 </div>
                 <a
                   href="tel:+995598449644"
-                  className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
+                  className="flex items-center gap-3 min-h-11 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
                 >
-                  <span className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                  <span className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
                     <Phone className="w-4 h-4 text-blue-300" />
                   </span>
                   +995 598 44 96 44
