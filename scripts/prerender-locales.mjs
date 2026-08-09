@@ -130,8 +130,16 @@ const hreflang = [
 const HREFLANG_BLOCK = /^ {4}<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>(?:\n {4}<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>)*/m;
 if (!HREFLANG_BLOCK.test(entry)) throw new Error('hreflang block not found in entry');
 
+// WebSite.inLanguage is a site-wide fact: every language the site exists in.
+// Generated here so it cannot fall behind LOCALES the way a hand-kept list does.
+const ALL_LANGS = JSON.stringify(['en', ...codes.map((c) => LOCALES[c].htmlLang)])
+  .replace(/","/g, '", "');
+const WEBSITE_LANGS = /("@id": "https:\/\/blueberry\.codes\/#website",[\s\S]{0,400}?"inLanguage": )\[[^\]]*\]/;
+if (!WEBSITE_LANGS.test(entry)) throw new Error('WebSite inLanguage not found in entry');
+const withLangs = (html) => html.replace(WEBSITE_LANGS, `$1${ALL_LANGS}`);
+
 // Rewrite the English entry too, so its hreflang lists every locale.
-writeFileSync(join(DIST, 'index.html'), entry.replace(HREFLANG_BLOCK, hreflang));
+writeFileSync(join(DIST, 'index.html'), withLangs(entry.replace(HREFLANG_BLOCK, hreflang)));
 console.log(`  dist/index.html         hreflang updated (${codes.length + 2} annotations)`);
 
 for (const [code, meta] of Object.entries(LOCALES)) {
@@ -160,6 +168,13 @@ for (const [code, meta] of Object.entries(LOCALES)) {
   html = html.replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${self}" />`);
   html = html.replace(HREFLANG_BLOCK, hreflang);
   html = html.replace(/ {4}<noscript>[\s\S]*?<\/noscript>/, noscriptFor(code, L));
+
+  // Site-wide language list, then the page-scoped ones. WebPage and
+  // SpeakableSpecification describe *this* page, so on /de/ they have to say
+  // de. They were inherited from the English entry and claimed en, which
+  // contradicted the html lang attribute two lines above them.
+  html = withLangs(html);
+  html = html.replace(/"inLanguage": "en"/g, `"inLanguage": "${meta.htmlLang}"`);
 
   mkdirSync(join(DIST, code), { recursive: true });
   writeFileSync(join(DIST, code, 'index.html'), html);
