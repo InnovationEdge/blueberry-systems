@@ -1,5 +1,10 @@
 {
   "rewrites": [
+    { "source": "/ka", "destination": "/ka/index.html" },
+    { "source": "/ka/", "destination": "/ka/index.html" },
+    { "source": "/ru", "destination": "/ru/index.html" },
+    { "source": "/ru/", "destination": "/ru/index.html" },
+
     { "source": "/software-development", "destination": "/software-development/index.html" },
     { "source": "/software-development/", "destination": "/software-development/index.html" },
     { "source": "/product-marketing", "destination": "/product-marketing/index.html" },

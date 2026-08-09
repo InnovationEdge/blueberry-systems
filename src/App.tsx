@@ -16,14 +16,23 @@ const ProjectModal = lazy(() =>
 );
 
 // Pick initial language on mount in priority order:
-// 1. ?lang= URL param  (deep-link from hreflang or share)
-// 2. localStorage 'lang'  (user's persisted choice from a previous visit)
-// 3. navigator.language / navigator.languages  (browser preference)
-// 4. EN fallback
+// 1. /ka/ or /ru/ path prefix  (the indexable localized home pages)
+// 2. ?lang= URL param  (older deep-links and shares, still honoured)
+// 3. localStorage 'lang'  (user's persisted choice from a previous visit)
+// 4. navigator.language / navigator.languages  (browser preference)
+// 5. EN fallback
 function getInitialLang(): string {
   if (typeof window === 'undefined') return 'EN';
 
-  // 1. URL param wins (explicit intent)
+  // 1. Path prefix wins. /ka/ and /ru/ are prerendered pages with their own
+  //    title, description, <html lang> and self-referencing canonical, so the
+  //    app has to boot in that language or the rendered page would contradict
+  //    the markup a crawler just read.
+  const path = window.location.pathname;
+  if (path === '/ka' || path.startsWith('/ka/')) return 'ქარ';
+  if (path === '/ru' || path.startsWith('/ru/')) return 'RU';
+
+  // 2. URL param (explicit intent)
   const param = new URLSearchParams(window.location.search).get('lang');
   if (param === 'ka' || param === 'ქარ') return 'ქარ';
   if (param === 'ru' || param === 'RU') return 'RU';
@@ -82,9 +91,12 @@ export default function App() {
     const code = langCode(lang);
     document.documentElement.lang = code;
 
-    // URL param sync
+    // URL sync. On the prerendered /ka/ and /ru/ pages the path already
+    // carries the language, so adding ?lang= on top would produce a second
+    // URL for the same content and split its ranking signals.
     const url = new URL(window.location.href);
-    if (code === 'en') {
+    const pathCarriesLang = /^\/(ka|ru)(\/|$)/.test(url.pathname);
+    if (code === 'en' || pathCarriesLang) {
       url.searchParams.delete('lang');
     } else {
       url.searchParams.set('lang', code);
