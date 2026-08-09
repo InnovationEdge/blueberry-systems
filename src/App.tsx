@@ -125,17 +125,29 @@ export default function App() {
     const code = langCode(lang);
     document.documentElement.lang = code;
 
-    // URL sync. On a prerendered /<code>/ page the path already carries the
-    // language, so adding ?lang= on top would produce a second URL for the
-    // same content and split its ranking signals.
+    // URL sync. The path is the canonical form of a language now, so switching
+    // language moves the URL to that language's path rather than tacking on a
+    // query param. Without this, picking French on /de/ left the URL saying
+    // /de/ while the page rendered French, so sharing the link handed someone
+    // else the German page; and picking German on / produced /?lang=de, the
+    // duplicate of /de/ that the prerendered pages exist to replace.
+    //
+    // Only the locale root is rewritten. Deeper paths are the static service
+    // pages, which have their own per-language URLs and are not this app.
     const url = new URL(window.location.href);
-    const pathCarriesLang = !!PATH_LANG[url.pathname.split('/')[1]];
-    if (code === 'en' || pathCarriesLang) {
-      url.searchParams.delete('lang');
-    } else {
-      url.searchParams.set('lang', code);
+    const prefix = url.pathname.split('/')[1];
+    const onLocaleRoot = url.pathname === '/' || (!!PATH_LANG[prefix] && /^\/\w{2}\/?$/.test(url.pathname));
+    if (onLocaleRoot) {
+      url.pathname = code === 'en' ? '/' : `/${code}/`;
     }
+    url.searchParams.delete('lang');
     window.history.replaceState({}, '', url.toString());
+
+    // Keep the canonical and og:url in step with the URL the visitor is on.
+    const canonical = `${url.origin}${url.pathname}`;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonical);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonical);
+    document.querySelector('meta[name="twitter:url"]')?.setAttribute('content', canonical);
 
     // Persist user's choice so subsequent visits respect it over browser locale
     try {
