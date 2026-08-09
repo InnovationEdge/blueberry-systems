@@ -178,7 +178,7 @@ export const tr: T = {
   award4: 'Top 1 % · Clutch Global',
   gmvProcessed: 'İşlenen GMV',
   metaTitle: 'Blueberry Systems · Tiflis’te yazılım geliştirme',
-  metaDescription: 'Tiflis, Gürcistan merkezli yazılım geliştirme şirketi. Prototip değil, canlı sistem teslim eden küçük ve kıdemli bir ekip. Fintech’ten hukuk yapay zekâsına altı proje.',
+  metaDescription: 'Tiflis merkezli yazılım geliştirme şirketi. Prototip değil, canlı sistem teslim eden küçük ve kıdemli bir ekip. Fintech’ten hukuk yapay zekâsına altı proje.',
   learnMore: 'Daha fazla',
   teamDesc: '2020’den beri dijital ürünler kuran, Tiflis merkezli mühendis, tasarımcı ve stratejist ekibi.',
   job1: 'Senior Full Stack Developer', job2: 'UI/UX tasarımcısı', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Pazarlama lideri',

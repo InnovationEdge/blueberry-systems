@@ -178,7 +178,7 @@ export const fr: T = {
   award4: 'Top 1 % · Clutch Global',
   gmvProcessed: 'Volume traité',
   metaTitle: 'Blueberry Systems · Développement logiciel à Tbilissi',
-  metaDescription: 'Société de développement logiciel à Tbilissi, Géorgie. Une petite équipe senior qui livre des systèmes en production, pas des prototypes. Six, de la fintech à l\'IA.',
+  metaDescription: 'Développement logiciel à Tbilissi, Géorgie. Une petite équipe senior qui livre des systèmes en production, pas des prototypes. Six, de la fintech à l\'IA.',
   learnMore: 'En savoir plus',
   teamDesc: 'Équipe d\'ingénieurs, de designers et de stratèges à Tbilissi, qui construit des produits numériques depuis 2020.',
   job1: 'Senior Full Stack Developer', job2: 'Designer UI/UX', job3: 'DevOps Engineer', job4: 'Product Manager', job5: 'Responsable marketing',
