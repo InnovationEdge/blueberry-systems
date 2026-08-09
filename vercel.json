@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/de", "destination": "/de/index.html" },
+    { "source": "/de/", "destination": "/de/index.html" },
     { "source": "/es", "destination": "/es/index.html" },
     { "source": "/es/", "destination": "/es/index.html" },
     { "source": "/fr", "destination": "/fr/index.html" },
@@ -44,7 +46,7 @@
     { "source": "/ru/business-consulting", "destination": "/ru/business-consulting/index.html" },
     { "source": "/ru/business-consulting/", "destination": "/ru/business-consulting/index.html" },
 
-    { "source": "/((?!software-development|product-marketing|product-design|business-consulting|ka/|ru/|assets|team|.*\\.[a-z0-9]+).*)", "destination": "/index.html" }
+    { "source": "/((?!software-development|product-marketing|product-design|business-consulting|ka/|ru/|de/|es/|fr/|it/|pl/|tr/|uk/|assets|team|work|.*\\.[a-z0-9]+).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

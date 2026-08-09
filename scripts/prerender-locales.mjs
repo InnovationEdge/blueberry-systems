@@ -49,13 +49,25 @@ const NEEDED = [
   'svc1Title', 'svc2Title', 'svc3Title', 'svc4Title',
 ];
 
-/** Service key -> URL slug, so the noscript links land on the localized page. */
+/** Service key -> URL slug. */
 const SLUGS = {
   svc1Title: 'software-development',
   svc2Title: 'product-marketing',
   svc3Title: 'product-design',
   svc4Title: 'business-consulting',
 };
+
+/**
+ * Locales that actually have prerendered service landing pages under
+ * public/<code>/. Everything else links to the English ones.
+ *
+ * Linking to /<code>/<slug>/ for a locale without those pages produced a soft
+ * 404: Vercel's catch-all rewrote the URL to the English home page and served
+ * it with HTTP 200, an English title and a canonical pointing at "/". Google
+ * treats that as a soft 404 and it burns crawl budget on URLs that do not
+ * exist. Keep this in step with the directories in public/.
+ */
+const LOCALES_WITH_SERVICE_PAGES = new Set(['ka', 'ru']);
 
 /**
  * Pull single-quoted string values out of a locale module.
@@ -83,9 +95,10 @@ function setMeta(html, attr, key, value) {
 }
 
 function noscriptFor(code, L) {
+  const prefix = LOCALES_WITH_SERVICE_PAGES.has(code) ? `/${code}` : '';
   const links = Object.entries(SLUGS)
     .map(([key, slug]) =>
-      `          <li><a href="/${code}/${slug}/" style="color:#3b9eff">${esc(L[key])}</a></li>`)
+      `          <li><a href="${prefix}/${slug}/" style="color:#3b9eff">${esc(L[key])}</a></li>`)
     .join('\n');
   return `    <noscript>
       <div style="position:fixed;inset:0;background:#050507;color:#f5f5f5;font-family:Inter,sans-serif;padding:48px;line-height:1.6">
