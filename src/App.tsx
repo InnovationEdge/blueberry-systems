@@ -15,8 +15,36 @@ const ProjectModal = lazy(() =>
   import('./components/ProjectModal').then((m) => ({ default: m.ProjectModal })),
 );
 
+/**
+ * Picker label -> BCP 47 code, and the reverse. Every place that needs to know
+ * about a language reads one of these two, so adding a locale is one line here
+ * plus the locale file and the i18n registry. No per-language branches.
+ */
+const LANG_CODES: Record<string, string> = {
+  'ქარ': 'ka',
+  RU: 'ru',
+  DE: 'de',
+};
+
+/** BCP 47 code -> picker label. Resolves a /xx/ path prefix or a ?lang= value. */
+const PATH_LANG: Record<string, string> = Object.fromEntries(
+  Object.entries(LANG_CODES).map(([label, code]) => [code, label]),
+);
+
+/** og:locale value per language, for the social card. */
+const OG_LOCALES: Record<string, string> = {
+  en: 'en_US',
+  ka: 'ka_GE',
+  ru: 'ru_RU',
+  de: 'de_DE',
+};
+
+function langCode(lang: string): string {
+  return LANG_CODES[lang] ?? 'en';
+}
+
 // Pick initial language on mount in priority order:
-// 1. /ka/ or /ru/ path prefix  (the indexable localized home pages)
+// 1. /<code>/ path prefix  (the indexable localized home pages)
 // 2. ?lang= URL param  (older deep-links and shares, still honoured)
 // 3. localStorage 'lang'  (user's persisted choice from a previous visit)
 // 4. navigator.language / navigator.languages  (browser preference)
@@ -24,41 +52,35 @@ const ProjectModal = lazy(() =>
 function getInitialLang(): string {
   if (typeof window === 'undefined') return 'EN';
 
-  // 1. Path prefix wins. /ka/ and /ru/ are prerendered pages with their own
+  // 1. Path prefix wins. Each /<code>/ is a prerendered page with its own
   //    title, description, <html lang> and self-referencing canonical, so the
   //    app has to boot in that language or the rendered page would contradict
   //    the markup a crawler just read.
-  const path = window.location.pathname;
-  if (path === '/ka' || path.startsWith('/ka/')) return 'ქარ';
-  if (path === '/ru' || path.startsWith('/ru/')) return 'RU';
+  const prefix = window.location.pathname.split('/')[1];
+  if (PATH_LANG[prefix]) return PATH_LANG[prefix];
 
   // 2. URL param (explicit intent)
   const param = new URLSearchParams(window.location.search).get('lang');
-  if (param === 'ka' || param === 'ქარ') return 'ქარ';
-  if (param === 'ru' || param === 'RU') return 'RU';
+  if (param) {
+    if (PATH_LANG[param]) return PATH_LANG[param];
+    if (LANG_CODES[param] || param === 'EN') return param;
+  }
 
-  // 2. Persisted preference
+  // 3. Persisted preference
   try {
     const stored = window.localStorage.getItem('lang');
-    if (stored === 'ქარ' || stored === 'RU' || stored === 'EN') return stored;
+    if (stored && (stored === 'EN' || LANG_CODES[stored])) return stored;
   } catch { /* localStorage blocked — fall through */ }
 
-  // 3. Browser language(s)
+  // 4. Browser language(s)
   const codes = (navigator.languages?.length ? navigator.languages : [navigator.language]) || [];
   for (const raw of codes) {
     const code = raw.toLowerCase().slice(0, 2);
-    if (code === 'ka') return 'ქარ';
-    if (code === 'ru') return 'RU';
+    if (PATH_LANG[code]) return PATH_LANG[code];
     if (code === 'en') return 'EN';
   }
 
   return 'EN';
-}
-
-function langCode(lang: string): 'en' | 'ka' | 'ru' {
-  if (lang === 'ქარ') return 'ka';
-  if (lang === 'RU') return 'ru';
-  return 'en';
 }
 
 export default function App() {
@@ -91,11 +113,11 @@ export default function App() {
     const code = langCode(lang);
     document.documentElement.lang = code;
 
-    // URL sync. On the prerendered /ka/ and /ru/ pages the path already
-    // carries the language, so adding ?lang= on top would produce a second
-    // URL for the same content and split its ranking signals.
+    // URL sync. On a prerendered /<code>/ page the path already carries the
+    // language, so adding ?lang= on top would produce a second URL for the
+    // same content and split its ranking signals.
     const url = new URL(window.location.href);
-    const pathCarriesLang = /^\/(ka|ru)(\/|$)/.test(url.pathname);
+    const pathCarriesLang = !!PATH_LANG[url.pathname.split('/')[1]];
     if (code === 'en' || pathCarriesLang) {
       url.searchParams.delete('lang');
     } else {
@@ -117,10 +139,7 @@ export default function App() {
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute('content', t.metaDescription);
     const ogLocale = document.querySelector('meta[property="og:locale"]');
-    if (ogLocale) {
-      const localeMap = { en: 'en_US', ka: 'ka_GE', ru: 'ru_RU' } as const;
-      ogLocale.setAttribute('content', localeMap[code]);
-    }
+    if (ogLocale) ogLocale.setAttribute('content', OG_LOCALES[code] ?? 'en_US');
   }, [lang, t.metaTitle, t.metaDescription]);
 
   return (
