@@ -24,6 +24,10 @@ const LANG_CODES: Record<string, string> = {
   'ქარ': 'ka',
   RU: 'ru',
   DE: 'de',
+  UK: 'uk',
+  TR: 'tr',
+  PL: 'pl',
+  IT: 'it',
   FR: 'fr',
   ES: 'es',
 };
@@ -39,6 +43,10 @@ const OG_LOCALES: Record<string, string> = {
   ka: 'ka_GE',
   ru: 'ru_RU',
   de: 'de_DE',
+  uk: 'uk_UA',
+  tr: 'tr_TR',
+  pl: 'pl_PL',
+  it: 'it_IT',
   fr: 'fr_FR',
   es: 'es_ES',
 };

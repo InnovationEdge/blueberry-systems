@@ -35,6 +35,10 @@ const LOCALES = {
   ka: { htmlLang: 'ka', ogLocale: 'ka_GE', dir: 'ltr' },
   ru: { htmlLang: 'ru', ogLocale: 'ru_RU', dir: 'ltr' },
   de: { htmlLang: 'de', ogLocale: 'de_DE', dir: 'ltr' },
+  uk: { htmlLang: 'uk', ogLocale: 'uk_UA', dir: 'ltr' },
+  tr: { htmlLang: 'tr', ogLocale: 'tr_TR', dir: 'ltr' },
+  pl: { htmlLang: 'pl', ogLocale: 'pl_PL', dir: 'ltr' },
+  it: { htmlLang: 'it', ogLocale: 'it_IT', dir: 'ltr' },
   fr: { htmlLang: 'fr', ogLocale: 'fr_FR', dir: 'ltr' },
   es: { htmlLang: 'es', ogLocale: 'es_ES', dir: 'ltr' },
 };

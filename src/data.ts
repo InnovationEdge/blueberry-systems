@@ -324,7 +324,7 @@ export const TECH_GROUPS = [
 ];
 
 /* ─── Languages ─── */
-export const LANGUAGES = ['EN', 'ქარ', 'RU', 'DE', 'ES', 'FR'] as const;
+export const LANGUAGES = ['EN', 'ქარ', 'RU', 'DE', 'ES', 'FR', 'IT', 'PL', 'TR', 'UK'] as const;
 
 /* ─── Awards ribbon ─── */
 export const AWARDS = [

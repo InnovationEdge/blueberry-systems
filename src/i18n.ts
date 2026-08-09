@@ -192,6 +192,10 @@ import { ru } from './locales/ru';
 import { de } from './locales/de';
 import { es } from './locales/es';
 import { fr } from './locales/fr';
+import { it } from './locales/it';
+import { pl } from './locales/pl';
+import { tr } from './locales/tr';
+import { uk } from './locales/uk';
 
 /**
  * Registry keyed by the label shown in the language picker.
@@ -206,6 +210,10 @@ const translations: Record<string, T> = {
   DE: de,
   ES: es,
   FR: fr,
+  IT: it,
+  PL: pl,
+  TR: tr,
+  UK: uk,
 };
 
 export function getT(lang: string): T {
