@@ -24,6 +24,8 @@ const LANG_CODES: Record<string, string> = {
   'ქარ': 'ka',
   RU: 'ru',
   DE: 'de',
+  FR: 'fr',
+  ES: 'es',
 };
 
 /** BCP 47 code -> picker label. Resolves a /xx/ path prefix or a ?lang= value. */
@@ -37,6 +39,8 @@ const OG_LOCALES: Record<string, string> = {
   ka: 'ka_GE',
   ru: 'ru_RU',
   de: 'de_DE',
+  fr: 'fr_FR',
+  es: 'es_ES',
 };
 
 function langCode(lang: string): string {

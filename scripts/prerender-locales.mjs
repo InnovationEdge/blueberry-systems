@@ -35,6 +35,8 @@ const LOCALES = {
   ka: { htmlLang: 'ka', ogLocale: 'ka_GE', dir: 'ltr' },
   ru: { htmlLang: 'ru', ogLocale: 'ru_RU', dir: 'ltr' },
   de: { htmlLang: 'de', ogLocale: 'de_DE', dir: 'ltr' },
+  fr: { htmlLang: 'fr', ogLocale: 'fr_FR', dir: 'ltr' },
+  es: { htmlLang: 'es', ogLocale: 'es_ES', dir: 'ltr' },
 };
 
 /** Keys lifted out of the locale module to build the head and the noscript. */

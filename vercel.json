@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    { "source": "/es", "destination": "/es/index.html" },
+    { "source": "/es/", "destination": "/es/index.html" },
+    { "source": "/fr", "destination": "/fr/index.html" },
+    { "source": "/fr/", "destination": "/fr/index.html" },
     { "source": "/ka", "destination": "/ka/index.html" },
     { "source": "/ka/", "destination": "/ka/index.html" },
     { "source": "/ru", "destination": "/ru/index.html" },

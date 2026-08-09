@@ -190,6 +190,8 @@ import { en } from './locales/en';
 import { ka } from './locales/ka';
 import { ru } from './locales/ru';
 import { de } from './locales/de';
+import { es } from './locales/es';
+import { fr } from './locales/fr';
 
 /**
  * Registry keyed by the label shown in the language picker.
@@ -202,6 +204,8 @@ const translations: Record<string, T> = {
   'ქარ': ka,
   RU: ru,
   DE: de,
+  ES: es,
+  FR: fr,
 };
 
 export function getT(lang: string): T {
