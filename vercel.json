@@ -1,4 +1,5 @@
 {
+  "_comment_rewrites": "No catch-all. This is a single-page app with no client-side router, so every real route is either a file in dist or one of the explicit rewrites below. The catch-all that used to sit at the end sent everything unmatched to /index.html with a 200, which made /this-does-not-exist serve the home page: a soft 404, the same fault the locale pages had. It also excluded /team and /work, which have never existed in the build. Vercel serves 404.html for anything unmatched, which is what /ka/nope and /software-developmentt/ were already doing correctly.",
   "rewrites": [
     { "source": "/de", "destination": "/de/index.html" },
     { "source": "/de/", "destination": "/de/index.html" },
@@ -44,9 +45,7 @@
     { "source": "/ru/product-design", "destination": "/ru/product-design/index.html" },
     { "source": "/ru/product-design/", "destination": "/ru/product-design/index.html" },
     { "source": "/ru/business-consulting", "destination": "/ru/business-consulting/index.html" },
-    { "source": "/ru/business-consulting/", "destination": "/ru/business-consulting/index.html" },
-
-    { "source": "/((?!software-development|product-marketing|product-design|business-consulting|ka/|ru/|de/|es/|fr/|it/|pl/|tr/|uk/|assets|team|work|.*\\.[a-z0-9]+).*)", "destination": "/index.html" }
+    { "source": "/ru/business-consulting/", "destination": "/ru/business-consulting/index.html" }
   ],
   "headers": [
     {

@@ -55,6 +55,35 @@ footer { padding: 40px 24px; border-top: 1px solid var(--border); color: var(--m
 .related-grid a span { color: var(--muted); font-size: 14px; line-height: 1.5; }
 .related-grid a small { margin-top: 16px; color: var(--brand); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
 
+/* Skip link. Off-screen until focused, which is the only state it should ever
+   be seen in. These pages put a brand link, a breadcrumb and up to three
+   language links ahead of the content, so without it a keyboard user tabs all
+   of that on every one of the thirteen pages. It has to clear the header, and
+   it needs a real background: the header is translucent on the app but opaque
+   here, and a transparent chip over body text is unreadable. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 12px 20px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 100;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: max(16px, env(safe-area-inset-left));
+  top: 16px;
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 /* Phone layout.
 
    Everything above this point was written at desktop width and the file

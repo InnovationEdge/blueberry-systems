@@ -9,7 +9,7 @@
  * Runs over dist/ after the prerender step, so it checks what visitors and
  * crawlers actually receive rather than what the source intends.
  */
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -177,6 +177,50 @@ for (const p of pages) {
   if (/\?lang=/.test(html)) {
     const n = (html.match(/\?lang=/g) || []).length;
     fail(file, `${n} ?lang= URL(s); locale roots are paths now (/ka/, /ru/)`);
+  }
+}
+
+/**
+ * vercel.json decides what every URL on the site resolves to, and it is not
+ * part of the build, so nothing else here would notice it being wrong. This
+ * repo has form: a malformed rewrite in it silently blocked every deploy for
+ * twelve days, and the symptom was simply that changes stopped appearing.
+ */
+{
+  const raw = readFileSync(join(ROOT, 'vercel.json'), 'utf8');
+  let cfg;
+  try {
+    cfg = JSON.parse(raw);
+  } catch (e) {
+    fail('vercel.json', `is not valid JSON: ${e.message}`);
+  }
+
+  if (cfg) {
+    const rewrites = cfg.rewrites ?? [];
+
+    // A catch-all sending everything to index.html turns every typo into a
+    // 200 that serves the home page, which is a soft 404 and exactly what
+    // this project spent a round removing from the locale pages.
+    const catchAll = rewrites.find(
+      (r) => r.destination === '/index.html' && /^\/\(\(\?!/.test(r.source ?? ''),
+    );
+    if (catchAll) fail('vercel.json', 'has a catch-all rewrite to /index.html, which makes unknown URLs soft 404s');
+
+    // Every rewrite must point at a file the build actually emitted, or the
+    // route 404s while looking perfectly reasonable in the config.
+    for (const r of rewrites) {
+      if (typeof r.destination !== 'string' || !r.destination.startsWith('/')) continue;
+      const target = join(DIST, r.destination);
+      if (!existsSync(target)) fail('vercel.json', `rewrite ${r.source} -> ${r.destination}, which is not in the build`);
+    }
+
+    // Every prerendered locale root needs its rewrite, with and without the
+    // trailing slash, since both forms get linked and shared.
+    for (const code of readdirSync(DIST).filter((d) => /^[a-z]{2}$/.test(d))) {
+      for (const form of [`/${code}`, `/${code}/`]) {
+        if (!rewrites.some((r) => r.source === form)) fail('vercel.json', `no rewrite for ${form}`);
+      }
+    }
   }
 }
 
