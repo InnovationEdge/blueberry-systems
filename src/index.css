@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Georgian:wght@300;400;500;600;700;800;900&display=swap');
+/* The Google Fonts stylesheet is linked from index.html, not @import-ed here.
+   A remote @import serialises the critical path: the browser has to download
+   this file, parse it, only then discover the font CSS on another origin, only
+   then discover the woff2 files. Three round trips before text can paint, all
+   of them render-blocking. As a <link> in the head it downloads in parallel
+   with this file instead. */
 @import "tailwindcss";
 
 /* Class-based dark mode for Tailwind v4 */

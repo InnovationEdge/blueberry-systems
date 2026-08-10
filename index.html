@@ -116,7 +116,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Georgian:wght@300;400;500;600;700;800;900&display=swap" />
+    <!-- A real stylesheet link, not a preload beside a CSS @import. The @import
+         lived in src/index.css, so the font CSS could not even begin
+         downloading until the bundle CSS had arrived and been parsed, and the
+         woff2 files not until after that. Linking it here puts it on the wire
+         at the same moment as everything else in the head.
+
+         Weight 900 is not requested: nothing in the site uses font-black, and
+         each weight costs its own set of unicode-range subsets in this file. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&display=swap" />
     <link rel="dns-prefetch" href="https://formsubmit.co" />
 
     <!-- ▸ Organization Schema — search-engine identity card -->
@@ -1107,11 +1115,18 @@
           ].join('\n');
           document.head.appendChild(s);
         };
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(load, { timeout: 3000 });
-        } else {
-          setTimeout(load, 2000);
-        }
+        // Wait for load before even asking for idle time. The previous form
+        // was requestIdleCallback with a 3000ms timeout, and on a phone the
+        // timeout is what fires: measured on Slow 4G the page had not painted
+        // until 5.1s, so 525kB of analytics was pulled down in the middle of
+        // the LCP window and competed for the bandwidth the page needed to
+        // render. After load it costs the visitor nothing they are waiting on.
+        var idle = function () {
+          if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 4000 });
+          else setTimeout(load, 1200);
+        };
+        if (document.readyState === 'complete') idle();
+        else window.addEventListener('load', idle, { once: true });
       })();
     </script>
   </body>
