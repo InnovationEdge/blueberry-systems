@@ -23,9 +23,20 @@ export function Header({
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 24));
 
   useEffect(() => {
-    if (mobileOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
+    if (!mobileOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    // The drawer offered the burger, its own X and a tap outside, but not
+    // Escape, which ProjectModal has always honoured. It shows below lg, so a
+    // narrow laptop window and an iPad with a keyboard both reach it.
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
   }, [mobileOpen]);
 
   const NAV = [
@@ -131,89 +142,107 @@ export function Header({
           </div>
         </div>
 
-        <AnimatePresence>
-          {mobileOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setMobileOpen(false)}
-                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[65] lg:hidden"
-              />
-              <motion.nav
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'tween', duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  paddingTop: 'calc(env(safe-area-inset-top) + 5rem)',
-                  paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
-                }}
-                /* Above the z-[60] header, which otherwise painted over the
-                   drawer and swallowed its close button. */
-                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-zinc-950 border-l border-black/[0.06] dark:border-white/[0.08] z-[70] lg:hidden px-6 overflow-y-auto overscroll-contain"
-              >
-                {/* Explicit close button — guarantees a closable affordance even if
-                    the outer burger toggle is somehow obscured */}
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  aria-label="Close menu"
-                  style={{ top: 'calc(env(safe-area-inset-top) + 1rem)' }}
-                  className="absolute right-4 grid place-items-center w-11 h-11 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-zinc-100 dark:hover:bg-white/[0.04]"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-
-                {NAV.map((item, i) => (
-                  <motion.a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    onClick={() => setMobileOpen(false)}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04, duration: 0.3 }}
-                    className="block py-4 text-base text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white border-b border-zinc-200 dark:border-white/[0.06] transition-colors"
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
-
-                <a
-                  href="#contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="block mt-6 py-3.5 bg-black text-white dark:bg-white dark:text-black rounded-xl text-sm font-semibold text-center hover:opacity-90 transition-all"
-                >
-                  {t.getInTouch}
-                </a>
-
-                <div className="flex items-center gap-3 mt-6">
-                  <AnimatedThemeToggler
-                    variant="circle"
-                    duration={500}
-                    className="inline-flex w-9 h-9 items-center justify-center rounded-lg border border-zinc-300/70 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-400 [&_svg]:w-4 [&_svg]:h-4"
-                  />
-                  <div className="flex items-center gap-2 flex-wrap flex-1">
-                    {LANGUAGES.map((l) => (
-                      <button
-                        key={l}
-                        onClick={() => setLang(l)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                          lang === l
-                            ? 'bg-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-500/30'
-                            : 'text-zinc-600 dark:text-zinc-500 border border-zinc-200 dark:border-white/[0.06] hover:text-black dark:hover:text-white'
-                        }`}
-                      >
-                        {l}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </motion.nav>
-            </>
-          )}
-        </AnimatePresence>
       </motion.header>
+
+      {/* Outside <motion.header> on purpose, and it must stay outside.
+
+          The header carries backdrop-blur and an entrance transform, and each
+          of those on its own makes an element a containing block for fixed
+          descendants. Nested inside it, the scrim's inset-0 and the drawer's
+          top-0 bottom-0 resolved against the header's 390x64 box rather than
+          the viewport: the drawer rendered 332x112 in the corner with 755px of
+          content clipped into it, and the scrim covered the header strip only,
+          so tapping the page to dismiss did nothing. */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[65] lg:hidden"
+            />
+            <motion.nav
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                paddingTop: 'calc(env(safe-area-inset-top) + 5rem)',
+                paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+              }}
+              /* Above the z-[60] header, which otherwise painted over the
+                 drawer and swallowed its close button. */
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-zinc-950 border-l border-black/[0.06] dark:border-white/[0.08] z-[70] lg:hidden px-6 overflow-y-auto overscroll-contain"
+            >
+              {/* Explicit close button — guarantees a closable affordance even if
+                  the outer burger toggle is somehow obscured */}
+              <button
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
+                style={{ top: 'calc(env(safe-area-inset-top) + 1rem)' }}
+                className="absolute right-4 grid place-items-center w-11 h-11 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-zinc-100 dark:hover:bg-white/[0.04]"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {NAV.map((item, i) => (
+                <motion.a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04, duration: 0.3 }}
+                  className="block py-4 text-base text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white border-b border-zinc-200 dark:border-white/[0.06] transition-colors"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="block mt-6 py-3.5 bg-black text-white dark:bg-white dark:text-black rounded-xl text-sm font-semibold text-center hover:opacity-90 transition-all"
+              >
+                {t.getInTouch}
+              </a>
+
+              {/* This row is drawer-only, so it is reached by finger and never
+                  by mouse. Both controls were sized as if the opposite were
+                  true: the toggler at w-9 (36) and each language chip at
+                  px-3 py-1.5 text-xs, which renders 40x30. Ten chips at 30px
+                  tall were the language switcher for a ten-language site.
+                  The desktop copies of both keep their smaller sizing, which
+                  is correct for a cursor. items-start because the chips now
+                  wrap to three rows and the toggler should stay at the top. */}
+              <div className="flex items-start gap-3 mt-6">
+                <AnimatedThemeToggler
+                  variant="circle"
+                  duration={500}
+                  className="inline-flex w-11 h-11 shrink-0 items-center justify-center rounded-lg border border-zinc-300/70 dark:border-white/[0.08] text-zinc-600 dark:text-zinc-400 [&_svg]:w-4 [&_svg]:h-4"
+                />
+                <div className="flex items-center gap-2 flex-wrap flex-1">
+                  {LANGUAGES.map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className={`inline-flex items-center justify-center min-w-11 min-h-11 px-3 rounded-lg text-xs font-medium transition-colors ${
+                        lang === l
+                          ? 'bg-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-500/30'
+                          : 'text-zinc-600 dark:text-zinc-500 border border-zinc-200 dark:border-white/[0.06] hover:text-black dark:hover:text-white'
+                      }`}
+                    >
+                      {l}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
       {/* Spacer matches header height + iPhone notch inset */}
       <div
         className="h-[64px] md:h-[88px]"

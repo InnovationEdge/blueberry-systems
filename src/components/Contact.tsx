@@ -219,6 +219,8 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         <FormField label={t.contactName}>
           <input
             type="text"
+            name="name"
+            autoComplete="name"
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -230,6 +232,9 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         <FormField label={t.contactEmail}>
           <input
             type="email"
+            name="email"
+            autoComplete="email"
+            inputMode="email"
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -243,6 +248,8 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         <FormField label={t.contactCompany}>
           <input
             type="text"
+            name="organization"
+            autoComplete="organization"
             value={form.company}
             onChange={(e) => setForm({ ...form, company: e.target.value })}
             placeholder={t.placeholderCompany}
@@ -252,6 +259,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
 
         <FormField label={t.contactBudget}>
           <select
+            name="budget"
             value={form.budget}
             onChange={(e) => setForm({ ...form, budget: e.target.value })}
             className="w-full px-4 py-3.5 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-300/70 dark:border-white/[0.08] rounded-xl text-base sm:text-sm text-black dark:text-white appearance-none focus:outline-none focus:border-blue-500/40 transition-all"
@@ -269,6 +277,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
 
       <FormField label={t.contactMessage}>
         <textarea
+          name="message"
           required
           rows={5}
           value={form.message}
@@ -300,13 +309,20 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
   );
 }
 
+/* The label wraps its control rather than sitting beside it. As siblings with
+   no htmlFor, the text was visible but not attached to anything: every field
+   reported zero associated labels, the select had no accessible name at all
+   (it has no placeholder to fall back on), and tapping the label did not focus
+   the field, which on a phone is a real miss because the label is a natural
+   target and this one is 10px tall. Wrapping gives implicit association, so
+   there are no ids to keep in sync. */
 function FormField({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div>
-      <label className="block text-[10px] font-semibold text-zinc-600 dark:text-zinc-500 mb-2 uppercase tracking-[0.22em]">
+    <label className="block">
+      <span className="block text-[10px] font-semibold text-zinc-600 dark:text-zinc-500 mb-2 uppercase tracking-[0.22em]">
         {label}
-      </label>
+      </span>
       {children}
-    </div>
+    </label>
   );
 }
