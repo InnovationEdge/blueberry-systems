@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring } from 'motion/react';
-import { useReducedMotion } from './primitives';
+import { useReducedMotion } from '../hooks';
 
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();

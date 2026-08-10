@@ -1,13 +1,11 @@
 import { useState, useRef, useEffect, useMemo, type MouseEvent as RMouseEvent, type ReactNode } from 'react';
-import { motion, useInView, useMotionValue, useSpring, useReducedMotion as fmReducedMotion } from 'motion/react';
-
-/* ─── Motion guard ─── */
-export function useReducedMotion(): boolean {
-  return fmReducedMotion() ?? false;
-}
+import { motion, useInView, useMotionValue, useSpring } from 'motion/react';
+import { useReducedMotion } from '../hooks';
 
 /* ─── Mobile detection (perf-gates heavy effects) ─── */
-export function useIsDesktop(min = 768): boolean {
+/* Not exported: used only below, and an exported hook here costs every one of
+   the eleven files importing this module its Fast Refresh. */
+function useIsDesktop(min = 768): boolean {
   const [is, setIs] = useState(false);
   useEffect(() => {
     if (typeof window === 'undefined') return;
