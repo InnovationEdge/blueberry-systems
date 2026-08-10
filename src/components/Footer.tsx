@@ -4,6 +4,16 @@ import { useState } from 'react';
 import { Logo } from './Logo';
 import type { getT } from '../i18n';
 
+/* min-h-11 already gave these the 44px height. Width was the part still short,
+   because it comes from the label: "GitHub" measured 40 and German "AGB" only
+   24, right on the 24px WCAG minimum. px-2.5 with a matching -mx-2.5 buys every
+   link 20px of hit area on each axis while leaving the row looking untouched,
+   which is what a 24px label needs to clear 44. */
+const footerLink =
+  'inline-flex items-center min-h-11 px-2.5 -mx-2.5 transition-colors';
+const footerLinkMuted =
+  `${footerLink} hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300`;
+
 export function Footer({ t }: { t: ReturnType<typeof getT> }) {
   return (
     <footer className="relative border-t border-zinc-200 dark:border-white/[0.06] py-16">
@@ -18,7 +28,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://blueberryedu.ge"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center min-h-11 text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-medium"
+            className={`${footerLink} text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 font-medium`}
           >
             Blueberry Academy
           </a>
@@ -26,7 +36,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://github.com/InnovationEdge"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
+            className={footerLinkMuted}
           >
             GitHub
           </a>
@@ -34,14 +44,14 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             href="https://www.linkedin.com/company/blueberry-systems/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors"
+            className={footerLinkMuted}
           >
             LinkedIn
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Terms" className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Terms" className={footerLinkMuted}>
             {t.footerTerms}
           </a>
-          <a href="mailto:info@blueberry.codes?subject=Privacy" className="inline-flex items-center min-h-11 hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300 transition-colors">
+          <a href="mailto:info@blueberry.codes?subject=Privacy" className={footerLinkMuted}>
             {t.footerPrivacy}
           </a>
         </div>
