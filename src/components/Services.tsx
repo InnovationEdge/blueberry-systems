@@ -95,9 +95,13 @@ export function Services({ t, lang }: { t: ReturnType<typeof getT>; lang: string
                       /{s.num}
                     </p>
 
-                    {/* Title — feature card gets the editorial-size treatment */}
+                    {/* Title — feature card gets the editorial-size treatment.
+                        hyphens + break-words because German compounds do not
+                        fit it at 30px: "Individuelle Softwareentwicklung" needs
+                        306 in a 276 box. The browser hyphenates properly now
+                        that each page declares its own lang. */}
                     <h3
-                      className={`${isFeature ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-xl md:text-2xl'} font-bold tracking-tight mb-3 text-black dark:text-white`}
+                      className={`${isFeature ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-xl md:text-2xl'} font-bold tracking-tight mb-3 text-black dark:text-white hyphens-auto break-words`}
                     >
                       {s.title}
                     </h3>

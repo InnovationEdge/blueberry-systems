@@ -55,6 +55,91 @@ footer { padding: 40px 24px; border-top: 1px solid var(--border); color: var(--m
 .related-grid a span { color: var(--muted); font-size: 14px; line-height: 1.5; }
 .related-grid a small { margin-top: 16px; color: var(--brand); font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
 
+/* Phone layout.
+
+   Everything above this point was written at desktop width and the file
+   shipped with no width breakpoint at all, so phones were served the desktop
+   layout verbatim. One part of it actually broke rather than merely looking
+   cramped: header is a flex row that never wraps, and its contents need 376px
+   inside the 342px content box of a 390pt phone. iOS answers an overflowing
+   nowrap row by widening the layout viewport and zooming the page out, so the
+   symptom was not a sideways scrollbar but every word on the page rendering
+   smaller than it should. Measured at 390pt: Russian needed 400 (the back link
+   reads "Главная", 20px wider than "Main"), Georgian and English sat exactly on
+   the 342 limit, one longer word away from the same fault.
+
+   flex-wrap alone fixes it at every width without a second breakpoint: the row
+   stays on one line while there is room and drops the nav below the brand when
+   there is not. */
+@media (max-width: 640px) {
+  header { padding: 16px; flex-wrap: wrap; gap: 12px 16px; }
+
+  .brand { font-size: 17px; }
+
+  /* Desktop vertical rhythm reads as dead space on a phone, where the same gap
+     costs a much larger share of the screen. */
+  .wrap { padding: 24px 16px; }
+  h2 { margin: 40px 0 16px; }
+  .meta { margin-bottom: 32px; letter-spacing: 0.12em; }
+  .cta { margin: 40px 0; }
+  .related { margin-top: 48px; padding-top: 32px; }
+  footer { margin-top: 48px; padding: 32px 16px; }
+
+  /* Side by side these two fall to ~170px each, narrower than the tap comfort
+     of the thing they are asking for. One per row instead. */
+  .cta { flex-direction: column; align-items: stretch; }
+  .btn { text-align: center; }
+}
+
+/* Tap targets, keyed on the input device rather than the screen width.
+
+   These were first written inside the max-width: 640px block above, which was
+   wrong for a reason worth keeping: a phone held sideways is 844-932pt wide and
+   a tablet is 768, so all three read the desktop rules and kept the 36-39px
+   targets, while the fingers using them had not changed size. Width describes
+   how much room the layout has. pointer: coarse describes what is doing the
+   pointing, and that is what a tap target is about.
+
+   Measured before: .back 39px tall, .brand 36, footer link 21, crumbs 16. */
+@media (pointer: coarse) {
+  .brand { min-height: 44px; }
+  .back { min-height: 44px; display: inline-flex; align-items: center; }
+  footer a { min-height: 44px; display: inline-flex; align-items: center; }
+  .crumbs ol { align-items: center; }
+  /* Padding grows the hit area, the matching negative margin gives the layout
+     space back, so short labels reach 48px wide while the crumbs and their "/"
+     separators stay exactly where they were. Only short ones need it: Georgian
+     "მთავარი" already measures over 44. */
+  .crumbs a {
+    display: inline-flex; align-items: center; min-height: 44px;
+    padding-inline: 6px; margin-inline: -6px;
+  }
+}
+
+/* Notched and rounded displays. Landscape puts the sensor housing over one of
+   the side edges and the home indicator on top of the footer.
+
+   Each floor is that element's own padding at that breakpoint, so this can only
+   ever add room, never take it away. A single max(16px, ...) across all widths
+   would have quietly cut desktop .wrap padding from 24px to 16px, and landscape
+   phones are 844-932pt wide, so they read the desktop values here, not the
+   phone ones. */
+@supports (padding: max(0px)) {
+  header, footer, .wrap {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+  footer { padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+
+  @media (max-width: 640px) {
+    header, footer, .wrap {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    footer { padding-bottom: max(32px, env(safe-area-inset-bottom)); }
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root { --bg: #fafafa; --fg: #0a0a0d; --muted: #6e6e76; --border: rgba(0,0,0,0.08); }
   li { background: #fff; }

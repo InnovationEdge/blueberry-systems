@@ -88,7 +88,10 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                 </div>
 
                 <div className="mb-7 pb-7 border-b border-zinc-200 dark:border-white/[0.06]">
-                  <p className={`text-4xl font-extrabold tracking-tight ${p.popular ? 'text-black dark:text-white' : 'text-zinc-800 dark:text-zinc-200'}`}>
+                  {/* Not every language answers "from" with a number. Georgian
+                      uses the word "ინდივიდუალური", which at 36px extrabold
+                      needs 327px in a 276px card. */}
+                  <p className={`text-4xl font-extrabold tracking-tight hyphens-auto break-words ${p.popular ? 'text-black dark:text-white' : 'text-zinc-800 dark:text-zinc-200'}`}>
                     {p.from}
                   </p>
                   <p className="text-xs text-zinc-600 dark:text-zinc-500 mt-2 font-mono">{p.timeline}</p>

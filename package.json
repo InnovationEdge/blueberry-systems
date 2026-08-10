@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender-locales.mjs && node scripts/check-seo.mjs",
+    "build": "tsc -b --noEmit && vite build && node scripts/prerender-locales.mjs && node scripts/check-seo.mjs",
+    "typecheck": "tsc -b --noEmit",
     "check:seo": "node scripts/check-seo.mjs",
     "lint": "eslint .",
     "preview": "vite preview"

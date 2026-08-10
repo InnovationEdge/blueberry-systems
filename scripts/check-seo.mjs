@@ -144,6 +144,40 @@ for (const p of pages) {
     if (m[1] !== expectLang)
       fail(file, `WebPage.inLanguage "${m[1]}" but html lang is "${expectLang}"`);
   }
+
+  // 11. Without width=device-width a phone renders at ~980px and scales down,
+  //     so every word arrives too small to read. Google treats it as not
+  //     mobile-friendly, which is a ranking factor on mobile results.
+  const viewport = attr(html, /<meta name="viewport" content="([^"]*)"/);
+  if (!viewport) fail(file, 'no viewport meta');
+  else {
+    if (!/width=device-width/.test(viewport))
+      fail(file, `viewport lacks width=device-width: "${viewport}"`);
+
+    // Blocking pinch zoom fails WCAG 1.4.4 and strands anyone who needs to
+    // magnify. Nothing here has ever needed to lock the scale.
+    if (/user-scalable\s*=\s*(no|0)/.test(viewport))
+      fail(file, 'viewport disables pinch zoom (user-scalable=no)');
+    const maxScale = /maximum-scale\s*=\s*([\d.]+)/.exec(viewport);
+    if (maxScale && Number(maxScale[1]) < 2)
+      fail(file, `viewport caps zoom at ${maxScale[1]}x, under the 2x floor`);
+
+    // env(safe-area-inset-*) evaluates to 0 without this, silently, so the
+    // padding written against it does nothing at all. landing.css carries
+    // safe-area rules, so a page that drops the flag disarms them.
+    if (!is404 && !/viewport-fit=cover/.test(viewport))
+      fail(file, 'viewport lacks viewport-fit=cover, so safe-area insets read 0');
+  }
+
+  // 12. Locale roots are real paths (/ka/, /ru/). ?lang= still resolves in the
+  //     SPA, so these links worked and stayed broken-looking-fine for months:
+  //     they need JS to boot before redirecting, and a crawler reads them as
+  //     links to "/", the English canonical. The BreadcrumbList JSON-LD had the
+  //     same URLs, which told Google the parent of a Georgian page was English.
+  if (/\?lang=/.test(html)) {
+    const n = (html.match(/\?lang=/g) || []).length;
+    fail(file, `${n} ?lang= URL(s); locale roots are paths now (/ka/, /ru/)`);
+  }
 }
 
 console.log(`  checked ${pages.length} pages`);

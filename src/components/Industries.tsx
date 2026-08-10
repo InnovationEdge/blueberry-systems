@@ -35,12 +35,17 @@ export function Industries({ t }: { t: ReturnType<typeof getT> }) {
           </div>
         </Reveal>
 
+        {/* h-full twice below: the grid stretches its own children, but its
+            child is the Reveal wrapper, and the anchor inside it was sizing to
+            its own content. Tiles in one row measured 103 and 87 whenever a
+            codename wrapped to two lines ("Georgian Insurance" does so in every
+            language), so the row did not line up along the bottom. */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {INDUSTRIES.map((s, i) => (
-            <Reveal key={s.name} delay={i * 0.05}>
+            <Reveal key={s.name} delay={i * 0.05} className="h-full">
               <a
                 href="#portfolio"
-                className="group block rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50/60 dark:bg-white/[0.01] hover:bg-zinc-100 dark:hover:bg-white/[0.04] p-4 lift transition-all"
+                className="group flex h-full flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50/60 dark:bg-white/[0.01] hover:bg-zinc-100 dark:hover:bg-white/[0.04] p-4 lift transition-all"
                 style={{ ['--accent' as string]: s.accent }}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -52,7 +57,12 @@ export function Industries({ t }: { t: ReturnType<typeof getT> }) {
                     {s.codename}
                   </span>
                 </div>
-                <p className="text-base font-bold tracking-tight text-black dark:text-white group-hover:text-zinc-800 dark:text-zinc-200 transition-colors">
+                {/* hyphens + break-words: the tile is 131px wide and the label
+                    is one word in most languages. "Telecomunicaciones" needs
+                    153, "Telekommunikation" 153, "Telecomunicazioni" 140, so
+                    all three painted outside the tile. English "Telecom" fits,
+                    which is why the layout looked fine when it was written. */}
+                <p className="text-base font-bold tracking-tight text-black dark:text-white group-hover:text-zinc-800 dark:text-zinc-200 transition-colors hyphens-auto break-words">
                   {labels[s.name] ?? s.name}
                 </p>
               </a>
