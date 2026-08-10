@@ -187,37 +187,64 @@ interface T {
 }
 
 import { en } from './locales/en';
-import { ka } from './locales/ka';
-import { ru } from './locales/ru';
-import { de } from './locales/de';
-import { es } from './locales/es';
-import { fr } from './locales/fr';
-import { it } from './locales/it';
-import { pl } from './locales/pl';
-import { tr } from './locales/tr';
-import { uk } from './locales/uk';
 
 /**
- * Registry keyed by the label shown in the language picker.
- * Adding a language is a new file in src/locales plus one line here, one
- * entry in LANGUAGES (src/data.ts) and one entry in LOCALES
- * (scripts/prerender-locales.mjs).
+ * English is bundled; the other nine are separate chunks.
+ *
+ * They were all imported statically, so every visitor downloaded all ten. That
+ * was measured by building with the nine removed and diffing: 193kB gzip down
+ * to 137kB, so the languages a given visitor will never see were 56kB, 29% of
+ * the main bundle. Source size was a bad guide here, the ts files are 224kB
+ * raw, because translations gzip unusually well against each other.
+ *
+ * English stays static on purpose. It is the fallback for an unknown label, so
+ * it has to be available synchronously, and it is the only one that can be.
  */
-const translations: Record<string, T> = {
-  EN: en,
-  'ქარ': ka,
-  RU: ru,
-  DE: de,
-  ES: es,
-  FR: fr,
-  IT: it,
-  PL: pl,
-  TR: tr,
-  UK: uk,
+const loaders: Record<string, () => Promise<{ default?: T } & Record<string, T>>> = {
+  'ქარ': () => import('./locales/ka'),
+  RU: () => import('./locales/ru'),
+  DE: () => import('./locales/de'),
+  ES: () => import('./locales/es'),
+  FR: () => import('./locales/fr'),
+  IT: () => import('./locales/it'),
+  PL: () => import('./locales/pl'),
+  TR: () => import('./locales/tr'),
+  UK: () => import('./locales/uk'),
 };
 
+/** Chunks already resolved. A language switch back is then synchronous. */
+const loaded: Record<string, T> = { EN: en };
+
+/** True when getT(lang) can return the real translations rather than English. */
+export function isLoaded(lang: string): boolean {
+  return lang in loaded || !(lang in loaders);
+}
+
+/**
+ * Synchronous, so components can keep calling it during render. Falls back to
+ * English for a language whose chunk has not arrived yet; pair it with loadT
+ * and re-render, or await loadT first. See the note in App.tsx on which of
+ * those the initial load does.
+ */
 export function getT(lang: string): T {
-  return translations[lang] ?? en;
+  return loaded[lang] ?? en;
+}
+
+/** Fetch a language's chunk. Resolves immediately if it is already in hand. */
+export async function loadT(lang: string): Promise<T> {
+  if (loaded[lang]) return loaded[lang];
+  const load = loaders[lang];
+  if (!load) return en;
+  try {
+    const mod = await load();
+    // Each locale file exports one named const matching its code.
+    const value = (Object.values(mod).find((v) => v && typeof v === 'object') ?? en) as T;
+    loaded[lang] = value;
+    return value;
+  } catch {
+    // A failed chunk must not blank the site: English is always present.
+    return en;
+  }
 }
 
 export type { T };

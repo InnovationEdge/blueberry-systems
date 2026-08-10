@@ -20,7 +20,7 @@
  * Adding a locale: new file in src/locales, one line in the i18n registry, one
  * entry in LANGUAGES (src/data.ts), and one entry in LOCALES below.
  */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -142,10 +142,38 @@ const withLangs = (html) => html.replace(WEBSITE_LANGS, `$1${ALL_LANGS}`);
 writeFileSync(join(DIST, 'index.html'), withLangs(entry.replace(HREFLANG_BLOCK, hreflang)));
 console.log(`  dist/index.html         hreflang updated (${codes.length + 2} annotations)`);
 
+/**
+ * Locale chunk per code, e.g. { ka: '/assets/ka-qR5imXjl.js' }.
+ *
+ * The nine non-English locales are dynamic imports now, so their chunk is only
+ * requested once React has booted and read the language. On /ka/ that is a
+ * round trip after the main bundle has already parsed, and until it lands the
+ * page renders in English. These pages know their own language at build time,
+ * so they can start the fetch in the head instead, in parallel with everything
+ * else. By the time the app asks for it, it is in the cache.
+ *
+ * modulepreload rather than preload: it also warms the module graph, and an
+ * as="script" preload of an ES module is fetched again as a module by Safari.
+ */
+const CHUNKS = Object.fromEntries(
+  readdirSync(join(DIST, 'assets'))
+    .filter((f) => /^[a-z]{2}-[A-Za-z0-9_-]+\.js$/.test(f))
+    .map((f) => [f.slice(0, 2), `/assets/${f}`]),
+);
+
 for (const [code, meta] of Object.entries(LOCALES)) {
   const L = readLocale(code);
   const self = `${ORIGIN}/${code}/`;
   let html = entry;
+
+  // A missing chunk means the split silently stopped working, and the only
+  // symptom would be a slower first paint in that language. Fail instead.
+  const chunk = CHUNKS[code];
+  if (!chunk) throw new Error(`no locale chunk emitted for ${code}; did the dynamic import in src/i18n.ts change?`);
+  html = html.replace(
+    '</head>',
+    `  <link rel="modulepreload" href="${chunk}" />\n  </head>`,
+  );
 
   html = html.replace(
     '<html lang="en">',

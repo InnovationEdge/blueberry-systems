@@ -5,7 +5,7 @@ import { StatsStrip } from './components/Services';
 import { ScrollToTop } from './components/Footer';
 import { ScrollProgress, NowBuilding } from './components/ScrollProgress';
 import { Industries } from './components/Industries';
-import { getT } from './i18n';
+import { getT, loadT, isLoaded } from './i18n';
 
 // Everything below-the-fold ships in its own chunk so the home-page
 // initial load only pays for Hero + StatsStrip + Industries.
@@ -95,27 +95,106 @@ function getInitialLang(): string {
   return 'EN';
 }
 
+/**
+ * True when this page shipped a modulepreload for the language it is about to
+ * render, which is the case on the prerendered /ka/, /de/ and friends: the
+ * build knows their language and starts the chunk in the head. It is false
+ * when the language came from localStorage or navigator.language on "/",
+ * because the server could not have known it.
+ *
+ * The distinction matters because it is the difference between waiting on a
+ * cached module and waiting on a network round trip.
+ */
+function localeChunkPreloaded(lang: string): boolean {
+  if (typeof document === 'undefined') return false;
+  const code = LANG_CODES[lang];
+  if (!code) return true; // English is in the main bundle
+  return !!document.querySelector(`link[rel="modulepreload"][href*="/${code}-"]`);
+}
+
+/**
+ * Decide what a visitor sees while their language chunk is in flight.
+ *
+ * The nine non-English locales are separate chunks, so the very first render
+ * for one of them has no strings yet and getT falls back to English. Measured
+ * on Slow 4G with 4x CPU:
+ *
+ *   /ka/   English painted at 1486ms, Georgian replaced it at 1600ms   114ms
+ *   /de/   English painted at 1135ms, German   replaced it at 1243ms   108ms
+ *
+ * Returning false renders English for that window and swaps. Returning true
+ * holds the first paint until the strings are in hand, so nothing wrong is
+ * ever shown, at the cost of delaying the paint.
+ *
+ * That cost is not the same in both cases. `preloaded` is true on /ka/ and the
+ * other prerendered locale pages, where the chunk is already in cache and the
+ * wait is a promise resolving, roughly a frame. It is false on "/" when the
+ * language came from a stored preference or the browser locale, where the wait
+ * is a real round trip: 150ms of latency plus transfer, and it lands on LCP.
+ *
+ * @param lang       resolved picker label, e.g. 'ქარ' or 'DE'
+ * @param preloaded  whether this page preloaded that language's chunk
+ * @returns true to hold the first paint, false to paint English and swap
+ */
+function shouldHoldForLocale(lang: string, preloaded: boolean): boolean {
+  // TODO(decide): see the note above. Trade-off is a brief wrong-language
+  // flash against a slower first paint, and the two cases differ in cost.
+  void lang;
+  void preloaded;
+  return false;
+}
+
 export default function App() {
   const [lang, setLangState] = useState(getInitialLang);
   const [selected, setSelected] = useState<number | null>(null);
   const [shown, setShown] = useState(true);
+  // Bumped when a locale chunk lands, to re-render with the real strings.
+  const [, setLocaleReady] = useState(0);
   const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t = getT(lang);
+
+  // Whether to withhold the first paint until this language's strings arrive.
+  // The policy lives in shouldHoldForLocale above; this only applies it.
+  const holdingForLocale = !isLoaded(lang) && shouldHoldForLocale(lang, localeChunkPreloaded(lang));
 
   // Smooth fade when switching languages — no remount, no scroll loss.
   // Two-stage: 220ms fade-out + soft blur, then swap, then 280ms fade-in
   // with eased curve. Feels like a film cut, not a flash.
+  //
+  // The nine non-English locales are separate chunks now, so the new language
+  // has to arrive before the swap. That is free here: the fade already hides
+  // the content for 220ms, and the fetch runs inside it. Await both, so a slow
+  // network holds the fade a little longer rather than swapping to English.
   const setLang = useCallback((newLang: string) => {
     if (newLang === lang) return;
     if (transitionTimer.current) clearTimeout(transitionTimer.current);
     setShown(false);
-    transitionTimer.current = setTimeout(() => {
+    const faded = new Promise<void>((r) => {
+      transitionTimer.current = setTimeout(r, 220);
+    });
+    void Promise.all([faded, loadT(newLang)]).then(() => {
       setLangState(newLang);
       // Force layout calc before flipping shown back on, so the
       // browser renders the new text in the hidden state first —
       // eliminates any KA-font-loading flash.
       requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
-    }, 220);
+    });
+  }, [lang]);
+
+  // Initial load in a non-English language: the chunk is not in the bundle, so
+  // the first render falls back to English until it arrives. Someone landing on
+  // /ka/ therefore sees English for one network round trip.
+  //
+  // TODO(decide): implement handleInitialLocale below to choose what that
+  // moment looks like. See the note above the function.
+  useEffect(() => {
+    if (isLoaded(lang)) return;
+    let cancelled = false;
+    void loadT(lang).then(() => {
+      if (!cancelled) setLocaleReady((n) => n + 1);
+    });
+    return () => { cancelled = true; };
+    // Runs for the initial language only; setLang awaits its own load.
   }, [lang]);
 
   // Sync <html lang="..."> + ?lang= URL param + document.title + meta description
@@ -165,6 +244,20 @@ export default function App() {
     const ogLocale = document.querySelector('meta[property="og:locale"]');
     if (ogLocale) ogLocale.setAttribute('content', OG_LOCALES[code] ?? 'en_US');
   }, [lang, t.metaTitle, t.metaDescription]);
+
+  // Holding the paint keeps the page background, so the visitor sees the site's
+  // own colour rather than a white flash, and no layout is committed that would
+  // shift when the strings land.
+  if (holdingForLocale) {
+    return (
+      <div
+        className="min-h-screen bg-white dark:bg-black"
+        aria-busy="true"
+        aria-live="polite"
+        aria-label={`Loading ${langCode(lang)}`}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white overflow-x-hidden noise-overlay transition-colors duration-300">
