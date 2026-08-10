@@ -8,9 +8,13 @@ import type { getT } from '../i18n';
    because it comes from the label: "GitHub" measured 40 and German "AGB" only
    24, right on the 24px WCAG minimum. px-2.5 with a matching -mx-2.5 buys every
    link 20px of hit area on each axis while leaving the row looking untouched,
-   which is what a 24px label needs to clear 44. */
+   which is what a 24px label needs to clear 44.
+
+   min-w-11 covers the remainder: padding alone left "AGB" at 43.6px, which
+   rounds to 44 in any readout but is not 44. Every other label is already past
+   55, so this only ever affects the shortest one. */
 const footerLink =
-  'inline-flex items-center min-h-11 px-2.5 -mx-2.5 transition-colors';
+  'inline-flex items-center justify-center min-h-11 min-w-11 px-2.5 -mx-2.5 transition-colors';
 const footerLinkMuted =
   `${footerLink} hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300`;
 
