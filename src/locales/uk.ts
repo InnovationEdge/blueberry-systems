@@ -9,6 +9,9 @@ import type { T } from '../i18n';
  * NOT yet reviewed by a native speaker.
  */
 export const uk: T = {
+  skipToContent: 'Перейти до вмісту',
+  closeLabel: 'Закрити',
+  menuLabel: 'Меню',
   heroSubtitle: 'Створюємо програмне забезпечення, що масштабується, проєктуємо продукти, якими люди хочуть користуватися, і розвиваємо бізнеси на основі даних.',
   heroCta: 'Замовити безкоштовну розмову',
   heroExplore: 'Наші роботи',

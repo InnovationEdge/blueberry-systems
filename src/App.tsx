@@ -274,9 +274,25 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white overflow-x-hidden noise-overlay transition-colors duration-300">
       <ScrollProgress />
+
+      {/* First tab stop on the page. Without it a keyboard user tabs the whole
+          header, and on the localized pages the language chips too, before
+          reaching any content, on every single page. Hidden until focused,
+          then it has to clear the z-[60] header to be visible at all. */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:inline-flex focus:items-center focus:min-h-11 focus:px-5 focus:rounded-xl focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:text-sm focus:font-semibold focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        {t.skipToContent}
+      </a>
+
       <Header t={t} lang={lang} setLang={setLang} />
 
-      <div
+      {/* <main> so assistive tech can jump straight here, which is also what
+          the skip link targets. This element was already the content wrapper;
+          it was just a div. */}
+      <main
+        id="main-content"
         className={`transition-[opacity,filter] duration-[280ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
           shown ? 'opacity-100 blur-0' : 'opacity-0 blur-[3px]'
         }`}
@@ -288,7 +304,7 @@ export default function App() {
         <Suspense fallback={<div className="min-h-[400px]" />}>
           <BelowFold t={t} lang={lang} onOpenProject={setSelected} />
         </Suspense>
-      </div>
+      </main>
 
       <Suspense fallback={null}>
         <ProjectModal index={selected} onClose={() => setSelected(null)} t={t} />

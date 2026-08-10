@@ -2,6 +2,9 @@ import type { T } from '../i18n';
 
 /** Source of truth. Every other locale is a translation of this file. */
 export const en: T = {
+  skipToContent: 'Skip to content',
+  closeLabel: 'Close',
+  menuLabel: 'Menu',
   heroSubtitle: 'We build software that scales, design products people love, and grow businesses through data-driven strategy.',
   heroCta: 'Book a Free Call',
   heroExplore: 'See Our Work',

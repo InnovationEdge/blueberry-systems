@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatedThemeToggler } from './ui/animated-theme-toggler';
 import { Logo } from './Logo';
 import { LANGUAGES } from '../data';
+import { useFocusTrap } from '../hooks';
 import type { getT } from '../i18n';
 
 export function Header({
@@ -21,6 +22,8 @@ export function Header({
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 24));
+
+  const drawerRef = useFocusTrap<HTMLElement>(mobileOpen);
 
   useEffect(() => {
     if (!mobileOpen) {
@@ -164,6 +167,13 @@ export function Header({
               className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[65] lg:hidden"
             />
             <motion.nav
+              /* Keeps Tab inside the panel and hands focus back to the burger
+                 on close. Without it, tabbing walked into the page behind the
+                 scrim: measured at six escapes before focus left for good. */
+              ref={drawerRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t.menuLabel}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}

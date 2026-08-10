@@ -2,6 +2,9 @@ import type { T } from '../i18n';
 
 /** Russian. Written by a native speaker, not machine translated. */
 export const ru: T = {
+  skipToContent: 'Перейти к содержимому',
+  closeLabel: 'Закрыть',
+  menuLabel: 'Меню',
   heroSubtitle: 'Создаём масштабируемое ПО, проектируем продукты, которым доверяют пользователи, и развиваем бизнес на основе данных.',
   heroCta: 'Бесплатная консультация',
   heroExplore: 'Наши проекты',

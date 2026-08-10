@@ -2,6 +2,9 @@ import type { T } from '../i18n';
 
 /** Georgian. Written by a native speaker, not machine translated. */
 export const ka: T = {
+  skipToContent: 'გადასვლა კონტენტზე',
+  closeLabel: 'დახურვა',
+  menuLabel: 'მენიუ',
   heroSubtitle: 'ვაშენებთ მასშტაბურ ტექნოლოგიებს, ვქმნით პროდუქტებს რომელსაც მომხმარებლები ენდობიან და მონაცემებზე დაყრდნობით ვზრდით ბიზნესს.',
   heroCta: 'უფასო კონსულტაცია',
   heroExplore: 'ნახე პროექტები',

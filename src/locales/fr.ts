@@ -8,6 +8,9 @@ import type { T } from '../i18n';
  * NOT yet reviewed by a native speaker.
  */
 export const fr: T = {
+  skipToContent: 'Aller au contenu',
+  closeLabel: 'Fermer',
+  menuLabel: 'Menu',
   heroSubtitle: 'Nous construisons des logiciels qui passent à l\'échelle, concevons des produits que les gens aiment utiliser et faisons croître les entreprises par une stratégie fondée sur les données.',
   heroCta: 'Réserver un appel',
   heroExplore: 'Voir nos réalisations',

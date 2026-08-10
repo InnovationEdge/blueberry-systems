@@ -9,6 +9,9 @@ import type { T } from '../i18n';
  * NOT yet reviewed by a native speaker.
  */
 export const es: T = {
+  skipToContent: 'Saltar al contenido',
+  closeLabel: 'Cerrar',
+  menuLabel: 'Menú',
   heroSubtitle: 'Construimos software que escala, diseñamos productos que la gente disfruta y hacemos crecer negocios con estrategia basada en datos.',
   heroCta: 'Agendar una llamada',
   heroExplore: 'Ver nuestro trabajo',

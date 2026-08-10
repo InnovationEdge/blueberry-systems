@@ -9,6 +9,9 @@ import type { T } from '../i18n';
  * NOT yet reviewed by a native speaker. See docs/LOCALIZATION.md.
  */
 export const de: T = {
+  skipToContent: 'Zum Inhalt springen',
+  closeLabel: 'Schließen',
+  menuLabel: 'Menü',
   heroSubtitle: 'Wir entwickeln Software, die skaliert, gestalten Produkte, die Menschen gerne nutzen, und lassen Unternehmen mit datengetriebener Strategie wachsen.',
   heroCta: 'Kostenloses Gespräch buchen',
   heroExplore: 'Unsere Arbeiten',

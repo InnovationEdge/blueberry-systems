@@ -8,6 +8,9 @@ import type { T } from '../i18n';
  * NOT yet reviewed by a native speaker.
  */
 export const tr: T = {
+  skipToContent: 'İçeriğe geç',
+  closeLabel: 'Kapat',
+  menuLabel: 'Menü',
   heroSubtitle: 'Ölçeklenen yazılımlar kuruyor, insanların kullanmaktan keyif aldığı ürünler tasarlıyor ve veriye dayalı stratejiyle işleri büyütüyoruz.',
   heroCta: 'Ücretsiz görüşme ayarlayın',
   heroExplore: 'İşlerimize bakın',

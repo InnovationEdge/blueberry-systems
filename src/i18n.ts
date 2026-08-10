@@ -1,6 +1,12 @@
 // Blueberry Systems i18n — 5 languages
 
 interface T {
+  /** Accessible name for the mobile navigation drawer. */
+  menuLabel: string;
+  /** Accessible name for a dialog's close button. */
+  closeLabel: string;
+  /** Keyboard skip link, first tab stop on every page. */
+  skipToContent: string;
   heroSubtitle: string;
   heroCta: string;
   heroExplore: string;

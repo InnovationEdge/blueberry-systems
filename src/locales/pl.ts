@@ -8,6 +8,9 @@ import type { T } from '../i18n';
  * NOT yet reviewed by a native speaker.
  */
 export const pl: T = {
+  skipToContent: 'Przejdź do treści',
+  closeLabel: 'Zamknij',
+  menuLabel: 'Menu',
   heroSubtitle: 'Budujemy oprogramowanie, które skaluje się bez bólu, projektujemy produkty, których ludzie chcą używać, i rozwijamy firmy w oparciu o dane.',
   heroCta: 'Umów bezpłatną rozmowę',
   heroExplore: 'Zobacz nasze prace',

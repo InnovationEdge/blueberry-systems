@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, X } from 'lucide-react';
 import { MagneticButton } from './primitives';
 import { PORTFOLIO } from '../data';
+import { useFocusTrap } from '../hooks';
 import type { getT } from '../i18n';
 
 export function ProjectModal({
@@ -15,6 +16,10 @@ export function ProjectModal({
   t: ReturnType<typeof getT>;
 }) {
   const open = index !== null;
+  /* Keeps Tab inside the panel and returns focus to the card that opened it.
+     Without it the dialog leaked twenty times in twenty presses, walking the
+     portfolio grid underneath the scrim. */
+  const panelRef = useFocusTrap<HTMLDivElement>(open);
 
   // While the dialog is up, freeze the page behind it and let Escape close it.
   // Without the scroll lock the background scrolls under the panel on touch,
@@ -69,6 +74,7 @@ export function ProjectModal({
                    dialog and covered the close button, so on a phone the
                    modal could be opened but not dismissed. */
                 className="fixed inset-2 sm:inset-4 md:inset-10 lg:inset-x-24 lg:inset-y-12 bg-white dark:bg-zinc-950 border border-zinc-300/70 dark:border-white/[0.08] rounded-2xl sm:rounded-3xl z-[90] overflow-y-auto overscroll-contain shadow-2xl"
+                ref={panelRef}
                 role="dialog"
                 aria-modal="true"
                 aria-label={p.title}
@@ -78,7 +84,7 @@ export function ProjectModal({
                    comfortable touch target. */}
                 <button
                   onClick={onClose}
-                  aria-label="Close"
+                  aria-label={t.closeLabel}
                   className="fixed top-5 right-5 sm:top-7 sm:right-7 grid place-items-center w-11 h-11 rounded-full bg-black/55 backdrop-blur-md text-white hover:bg-black/75 transition-colors z-[95]"
                 >
                   <X className="w-5 h-5" />
