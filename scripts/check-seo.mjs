@@ -196,6 +196,23 @@ for (const p of pages) {
   }
 
   if (cfg) {
+    /**
+     * Vercel validates this file strictly and errors the whole deploy on an
+     * unknown top-level key. Learned the hard way: a "_comment_rewrites" key
+     * added to explain the config failed the build, and because a failed
+     * deploy just leaves the previous one serving, the only symptom was that
+     * production quietly stopped changing. JSON has no comments; the notes
+     * live in this file instead.
+     */
+    const ALLOWED = new Set([
+      '$schema', 'buildCommand', 'cleanUrls', 'crons', 'devCommand', 'framework',
+      'functions', 'git', 'headers', 'ignoreCommand', 'images', 'installCommand',
+      'outputDirectory', 'public', 'redirects', 'regions', 'rewrites', 'trailingSlash',
+    ]);
+    for (const key of Object.keys(cfg)) {
+      if (!ALLOWED.has(key)) fail('vercel.json', `unknown top-level key "${key}"; Vercel rejects the whole file`);
+    }
+
     const rewrites = cfg.rewrites ?? [];
 
     // A catch-all sending everything to index.html turns every typo into a

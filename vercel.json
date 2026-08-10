@@ -1,87 +1,243 @@
 {
-  "_comment_rewrites": "No catch-all. This is a single-page app with no client-side router, so every real route is either a file in dist or one of the explicit rewrites below. The catch-all that used to sit at the end sent everything unmatched to /index.html with a 200, which made /this-does-not-exist serve the home page: a soft 404, the same fault the locale pages had. It also excluded /team and /work, which have never existed in the build. Vercel serves 404.html for anything unmatched, which is what /ka/nope and /software-developmentt/ were already doing correctly.",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/de", "destination": "/de/index.html" },
-    { "source": "/de/", "destination": "/de/index.html" },
-    { "source": "/es", "destination": "/es/index.html" },
-    { "source": "/es/", "destination": "/es/index.html" },
-    { "source": "/fr", "destination": "/fr/index.html" },
-    { "source": "/fr/", "destination": "/fr/index.html" },
-    { "source": "/it", "destination": "/it/index.html" },
-    { "source": "/it/", "destination": "/it/index.html" },
-    { "source": "/pl", "destination": "/pl/index.html" },
-    { "source": "/pl/", "destination": "/pl/index.html" },
-    { "source": "/tr", "destination": "/tr/index.html" },
-    { "source": "/tr/", "destination": "/tr/index.html" },
-    { "source": "/uk", "destination": "/uk/index.html" },
-    { "source": "/uk/", "destination": "/uk/index.html" },
-    { "source": "/ka", "destination": "/ka/index.html" },
-    { "source": "/ka/", "destination": "/ka/index.html" },
-    { "source": "/ru", "destination": "/ru/index.html" },
-    { "source": "/ru/", "destination": "/ru/index.html" },
-
-    { "source": "/software-development", "destination": "/software-development/index.html" },
-    { "source": "/software-development/", "destination": "/software-development/index.html" },
-    { "source": "/product-marketing", "destination": "/product-marketing/index.html" },
-    { "source": "/product-marketing/", "destination": "/product-marketing/index.html" },
-    { "source": "/product-design", "destination": "/product-design/index.html" },
-    { "source": "/product-design/", "destination": "/product-design/index.html" },
-    { "source": "/business-consulting", "destination": "/business-consulting/index.html" },
-    { "source": "/business-consulting/", "destination": "/business-consulting/index.html" },
-
-    { "source": "/ka/software-development", "destination": "/ka/software-development/index.html" },
-    { "source": "/ka/software-development/", "destination": "/ka/software-development/index.html" },
-    { "source": "/ka/product-marketing", "destination": "/ka/product-marketing/index.html" },
-    { "source": "/ka/product-marketing/", "destination": "/ka/product-marketing/index.html" },
-    { "source": "/ka/product-design", "destination": "/ka/product-design/index.html" },
-    { "source": "/ka/product-design/", "destination": "/ka/product-design/index.html" },
-    { "source": "/ka/business-consulting", "destination": "/ka/business-consulting/index.html" },
-    { "source": "/ka/business-consulting/", "destination": "/ka/business-consulting/index.html" },
-
-    { "source": "/ru/software-development", "destination": "/ru/software-development/index.html" },
-    { "source": "/ru/software-development/", "destination": "/ru/software-development/index.html" },
-    { "source": "/ru/product-marketing", "destination": "/ru/product-marketing/index.html" },
-    { "source": "/ru/product-marketing/", "destination": "/ru/product-marketing/index.html" },
-    { "source": "/ru/product-design", "destination": "/ru/product-design/index.html" },
-    { "source": "/ru/product-design/", "destination": "/ru/product-design/index.html" },
-    { "source": "/ru/business-consulting", "destination": "/ru/business-consulting/index.html" },
-    { "source": "/ru/business-consulting/", "destination": "/ru/business-consulting/index.html" }
+    {
+      "source": "/de",
+      "destination": "/de/index.html"
+    },
+    {
+      "source": "/de/",
+      "destination": "/de/index.html"
+    },
+    {
+      "source": "/es",
+      "destination": "/es/index.html"
+    },
+    {
+      "source": "/es/",
+      "destination": "/es/index.html"
+    },
+    {
+      "source": "/fr",
+      "destination": "/fr/index.html"
+    },
+    {
+      "source": "/fr/",
+      "destination": "/fr/index.html"
+    },
+    {
+      "source": "/it",
+      "destination": "/it/index.html"
+    },
+    {
+      "source": "/it/",
+      "destination": "/it/index.html"
+    },
+    {
+      "source": "/pl",
+      "destination": "/pl/index.html"
+    },
+    {
+      "source": "/pl/",
+      "destination": "/pl/index.html"
+    },
+    {
+      "source": "/tr",
+      "destination": "/tr/index.html"
+    },
+    {
+      "source": "/tr/",
+      "destination": "/tr/index.html"
+    },
+    {
+      "source": "/uk",
+      "destination": "/uk/index.html"
+    },
+    {
+      "source": "/uk/",
+      "destination": "/uk/index.html"
+    },
+    {
+      "source": "/ka",
+      "destination": "/ka/index.html"
+    },
+    {
+      "source": "/ka/",
+      "destination": "/ka/index.html"
+    },
+    {
+      "source": "/ru",
+      "destination": "/ru/index.html"
+    },
+    {
+      "source": "/ru/",
+      "destination": "/ru/index.html"
+    },
+    {
+      "source": "/software-development",
+      "destination": "/software-development/index.html"
+    },
+    {
+      "source": "/software-development/",
+      "destination": "/software-development/index.html"
+    },
+    {
+      "source": "/product-marketing",
+      "destination": "/product-marketing/index.html"
+    },
+    {
+      "source": "/product-marketing/",
+      "destination": "/product-marketing/index.html"
+    },
+    {
+      "source": "/product-design",
+      "destination": "/product-design/index.html"
+    },
+    {
+      "source": "/product-design/",
+      "destination": "/product-design/index.html"
+    },
+    {
+      "source": "/business-consulting",
+      "destination": "/business-consulting/index.html"
+    },
+    {
+      "source": "/business-consulting/",
+      "destination": "/business-consulting/index.html"
+    },
+    {
+      "source": "/ka/software-development",
+      "destination": "/ka/software-development/index.html"
+    },
+    {
+      "source": "/ka/software-development/",
+      "destination": "/ka/software-development/index.html"
+    },
+    {
+      "source": "/ka/product-marketing",
+      "destination": "/ka/product-marketing/index.html"
+    },
+    {
+      "source": "/ka/product-marketing/",
+      "destination": "/ka/product-marketing/index.html"
+    },
+    {
+      "source": "/ka/product-design",
+      "destination": "/ka/product-design/index.html"
+    },
+    {
+      "source": "/ka/product-design/",
+      "destination": "/ka/product-design/index.html"
+    },
+    {
+      "source": "/ka/business-consulting",
+      "destination": "/ka/business-consulting/index.html"
+    },
+    {
+      "source": "/ka/business-consulting/",
+      "destination": "/ka/business-consulting/index.html"
+    },
+    {
+      "source": "/ru/software-development",
+      "destination": "/ru/software-development/index.html"
+    },
+    {
+      "source": "/ru/software-development/",
+      "destination": "/ru/software-development/index.html"
+    },
+    {
+      "source": "/ru/product-marketing",
+      "destination": "/ru/product-marketing/index.html"
+    },
+    {
+      "source": "/ru/product-marketing/",
+      "destination": "/ru/product-marketing/index.html"
+    },
+    {
+      "source": "/ru/product-design",
+      "destination": "/ru/product-design/index.html"
+    },
+    {
+      "source": "/ru/product-design/",
+      "destination": "/ru/product-design/index.html"
+    },
+    {
+      "source": "/ru/business-consulting",
+      "destination": "/ru/business-consulting/index.html"
+    },
+    {
+      "source": "/ru/business-consulting/",
+      "destination": "/ru/business-consulting/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-        { "key": "X-DNS-Prefetch-Control", "value": "on" }
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/:name(favicon|favicon-32|favicon-512|favicon-day|favicon-night|apple-touch-icon|og-image|logo-blue|logo-white|logo-brand-blue|logo-brand-white|logo-brand-full-blue|logo-brand-full-white|logo-mark-blue|logo-mark-white).:ext(svg|png|ico|webp)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/(robots.txt|humans.txt|sitemap.xml|site.webmanifest)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=3600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=3600"
+        }
       ]
     },
     {
       "source": "/.well-known/security.txt",
       "headers": [
-        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ]
