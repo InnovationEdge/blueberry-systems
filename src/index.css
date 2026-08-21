@@ -25,6 +25,11 @@
   --bb-card-border: rgba(0, 0, 0, 0.06);
   --bb-noise-opacity: 0.025;
   --bb-grid-stroke: rgba(0, 0, 0, 0.045);
+  /* The brand berry. One saturated accent threads the furniture (progress bar,
+     eyebrow rules, stat underlines, selection) while the tri-hue gradient is
+     reserved for the hero headline alone: one accent device per page, not the
+     same gradient on every element. */
+  --bb-berry: #004aad;
   color-scheme: light;
 }
 
@@ -42,6 +47,7 @@
   --bb-card-border: rgba(255, 255, 255, 0.06);
   --bb-noise-opacity: 0.035;
   --bb-grid-stroke: rgba(255, 255, 255, 0.025);
+  --bb-berry: #1d6ae5; /* lightened for contrast on near-black */
   color-scheme: dark;
 }
 
@@ -98,54 +104,13 @@ html[data-magicui-theme-vt] ::view-transition-new(root) {
 .font-serif { font-family: 'Inter', 'Noto Sans Georgian', system-ui, -apple-system, sans-serif; font-weight: 400; letter-spacing: -0.01em; }
 .font-mono { font-family: 'Inter', 'Noto Sans Georgian', system-ui, -apple-system, sans-serif; font-weight: 500; font-feature-settings: 'tnum'; letter-spacing: 0.06em; }
 
-::selection { background-color: var(--bb-blue); color: #fff; }
+::selection { background-color: var(--bb-berry); color: #fff; }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-100% / 3)); }
 }
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-
-/* Magic UI: aurora */
-@keyframes aurora {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.animate-aurora { animation: aurora 8s ease-in-out infinite; }
-
-/* Magic UI: meteor */
-@keyframes meteor {
-  0% {
-    transform: rotate(var(--angle)) translateX(0);
-    opacity: 1;
-  }
-  70% { opacity: 1; }
-  100% {
-    transform: rotate(var(--angle)) translateX(-500px);
-    opacity: 0;
-  }
-}
-.animate-meteor { animation: meteor 5s linear infinite; }
-
-/* Magic UI: shimmer */
-@keyframes shiny-text {
-  0%, 90%, 100% { background-position: calc(-100% - var(--shiny-width)) 0; }
-  30%, 60% { background-position: calc(100% + var(--shiny-width)) 0; }
-}
-.animate-shiny-text { animation: shiny-text 8s infinite; }
 
 /* ─── Grain overlay (film texture) ─── */
 .noise-overlay::before {
@@ -169,14 +134,14 @@ html[data-magicui-theme-vt] ::view-transition-new(root) {
   background-position: -1px -1px;
 }
 .bg-grid-fade {
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  /* Anchored to the headline block, not the viewport center: the uniform
+     centered ellipse is the recognizable template treatment, and the grid has
+     no business being brightest where nothing sits on it. */
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 22% 38%, black 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 75% at 22% 38%, black 20%, transparent 78%);
 }
 
 /* ─── Glow effects ─── */
-.glow-blue {
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.10), 0 0 80px rgba(59, 130, 246, 0.04);
-}
 .glow-blue-strong {
   box-shadow: 0 0 60px rgba(59, 130, 246, 0.20), 0 0 120px rgba(59, 130, 246, 0.08);
 }
@@ -199,31 +164,6 @@ html[data-magicui-theme-vt] ::view-transition-new(root) {
   transition: opacity 0.4s;
 }
 .glow-border:hover::after { opacity: 1; }
-
-/* ─── Animated gradient border (premium cards) ─── */
-.gradient-border {
-  position: relative;
-  background: linear-gradient(var(--bb-bg-soft), var(--bb-bg-soft)) padding-box,
-              linear-gradient(135deg, rgba(59,130,246,0.4), rgba(139,92,246,0.4)) border-box;
-  border: 1px solid transparent;
-}
-
-/* ─── Shimmer text effect (theme-aware) ─── */
-.shimmer-text {
-  background: linear-gradient(110deg, #0a0a0d 30%, #2563eb 50%, #0a0a0d 70%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 8s linear infinite;
-}
-.dark .shimmer-text {
-  background: linear-gradient(110deg, #ffffff 30%, #93c5fd 50%, #ffffff 70%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* ─── Focus rings ─── */
 input:focus, textarea:focus, select:focus {
@@ -283,6 +223,38 @@ button:focus-visible, a:focus-visible {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .shimmer-text { animation: none; background: #fff; -webkit-text-fill-color: #fff; }
   html { scroll-behavior: auto; }
+}
+
+/* ─── Print ───
+   Entrance animations hold elements at opacity 0 until scrolled into view and
+   the fixed pills sit on every page, so printing rendered mostly blank paper
+   with floating buttons. Force everything visible and drop the chrome. */
+@media print {
+  *, *::before, *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  header, .noise-overlay::before, [class*="fixed"] { display: none !important; }
+  main { display: block !important; }
+}
+
+/* ─── Blueprint mode (Konami egg) ───
+   Outlines only: they paint outside the box model and cause zero layout shift,
+   so toggling this cannot move a single pixel of content. */
+.blueprint section { position: relative; outline: 1px dashed rgba(59, 130, 246, 0.5); outline-offset: -1px; }
+.blueprint section::after {
+  content: '<section>';
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 10px;
+  color: var(--bb-blue);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 50;
 }

@@ -77,7 +77,10 @@ export function ScaleIn({ children, className = '', delay = 0 }: { children: Rea
 /* ─── Floating orb (decorative) ─── */
 export function FloatingOrb({ className }: { className: string }) {
   const reduced = useReducedMotion();
-  if (reduced) return <div className={className} />;
+  const desktop = useIsDesktop();
+  // The rest pose is pixel-identical to frame 0 of the drift, so phones and
+  // reduced-motion users get the same composition with zero animation cost.
+  if (reduced || !desktop) return <div className={className} />;
   return (
     <motion.div
       className={className}
@@ -120,79 +123,8 @@ export function KineticWords({ words, className = '' }: { words: string[]; class
 }
 
 /* ─── Hero connection particles (desktop + motion-safe only) ─── */
-export function HeroParticles() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const desktop = useIsDesktop();
-  const reduced = useReducedMotion();
 
-  useEffect(() => {
-    if (!desktop || reduced) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
 
-    let animId: number;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    type P = { x: number; y: number; vx: number; vy: number; size: number; opacity: number };
-    const particles: P[] = [];
-    const count = 50;
-    let w = 0, h = 0;
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (particles.length === 0) {
-        for (let k = 0; k < count; k++) {
-          particles.push({
-            x: Math.random() * w, y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
-            size: Math.random() * 1.4 + 0.4, opacity: Math.random() * 0.3 + 0.05,
-          });
-        }
-      }
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(99, 168, 255, ${p.opacity})`;
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const dx = p.x - q.x, dy = p.y - q.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(99, 168, 255, ${0.05 * (1 - dist / 130)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
-  }, [desktop, reduced]);
-
-  if (!desktop || reduced) return null;
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" aria-hidden />;
-}
 
 /* ─── Magnetic button (subtle cursor pull) ─── */
 export function MagneticButton({ children, className = '', href, onClick }: { children: ReactNode; className?: string; href?: string; onClick?: () => void }) {
@@ -214,13 +146,13 @@ export function MagneticButton({ children, className = '', href, onClick }: { ch
 
   if (href) {
     return (
-      <motion.a href={href} style={style} onMouseMove={handleMove} onMouseLeave={handleLeave} className={className}>
+      <motion.a href={href} style={style} whileTap={{ scale: 0.96 }} onMouseMove={handleMove} onMouseLeave={handleLeave} className={className}>
         {children}
       </motion.a>
     );
   }
   return (
-    <motion.button type="button" onClick={onClick} style={style} onMouseMove={handleMove} onMouseLeave={handleLeave} className={className}>
+    <motion.button type="button" onClick={onClick} style={style} whileTap={{ scale: 0.96 }} onMouseMove={handleMove} onMouseLeave={handleLeave} className={className}>
       {children}
     </motion.button>
   );
@@ -267,9 +199,9 @@ export function SectionEyebrow({ num, label, center = false }: { num: string; la
       }`}
     >
       <span className="font-mono text-zinc-600">/{num}</span>
-      <span className="w-6 h-px bg-blue-400/50" />
+      <span className="w-6 h-px bg-[var(--bb-berry)]/60" />
       {label}
-      {center && <span className="w-6 h-px bg-blue-400/50" />}
+      {center && <span className="w-6 h-px bg-[var(--bb-berry)]/60" />}
     </p>
   );
 }
@@ -279,9 +211,18 @@ export function Marquee({ children, speed = 32, reverse = false, className = '' 
   const reduced = useReducedMotion();
   const items = useMemo(() => [children, children, children], [children]);
   return (
-    <div className={`relative w-full overflow-hidden ${className}`}>
+    <div
+      className={`relative w-full overflow-hidden ${className}`}
+      style={{
+        // Chips dissolve at the edges instead of popping in and out of
+        // existence. The mask sits on the static wrapper, so the animating
+        // child keeps its compositor-only transform.
+        WebkitMaskImage: 'linear-gradient(90deg, transparent, black 8%, black 92%, transparent)',
+        maskImage: 'linear-gradient(90deg, transparent, black 8%, black 92%, transparent)',
+      }}
+    >
       <div
-        className="flex w-max gap-12 will-change-transform"
+        className="flex w-max gap-12 will-change-transform hover:[animation-play-state:paused]"
         style={{
           animation: reduced ? undefined : `marquee ${speed}s linear infinite ${reverse ? 'reverse' : ''}`,
         }}

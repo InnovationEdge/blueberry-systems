@@ -327,9 +327,21 @@ export const TECH_GROUPS = [
 export const LANGUAGES = ['EN', 'ქარ', 'RU', 'DE', 'ES', 'FR', 'IT', 'PL', 'TR', 'UK'] as const;
 
 /* ─── Awards ribbon ─── */
-export const AWARDS = [
-  { label: 'Awwwards · Site of the Day', short: 'SOTD' },
-  { label: 'CSS Design Awards · Best UI', short: 'CSSDA' },
-  { label: 'Featured · Vercel Showcase', short: 'Vercel' },
-  { label: 'Top 1% · Clutch Global', short: 'Clutch' },
+/**
+ * Hero proof strip: engineering numbers instead of award claims.
+ *
+ * The ribbon this replaces named Awwwards, CSS Design Awards, Vercel and
+ * Clutch, none of which the studio holds. For a technical buyer a checkable
+ * false claim in the first viewport poisons everything after it.
+ *
+ * Entries are INDICES into PORTFOLIO, not copies, so the value shown in the
+ * hero is character-identical to the one on that project's card and cannot
+ * drift from it. Nothing here introduces a number the page does not already
+ * display.
+ */
+export const PROOFS: { project: number; metric: number }[] = [
+  { project: 0, metric: 0 }, // Vybe · 431 API endpoints
+  { project: 4, metric: 0 }, // Direct · RFC 9420 MLS encryption
+  { project: 1, metric: 0 }, // KnowHow AI · 50+ RAG modules
+  { project: 2, metric: 0 }, // Georgian Insurance · 13 languages
 ];

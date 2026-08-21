@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal, SectionEyebrow } from './primitives';
 import { BorderBeam } from './ui/border-beam';
+import { useHoverCapable } from '../hooks';
 import { WorkShot, LogoTile } from './WorkShot';
 import { PORTFOLIO } from '../data';
 import type { getT } from '../i18n';
@@ -76,6 +77,7 @@ function ProductMockup({ accent, gradient }: { accent: string; gradient: string 
 }
 
 export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (i: number) => void }) {
+  const hoverCapable = useHoverCapable();
   return (
     <section id="portfolio" className="py-24 md:py-36 bg-white dark:bg-black">
       <div className="max-w-[2000px] mx-auto px-6 md:px-16 xl:px-24">
@@ -92,7 +94,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
             </div>
             <a
               href="#contact"
-              className="hidden md:inline-flex text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:text-white transition-colors items-center gap-2 self-end"
+              className="hidden md:inline-flex text-sm text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors items-center gap-2 self-end"
             >
               {t.bookCall} <ArrowUpRight className="w-4 h-4" />
             </a>
@@ -111,14 +113,19 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                   onClick={() => onOpen(idx)}
                   className="group relative w-full text-left lift rounded-3xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] hover:border-zinc-400 dark:hover:border-white/[0.14] overflow-hidden h-full flex flex-col"
                 >
-                  <BorderBeam
-                    size={70}
-                    duration={6}
-                    delay={idx * 0.5}
-                    colorFrom={p.accent}
-                    colorTo="rgba(255,255,255,0)"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  />
+                  {/* Only on devices that can hover: the beam is revealed by
+                      group-hover, so on touch it was six permanently invisible
+                      motion loops. */}
+                  {hoverCapable && (
+                    <BorderBeam
+                      size={70}
+                      duration={6}
+                      delay={idx * 0.5}
+                      colorFrom={p.accent}
+                      colorTo="rgba(255,255,255,0)"
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                  )}
                   {/* Real screenshot where we have one; the abstract mockup
                       is the fallback so a project without a usable capture
                       still gets a card that looks finished. */}
@@ -149,7 +156,7 @@ export function Portfolio({ t, onOpen }: { t: ReturnType<typeof getT>; onOpen: (
                     </div>
                     <h3 className="text-xl font-bold mb-2 tracking-tight">{p.title}</h3>
                     <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed mb-5 flex-1">{localizedDesc}</p>
-                    <div className="flex items-center justify-between text-[12px] text-zinc-600 dark:text-zinc-500 pt-4 border-t border-zinc-200 dark:border-white/[0.06] group-hover:text-blue-300 transition-colors">
+                    <div className="flex items-center justify-between text-[12px] text-zinc-600 dark:text-zinc-500 pt-4 border-t border-zinc-200 dark:border-white/[0.06] group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
                       <span>{t.viewProject}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>

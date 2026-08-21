@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, X } from 'lucide-react';
 import { MagneticButton } from './primitives';
@@ -44,6 +44,29 @@ export function ProjectModal({
       body.style.overflow = prevOverflow;
       body.style.paddingRight = prevPaddingRight;
       window.removeEventListener('keydown', onKey);
+    };
+  }, [open, onClose]);
+
+  // The hardware back gesture is the most natural "close" on Android, and it
+  // was exiting the site mid-case-study. A sentinel history entry absorbs it:
+  // back pops the sentinel and closes the dialog. Closing any other way
+  // (Escape, X, scrim) removes the sentinel so the stack does not grow.
+  const closedByPop = useRef(false);
+  useEffect(() => {
+    if (!open) return;
+    closedByPop.current = false;
+    window.history.pushState({ bbsProject: true }, '');
+    const onPop = () => {
+      closedByPop.current = true;
+      onClose();
+    };
+    window.addEventListener('popstate', onPop);
+    return () => {
+      window.removeEventListener('popstate', onPop);
+      // Guarded on the sentinel still being the top entry: the Start Project
+      // CTA navigates to #contact first, which buries the sentinel, and an
+      // unguarded back() would then undo the navigation the user just chose.
+      if (!closedByPop.current && window.history.state?.bbsProject) window.history.back();
     };
   }, [open, onClose]);
 
@@ -184,13 +207,18 @@ export function ProjectModal({
 
                 <div className="p-5 sm:p-8 md:p-14 max-w-5xl mx-auto">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                    {p.metrics.map((m) => (
-                      <div key={m.label} className="border border-zinc-200 dark:border-white/[0.06] rounded-2xl p-5 bg-zinc-50 dark:bg-white/[0.015]">
+                    {p.metrics.map((m, mi) => (
+                      <motion.div
+                        key={m.label}
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 + mi * 0.06, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="border border-zinc-200 dark:border-white/[0.06] rounded-2xl p-5 bg-zinc-50 dark:bg-white/[0.015]">
                         <p className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: p.accent }}>
                           {m.value}
                         </p>
                         <p className="text-[11px] text-zinc-600 dark:text-zinc-500 mt-2 uppercase tracking-[0.18em]">{m.label}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 
@@ -229,9 +257,9 @@ export function ProjectModal({
                     <h3 className="text-[11px] text-blue-400 font-semibold uppercase tracking-[0.28em] mb-4">
                       {t.results}
                     </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                       {p.results.map((r) => (
-                        <div key={r} className="bg-zinc-100/60 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/[0.06] rounded-xl p-4 text-center">
+                        <div key={r} className="bg-zinc-100/60 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/[0.06] rounded-xl p-4 flex items-center text-left sm:text-center sm:justify-center">
                           <p className="text-sm font-semibold text-black dark:text-white">{r}</p>
                         </div>
                       ))}

@@ -74,7 +74,7 @@ export function Services({ t, lang }: { t: ReturnType<typeof getT>; lang: string
                 <ScaleIn delay={i * 0.05} className="h-full">
                   <a
                     href={href}
-                    className={`group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 ${isFeature ? 'p-8 sm:p-10 lg:p-12' : 'p-7 sm:p-8'} transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
+                    className={`group relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.08] bg-white dark:bg-white/[0.02] hover:border-zinc-400 dark:hover:border-white/[0.18] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-black/40 active:scale-[0.99] ${isFeature ? 'p-8 sm:p-10 lg:p-12' : 'p-7 sm:p-8'} transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
                   >
                     {/* Icon — large, bold, accent-colored */}
                     <div
@@ -125,15 +125,15 @@ export function Services({ t, lang }: { t: ReturnType<typeof getT>; lang: string
 
                     {/* Learn-more arrow — anchors the card visually + crawlable internal link */}
                     <span
-                      className="mt-auto inline-flex items-center gap-1.5 text-[12px] font-medium opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
+                      className="mt-auto inline-flex items-center gap-1.5 text-[12px] font-medium opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-all duration-300"
                       style={{ color: accent }}
                     >
-                      {t.learnMore} <ArrowUpRight className="w-3.5 h-3.5" />
+                      {t.learnMore} <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
 
                     {/* Accent line on hover (top) */}
                     <span
-                      className="absolute top-0 left-7 right-7 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute top-0 left-7 right-7 h-px origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
                       style={{ background: accent }}
                       aria-hidden
                     />
@@ -218,7 +218,7 @@ export function Process({ t }: { t: ReturnType<typeof getT> }) {
                     aria-hidden
                     className="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl scale-90 group-hover:scale-110 transition-transform duration-500"
                   />
-                  <span className="relative inline-flex items-center justify-center w-20 h-20 rounded-full border border-blue-500/30 bg-blue-500/5 font-mono text-blue-300 text-xl font-bold">
+                  <span className="relative inline-flex items-center justify-center w-20 h-20 rounded-full border border-blue-500/30 bg-blue-500/5 font-mono text-blue-600 dark:text-blue-300 text-xl font-bold">
                     {p.step}
                   </span>
                 </div>
@@ -260,7 +260,7 @@ export function StatsStrip({ t }: { t: ReturnType<typeof getT> }) {
                 </p>
                 <span
                   className="mt-3 md:mt-4 w-8 h-px"
-                  style={{ background: '#004aad' }}
+                  style={{ background: 'var(--bb-berry)' }}
                   aria-hidden
                 />
                 <p className="text-[11px] text-zinc-600 dark:text-zinc-400 mt-3 md:mt-4 uppercase tracking-[0.18em] sm:tracking-[0.22em] font-medium">

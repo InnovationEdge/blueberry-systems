@@ -77,7 +77,7 @@ export function FounderNote({ t }: { t: ReturnType<typeof getT> }) {
               <span className="text-blue-500 dark:text-blue-300">{t.founderTitleAccent1}</span>
               <br />
               {t.founderTitle2}{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
+              <span className="text-blue-500 dark:text-blue-300">
                 {t.founderTitleAccent2}
               </span>
             </h2>

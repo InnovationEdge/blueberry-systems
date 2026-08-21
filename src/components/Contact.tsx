@@ -90,25 +90,25 @@ export function Contact({ t }: { t: ReturnType<typeof getT> }) {
               <div className="space-y-4 text-sm">
                 <a
                   href="mailto:info@blueberry.codes"
-                  className="flex items-center gap-3 min-h-11 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
+                  className="flex items-center gap-3 min-h-11 text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors group"
                 >
                   <span className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                    <Mail className="w-4 h-4 text-blue-300" />
+                    <Mail className="w-4 h-4 text-blue-600 dark:text-blue-300" />
                   </span>
                   info@blueberry.codes
                 </a>
                 <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
                   <span className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                    <MapPin className="w-4 h-4 text-blue-300" />
+                    <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-300" />
                   </span>
                   Tbilisi, Georgia
                 </div>
                 <a
                   href="tel:+995598449644"
-                  className="flex items-center gap-3 min-h-11 text-zinc-700 dark:text-zinc-300 hover:text-black dark:text-white transition-colors group"
+                  className="flex items-center gap-3 min-h-11 text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors group"
                 >
                   <span className="w-10 h-10 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                    <Phone className="w-4 h-4 text-blue-300" />
+                    <Phone className="w-4 h-4 text-blue-600 dark:text-blue-300" />
                   </span>
                   +995 598 44 96 44
                 </a>
@@ -187,7 +187,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
         className="border border-blue-500/20 bg-blue-600/[0.04] rounded-3xl p-12 text-center"
       >
         <div className="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-8 h-8 text-blue-300" />
+          <CheckCircle className="w-8 h-8 text-blue-600 dark:text-blue-300" />
         </div>
         <h3 className="text-2xl font-bold mb-2 tracking-tight">{t.contactSent}</h3>
         <p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-sm mx-auto">{t.contactSentDesc}</p>
@@ -196,7 +196,7 @@ function ContactForm({ t }: { t: ReturnType<typeof getT> }) {
             setSent(false);
             setForm({ name: '', email: '', company: '', message: '', budget: '' });
           }}
-          className="mt-7 text-sm text-blue-300 hover:text-blue-200 transition-colors font-medium"
+          className="mt-7 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-200 transition-colors font-medium"
         >
           {t.sendAnother}
         </button>

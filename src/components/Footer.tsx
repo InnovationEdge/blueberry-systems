@@ -16,7 +16,7 @@ import type { getT } from '../i18n';
 const footerLink =
   'inline-flex items-center justify-center min-h-11 min-w-11 px-2.5 -mx-2.5 transition-colors';
 const footerLinkMuted =
-  `${footerLink} hover:text-black dark:hover:text-zinc-700 dark:text-zinc-300`;
+  `${footerLink} hover:text-black dark:hover:text-white dark:text-zinc-300`;
 
 export function Footer({ t }: { t: ReturnType<typeof getT> }) {
   return (
@@ -26,6 +26,7 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
           <Logo className="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity" />
           <div className="w-px h-5 bg-black/[0.10] dark:bg-white/[0.10]" />
           <span className="text-[11px] text-zinc-600 dark:text-zinc-500 tracking-wide">© {t.footerRights}</span>
+          <span className="hidden sm:inline font-mono text-[10px] text-zinc-500 dark:text-zinc-600 tracking-wide" aria-hidden="true">{'/* est. 2020 · Tbilisi · view-source friendly */'}</span>
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-xs text-zinc-600 dark:text-zinc-500">
           <a
@@ -43,6 +44,9 @@ export function Footer({ t }: { t: ReturnType<typeof getT> }) {
             className={footerLinkMuted}
           >
             GitHub
+          </a>
+          <a href="/humans.txt" className={`${footerLinkMuted} font-mono text-[11px]`}>
+            humans.txt
           </a>
           <a
             href="https://www.linkedin.com/company/blueberry-systems/"

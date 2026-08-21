@@ -1,4 +1,4 @@
-import { Reveal, Marquee, SectionEyebrow } from './primitives';
+import { Reveal, SectionEyebrow } from './primitives';
 import type { getT } from '../i18n';
 
 export function Blog({ t }: { t: ReturnType<typeof getT> }) {
@@ -23,15 +23,11 @@ export function Blog({ t }: { t: ReturnType<typeof getT> }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {posts.map((post, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <article className="lift relative h-full flex flex-col border border-zinc-200 dark:border-white/[0.06] rounded-3xl p-8 hover:border-zinc-400 dark:hover:border-white/[0.14] transition-all duration-300 group bg-zinc-50/60 dark:bg-white/[0.01] overflow-hidden">
-                <div
-                  className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  aria-hidden
-                />
-                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-blue-300 mb-5">
+              <article className="relative h-full flex flex-col border border-zinc-200 dark:border-white/[0.06] rounded-3xl p-8 bg-zinc-50/60 dark:bg-white/[0.01] overflow-hidden">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-blue-600 dark:text-blue-300 mb-5">
                   {post.tag}
                 </span>
-                <h3 className="text-xl font-bold mb-4 tracking-tight group-hover:text-blue-300 transition-colors flex-1">
+                <h3 className="text-xl font-bold mb-4 tracking-tight flex-1">
                   {post.title}
                 </h3>
                 <div className="flex items-center justify-between text-[11px] text-zinc-600 dark:text-zinc-500 pt-4 border-t border-zinc-200 dark:border-white/[0.06] font-mono">
@@ -163,19 +159,22 @@ export function Team({ t }: { t: ReturnType<typeof getT> }) {
 
 export function Partners({ t }: { t: ReturnType<typeof getT> }) {
   // Real partner ecosystem (wordmarks rendered as type — no fake logos)
+  // What each vendor is USED for, not partner-program claims: the old tier
+  // strings ("Cloud Partner", "Verified Org") named statuses in third-party
+  // programs the studio does not hold, the same fault as the awards ribbon.
   const partners = [
-    { name: 'AWS', tier: 'Cloud Partner' },
-    { name: 'Vercel', tier: 'Pro Partner' },
-    { name: 'Supabase', tier: 'Solutions' },
-    { name: 'Stripe', tier: 'Verified Builder' },
-    { name: 'OpenAI', tier: 'API Builder' },
-    { name: 'Google Cloud', tier: 'Partner' },
-    { name: 'Cloudflare', tier: 'Solutions' },
-    { name: 'GitHub', tier: 'Verified Org' },
-    { name: 'Linear', tier: 'Apps' },
-    { name: 'Figma', tier: 'Plugin Author' },
-    { name: 'Sentry', tier: 'Integrations' },
-    { name: 'Datadog', tier: 'Partner' },
+    { name: 'AWS', tier: 'Cloud infra' },
+    { name: 'Vercel', tier: 'Deploys' },
+    { name: 'Supabase', tier: 'Data' },
+    { name: 'Stripe', tier: 'Payments' },
+    { name: 'OpenAI', tier: 'LLM APIs' },
+    { name: 'Google Cloud', tier: 'Cloud Run' },
+    { name: 'Cloudflare', tier: 'Edge' },
+    { name: 'GitHub', tier: 'CI/CD' },
+    { name: 'Linear', tier: 'Planning' },
+    { name: 'Figma', tier: 'Design' },
+    { name: 'Sentry', tier: 'Monitoring' },
+    { name: 'Datadog', tier: 'Observability' },
   ];
 
   return (
@@ -191,12 +190,14 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
         </Reveal>
       </div>
 
-      <Marquee speed={45}>
-        <>
+      {/* Static wrap, third auto-scroller removed: a strip people try to READ
+          kept moving away from them, and the hover borders promised a click
+          that goes nowhere. */}
+      <div className="flex flex-wrap justify-center gap-3 max-w-[1200px] mx-auto px-6">
           {partners.map((p) => (
             <div
               key={p.name}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] whitespace-nowrap hover:border-zinc-500/70 dark:hover:border-white/[0.18] hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-colors"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50 dark:bg-white/[0.015] whitespace-nowrap"
             >
               <span className="text-[15px] md:text-base font-bold tracking-tight text-black dark:text-white">
                 {p.name}
@@ -207,8 +208,7 @@ export function Partners({ t }: { t: ReturnType<typeof getT> }) {
               </span>
             </div>
           ))}
-        </>
-      </Marquee>
+      </div>
     </section>
   );
 }

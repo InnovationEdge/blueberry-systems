@@ -75,6 +75,7 @@ export function Header({
               <a
                 key={item.id}
                 href={`#${item.id}`}
+                aria-keyshortcuts={{ portfolio: 'w', pricing: 'p', contact: 'c' }[item.id]}
                 className="px-3.5 py-2 text-[13px] text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white rounded-md hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-all font-medium"
               >
                 {item.label}
@@ -106,14 +107,14 @@ export function Header({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -6, scale: 0.96 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute right-0 mt-2 bg-white dark:bg-zinc-950 border border-white/10 rounded-xl overflow-hidden z-50 shadow-2xl shadow-black/50 min-w-[100px]"
+                      className="absolute right-0 mt-2 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 rounded-xl overflow-hidden z-50 shadow-2xl shadow-black/50 min-w-[100px]"
                     >
                       {LANGUAGES.map((l) => (
                         <button
                           key={l}
                           onClick={() => { setLang(l); setShowLang(false); }}
                           className={`block w-full px-4 py-2.5 text-xs text-left transition-colors ${
-                            lang === l ? 'bg-blue-600/15 text-blue-400' : 'text-zinc-600 dark:text-zinc-400 hover:bg-white/5 hover:text-black dark:text-white'
+                            lang === l ? 'bg-blue-600/15 text-blue-400' : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-black dark:hover:text-white'
                           }`}
                         >
                           {l}
@@ -127,7 +128,7 @@ export function Header({
 
             <a
               href="#contact"
-              className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-lg text-[13px] font-semibold hover:opacity-90 transition-all"
+              className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-lg text-[13px] font-semibold hover:opacity-90 active:scale-[0.97] transition-all"
             >
               {t.getInTouch}
             </a>

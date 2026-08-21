@@ -7,7 +7,7 @@ import type { getT } from '../i18n';
  * Each entry names the real project we shipped in that sector and links
  * down to its case study in Portfolio.
  */
-export function Industries({ t }: { t: ReturnType<typeof getT> }) {
+export function Industries({ t, onOpenProject }: { t: ReturnType<typeof getT>; onOpenProject?: (i: number) => void }) {
   const labels: Record<string, string> = {
     Social: t.indSocial,
     'Legal Tech': t.indLegal,
@@ -45,12 +45,21 @@ export function Industries({ t }: { t: ReturnType<typeof getT> }) {
             <Reveal key={s.name} delay={i * 0.05} className="h-full">
               <a
                 href="#portfolio"
-                className="group flex h-full flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50/60 dark:bg-white/[0.01] hover:bg-zinc-100 dark:hover:bg-white/[0.04] p-4 lift transition-all"
+                onClick={(e) => {
+                  // The section promises "tap one for the case study": open the
+                  // exact case-study modal (INDUSTRIES and PORTFOLIO are
+                  // index-aligned). The href stays as the no-JS fallback.
+                  if (onOpenProject) {
+                    e.preventDefault();
+                    onOpenProject(i);
+                  }
+                }}
+                className="group flex h-full flex-col rounded-2xl border border-zinc-200 dark:border-white/[0.06] bg-zinc-50/60 dark:bg-white/[0.01] hover:bg-zinc-100 dark:hover:bg-white/[0.04] hover:border-[color-mix(in_srgb,var(--accent)_40%,transparent)] p-4 lift active:scale-[0.98] transition-all"
                 style={{ ['--accent' as string]: s.accent }}
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span
-                    className="w-2 h-2 rounded-full transition-shadow duration-300 group-hover:shadow-[0_0_12px]"
+                    className="w-2 h-2 rounded-full transition-[box-shadow,transform] duration-300 group-hover:shadow-[0_0_12px] group-hover:scale-125"
                     style={{ backgroundColor: s.accent, ['--tw-shadow-color' as string]: s.accent }}
                   />
                   <span className="font-mono text-[11px] text-zinc-600 uppercase tracking-[0.16em] sm:tracking-[0.2em]">

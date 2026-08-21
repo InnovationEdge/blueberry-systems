@@ -4,12 +4,11 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import {
   CursorSpotlight,
   FloatingOrb,
-  HeroParticles,
   KineticWords,
   MagneticButton,
   Reveal,
 } from './primitives';
-import { AWARDS } from '../data';
+import { PORTFOLIO, PROOFS } from '../data';
 import type { getT } from '../i18n';
 
 export function Hero({ t }: { t: ReturnType<typeof getT> }) {
@@ -29,7 +28,6 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
       {/* Background layers */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-grid bg-grid-fade" />
-        <HeroParticles />
         <motion.div style={{ y: orbY }} className="absolute inset-0 pointer-events-none">
           <FloatingOrb className="absolute top-[6%] right-[6%] w-[680px] h-[680px] bg-blue-500/[0.13] rounded-full blur-[160px]" />
           <FloatingOrb className="absolute bottom-[8%] left-[2%] w-[560px] h-[560px] bg-violet-600/[0.10] rounded-full blur-[150px]" />
@@ -82,7 +80,7 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
             <span className="block leading-[1.1] py-2">
               <KineticWords
                 words={t.heroWords as unknown as string[]}
-                className="bg-gradient-to-br from-blue-500 via-cyan-400 to-violet-500 dark:from-blue-300 dark:via-cyan-200 dark:to-violet-300 bg-clip-text text-transparent"
+                className="bg-gradient-to-br from-blue-500 via-cyan-400 to-violet-500 dark:from-blue-400 dark:via-sky-300 dark:to-violet-400 bg-clip-text text-transparent"
               />
             </span>
             <span
@@ -115,14 +113,14 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
               >
                 <MagneticButton
                   href="#contact"
-                  className="group px-8 py-4 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-2xl shadow-blue-500/10 active:scale-[0.97]"
+                  className="group px-8 py-4 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold text-[15px] inline-flex items-center gap-2.5 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-2xl shadow-blue-500/10"
                 >
                   {t.heroCta}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </MagneticButton>
                 <a
                   href="#portfolio"
-                  className="group px-8 py-4 border border-zinc-400/80 dark:border-white/[0.14] text-black dark:text-white rounded-full text-[15px] font-medium hover:border-black/30 dark:hover:border-white/30 hover:bg-zinc-100 dark:hover:bg-white/[0.04] transition-all inline-flex items-center gap-2.5"
+                  className="group px-8 py-4 border border-zinc-400/80 dark:border-white/[0.14] text-black dark:text-white rounded-full text-[15px] font-medium hover:border-black/30 dark:hover:border-white/30 hover:bg-zinc-100 dark:hover:bg-white/[0.04] active:scale-[0.98] transition-all inline-flex items-center gap-2.5"
                 >
                   {t.heroExplore}
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -132,15 +130,24 @@ export function Hero({ t }: { t: ReturnType<typeof getT> }) {
           </div>
 
           {/* Awards ribbon */}
+          {/* Proof strip. Same slot the awards ribbon held; the numbers are
+              drawn from PORTFOLIO by index so they are character-identical to
+              the case-study cards below. No top hairline: a rule here read as
+              a separator between siblings, which is the template tell, and the
+              spacing does the grouping on its own. */}
           <Reveal delay={0.4}>
-            <div className="border-t border-zinc-200 dark:border-white/[0.06] pt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.22em] font-medium">
-              <span>{t.trustedBy}</span>
-              {AWARDS.map((a, i) => {
-                const label = [t.award1, t.award2, t.award3, t.award4][i] ?? a.label;
+            <div className="mt-10 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+              {PROOFS.map(({ project, metric }) => {
+                const p = PORTFOLIO[project];
+                const m = p.metrics[metric];
                 return (
-                  <span key={a.label} className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-blue-500/60" />
-                    {label}
+                  <span key={p.title} className="flex items-baseline gap-2.5">
+                    <span className="font-mono text-lg sm:text-xl font-bold tracking-tight text-black dark:text-white">
+                      {m.value}
+                    </span>
+                    <span className="text-[11px] text-zinc-600 dark:text-zinc-500 uppercase tracking-[0.18em] font-medium whitespace-nowrap">
+                      {m.label} · {p.title}
+                    </span>
                   </span>
                 );
               })}

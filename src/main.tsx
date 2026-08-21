@@ -23,3 +23,23 @@ createRoot(document.getElementById('root')!).render(
     </MotionConfig>
   </StrictMode>,
 )
+
+/**
+ * The first thing a technical founder does on an agency site is open devtools,
+ * and until now the console said nothing. Dev-facing English on purpose: this
+ * is not UI copy, it is a note to the one audience guaranteed to read it.
+ */
+if (typeof window !== 'undefined') {
+  console.info(
+    '%c</>%c Blueberry Systems %c Tbilisi · 41.71N 44.83E',
+    'background: linear-gradient(120deg,#2563eb,#7c3aed); color:#fff; font-family:ui-monospace,Menlo,monospace; font-weight:700; padding:4px 8px; border-radius:6px 0 0 6px;',
+    'background:#0a0a0d; color:#fff; font-family:ui-monospace,Menlo,monospace; padding:4px 8px; border-radius:0 6px 6px 0;',
+    'color:#8a8a93; font-family:ui-monospace,Menlo,monospace; padding:4px 0;',
+  );
+  console.info(
+    '%cReading console output? So do we, all day. info@blueberry.codes\n' +
+    'Keys: w work · p pricing · c contact. The old code works too:\n' +
+    'up up down down left right left right b a',
+    'color:#8a8a93; font-family:ui-monospace,Menlo,monospace;',
+  );
+}

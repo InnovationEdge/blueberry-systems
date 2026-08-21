@@ -77,7 +77,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                 }`}
               >
                 {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-black dark:text-white px-4 py-1.5 rounded-full text-[10px] font-bold tracking-[0.18em] uppercase">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-bold tracking-[0.18em] uppercase">
                     {t.mostPopular}
                   </div>
                 )}
@@ -113,7 +113,7 @@ export function Pricing({ t }: { t: ReturnType<typeof getT> }) {
                   className={`block text-center py-3.5 rounded-full text-sm font-semibold transition-all ${
                     p.popular
                       ? 'bg-black text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200'
-                      : 'border border-white/15 text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06]'
+                      : 'border border-zinc-300 dark:border-white/15 text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06]'
                   }`}
                 >
                   {t.getStarted}
@@ -168,7 +168,7 @@ export function Testimonials({ t }: { t: ReturnType<typeof getT> }) {
                       </p>
                     </div>
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] text-blue-300 font-mono whitespace-nowrap">
+                  <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] text-blue-600 dark:text-blue-300 font-mono whitespace-nowrap">
                     {r.metric}
                   </span>
                 </div>

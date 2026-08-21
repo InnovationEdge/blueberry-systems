@@ -35,7 +35,7 @@ export function Careers({ t }: { t: ReturnType<typeof getT> }) {
                   className="w-full flex items-center justify-between p-6 border border-zinc-200 dark:border-white/[0.06] rounded-2xl hover:border-blue-500/30 hover:bg-blue-600/[0.04] transition-all group text-left"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 min-w-0">
-                    <h3 className="font-semibold text-base group-hover:text-blue-300 transition-colors">
+                    <h3 className="font-semibold text-base group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
                       {j.title}
                     </h3>
                     <span className="text-[11px] text-zinc-600 dark:text-zinc-500 bg-zinc-100 dark:bg-white/[0.04] border border-zinc-200 dark:border-white/[0.06] px-3 py-1 rounded-full font-mono uppercase tracking-wider">
@@ -44,10 +44,10 @@ export function Careers({ t }: { t: ReturnType<typeof getT> }) {
                   </div>
                   <div className="flex items-center gap-4 shrink-0">
                     <span className="text-xs text-zinc-600 dark:text-zinc-500">{j.type}</span>
-                    <span className="text-xs text-blue-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">
+                    <span className="text-xs text-blue-600 dark:text-blue-300 font-medium opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">
                       {t.applyNow}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-zinc-600 dark:text-zinc-500 group-hover:text-blue-300 transition-colors" />
+                    <ArrowUpRight className="w-4 h-4 text-zinc-600 dark:text-zinc-500 group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors" />
                   </div>
                 </button>
               </Reveal>
@@ -112,12 +112,12 @@ function ApplyModal({
             <div className="flex items-start justify-between mb-8">
               <div>
                 <h3 className="text-xl font-bold tracking-tight">{t.applyNow}</h3>
-                <p className="text-sm text-blue-300 mt-1">{job}</p>
+                <p className="text-sm text-blue-600 dark:text-blue-300 mt-1">{job}</p>
               </div>
               <button
                 onClick={handleClose}
                 aria-label="Close"
-                className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06] rounded-full transition-colors"
+                className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-white/[0.06] rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

@@ -6,17 +6,34 @@
     <title>Page not found · Blueberry Systems</title>
     <meta name="description" content="The page you were looking for doesn't exist on Blueberry Systems. Head back to the homepage." />
     <meta name="robots" content="noindex, follow" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=6" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6" />
     <meta name="theme-color" content="#050507" />
     <link rel="stylesheet" href="/landing.css" />
     <style>
-      .center { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
-      .code { font-family: ui-monospace, SF Mono, Menlo, monospace; font-size: clamp(5rem, 18vw, 9rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1; background: linear-gradient(120deg,#60a5fa,#22d3ee,#a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 24px; }
-      .center h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); margin-bottom: 16px; }
-      .center p { max-width: 460px; margin-bottom: 40px; }
-      .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); max-width: 600px; width: 100%; margin-top: 24px; }
-      .grid a { padding: 14px 18px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; color: var(--fg); transition: all .2s; }
+      /* The 404 is the one page a developer prospect is guaranteed to judge in
+         half a second, so it speaks the audience's language: a terminal. Page
+         stays dark-only like the rest of landing.css. */
+      .center { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
+      .center h1 { font-size: clamp(1.4rem, 4vw, 2rem); margin: 28px 0 8px; text-align: center; }
+      .center > p { max-width: 460px; margin-bottom: 8px; text-align: center; }
+      .term { width: 100%; max-width: 640px; text-align: left; border: 1px solid var(--border); border-radius: 16px; background: #0a0a0d; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+      .term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+      .term-bar span[data-dot] { width: 12px; height: 12px; border-radius: 50%; }
+      .term-title { margin-left: 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--muted); }
+      .term-body { margin: 0; padding: 20px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; line-height: 1.9; white-space: pre-wrap; word-break: break-all; color: #d4d4d8; }
+      .term-body .ps { color: #22d3ee; }
+      .term-body .err { color: #f87171; }
+      .term-body .cmt { color: #6e6e76; }
+      .term-body a { color: #60a5fa; text-decoration: underline; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: 44px; }
+      .term-body a:hover { color: #93c5fd; }
+      .ls { display: flex; flex-wrap: wrap; column-gap: 28px; }
+      .cursor { display: inline-block; color: #60a5fa; animation: blink404 1.2s steps(1) infinite; }
+      @keyframes blink404 { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+      .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); max-width: 640px; width: 100%; margin-top: 32px; }
+      .grid a { display: flex; align-items: center; min-height: 44px; padding: 10px 18px; border: 1px solid var(--border); border-radius: 12px; font-size: 14px; color: var(--fg); transition: all .2s; }
       .grid a:hover { border-color: rgba(96, 165, 250, 0.5); background: rgba(96, 165, 250, 0.04); color: #60a5fa; }
     </style>
   </head>
@@ -30,7 +47,20 @@
       <a href="/" class="back">← Home</a>
     </header>
     <main class="center" id="main-content">
-      <div class="code">404</div>
+      <div class="term">
+        <div class="term-bar" aria-hidden="true">
+          <span data-dot style="background:#f87171"></span>
+          <span data-dot style="background:#fbbf24"></span>
+          <span data-dot style="background:#34d399"></span>
+          <span class="term-title">visitor@blueberry: ~</span>
+        </div>
+        <pre class="term-body"><span class="ps" aria-hidden="true">$</span> curl -I blueberry.codes<span id="path">/this-page</span>
+<span class="err">HTTP/2 404</span>  <span class="cmt"># nothing lives here</span>
+
+<span class="ps" aria-hidden="true">$</span> ls /
+<span class="ls"><a href="/software-development/">software-development/</a> <a href="/product-marketing/">product-marketing/</a> <a href="/product-design/">product-design/</a> <a href="/business-consulting/">business-consulting/</a></span>
+<span class="ps" aria-hidden="true">$</span> <a href="/">cd ~</a> <span class="cursor" aria-hidden="true">▍</span></pre>
+      </div>
       <h1>Page not found</h1>
       <p>The URL you tried doesn't exist on blueberry.codes. Maybe you meant one of these?</p>
       <div class="grid">
@@ -42,5 +72,9 @@
         <a href="/#contact">→ Contact us</a>
       </div>
     </main>
+    <script>
+      /* textContent, never innerHTML: the path is attacker-controlled. */
+      document.getElementById('path').textContent = location.pathname;
+    </script>
   </body>
 </html>

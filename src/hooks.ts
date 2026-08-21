@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion as fmReducedMotion } from 'motion/react';
 
 /**
@@ -101,4 +101,22 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   }, [active]);
 
   return ref;
+}
+
+/**
+ * True on devices that can actually hover (mouse or trackpad, not touch).
+ * Gates hover-only ornaments at the React level, not with display:none,
+ * because motion keeps animating properties on elements CSS has hidden: six
+ * hidden BorderBeams still ran offsetDistance loops on every touch device.
+ */
+export function useHoverCapable(): boolean {
+  const [can, setCan] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const update = () => setCan(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return can;
 }

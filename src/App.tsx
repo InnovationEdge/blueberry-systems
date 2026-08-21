@@ -165,6 +165,11 @@ export default function App() {
   const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t = getT(lang);
 
+  // Stable identity: ProjectModal keys a history-manipulating effect on this
+  // callback, and an inline arrow would re-run that effect (back(), push())
+  // on every App re-render while the dialog is open.
+  const closeProject = useCallback(() => setSelected(null), []);
+
   // Whether to withhold the first paint until this language's strings arrive.
   // The policy lives in shouldHoldForLocale above; this only applies it.
   const holdingForLocale = !isLoaded(lang) && shouldHoldForLocale(lang, localeChunkPreloaded(lang));
@@ -208,6 +213,44 @@ export default function App() {
     return () => { cancelled = true; };
     // Runs for the initial language only; setLang awaits its own load.
   }, [lang]);
+
+  // Keyboard layer: single-letter section jumps plus one old-school easter
+  // egg. One listener for both, so there is exactly one place that decides
+  // when typing is typing.
+  useEffect(() => {
+    const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let progress = 0;
+    const JUMPS: Record<string, string> = { w: 'portfolio', p: 'pricing', c: 'contact' };
+
+    const onKey = (e: KeyboardEvent) => {
+      // Never while a modifier is held, a field is being typed in, or an
+      // overlay is open (the drawer and the project modal both declare
+      // role=dialog, so one query covers both).
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const el = e.target as HTMLElement | null;
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable)) return;
+      if (document.querySelector('[role="dialog"]')) return;
+
+      const jump = JUMPS[e.key.toLowerCase()];
+      if (jump && !KONAMI.includes(e.key)) {
+        // scrollIntoView with no args defers to CSS scroll-behavior, which the
+        // reduced-motion block already flips to auto.
+        document.getElementById(jump)?.scrollIntoView();
+      }
+
+      progress = e.key === KONAMI[progress] ? progress + 1 : e.key === KONAMI[0] ? 1 : 0;
+      if (progress === KONAMI.length) {
+        progress = 0;
+        const on = document.documentElement.classList.toggle('blueprint');
+        console.info(
+          `%cblueprint mode ${on ? 'on' : 'off'}. Every <section> shows its seams.`,
+          'color:#3b82f6; font-family:ui-monospace,Menlo,monospace;',
+        );
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   // Sync <html lang="..."> + ?lang= URL param + document.title + meta description
   // with active language — improves a11y (screen readers), SEO (hreflang +
@@ -300,14 +343,14 @@ export default function App() {
       >
         <Hero t={t} />
         <StatsStrip t={t} />
-        <Industries t={t} />
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Industries t={t} onOpenProject={setSelected} />
+        <Suspense fallback={<div id="portfolio" className="min-h-[400px]" />}>
           <BelowFold t={t} lang={lang} onOpenProject={setSelected} />
         </Suspense>
       </main>
 
       <Suspense fallback={null}>
-        <ProjectModal index={selected} onClose={() => setSelected(null)} t={t} />
+        <ProjectModal index={selected} onClose={closeProject} t={t} />
       </Suspense>
 
       <ScrollToTop />
